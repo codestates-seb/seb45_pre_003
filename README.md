@@ -10,7 +10,7 @@
 # 프로젝트 그룹원들
 |박찬섭(FE)|이지은(FE)|김희목(FE)|
 |------|---|---|
-|cksk49@naver.com|ljedoc@naver.com|/**/|
+|cksk49@naver.com|ljedoc@naver.com|as01050993729@gmail.com|
 
 |전해성(BE)|홍아현(BE)|임가영(BE)|
 |------|---|---|
