@@ -26,12 +26,16 @@ public class MemberDto {
     @Getter
     @Builder
     public static class Patch {
-
+        private String name;
+        private String email;
+        private String password;
     }
 
     @Getter
     @Builder
     public static class Response {
-
+        private long id;
+        private String name;
+        private String email;
     }
 }
