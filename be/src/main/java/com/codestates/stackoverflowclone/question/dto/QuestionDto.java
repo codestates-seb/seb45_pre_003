@@ -18,7 +18,7 @@ public class QuestionDto {
         private String title;
         private String body;
     }
-    @Getter@Setter
+    @Getter@Setter@AllArgsConstructor
     public static class Response {
         private Long questionId;
         private String title;
