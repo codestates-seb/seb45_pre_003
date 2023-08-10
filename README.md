@@ -12,9 +12,9 @@
 |------|---|---|
 |cksk49@naver.com|ljedoc@naver.com|as01050993729@gmail.com|
 
-|전해성(BE)|홍아현(BE)|임가영(BE)|
+|전해성(BE)|홍아현(BE)|
 |------|---|---|
-|eternalasset92@gmail.com|9599562@gmail.com|903125may@gmail.com|
+|eternalasset92@gmail.com|9599562@gmail.com|
 
 # 기술 스택
 
