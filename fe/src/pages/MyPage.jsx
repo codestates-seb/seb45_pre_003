@@ -1,17 +1,28 @@
-import React from 'react'
+import { React, useState } from 'react'
 import Header from '../components/Header'; 
-import Content from '../components/Content'; 
-import ContainerStyle from '../components/Container'
+import LeftBar from '../components/LeftBar';
+import MypageContent from '../components/mypageComponents/MyPageContent';
+import { MyPageContainerStyle } from '../components/mypageComponents/MyPage.styled';
+import { MypageContentStyle } from  '../components/mypageComponents/MyPage.styled';
 import Footer from '../components/Footer';
 
 
 export default function MyPage() {
+
+   const [selectedContent, setSelectedContent] = useState('Activity');
+
   return (
     <>
     <Header />
-    <ContainerStyle >
-    <Content />
-    </ContainerStyle>
+    <MyPageContainerStyle>
+        <LeftBar/>
+        <MypageContentStyle>
+          <MypageContent 
+          selectedContent={selectedContent}
+          setSelectedContent={setSelectedContent}
+          />
+        </MypageContentStyle>
+    </MyPageContainerStyle>
     <Footer />
     </>  
     )
