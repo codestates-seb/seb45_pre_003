@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26988001-5455-41eb-b0cf-e73d30a50a4f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/mapper/MemberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/mapper/MemberMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/repository/MemberRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/question/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/question/entity/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/user/entity/User.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +62,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -93,6 +98,8 @@
       <workItem from="1691576204567" duration="509000" />
       <workItem from="1691626978456" duration="3995000" />
       <workItem from="1691634180743" duration="9712000" />
+      <workItem from="1691647627704" duration="4987000" />
+      <workItem from="1691653536659" duration="332000" />
     </task>
     <servers />
   </component>

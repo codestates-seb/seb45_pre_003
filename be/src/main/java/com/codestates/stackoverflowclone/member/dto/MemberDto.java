@@ -19,7 +19,7 @@ public class MemberDto {
         private String email;
 
         //TODO password 최대 길이 정하기. 일단은 20자 이하 > member에도 적용하기
-        @Pattern(regexp = "^((?=\\S*?[a-zA-Z])(?=\\S*?[0-9]).{8,20})\\S$")
+        @Pattern(regexp = "^((?=\\S*?[a-zA-Z])(?=\\S*?[0-9]).{7,20})\\S$")
         private String password;
     }
 
