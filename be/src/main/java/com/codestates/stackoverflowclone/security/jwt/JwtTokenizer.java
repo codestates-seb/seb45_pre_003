@@ -3,6 +3,7 @@ package com.codestates.stackoverflowclone.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class JwtTokenizer {
     @Getter
     @Value("${jwt.key}")
+    //JWT_SECRET_KEY 환경변수 설정이 필요함
     private String secretKey;
 
     @Getter
@@ -35,7 +37,9 @@ public class JwtTokenizer {
     }
 
     public String generateAccessToken(Map<String, Object> claims, String subject, Date expiration, String base64EncodedSecretKey) {
-        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+// 수정 전        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -47,7 +51,8 @@ public class JwtTokenizer {
     }
 
     public String generateRefreshToken(String subject, Date expiration, String base64EncodedSecretKey) {
-        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+//수정 전        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
 
         return Jwts.builder()
                 .setSubject(subject)

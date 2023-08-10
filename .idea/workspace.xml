@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="26988001-5455-41eb-b0cf-e73d30a50a4f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/repository/MemberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/question/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/question/entity/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/user/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/jwt/JwtTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/jwt/JwtTokenizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +96,7 @@
       <workItem from="1691626978456" duration="3995000" />
       <workItem from="1691634180743" duration="9712000" />
       <workItem from="1691647627704" duration="4987000" />
-      <workItem from="1691653536659" duration="332000" />
+      <workItem from="1691653536659" duration="5413000" />
     </task>
     <servers />
   </component>

@@ -57,7 +57,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "PUT", "DELETE"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
@@ -69,7 +69,7 @@ public class SecurityConfiguration {
         public void configure(HttpSecurity builder) throws Exception {
             AuthenticationManager manager = builder.getSharedObject(AuthenticationManager.class);
             JwtAuthenticationFilter filter = new JwtAuthenticationFilter(manager, jwtTokenizer);
-//            filter.setFilterProcessesUrl("/login");
+            filter.setFilterProcessesUrl("/login");
             builder.addFilter(filter);
         }
     }
