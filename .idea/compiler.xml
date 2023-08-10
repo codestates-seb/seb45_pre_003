@@ -10,5 +10,9 @@
         <module name="stackoverflowclone.main" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
+=======
+    <bytecodeTargetLevel target="11" />
+>>>>>>> feat/users
   </component>
 </project>
