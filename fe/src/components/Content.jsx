@@ -6,10 +6,8 @@ import RightBar from "./RightBar";
 function Content () {
     return (
         <ContentStyle>
-            <Routes>
                 <MainBar></MainBar>
                 <RightBar></RightBar>
-            </Routes>
         </ContentStyle>
     )
 }
