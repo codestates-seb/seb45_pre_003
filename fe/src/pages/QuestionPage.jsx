@@ -87,7 +87,7 @@ const DummyData = [
 ]
 
 
-function HomePage () {
+function QuestionPage () {
     
     return (
         <ContainerStyle>
@@ -95,17 +95,20 @@ function HomePage () {
             <HomePageContentStyle>
                 <HomePageMainBarStyle>
                     <TopBox>
-                        <Title>Top Questions</Title>
+                        <Title>All Questions</Title>
                         <AskQuestionBtn>Ask Question</AskQuestionBtn>
                     </TopBox>
                     <SecondBox>
-                        <QuestionsNum></QuestionsNum>
+                        <QuestionsNum
+                        style={{
+                            visibility:"visible",
+                        }}
+                        >{`${DummyData.length} questions`}</QuestionsNum>
                         <FilterBox>
-                            <FirstFilter>interesting</FirstFilter>
-                            <SecondFilter>Bountied</SecondFilter>
-                            <ThirdFilter>Hot</ThirdFilter>
-                            <ForthFilter>Week</ForthFilter>
-                            <LastFilter>Month</LastFilter>
+                            <FirstFilter>Newest</FirstFilter>
+                            <SecondFilter>Active</SecondFilter>
+                            <ThirdFilter>Bountied</ThirdFilter>
+                            <LastFilter>Unanswered</LastFilter>
                         </FilterBox>
                     </SecondBox>
                     <Ul>
@@ -153,4 +156,4 @@ function HomePage () {
     )
 }
 
-export default HomePage;
+export default QuestionPage;
