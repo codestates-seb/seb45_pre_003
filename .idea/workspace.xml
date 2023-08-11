@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="94a17651-61df-4b1e-9ff9-3704e36b8a6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/repository/PageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/repository/PageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/dto/MemberDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/mapper/MemberMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/mapper/MemberMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
