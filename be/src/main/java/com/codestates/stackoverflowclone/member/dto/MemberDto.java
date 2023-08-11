@@ -29,7 +29,6 @@ public class MemberDto {
     @Builder
     public static class Patch {
         private String name;
-        private String email;
         private String password;
     }
 

@@ -9,4 +9,6 @@ public interface MemberMapper {
     Member postToMember(MemberDto.Post request);
 
     MemberDto.Response memberToResponse(Member created);
+
+    Member patchToMember(MemberDto.Patch request);
 }
