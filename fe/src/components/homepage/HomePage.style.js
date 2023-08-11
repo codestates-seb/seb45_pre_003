@@ -26,6 +26,7 @@ export const HomePageRightBarStyle = styled.div`
     margin: 0 0 15px;
     height:100%;
     border:1px solid gray;
+    background-image:url("/images/깃허브이미지.png");
     @media screen and (max-width:980px) {
         display:none;
     }
@@ -215,4 +216,34 @@ export const MetaData = styled.div`
     > a:nth-child(2) {
         color:hsl(206,100%,52%);
     }
+`
+
+export const PageBox = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px;
+`
+
+export const PageButtonBox = styled.div`
+    display:flex;
+    
+`
+
+export const PageButton = styled.div`
+    font-size:0.9rem;
+    padding:2px 8px 4px 8px;
+    margin-left:3px;
+    border:1px solid hsl(210,8%,85%);
+    border-radius:4px;
+    color:hsl(210,8%,25%);
+    &:hover{
+        background-color:hsl(210,8%,75%);
+    }
+
+`
+
+export const PerPageText = styled.span`
+    font-size:0.9rem;
+    margin-left:10px;
 `
