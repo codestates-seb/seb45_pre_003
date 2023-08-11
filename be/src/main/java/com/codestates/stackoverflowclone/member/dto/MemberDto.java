@@ -43,7 +43,7 @@ public class MemberDto {
     @Getter
     @Builder
     public static class PageResponse {
-        private List<Member> data;
+        private List<MemberDto.Response> data;
         private PageInfo pageInfo;
     }
 

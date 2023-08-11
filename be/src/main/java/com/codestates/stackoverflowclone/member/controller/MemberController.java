@@ -49,6 +49,7 @@ public class MemberController {
     public ResponseEntity getMembers(@RequestParam String tab, @RequestParam String filter, @RequestParam @Positive int page) {
         Page<Member> memberPage = service.findMembers(tab, filter, page - 1);
         List<Member> list = memberPage.getContent();
+        List<MemberDto.Response> responseList = mapper.memberListToresponseList(list);
 
         MemberDto.PageInfo pageInfo = MemberDto.PageInfo.builder()
                 .page(page)
@@ -57,7 +58,7 @@ public class MemberController {
                 .build();
 
         MemberDto.PageResponse response = MemberDto.PageResponse.builder()
-                .data(list)
+                .data(responseList)
                 .pageInfo(pageInfo)
                 .build();
 
