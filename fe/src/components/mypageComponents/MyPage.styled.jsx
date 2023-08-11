@@ -155,6 +155,9 @@ export const ProfileLeftBarStyle = styled.div`
     justify-content: space-between;
     float: left; 
     text-align: left; 
+    font-size: 13px;
+    padding: 20px 15px 20px 15px; 
+    vertical-align: middle;
     width:176px;
     flex-shrink:0;
     margin-bottom: 10px; 
