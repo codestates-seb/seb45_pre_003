@@ -81,3 +81,50 @@ export const FooterStyle = styled.footer`
     border:1px solid purple;
     background-color:white;
 `
+
+export const HeaderContainerStyle =styled.div`
+    position:relative;
+    max-width: 1264px;
+    height: 100%;
+    display: flex;
+    align-items: middle; 
+    margin: 0 auto;
+    align-items: center;     
+`
+
+export const HeaderLogoStyle = styled.div`
+     display:flex;
+     justify-content: baseline;
+     align-items: flex-end;
+     width: 166px;
+     height: 52px;  
+     font-size: 20px;
+     padding-bottom: 12px; 
+     @media screen and (max-width:640px){
+        width: 100%;
+    }
+`
+
+export const HeaderElementStyle = styled.div`
+     padding: 5px;
+     margin: 5px;
+     vertical-align: middle;
+
+     &:hover {
+       background: #d6d6d7;
+       color: #6a6a6c; 
+     }    
+`
+
+export const SearchElementStyle = styled.input`
+    width: 773px;
+    height: 32px; 
+    flex-shrink:1;
+    position:relative !important;
+    border-radius: 5px; 
+    border: 1px solid lightgray; 
+    @media screen and (max-width:640px){
+        width: 100%
+    }   
+`
+
