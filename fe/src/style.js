@@ -40,6 +40,7 @@ export const LeftBarStyle = styled.div`
     flex-shrink:0;
     position:relative !important;
     border:1px solid skyblue;
+    background-color:skyblue;
     @media screen and (max-width:640px){
         display:none;
     }
@@ -78,4 +79,5 @@ export const FooterStyle = styled.footer`
     display:block;
     height:322px;
     border:1px solid purple;
+    background-color:white;
 `

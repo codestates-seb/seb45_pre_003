@@ -5,8 +5,8 @@ import RightBar from "./RightBar";
 function Content () {
     return (
         <ContentStyle>
-                <MainBar></MainBar>
-                <RightBar></RightBar>
+            <MainBar></MainBar>
+            <RightBar></RightBar>
         </ContentStyle>
     )
 }
