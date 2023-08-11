@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class QuestionDto {
     @Getter@Setter@AllArgsConstructor@NoArgsConstructor
@@ -26,6 +28,9 @@ public class QuestionDto {
         private String title;
         private String body;
         private Member member;
+
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
 
     }
 }

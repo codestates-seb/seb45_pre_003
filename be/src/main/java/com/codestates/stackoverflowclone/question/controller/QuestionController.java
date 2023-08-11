@@ -1,5 +1,6 @@
 package com.codestates.stackoverflowclone.question.controller;
 
+import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.dto.QuestionDto;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.mapper.QuestionMapper;
@@ -18,25 +19,28 @@ import javax.validation.constraints.Positive;
 public class QuestionController {
     private QuestionMapper questionMapper;
     private QuestionService questionService;
+    private MemberService memberService;
 
-    public QuestionController(QuestionMapper questionMapper, QuestionService questionService) {
+    public QuestionController(QuestionMapper questionMapper, QuestionService questionService,
+                              MemberService memberService) {
         this.questionMapper = questionMapper;
         this.questionService = questionService;
+        this.memberService = memberService;
     }
 
     @PostMapping
-    public ResponseEntity postQuestion(@Valid @RequestBody QuestionDto.Post question){
-        // Todo: mapper, Service, Repository 거쳐서 저장하고 저장해온거 반납
-        // 지금은 그냥 더미/스텁 데이터로...
-        // Todo:
-//        QuestionDto.Response response = new QuestionDto.Response( 1L,
-//                                question.getTitle(), question.getBody(), question.getMember());
-        return new ResponseEntity<>(/*response,*/ HttpStatus.CREATED);
+    public ResponseEntity postQuestion(@Valid @RequestBody QuestionDto.Post requestBody){
+        // mapper, Service, Repository 거쳐서 저장하고 저장해온거 반납
+        Question question = questionMapper.questionPostToQuestion(requestBody, memberService);
+        Question savedQuestion = questionService.createQuestion(question);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @PatchMapping("/{question-id}")
     public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                         @Valid @RequestBody QuestionDto.Patch requestBody){
-        // Todo: mapper, service, repository 거쳐서 수정하고 반납
+        // mapper, service, repository 거쳐서 수정하고 반납
         requestBody.setQuestionId(questionId);
         Question question = questionMapper.questionPatchToQuestion(requestBody);
         Question findQuestion = questionService.updateQuestion(question);
@@ -51,7 +55,7 @@ public class QuestionController {
 
 
     @DeleteMapping("/{question-id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive Long questionId){
+    public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId){
         questionService.deleteQuestion( questionId );
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

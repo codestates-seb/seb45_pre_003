@@ -15,6 +15,9 @@ public class QuestionService {
     public QuestionService(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
+    public Question createQuestion(Question question){
+        return questionRepository.save(question);
+    }
     public Question updateQuestion(Question question){
         Question findQuestion = findVerifiedQuestion(question.getQuestionId());
 

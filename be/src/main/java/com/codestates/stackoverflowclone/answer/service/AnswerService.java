@@ -12,6 +12,10 @@ import java.util.Optional;
 public class AnswerService {
     private AnswerRepository answerRepository;
 
+    public Answer createAnswer(Answer answer){
+        return answerRepository.save(answer);
+    }
+
     public Answer updateAnswer(Answer answer){
         Answer findAnswer = findVerifiedAnswer(answer.getAnswerId());
 
@@ -19,6 +23,11 @@ public class AnswerService {
                 .ifPresent(body->findAnswer.setBody(body));
 
         return answerRepository.save(findAnswer);
+    }
+    public void deleteAnswer(long answerId){
+        Answer answer = findVerifiedAnswer(answerId);
+        answerRepository.delete(answer);
+
     }
     public Answer findVerifiedAnswer( long answerId ){
         Optional<Answer> answer = answerRepository.findById(answerId);
