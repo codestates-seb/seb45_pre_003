@@ -7,7 +7,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter@Setter@Builder@AllArgsConstructor@NoArgsConstructor
+@Getter@Setter@AllArgsConstructor@NoArgsConstructor
 @Entity
 public class Answer extends Auditable {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)

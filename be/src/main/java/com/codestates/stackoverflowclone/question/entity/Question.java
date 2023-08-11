@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter@Setter@NoArgsConstructor@AllArgsConstructor@Builder
+@Getter@Setter@NoArgsConstructor@AllArgsConstructor
 @Entity
 public class Question extends Auditable {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answers = new ArrayList<>();
 
-    public void addAnswers(Answer answer) {
+    public void setAnswers(Answer answer) {
         this.answers.add(answer);
         if (answer.getQuestion() != this) answer.setQuestion(this);
     }
