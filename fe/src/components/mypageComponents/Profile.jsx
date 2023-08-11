@@ -6,6 +6,7 @@ import {ActivityStyleCardTitleStyle} from '../mypageComponents/MyPage.styled';
 import {ActivityCardTextStyle} from '../mypageComponents/MyPage.styled';
 import { ProfileLeftBarContainerStyle } from '../mypageComponents/MyPage.styled';
 import {CommunitySetStyle} from '../mypageComponents/MyPage.styled';
+import picture1 from '../../assets/stack-overflow.png'
 
 export default function Profile() {
   return (
@@ -36,8 +37,10 @@ export default function Profile() {
      <div style={{fontSize:"13px"}}>Edit</div>
      </CommunitySetStyle>
      <ProfileLeftBarStyle>
-        <div style={{fontSize:"17px"}}>Stack Overflow</div>
-        <div style={{fontSize:"13px"}}>1</div>
+        <div>
+        <img src={picture1} style={{height: "16px", width:"16px"}}alt="logo"/>
+          Stack Overflow</div>
+        <div>1</div>
       </ProfileLeftBarStyle>
       </ProfileLeftBarContainerStyle>
      <ActivityCardContainer>
