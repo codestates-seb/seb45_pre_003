@@ -2,8 +2,8 @@ package com.codestates.stackoverflowclone.member.service;
 
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.repository.MemberRepository;
+import com.codestates.stackoverflowclone.member.repository.PageRepository;
 import com.codestates.stackoverflowclone.security.util.CustomAuthorityUtils;
-import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,12 +21,14 @@ public class MemberService {
     private final MemberRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
+    private final PageRepository pageRepository;
     private final int PAGESIZE = 36;
 
-    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils) {
+    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, PageRepository pageRepository) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.authorityUtils = authorityUtils;
+        this.pageRepository = pageRepository;
     }
 
     public Member createMember(Member member) {
@@ -63,7 +65,10 @@ public class MemberService {
     }
 
     public Page<Member> findMembers(String tab, String filter, int page) {
-        Pageable pageable = PageRequest.of(page, PAGESIZE, Sort.by(tab).descending());
+        Pageable pageable = PageRequest.of(page, PAGESIZE, Sort.by("created_at").descending());
+        Page<Member> memberPage = pageRepository.findBy(pageable);
+
+        return memberPage;
     }
 
 }

@@ -53,6 +53,6 @@ public class MemberDto {
     public static class PageInfo {
         private int page;
         private int totalPage;
-        private int totalElements;
+        private long totalElements;
     }
 }
