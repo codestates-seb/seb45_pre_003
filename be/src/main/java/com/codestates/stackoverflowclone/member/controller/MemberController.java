@@ -5,15 +5,15 @@ import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @RequestMapping("/members")
@@ -35,5 +35,32 @@ public class MemberController {
         MemberDto.Response response = mapper.memberToResponse(created);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{member-id}")
+    public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
+        Member findMember = service.findMember(memberId);
+        MemberDto.Response response = mapper.memberToResponse(findMember);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getMembers(@RequestParam String tab, @RequestParam String filter, @RequestParam @Positive int page) {
+        Page<Member> memberPage = service.findMembers(tab, filter, page - 1);
+        List<Member> list = memberPage.getContent();
+
+        MemberDto.PageInfo pageInfo = MemberDto.PageInfo.builder()
+                .page(page)
+                .totalPage(memberPage.getTotalPages())
+                .totalElements(memberPage.getTotalElements())
+                .build();
+
+        MemberDto.PageResponse response = MemberDto.PageResponse.builder()
+                .data(list)
+                .pageInfo(pageInfo)
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
