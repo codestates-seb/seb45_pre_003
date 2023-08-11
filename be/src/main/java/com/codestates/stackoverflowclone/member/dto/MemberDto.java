@@ -1,10 +1,12 @@
 package com.codestates.stackoverflowclone.member.dto;
 
+import com.codestates.stackoverflowclone.member.entity.Member;
 import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 public class MemberDto {
     @Getter
@@ -37,5 +39,20 @@ public class MemberDto {
         private long id;
         private String name;
         private String email;
+    }
+
+    @Getter
+    @Builder
+    public static class PageResponse {
+        private List<Member> data;
+        private PageInfo pageInfo;
+    }
+
+    @Getter
+    @Builder
+    public static class PageInfo {
+        private int page;
+        private int totalPage;
+        private int totalElements;
     }
 }
