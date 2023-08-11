@@ -18,7 +18,7 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
       <UserInformation>
       <Avatar />
       <UserInfomationConnected>
-      <div style={{fontSize:"34px", margin: "4px"}}> 이지은 </div>
+      <div style={{fontSize:"34px", margin: "4px"}}> Elena </div>
       <Userdetails>
       <li style={{listStyle:'none', margin:'0px 2px'}}>🎂 Members for 3days </li>
       <li style={{listStyle:'none', margin:'0px 2px'}}>🕓 Last seen tis week </li>
@@ -26,7 +26,7 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
       </Userdetails>
       </UserInfomationConnected>
       </UserInformation>
-      <div style={{padding:"2px", margin:"10px 0px 20px 2px"}}>
+      <div style={{padding:"2px", margin:"10px 0px 30px 2px"}}>
         {filteringitems.map((el) =>  <MypageFilter key={el} 
         onClick = {() => setSelectedContent(el)} 
         active = {selectedContent === el}>{el}

@@ -59,7 +59,7 @@ export const MypageFilter = styled.span`
      border-radius: 20px;
      cursor: pointer;
      &:hover {
-       background: #f48225;
+       background: #d6d6d7;
        color: white;
      }
 `;
@@ -134,6 +134,21 @@ export const ActivityCardTextStyle = styled.div`
     margin-left: 20px; 
    }
 `
+
+export const ProfileLeftBarContainerStyle = styled.div`
+   display:flex;
+   flex-direction:column; 
+   font-size: 21px; 
+   margin: 5px 0; 
+`; 
+
+export const CommunitySetStyle = styled.div`
+   display:flex;
+   justify-content: space-between;
+   align-items: baseline;
+   margin: 5px 0; 
+`; 
+
 export const ProfileLeftBarStyle = styled.div`
     display: flex;
     flex-wrap:wrap; 
@@ -142,6 +157,7 @@ export const ProfileLeftBarStyle = styled.div`
     text-align: left; 
     width:176px;
     flex-shrink:0;
+    margin-bottom: 10px; 
     color: 1px solid rgb(106, 115, 124);
     border: 1px solid rgb(106, 115, 124);
     border-radius: 5px; 
@@ -150,3 +166,4 @@ export const ProfileLeftBarStyle = styled.div`
         display:none;
     }
 `; 
+
