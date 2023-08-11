@@ -1,4 +1,3 @@
-
 import { ContentStyle } from "../style";
 import MainBar from "./MainBar";
 import RightBar from "./RightBar";
