@@ -24,7 +24,7 @@ export default function MyPage() {
         </MypageContentStyle>
     </MyPageContainerStyle>
     <Footer />
-    </>  
+    </>
     )
-    
+
 }
