@@ -51,9 +51,9 @@ public class Member extends Auditable {
 
 
 
-//    @PostLoad
-//    private void caculateWeek() {
-//        this.week = (int) ChronoUnit.WEEKS.between(getCreatedAt(), LocalDateTime.now());
-//    }
+    @PostLoad
+    private void caculateWeek() {
+        this.week = (int) ChronoUnit.WEEKS.between(getCreatedAt(), LocalDateTime.now());
+    }
 
 }
