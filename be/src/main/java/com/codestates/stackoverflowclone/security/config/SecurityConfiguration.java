@@ -3,6 +3,7 @@ package com.codestates.stackoverflowclone.security.config;
 import com.codestates.stackoverflowclone.security.filter.JwtAuthenticationFilter;
 import com.codestates.stackoverflowclone.security.jwt.JwtTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,10 +24,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
 
     private final JwtTokenizer jwtTokenizer;
+    private final ApplicationEventPublisher publisher;
 
     @Autowired
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, ApplicationEventPublisher publisher) {
         this.jwtTokenizer = jwtTokenizer;
+        this.publisher = publisher;
     }
 
     @Bean
@@ -68,7 +71,7 @@ public class SecurityConfiguration {
         @Override
         public void configure(HttpSecurity builder) throws Exception {
             AuthenticationManager manager = builder.getSharedObject(AuthenticationManager.class);
-            JwtAuthenticationFilter filter = new JwtAuthenticationFilter(manager, jwtTokenizer);
+            JwtAuthenticationFilter filter = new JwtAuthenticationFilter(manager, jwtTokenizer, publisher);
             filter.setFilterProcessesUrl("/login");
             builder.addFilter(filter);
         }

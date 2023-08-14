@@ -1,11 +1,15 @@
 package com.codestates.stackoverflowclone.member.dto;
 
 import com.codestates.stackoverflowclone.member.entity.Member;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberDto {
@@ -30,6 +34,22 @@ public class MemberDto {
     public static class Patch {
         private String name;
         private String password;
+    }
+
+    @Getter
+    @Builder
+    public static class GetMemberResponse {
+        private long id;
+        private String name;
+        private String email;
+        private LocalDateTime createdAt;
+        private int weekSinceRegistration;
+        private int vote;
+        private int tag;
+        private int visitCount;
+        private int continuousVisitCount;
+        private int questionCount;
+        private int answerCount;
     }
 
     @Getter

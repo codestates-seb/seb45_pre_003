@@ -15,4 +15,6 @@ public interface MemberMapper {
     Member patchToMember(MemberDto.Patch request);
 
     List<MemberDto.Response> memberListToresponseList(List<Member> list);
+
+    MemberDto.GetMemberResponse memberToGetMemberResponse(Member findMember);
 }

@@ -1,10 +1,12 @@
 package com.codestates.stackoverflowclone.security.filter;
 
 import com.codestates.stackoverflowclone.member.entity.Member;
+import com.codestates.stackoverflowclone.member.event.MemberEvent;
 import com.codestates.stackoverflowclone.security.dto.LoginDto;
 import com.codestates.stackoverflowclone.security.jwt.JwtTokenizer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,10 +22,13 @@ import java.util.Map;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager manager;
     private final JwtTokenizer jwtTokenizer;
+    private final ApplicationEventPublisher publisher;
 
-    public JwtAuthenticationFilter(AuthenticationManager manager, JwtTokenizer jwtTokenizer) {
+
+    public JwtAuthenticationFilter(AuthenticationManager manager, JwtTokenizer jwtTokenizer, ApplicationEventPublisher publisher) {
         this.manager = manager;
         this.jwtTokenizer = jwtTokenizer;
+        this.publisher = publisher;
     }
 
     @SneakyThrows
@@ -43,6 +48,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String refreshToken = delegateRefreshToken(member);
         response.setHeader("Authorization", "Bearer" + accessToken);
         response.setHeader("Refresh", refreshToken);
+
+        publisher.publishEvent(new MemberEvent(member.getId()));
     }
 
     private String delegateAccessToken(Member member) {
