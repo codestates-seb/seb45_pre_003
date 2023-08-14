@@ -4,7 +4,6 @@ import LeftBar from '../components/LeftBar';
 import MypageContent from '../components/mypageComponents/MyPageContent';
 import { MyPageContainerStyle } from '../components/mypageComponents/MyPage.styled';
 import { MypageContentStyle } from  '../components/mypageComponents/MyPage.styled';
-import Footer from '../components/Footer';
 
 
 export default function MyPage() {
@@ -23,7 +22,6 @@ export default function MyPage() {
           />
         </MypageContentStyle>
     </MyPageContainerStyle>
-    <Footer />
     </> 
     )
 }
