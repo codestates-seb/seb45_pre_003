@@ -4,6 +4,7 @@ import com.codestates.stackoverflowclone.audit.Auditable;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -14,10 +15,15 @@ public class Answer extends Auditable {
     private Long answerId;
     @Column(nullable = false)
     private String body;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="MEMBER_ID", nullable = false)
     private Member member;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="QUESTION_ID", nullable = false)
     private Question question;
+
+    @Column(nullable = false)
+    @ColumnDefault("false")
+    private Boolean isBest;
+
 }

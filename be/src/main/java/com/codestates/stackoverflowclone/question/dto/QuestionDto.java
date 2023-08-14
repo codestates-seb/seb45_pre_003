@@ -21,6 +21,7 @@ public class QuestionDto {
         private Long questionId;
         private String title;
         private String body;
+        private Long visitCount;
     }
     @Getter@Setter@AllArgsConstructor@NoArgsConstructor
     public static class Response {
@@ -29,8 +30,34 @@ public class QuestionDto {
         private String body;
         private Member member;
 
+        private Long answerCount;
+        private Long visitCount;
+
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-
     }
+    @Getter@Setter@AllArgsConstructor@NoArgsConstructor
+    public static class ResponseElement {
+        private Long questionId;
+        private String title;
+        private Member member;
+
+        private Long answerCount;
+        private Long visitCount;
+
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
+    }
+    @Getter@Setter@AllArgsConstructor@NoArgsConstructor
+    public static class myPageElement {
+        private Long questionId;
+        private String title;
+
+        private Long answerCount;
+        private Long visitCount;
+
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
+    }
+
 }
