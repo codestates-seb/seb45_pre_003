@@ -388,7 +388,7 @@ function HomePage () {
                     </Ul>
                 </HomePageMainBarStyle>
                 
-                <HomePageRightBarStyle>
+                <HomePageRightBarStyle href="https://github.com/codestates-seb/seb45_pre_003">
                 </HomePageRightBarStyle>
             </HomePageContentStyle>
         </ContainerStyle>
