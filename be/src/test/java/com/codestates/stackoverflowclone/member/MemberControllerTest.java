@@ -21,26 +21,22 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.codestates.stackoverflowclone.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.codestates.stackoverflowclone.util.ApiDocumentUtils.getResponsePreProcessor;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
@@ -222,14 +218,74 @@ public class MemberControllerTest {
                         ));
     }
 
-//    @Test
-//    public void patchMemberTest() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void deleteMemberTest() throws Exception {
-//
-//    }
+    @Test
+    public void patchMemberTest() throws Exception {
+
+        long id = 1L;
+        String patchName = "patch";
+        String patchPassword = "patch987";
+
+        MemberDto.Patch patch = MemberDto.Patch.builder().name(patchName).password(patchPassword).build();
+        String patchContent = gson.toJson(patch);
+
+        MemberDto.Response response = MemberDto.Response.builder().id(id).email("test@test.com").name(patchName).build();
+
+        Member member = new Member();
+        member.setId(id);
+
+        given(mapper.patchToMember(Mockito.any(MemberDto.Patch.class))).willReturn(member);
+        given(service.updateMember(Mockito.any(Member.class))).willReturn(member);
+        given(mapper.memberToResponse(Mockito.any(Member.class))).willReturn(response);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/members/{member-id}", id)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(patchContent)
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-member",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("member-id").description("수정하고자 하는 회원 식별자")
+                        ),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("수정하고자 하는 이름"),
+                                        fieldWithPath("password").type(JsonFieldType.STRING).description("수정하고자 하는 비밀번호")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("수정된 이름"),
+                                        fieldWithPath("email").type(JsonFieldType.STRING).description("이메일")
+                                )
+                        )
+                        ));
+
+    }
+
+    @Test
+    public void deleteMemberTest() throws Exception {
+        long id = 1L;
+
+        doNothing().when(service).deleteMember(anyLong());
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.delete("/members/{member-id}", id)
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isNoContent())
+                .andDo(document("delete-member",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("member-id").description("삭제할 회원 식별자")
+                        )));
+    }
 }
 
