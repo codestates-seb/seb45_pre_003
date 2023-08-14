@@ -54,12 +54,13 @@ export const NavBarUl = styled.ul`
 export const NavBarLi = styled.li`
     font-size:13px;
     color:hsl(210,8%,35%);
-    margin:16px 0 4px 0px;
+    padding:8px 0 4px 0px;
     line-height:2;
     > a {
         text-decoration:none;
         color:hsl(210,8%,35%);
         padding:4px;
+        display:flex;
         &.focus {
         font-weight:800;
         color:black;
