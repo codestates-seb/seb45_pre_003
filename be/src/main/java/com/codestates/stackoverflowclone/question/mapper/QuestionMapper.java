@@ -25,5 +25,5 @@ public interface QuestionMapper {
     QuestionDto.Response questionToQuestionResponse( Question question);
 
     List<QuestionDto.ResponseElement> questionsToQuestionResponseElements(List<Question> questions);
-
+    List<QuestionDto.MypageElement> questionsToQuestionMypageElements(List<Question> questions);
 }

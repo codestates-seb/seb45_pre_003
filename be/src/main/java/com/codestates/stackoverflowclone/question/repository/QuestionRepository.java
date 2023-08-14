@@ -15,4 +15,9 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
             LocalDateTime startDateTime,
             LocalDateTime endDateTime,
             Pageable pageable);
+    @Query("SELECT q FROM Question q WHERE q.member.id = :memberId")
+    Page<Question> findQuestionsByMemberId(long memberId, Pageable pageable);
+
+    @Query("SELECT q FROM Question q JOIN Answer a ON q.questionId = a.question.questionId WHERE a.member.id = :memberId")
+    Page<Question> findQuestionsWithMyAnswer(long memberId, Pageable pageable);
 }

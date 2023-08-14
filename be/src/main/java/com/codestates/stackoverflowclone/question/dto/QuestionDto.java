@@ -49,15 +49,12 @@ public class QuestionDto {
         private LocalDateTime modifiedAt;
     }
     @Getter@Setter@AllArgsConstructor@NoArgsConstructor
-    public static class myPageElement {
+    public static class MypageElement {
         private Long questionId;
         private String title;
 
-        private Long answerCount;
-        private Long visitCount;
-
         private LocalDateTime createdAt;
-        private LocalDateTime modifiedAt;
+
     }
 
 }
