@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +57,7 @@ public class MemberService {
         return member;
     }
 
-    private Member verifyId(long memberId) {
+    public Member verifyId(long memberId) {
         Optional<Member> optionalMember = repository.findById(memberId);
         //TODO BusinessException 구현 후 대체
         Member findMember = optionalMember.orElseThrow(() -> new RuntimeException());
@@ -65,10 +66,30 @@ public class MemberService {
     }
 
     public Page<Member> findMembers(String tab, String filter, int page) {
-        Pageable pageable = PageRequest.of(page, PAGESIZE, Sort.by("created_at").descending());
+        //일단은 최신순 정렬
+        //추후 tab, filter에 따라 분기해서 처리할 예정
+        Pageable pageable = PageRequest.of(page, PAGESIZE, Sort.by("createdAt").descending());
         Page<Member> memberPage = pageRepository.findBy(pageable);
 
         return memberPage;
+    }
+
+    public Member updateMember(Member member) {
+        Member findMember = verifyId(member.getId());
+
+        Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
+        Optional.ofNullable(member.getPassword())
+                .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
+
+        Member updateMember = repository.save(findMember);
+
+        return updateMember;
+    }
+
+    public void deleteMember(long memberId) {
+        Member findMember = verifyId(memberId);
+
+        repository.delete(findMember);
     }
 
 }

@@ -40,7 +40,7 @@ public class MemberController {
     @GetMapping("/{member-id}")
     public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
         Member findMember = service.findMember(memberId);
-        MemberDto.Response response = mapper.memberToResponse(findMember);
+        MemberDto.GetMemberResponse response = mapper.memberToGetMemberResponse(findMember);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -49,6 +49,7 @@ public class MemberController {
     public ResponseEntity getMembers(@RequestParam String tab, @RequestParam String filter, @RequestParam @Positive int page) {
         Page<Member> memberPage = service.findMembers(tab, filter, page - 1);
         List<Member> list = memberPage.getContent();
+        List<MemberDto.Response> responseList = mapper.memberListToresponseList(list);
 
         MemberDto.PageInfo pageInfo = MemberDto.PageInfo.builder()
                 .page(page)
@@ -57,10 +58,28 @@ public class MemberController {
                 .build();
 
         MemberDto.PageResponse response = MemberDto.PageResponse.builder()
-                .data(list)
+                .data(responseList)
                 .pageInfo(pageInfo)
                 .build();
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{member-id}")
+    public ResponseEntity patchMember(@PathVariable("member-id") long memberId, @RequestBody MemberDto.Patch request) {
+        Member member = mapper.patchToMember(request);
+        member.setId(memberId);
+
+        Member updateMember = service.updateMember(member);
+        MemberDto.Response response = mapper.memberToResponse(updateMember);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{member-id}")
+    public ResponseEntity deleteMember(@PathVariable("member-id") long memberId) {
+        service.deleteMember(memberId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
