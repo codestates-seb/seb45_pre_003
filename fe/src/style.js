@@ -197,11 +197,12 @@ export const HeaderElementStyle = styled.li`
 `
 
 export const FooterContainerStyle = styled.div`
+    position:relative;
+    margin: 0 auto; 
     display: flex; 
-    flex-flow: row-wrap;
     max-width: 1240px; 
     width: 100%;
-    height: 378px; 
+    height: 278px; 
     padding: 32px 12px ;
     font-size: 13px; 
     flex: 1 0 auto;
@@ -274,6 +275,7 @@ export const FooterCopyrightStyle = styled.div`
      justify-content: space-between;
      align-items: left; 
      height : 278px; 
+     width: 313px; 
      font-size: 11px;
      color:  #9199A1;
 
@@ -288,8 +290,6 @@ export const FooterCopyrightItems = styled.ul`
      display: flex; 
      flex-direction : row;
      flex-wrap: wrap;
-     max-width: 304px; 
-     width: 100%; 
      column-gap: 12px; 
      row-gap: 8px; 
      
