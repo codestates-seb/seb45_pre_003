@@ -103,7 +103,7 @@ public class QuestionController {
     ///// Todo: unanswered question list! 정렬기준 알아보기!
 
 
-    ///// memberId를 통해 member가 작성한 answer들의 questions들 제목/생성시간 리스트 가져오기
+    ///// memberId를 통해 member가 작성한 answer들의 questions들 제목/생성시간 리스트 mypage로 가져오기
     @GetMapping("/answers/{member-id}")
     public ResponseEntity getQuestionsWithMyAnswer(@PathVariable("member-id") long memberId,
                                                    @Positive @RequestParam int page,
