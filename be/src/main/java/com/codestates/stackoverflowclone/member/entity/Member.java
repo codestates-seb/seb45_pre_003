@@ -47,19 +47,22 @@ public class Member extends Auditable {
     @Column(nullable = false, updatable = false)
     private int tag = (int)(Math.random() * 100);
 
-
-    private int visitCount = 1;
-    private int continuousVisitCount = 1;
+    @Setter
+    private int visitCount = 0;
+    @Setter
+    private int continuousVisitCount = 0;
+    @Setter
+    private LocalDateTime lastLoginTime;
 
     private int questionCount = 1;
 
     private int answerCount = 1;
 
-    @OneToMany
-    private List<Question> questions;
+    @OneToMany(mappedBy = "member")
+    private List<Question> questions = new ArrayList<>();
 
-    @OneToMany
-    private List<Answer> answers;
+    @OneToMany(mappedBy = "member")
+    private List<Answer> answers = new ArrayList<>();
 
 
 

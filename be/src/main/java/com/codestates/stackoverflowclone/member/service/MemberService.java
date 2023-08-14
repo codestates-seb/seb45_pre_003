@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +57,7 @@ public class MemberService {
         return member;
     }
 
-    private Member verifyId(long memberId) {
+    public Member verifyId(long memberId) {
         Optional<Member> optionalMember = repository.findById(memberId);
         //TODO BusinessException 구현 후 대체
         Member findMember = optionalMember.orElseThrow(() -> new RuntimeException());
@@ -90,4 +91,5 @@ public class MemberService {
 
         repository.delete(findMember);
     }
+
 }
