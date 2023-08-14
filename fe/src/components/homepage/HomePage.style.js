@@ -20,13 +20,19 @@ export const HomePageMainBarStyle = styled.div`
     }
 `
 
-export const HomePageRightBarStyle = styled.div`
+export const HomePageRightBarStyle = styled.a`
     float:right;
     width:300px;
     margin: 0 0 15px;
     height:100%;
     border:1px solid gray;
     background-image:url("/images/깃허브이미지.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    &:hover {
+        cursor:pointer;
+    }
+
     @media screen and (max-width:980px) {
         display:none;
     }
@@ -125,6 +131,9 @@ export const Li = styled.li`
     display:flex;
     padding:16px;
     position:relative;
+    @media screen and (max-width:980px) {
+        flex-direction:column;
+    }
 `
 
 export const LiStatusBox = styled.div`
@@ -139,6 +148,10 @@ export const LiStatusBox = styled.div`
     gap:6px;
     margin-bottom:4px;
     margin-right:16px;
+    @media screen and (max-width:980px) {
+        flex-direction:row;
+        width:100%;
+    }    
 `
 
 export const StatsItem = styled.div`
