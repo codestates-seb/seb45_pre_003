@@ -89,7 +89,7 @@ public class QuestionController {
     }
     ///// 질문들 리스트 최신순으로 뜯어와 보내기
     @GetMapping
-    public ResponseEntity getQuestions(@Positive @RequestParam int page,
+    public ResponseEntity getNewestQuestions(@Positive @RequestParam int page,
                                        @Positive @RequestParam int size){
         Page<Question> pageQuestions = questionService.findQuestions(page-1,size);
         List<Question> questions = pageQuestions.getContent();
@@ -100,18 +100,36 @@ public class QuestionController {
                 HttpStatus.OK);
     }
 
-
-
     ///// Todo: unanswered question list! 정렬기준 알아보기!
 
 
+    ///// memberId를 통해 member가 작성한 answer들의 questions들 제목/생성시간 리스트 가져오기
+    @GetMapping("/answers/{member-id}")
+    public ResponseEntity getQuestionsWithMyAnswer(@PathVariable("member-id") long memberId,
+                                                   @Positive @RequestParam int page,
+                                                   @Positive @RequestParam int size){
+        Page<Question> pageQuestions = questionService.findQuestionsWithMyAnswer(memberId,page-1,size);
+        List<Question> questions = pageQuestions.getContent();
 
-    ///// Todo: memberId를 통해 questions들 제목/생성시간 리스트 가져오기
-    ///// Todo: memberId와 answerID를 통해 questions들 제목/생성시간 리스트 가져오기
+        return new ResponseEntity<>(
+                new QuestionListDto<>(questionMapper.questionsToQuestionMypageElements(questions),
+                        pageQuestions),
+                HttpStatus.OK);
+    }
 
+    ///// memberId를 통해 questions들 제목/생성시간 리스트 가져오기
+    @GetMapping("/mypage/{member-id}")
+    public ResponseEntity getMyQuestions(@PathVariable("member-id") long memberId,
+                                         @Positive @RequestParam int page,
+                                         @Positive @RequestParam int size ){
+        Page<Question> pageQuestions = questionService.findMyQuestions(memberId,page-1,size);
+        List<Question> questions = pageQuestions.getContent();
 
-
-
+        return new ResponseEntity<>(
+                new QuestionListDto<>(questionMapper.questionsToQuestionMypageElements(questions),
+                        pageQuestions),
+                HttpStatus.OK);
+    }
 
     ///// 질문 하나 아예 삭제
     @DeleteMapping("/{question-id}")

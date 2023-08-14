@@ -54,6 +54,16 @@ public class QuestionService {
         return questionRepository.findAll(PageRequest.of(page, size,
                 Sort.by("createdAt").descending()) );
     }
+    public Page<Question> findMyQuestions( long memberId, int page, int size){
+
+        return questionRepository.findQuestionsByMemberId(memberId,
+                PageRequest.of(page,size,Sort.by("createdAt").descending()) );
+    }
+    public Page<Question> findQuestionsWithMyAnswer(long memberId,int page,int size){
+
+        return questionRepository.findQuestionsWithMyAnswer(memberId,
+                PageRequest.of(page,size,Sort.by("createdAt").descending()) );
+    }
     @Transactional(readOnly = true)
     public Question readQuestion(long questionId){
         Question question = findVerifiedQuestion(questionId);

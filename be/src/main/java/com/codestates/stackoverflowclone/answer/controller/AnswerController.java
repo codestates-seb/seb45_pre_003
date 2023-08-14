@@ -52,7 +52,7 @@ public class AnswerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    ///// answer하나 골라서 best필드 지정
+    ///// Todo:answer하나 골라서 best필드 지정. 해당 question은 answered 체크!
     @PatchMapping("/best/{answer-id}")
     public ResponseEntity setBest(@PathVariable("answer-id") @Positive long answerId,
                                   @Positive @RequestParam boolean isBest){
