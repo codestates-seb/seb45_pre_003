@@ -83,3 +83,32 @@ include::{snippets}/get-members/response-body.adoc[]
 
 .response-fields
 include::{snippets}/get-members/response-fields.adoc[]
+
+=== 회원 정보 수정
+
+.curl-request
+include::{snippets}/patch-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-member/http-request.adoc[]
+
+.httpie-request
+include::{snippets}/patch-member/httpie-request.adoc[]
+
+.path-parameters
+include::{snippets}/patch-member/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/patch-member/request-body.adoc[]
+
+.request-fields
+include::{snippets}/patch-member/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-member/http-response.adoc[]
+
+.response-body
+include::{snippets}/patch-member/response-body.adoc[]
+
+.response-fields
+include::{snippets}/patch-member/response-fields.adoc[]
