@@ -158,21 +158,23 @@ export const RightBarStyle = styled.div`
 export const FooterStyle = styled.footer`
     display:block;
     height:322px;
-    border:1px solid purple;
-    background-color:white;
+    background-color: #232629; 
+
+   @media screen and (max-width: 980px){
+         background-color: #232629; 
+         max-height: 1000px; 
+         height: 100%
+   }
 `
 
 export const HeaderContainerStyle =styled.div`
     position:relative;
     max-width: 1264px;
-    height : 52px; 
     height: 100%;
     display: flex;
     align-items: middle; 
     margin: 0 auto;
-    border : 1px solid green; 
     align-items: center;   
-    box-sizing:border-box;  
 `
 
 export const HeaderLogoConatinerStyle = styled.div`
@@ -251,6 +253,7 @@ export const InputStyle = styled.input`
     height: 15px;
     padding: 8px 9px; 
     border: none; 
+    outline: none; 
 `
 export const HeaderIconStyle = styled.ul`
    display:flex; 
@@ -271,4 +274,119 @@ export const HeaderElementStyle = styled.li`
         background: #d6d6d7;
         color: #6a6a6c; 
      }    
+`
+
+export const FooterContainerStyle = styled.div`
+    position:relative;
+    margin: 0 auto; 
+    display: flex; 
+    max-width: 1240px; 
+    width: 100%;
+    height: 278px; 
+    padding: 32px 12px ;
+    font-size: 13px; 
+    flex: 1 0 auto;
+
+    @media screen and (max-width: 980px) {
+        flex-direction: column;
+        padding: 24px; 
+        height: auto; 
+       }
+`
+export const FooterLogoContainer = styled.div`
+        flex: 0 0 64px;
+        margin-bottom:32px; 
+
+    @media screen and (max-width: 980px) {
+        margin: -12px 0 0 0 ;
+    }
+     @media screen and (max-width:640px){
+        display: none;
+    }
+`
+
+export const FooterNavContainer = styled.div`
+       display:flex; 
+       flex: 2 1 auto;
+       flex-wrap: wrap;
+       @media screen and (max-width: 980px) {
+        flex-direction:column
+       }
+`
+
+export const FooterCategoryContainerStyle=styled.div`
+        flex: 1 0 auto;    
+        @media screen and (max-width: 980px) {
+        flex-direction:row; 
+        padding: 12px 24px;
+       }  
+`
+
+
+export const FooterItemContainer = styled.ul`
+     display: flex; 
+     flex-direction : column;
+     column-gap: 12px; 
+     row-gap: 8px; 
+     
+     @media screen and (max-width: 980px){
+        display: flex; 
+        flex-direction: row; 
+        flex: 2 1 auto; 
+        flex-wrap: wrap;
+        
+    }
+`
+
+export const FooterTitleStyle = styled.div`
+     color: #BABFC4;
+     font-weight: bold; 
+     padding: 4px 0; 
+`
+
+export const FooterItemStyle = styled.li`
+     color:  #9199A1;
+     list-style: none;
+`
+
+export const FooterCopyrightStyle = styled.div`
+     display: flex; 
+     flex-direction : column;
+     justify-content: space-between;
+     align-items: left; 
+     height : 278px; 
+     width: 313px; 
+     font-size: 11px;
+     color:  #9199A1;
+
+     @media screen and (max-width: 980px){
+        justify-content: left;
+        align-items: left; 
+        height: 37px; 
+    }
+`
+
+export const FooterCopyrightItems = styled.ul`
+     display: flex; 
+     flex-direction : row;
+     flex-wrap: wrap;
+     column-gap: 12px; 
+     row-gap: 8px; 
+     
+     @media screen and (max-width: 980px){
+        display: flex; 
+        flex-direction: row; 
+        column-gap: 12px; 
+        row-gap: 8px; 
+        margin:0;
+        padding:0; 
+    }
+`
+export const FooterCopyRightTextStyle = styled.div`
+     vertical-align: baseline;
+     margin-bottom: 24px;
+
+     @media screen and (max-width: 980px) {
+        margin-bottom: 0;
+     }
 `
