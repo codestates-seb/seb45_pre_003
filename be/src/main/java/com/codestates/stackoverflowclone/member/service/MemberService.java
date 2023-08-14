@@ -65,7 +65,7 @@ public class MemberService {
         return findMember;
     }
 
-    public Page<Member> findMembers(String tab, String filter, int page) {
+    public Page<Member> findMembers(int page) {
         //일단은 최신순 정렬
         //추후 tab, filter에 따라 분기해서 처리할 예정
         Pageable pageable = PageRequest.of(page, PAGESIZE, Sort.by("createdAt").descending());
