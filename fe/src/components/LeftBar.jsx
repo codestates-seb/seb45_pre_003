@@ -42,7 +42,7 @@ function LeftBar () {
                 {
                     text:"Users",
                     icon:false,
-                    link:'',
+                    link:'/mypage',
                     child:[]
                 }
             ],
@@ -64,7 +64,7 @@ function LeftBar () {
                             onClick={(e)=> li1.link !== '' ? focus(e) : undefined}
                             className={focusedMenu === li1.text ? 'focus' : undefined}
                             style={{
-                                marginLeft : li1.icon===false ? '23px' : li1.icon!==true ? '0px' : undefined,
+                                paddingLeft : li1.icon===false ? '23px' : li1.icon!==true ? '0px' : undefined,
                                 display : (li1.icon!==false&&li1.icon!==true)||li1.text==='Home' ? 'flex' : undefined,
                                 alignItems : li1.icon!==false&&li1.icon!==true ? 'center' : undefined,
                                 gap : li1.icon!==false&&li1.icon!==true ? '4px' : undefined,
