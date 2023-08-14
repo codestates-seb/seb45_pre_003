@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/seb45_pre_003.iml" filepath="$PROJECT_DIR$/.idea/seb45_pre_003.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stackoverflowclone.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stackoverflowclone.main.iml" />
     </modules>
   </component>
 </project>

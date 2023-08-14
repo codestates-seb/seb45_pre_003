@@ -1,5 +1,7 @@
 package com.codestates.stackoverflowclone.member.entity;
+import com.codestates.stackoverflowclone.answer.entity.Answer;
 import com.codestates.stackoverflowclone.audit.Auditable;
+import com.codestates.stackoverflowclone.question.entity.Question;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -52,6 +54,12 @@ public class Member extends Auditable {
     private int questionCount = 1;
 
     private int answerCount = 1;
+
+    @OneToMany
+    private List<Question> questions;
+
+    @OneToMany
+    private List<Answer> answers;
 
 
 

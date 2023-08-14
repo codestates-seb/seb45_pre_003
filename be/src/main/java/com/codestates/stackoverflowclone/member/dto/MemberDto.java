@@ -38,7 +38,7 @@ public class MemberDto {
 
     @Getter
     @Builder
-    public static class Response {
+    public static class GetMemberResponse {
         private long id;
         private String name;
         private String email;
@@ -50,6 +50,14 @@ public class MemberDto {
         private int continuousVisitCount;
         private int questionCount;
         private int answerCount;
+    }
+
+    @Getter
+    @Builder
+    public static class Response {
+        private long id;
+        private String name;
+        private String email;
     }
 
     @Getter
