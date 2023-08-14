@@ -16,6 +16,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +28,7 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,11 +39,12 @@ import java.util.List;
 
 import static com.codestates.stackoverflowclone.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.codestates.stackoverflowclone.util.ApiDocumentUtils.getResponsePreProcessor;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 
 @WebMvcTest(controllers = MemberController.class,
 excludeAutoConfiguration = SecurityAutoConfiguration.class,
@@ -160,11 +166,62 @@ public class MemberControllerTest {
 
     }
 
-//    @Test
-//    public void getMembersTest() throws Exception {
-//
-//    }
-//
+    @Test
+    public void getMembersTest() throws Exception {
+        int page = 1;
+        Member member1 = new Member();
+        member1.setId(1L);
+        member1.setName("test1");
+        member1.setEmail("test1@test.com");
+        Member member2 = new Member();
+        member2.setId(2L);
+        member2.setName("test2");
+        member2.setEmail("test2@test.com");
+
+        Page<Member> memberPage = new PageImpl<>(
+                List.of(member1, member2),
+                PageRequest.of(page - 1, 36, Sort.by("id").descending()),
+                2);
+
+        List<MemberDto.Response> responses = List.of(
+                MemberDto.Response.builder().id(1L).name("test1").email("test1@test.com").build(),
+                MemberDto.Response.builder().id(2L).name("test2").email("test2@test.com").build()
+        );
+
+        MemberDto.PageInfo pageInfo = MemberDto.PageInfo.builder().page(page).totalPage(page).totalElements(2).build();
+        MemberDto.PageResponse pageResponse = MemberDto.PageResponse.builder().data(responses).pageInfo(pageInfo).build();
+
+        given(service.findMembers(Mockito.anyInt())).willReturn(memberPage);
+        given(mapper.memberListToresponseList(Mockito.anyList())).willReturn(responses);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/members")
+                        .param("page", String.valueOf(1))
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("get-members",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestParameters(
+                                parameterWithName("page").description("페이지 번호")
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("data").type(JsonFieldType.ARRAY).description("조회 데이터"),
+                                        fieldWithPath("data[].id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("data[].name").type(JsonFieldType.STRING).description("이름"),
+                                        fieldWithPath("data[].email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
+                                        fieldWithPath("pageInfo.page").type(JsonFieldType.NUMBER).description("현재 페이지 번호"),
+                                        fieldWithPath("pageInfo.totalPage").type(JsonFieldType.NUMBER).description("총 페이지 수"),
+                                        fieldWithPath("pageInfo.totalElements").type(JsonFieldType.NUMBER).description("총 데이터 수. 모든 회원의 수")
+                                )
+                        )
+                        ));
+    }
+
 //    @Test
 //    public void patchMemberTest() throws Exception {
 //
