@@ -43,9 +43,13 @@ public class MemberDto {
         private String name;
         private String email;
         private LocalDateTime createdAt;
-        private int week;
+        private int weekSinceRegistration;
         private int vote;
         private int tag;
+        private int visitCount;
+        private int continuousVisitCount;
+        private int questionCount;
+        private int answerCount;
     }
 
     @Getter
