@@ -112,3 +112,26 @@ include::{snippets}/patch-member/response-body.adoc[]
 
 .response-fields
 include::{snippets}/patch-member/response-fields.adoc[]
+
+=== 회원 삭제
+
+.curl-request
+include::{snippets}/delete-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-member/http-request.adoc[]
+
+.httpie-request
+include::{snippets}/delete-member/httpie-request.adoc[]
+
+.path-parameters
+include::{snippets}/delete-member/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/delete-member/request-body.adoc[]
+
+.http-response
+include::{snippets}/delete-member/http-response.adoc[]
+
+.response-body
+include::{snippets}/delete-member/response-body.adoc[]

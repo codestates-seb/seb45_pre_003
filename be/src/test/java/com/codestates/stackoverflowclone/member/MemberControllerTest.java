@@ -34,7 +34,9 @@ import java.util.List;
 
 import static com.codestates.stackoverflowclone.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.codestates.stackoverflowclone.util.ApiDocumentUtils.getResponsePreProcessor;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
@@ -266,9 +268,24 @@ public class MemberControllerTest {
 
     }
 
-//    @Test
-//    public void deleteMemberTest() throws Exception {
-//
-//    }
+    @Test
+    public void deleteMemberTest() throws Exception {
+        long id = 1L;
+
+        doNothing().when(service).deleteMember(anyLong());
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.delete("/members/{member-id}", id)
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isNoContent())
+                .andDo(document("delete-member",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("member-id").description("삭제할 회원 식별자")
+                        )));
+    }
 }
 
