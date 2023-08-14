@@ -165,46 +165,110 @@ export const FooterStyle = styled.footer`
 export const HeaderContainerStyle =styled.div`
     position:relative;
     max-width: 1264px;
+    height : 52px; 
     height: 100%;
     display: flex;
     align-items: middle; 
     margin: 0 auto;
-    align-items: center;     
+    border : 1px solid green; 
+    align-items: center;   
+    box-sizing:border-box;  
 `
 
-export const HeaderLogoStyle = styled.div`
+export const HeaderLogoConatinerStyle = styled.div`
      display:flex;
      justify-content: baseline;
      align-items: flex-end;
      width: 166px;
      height: 52px;  
-     font-size: 20px;
+     padding: 0 8px;
      padding-bottom: 12px; 
      @media screen and (max-width:640px){
         width: 100%;
     }
 `
 
-export const HeaderElementStyle = styled.div`
-     padding: 5px;
-     margin: 5px;
-     vertical-align: middle;
+export const HeaderTextStyle = styled.span`
+    width: 125px;
+    @media screen and (min-width:640px){
+        width:100%;
+    }
+ 
+     @media screen and (max-width:640px){
+        display: none ;
+    }
 
-     &:hover {
-       background: #d6d6d7;
-       color: #6a6a6c; 
-     }    
+`
+export const HeaderProductContainerStyle = styled.div`
+       width: 79px;
+       height: 29px;
+       padding: 6px 12px;  
+       font-size: 13px;
+       vertical-align: middle;
+       border-radius : 15px; 
+       &:hover {
+            background: #d6d6d7;
+            color: #6a6a6c; 
+        }    
+
+       @media screen and (max-width:640px){
+        font-size: 11px; 
+        width : 47px;
+        height : 15px; 
+    }
 `
 
-export const SearchElementStyle = styled.input`
+export const SearchElementStyle = styled.form`
+    display: flex;
+    justify-content : left;
+    align-items: center;
     width: 773px;
     height: 32px; 
     flex-shrink:1;
+    vertical-align: middle;
     position:relative !important;
     border-radius: 5px; 
     border: 1px solid lightgray; 
+
+    &:hover {
+        box-shadow: 0 0 6px 0px skyblue;
+    }
+
     @media screen and (max-width:640px){
-        width: 100%
-    }   
+       display:none
+    } 
+`
+export const SearchIconStyle = styled.span`
+  margin : 10px 0px 10px 10px;
+  @media screen and (min-width:640px){
+       display:none
+    } 
 `
 
+export const InputStyle = styled.input`
+    display:left; 
+    width: 90%; 
+    height: 15px;
+    padding: 8px 9px; 
+    border: none; 
+`
+export const HeaderIconStyle = styled.ul`
+   display:flex; 
+   width: 218px;
+   height: 100%; 
+   padding: 0 12px 0 0 ; 
+   justify-content: center;
+   align-items:center; 
+`
+export const HeaderElementStyle = styled.li`
+     padding: 0 10px;
+     margin: 0px;
+     list-style: none; 
+     width: 52px; 
+     cursor: pointer;
+     
+     &:hover {
+        background: #d6d6d7;
+        color: #6a6a6c; 
+     }    
+`
