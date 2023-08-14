@@ -2,9 +2,12 @@ package com.codestates.stackoverflowclone.answer.service;
 
 import com.codestates.stackoverflowclone.answer.entity.Answer;
 import com.codestates.stackoverflowclone.answer.repository.AnswerRepository;
+import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
+import com.codestates.stackoverflowclone.question.service.QuestionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,7 +15,13 @@ import java.util.Optional;
 public class AnswerService {
     private AnswerRepository answerRepository;
 
+    public AnswerService(AnswerRepository answerRepository) {
+        this.answerRepository = answerRepository;
+    }
+
     public Answer createAnswer(Answer answer){
+        answer.getQuestion().setAnswerCount(answer.getQuestion().getAnswerCount() + 1);
+
         return answerRepository.save(answer);
     }
 
@@ -24,9 +33,22 @@ public class AnswerService {
 
         return answerRepository.save(findAnswer);
     }
+    public List<Answer> findAnswersByQuestion(long questionId){
+
+        return answerRepository.findAnswersByQuestionId(questionId);
+
+    }
+    public void setBest( long answerId, boolean isBest){
+        Answer answer = findVerifiedAnswer(answerId);
+        answer.setIsBest(isBest);
+
+        answerRepository.save(answer);
+    }
     public void deleteAnswer(long answerId){
         Answer answer = findVerifiedAnswer(answerId);
-        answerRepository.delete(answer);
+        answer.getQuestion().setAnswerCount(answer.getQuestion().getAnswerCount() - 1);
+        Answer deleteAnswer = answerRepository.save(answer);
+        answerRepository.delete(deleteAnswer);
 
     }
     public Answer findVerifiedAnswer( long answerId ){

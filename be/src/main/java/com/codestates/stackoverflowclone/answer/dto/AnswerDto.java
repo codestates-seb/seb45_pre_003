@@ -20,6 +20,7 @@ public class AnswerDto {
     public static class Patch {
         private Long answerId;
         private String body;
+
     }
     @Getter@Setter@AllArgsConstructor@NoArgsConstructor
     public static class Response {
@@ -27,6 +28,8 @@ public class AnswerDto {
         private String body;
         private Member member;
         private Question question;
+
+        private Boolean isBest;
 
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;

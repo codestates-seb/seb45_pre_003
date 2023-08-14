@@ -4,6 +4,9 @@ import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.dto.QuestionDto;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface QuestionMapper {
@@ -20,5 +23,7 @@ public interface QuestionMapper {
     }
     Question questionPatchToQuestion(QuestionDto.Patch requestBody);
     QuestionDto.Response questionToQuestionResponse( Question question);
+
+    List<QuestionDto.ResponseElement> questionsToQuestionResponseElements(List<Question> questions);
 
 }

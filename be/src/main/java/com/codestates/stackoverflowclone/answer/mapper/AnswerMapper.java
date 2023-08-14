@@ -6,6 +6,8 @@ import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.service.QuestionService;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface AnswerMapper {
     default Answer answerPostToAnswer(AnswerDto.Post requestBody, MemberService memberService,
@@ -15,6 +17,9 @@ public interface AnswerMapper {
         } else {
             Answer answer = new Answer();
             answer.setBody(requestBody.getBody());
+
+            answer.setIsBest(false);
+
             answer.setMember(memberService.findMember(requestBody.getMemberId()));
             answer.setQuestion(questionService.findVerifiedQuestion(requestBody.getQuestionId()));
             return answer;
@@ -22,4 +27,5 @@ public interface AnswerMapper {
     }
     Answer answerPatchToAnswer(AnswerDto.Patch requestBody);
     AnswerDto.Response answerToAnswerResponse(Answer answer);
+    List<AnswerDto.Response> answersToAnswerResponses(List<Answer> answers);
 }
