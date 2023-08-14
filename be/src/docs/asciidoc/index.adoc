@@ -1,0 +1,59 @@
+= 스택 오버플로우 클론코딩
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Table of Contents
+:source-highlighter: prettify
+
+***
+== MemberController
+=== 회원 등록
+.curl-request
+include::{snippets}/post-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-member/http-request.adoc[]
+
+.httpie-request
+include::{snippets}/post-member/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/post-member/request-body.adoc[]
+
+.request-fields
+include::{snippets}/post-member/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-member/http-response.adoc[]
+
+.response-body
+include::{snippets}/post-member/response-body.adoc[]
+
+.response-fields
+include::{snippets}/post-member/response-fields.adoc[]
+
+=== 회원 정보 조회
+
+.curl-request
+include::{snippets}/get-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-member/http-request.adoc[]
+
+.httpie-request
+include::{snippets}/get-member/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/get-member/request-body.adoc[]
+
+.path-parameters
+include::{snippets}/get-member/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/get-member/http-response.adoc[]
+
+.response-body
+include::{snippets}/get-member/response-body.adoc[]
+
+.response-fields
+include::{snippets}/get-member/response-fields.adoc[]
