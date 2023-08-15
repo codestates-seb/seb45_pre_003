@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
 import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, ThirdFilter, ForthFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData } from "../components/homepage/HomePage.style";
 import { ContainerStyle } from "../style";
@@ -339,7 +340,9 @@ function HomePage () {
                 <HomePageMainBarStyle>
                     <TopBox>
                         <Title>Top Questions</Title>
-                        <AskQuestionBtn>Ask Question</AskQuestionBtn>
+                        <Link to={'/askquestion'}>
+                            <AskQuestionBtn>Ask Question</AskQuestionBtn>
+                        </Link>
                     </TopBox>
                     <SecondBox>
                         <QuestionsNum></QuestionsNum>
