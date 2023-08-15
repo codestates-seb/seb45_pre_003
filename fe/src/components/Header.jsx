@@ -4,7 +4,7 @@ import { HeaderStyle, HeaderContainerStyle ,HeaderLogoConatinerStyle, HeaderText
 import { iconSearch, iconInbox, iconAchievements, iconHelp, iconStackExchange } from '../components/mypageComponents/icons'
 import { Avatar } from './mypageComponents/MyPage.styled'
 function Header () {
-
+  
   return (
         <HeaderStyle>
             <HeaderContainerStyle>

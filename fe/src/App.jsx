@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header'
 // import Container from './components/Container'
 import Footer from './components/Footer'
@@ -10,8 +10,9 @@ import QuestionPage from './pages/QuestionPage';
 import AskQuestionPage from './pages/AskQuestionPage';
 
 function App() {
+
   return (
-    <BrowserRouter>
+    <>
       <Header/>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
@@ -22,7 +23,7 @@ function App() {
         <Route path="/askquestion" element={<AskQuestionPage/>}/>;
       </Routes>
       <Footer/>
-    </BrowserRouter>
+    </>
   );
 }
 
