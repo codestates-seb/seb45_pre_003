@@ -133,6 +133,11 @@ export const Input = styled.input`
   margin-top: 4px;
   border: 1px solid #ccc;
   border-radius: 4px;
+
+  &:focus {
+    box-shadow: 0 0 6px 0px skyblue;
+    outline: none;
+  }
 `;
 
 export const PasswordRequirements = styled.p`
