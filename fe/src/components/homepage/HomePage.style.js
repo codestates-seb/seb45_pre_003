@@ -20,12 +20,19 @@ export const HomePageMainBarStyle = styled.div`
     }
 `
 
-export const HomePageRightBarStyle = styled.div`
+export const HomePageRightBarStyle = styled.a`
     float:right;
     width:300px;
     margin: 0 0 15px;
     height:100%;
     border:1px solid gray;
+    background-image:url("/images/깃허브이미지.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    &:hover {
+        cursor:pointer;
+    }
+
     @media screen and (max-width:980px) {
         display:none;
     }
@@ -124,6 +131,9 @@ export const Li = styled.li`
     display:flex;
     padding:16px;
     position:relative;
+    @media screen and (max-width:980px) {
+        flex-direction:column;
+    }
 `
 
 export const LiStatusBox = styled.div`
@@ -138,6 +148,10 @@ export const LiStatusBox = styled.div`
     gap:6px;
     margin-bottom:4px;
     margin-right:16px;
+    @media screen and (max-width:980px) {
+        flex-direction:row;
+        width:100%;
+    }    
 `
 
 export const StatsItem = styled.div`
@@ -215,4 +229,34 @@ export const MetaData = styled.div`
     > a:nth-child(2) {
         color:hsl(206,100%,52%);
     }
+`
+
+export const PageBox = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px;
+`
+
+export const PageButtonBox = styled.div`
+    display:flex;
+    
+`
+
+export const PageButton = styled.div`
+    font-size:0.9rem;
+    padding:2px 8px 4px 8px;
+    margin-left:3px;
+    border:1px solid hsl(210,8%,85%);
+    border-radius:4px;
+    color:hsl(210,8%,25%);
+    &:hover{
+        background-color:hsl(210,8%,75%);
+    }
+
+`
+
+export const PerPageText = styled.span`
+    font-size:0.9rem;
+    margin-left:10px;
 `

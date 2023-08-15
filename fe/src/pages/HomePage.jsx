@@ -1,8 +1,252 @@
+import { Link } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
 import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, ThirdFilter, ForthFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData } from "../components/homepage/HomePage.style";
 import { ContainerStyle } from "../style";
 
 const DummyData = [
+    {
+        title:'this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title',
+        tag:[],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'modified 59 secs ago',
+        modified:true,
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'asked 9 secs ago',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'asked 59 min ago',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title',
+        tag:[],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'modified 59 secs ago',
+        modified:true,
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'asked 9 secs ago',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'asked 59 min ago',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title',
+        tag:[],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'modified 59 secs ago',
+        modified:true,
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'asked 9 secs ago',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'asked 59 min ago',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
+    {
+        title:'this is test title',
+        tag:['python','image','java'],
+        author:'stefan',
+        imageUrl : '',
+        createdAt:'',
+        votes:0,
+        answers:0,
+        views:2,
+    },
+    {
+        title:'this is second test title',
+        tag:['javascript','c++','c#'],
+        author:'starball',
+        imageUrl : '',
+        createdAt:'',
+        votes:5,
+        answers:2,
+        views:3,
+    },
     {
         title:'this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title',
         tag:[],
@@ -96,15 +340,15 @@ function HomePage () {
                 <HomePageMainBarStyle>
                     <TopBox>
                         <Title>Top Questions</Title>
-                        <AskQuestionBtn>Ask Question</AskQuestionBtn>
+                        <Link to={'/askquestion'}>
+                            <AskQuestionBtn>Ask Question</AskQuestionBtn>
+                        </Link>
                     </TopBox>
                     <SecondBox>
                         <QuestionsNum></QuestionsNum>
                         <FilterBox>
                             <FirstFilter>interesting</FirstFilter>
-                            <SecondFilter>Bountied</SecondFilter>
-                            <ThirdFilter>Hot</ThirdFilter>
-                            <ForthFilter>Week</ForthFilter>
+                            <SecondFilter>Week</SecondFilter>
                             <LastFilter>Month</LastFilter>
                         </FilterBox>
                     </SecondBox>
@@ -146,7 +390,8 @@ function HomePage () {
                         })}
                     </Ul>
                 </HomePageMainBarStyle>
-                <HomePageRightBarStyle>
+                
+                <HomePageRightBarStyle href="https://github.com/codestates-seb/seb45_pre_003">
                 </HomePageRightBarStyle>
             </HomePageContentStyle>
         </ContainerStyle>

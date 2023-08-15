@@ -21,7 +21,7 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
       <div style={{fontSize:"34px", margin: "4px"}}> Elena </div>
       <Userdetails>
       <li style={{listStyle:'none', margin:'0px 2px'}}>🎂 Members for 3days </li>
-      <li style={{listStyle:'none', margin:'0px 2px'}}>🕓 Last seen tis week </li>
+      <li style={{listStyle:'none', margin:'0px 2px'}}>🕓 Last seen this week </li>
       <li style={{listStyle:'none', margin:'0px 2px'}}>🗒️ Visited 3 days, 3consecutive </li>
       </Userdetails>
       </UserInfomationConnected>
