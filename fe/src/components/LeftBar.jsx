@@ -42,15 +42,15 @@ function LeftBar () {
                 {
                     text:"Users",
                     icon:false,
-                    link:'',
+                    link:'/mypage',
                     child:[]
                 }
             ],
         },
     ]
 
-    const focus = (e) => {
-        localStorage.setItem('focus',e.target.text);
+    const focus = (link) => {
+        localStorage.setItem('focus', link);
     }
 
     function returnNav (data) {
@@ -61,10 +61,10 @@ function LeftBar () {
                         <NavBarLi key={idx}>
                             <Link 
                             to={li1.link}
-                            onClick={(e)=> li1.link !== '' ? focus(e) : undefined}
-                            className={focusedMenu === li1.text ? 'focus' : undefined}
+                            onClick={()=> li1.link !== '' ? focus(li1.link) : undefined}
+                            className={focusedMenu === li1.link ? 'focus' : undefined}
                             style={{
-                                marginLeft : li1.icon===false ? '23px' : li1.icon!==true ? '0px' : undefined,
+                                paddingLeft : li1.icon===false ? '23px' : li1.icon!==true ? '0px' : undefined,
                                 display : (li1.icon!==false&&li1.icon!==true)||li1.text==='Home' ? 'flex' : undefined,
                                 alignItems : li1.icon!==false&&li1.icon!==true ? 'center' : undefined,
                                 gap : li1.icon!==false&&li1.icon!==true ? '4px' : undefined,
@@ -72,7 +72,6 @@ function LeftBar () {
                             >
                                 {li1.icon}
                                 {li1.text}
-                                
                             </Link>
                             {li1.child.length !== 0 ? returnNav(li1.child) : undefined}
                         </NavBarLi>
