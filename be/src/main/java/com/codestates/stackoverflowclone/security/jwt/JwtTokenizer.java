@@ -8,6 +8,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,6 @@ import java.util.Map;
 public class JwtTokenizer {
     @Getter
     @Value("${jwt.key}")
-    //JWT_SECRET_KEY 환경변수 설정이 필요함
     private String secretKey;
 
     @Getter
@@ -33,13 +33,12 @@ public class JwtTokenizer {
     private int refreshTokenExpirationMinutes;
 
     public String encodeBase64SecretKey(String secretKey) {
+        System.out.println(secretKey);
         return Encoders.BASE64.encode(secretKey.getBytes(StandardCharsets.UTF_8));
     }
 
     public String generateAccessToken(Map<String, Object> claims, String subject, Date expiration, String base64EncodedSecretKey) {
-// 수정 전        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
-
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -51,8 +50,7 @@ public class JwtTokenizer {
     }
 
     public String generateRefreshToken(String subject, Date expiration, String base64EncodedSecretKey) {
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-//수정 전        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
+        Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
 
         return Jwts.builder()
                 .setSubject(subject)
