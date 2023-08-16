@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const HomePageContentStyle = styled.main`
     max-width:1100px;
     width:calc(100% - 164px);
-    border:1px solid blue;
     padding:24px;
     @media screen and (max-width:640px){
         width: 100%;
@@ -13,7 +12,6 @@ export const HomePageContentStyle = styled.main`
 export const HomePageMainBarStyle = styled.div`
     float:left;
     width:calc(100% - 315px);
-    border:1px solid yellowgreen;
     min-height:800px;
     @media screen and (max-width:980px){
         width: 100%;
@@ -25,7 +23,6 @@ export const HomePageRightBarStyle = styled.a`
     width:300px;
     margin: 0 0 15px;
     height:100%;
-    border:1px solid gray;
     background-image:url("/images/깃허브이미지.png");
     background-size:contain;
     background-repeat:no-repeat;
@@ -122,18 +119,48 @@ export const LastFilter = styled.button`
     border-bottom-right-radius:6px;
 `
 
+export const Filter = styled.button`
+    &.first{
+        border-top-left-radius:6px;
+        border-bottom-left-radius:6px;
+    }
+
+    &.last{
+        border-top-right-radius:6px;
+        border-bottom-right-radius:6px;
+    }
+` 
+
 export const Ul = styled.ul`
     margin-bottom:30px;
 `
 
 export const Li = styled.li`
-    border-bottom:1px solid hsl(210,8%,90%);
     display:flex;
     padding:16px;
     position:relative;
+    ::before {
+        content:'';
+        position:absolute;
+        bottom:0;
+        left:-24px;
+        width:calc(100% + 24px);
+        border-bottom:1px solid hsl(210,8%,90%);
+    }
     @media screen and (max-width:980px) {
         flex-direction:column;
     }
+
+    @media screen and (max-width:640px) {
+        ::before {
+            position:absolute;
+            left:0;
+            bottom:0;
+            width:100%;
+            border-bottom:1px solid hsl(210,8%,90%);
+        }
+    }
+
 `
 
 export const LiStatusBox = styled.div`

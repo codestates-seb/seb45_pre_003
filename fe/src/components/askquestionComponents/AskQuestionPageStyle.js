@@ -114,14 +114,14 @@ export const QuestionTitleInputBox = styled.div`
     }
 
     > button {
-        margin:4px 0 4px 0;
+        margin:6px 0 6px 0;
         background-color:hsl(206,100%,50%);
         border:0;
         border-radius:6px;
         color:white;
         padding:8px;
         font-size:13px;
-        width:50px;
+        width:9%;
         &:hover{
             cursor: pointer;
             background-color:hsl(209,100%,37%)
