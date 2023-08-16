@@ -4,6 +4,7 @@ import com.codestates.stackoverflowclone.answer.entity.Answer;
 import com.codestates.stackoverflowclone.audit.Auditable;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,6 +29,19 @@ public class Question extends Auditable {
     private Long answerCount;
     @Column(nullable = false)
     private Long visitCount;
+
+    @Column(nullable = false)
+    @ColumnDefault("false")
+    private Boolean answered;
+
+    public void setAnswered(){
+        answered = false;
+        for(Answer answer : answers){
+            if(answer.getIsBest())
+                answered = true;
+        }
+    }
+
 
     public void setAnswers(Answer answer) {
         this.answers.add(answer);

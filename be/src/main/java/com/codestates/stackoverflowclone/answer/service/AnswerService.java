@@ -41,7 +41,10 @@ public class AnswerService {
     public void setBest( long answerId, boolean isBest){
         Answer answer = findVerifiedAnswer(answerId);
         answer.setIsBest(isBest);
+        answerRepository.save(answer);
 
+        answer = findVerifiedAnswer(answerId);
+        answer.getQuestion().setAnswered();//TODO: 잘 작동하는지 확인!
         answerRepository.save(answer);
     }
     public void deleteAnswer(long answerId){

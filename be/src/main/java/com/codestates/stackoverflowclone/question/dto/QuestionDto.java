@@ -21,7 +21,6 @@ public class QuestionDto {
         private Long questionId;
         private String title;
         private String body;
-        private Long visitCount;
     }
     @Getter@Setter@AllArgsConstructor@NoArgsConstructor
     public static class Response {
@@ -33,9 +32,11 @@ public class QuestionDto {
         private Long answerCount;
         private Long visitCount;
 
+        private Boolean answered;
+
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-    }
+    } // 해당 Question의 모든 정보
     @Getter@Setter@AllArgsConstructor@NoArgsConstructor
     public static class ResponseElement {
         private Long questionId;
@@ -45,9 +46,14 @@ public class QuestionDto {
         private Long answerCount;
         private Long visitCount;
 
+        private Boolean answered;
+
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-    }
+    } //검색하면 나오는 질문 리스트
+
+
+
     @Getter@Setter@AllArgsConstructor@NoArgsConstructor
     public static class MypageElement {
         private Long questionId;

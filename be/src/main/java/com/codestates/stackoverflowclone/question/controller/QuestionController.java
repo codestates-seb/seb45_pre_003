@@ -36,8 +36,6 @@ public class QuestionController {
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionDto.Post requestBody){
         // mapper, Service, Repository 거쳐서 저장하고 저장해온거 반납
         Question question = questionMapper.questionPostToQuestion(requestBody, memberService);
-        question.setAnswerCount(0L);
-        question.setVisitCount(0L);
         Question savedQuestion = questionService.createQuestion(question);
         QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion);
 
@@ -65,9 +63,10 @@ public class QuestionController {
     }
     ///// week 질문들 리스트 조회수순으로 뜯어와 보내기
     @GetMapping("/week")
-    public ResponseEntity getQuestionsThisWeek(@Positive @RequestParam int page,
+    public ResponseEntity getQuestionsThisWeek(@RequestParam String searchWord,
+                                               @Positive @RequestParam int page,
                                                @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findQuestionsThisWeek(page-1,size);
+        Page<Question> pageQuestions = questionService.findQuestionsThisWeek(searchWord,page-1,size);
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
@@ -77,9 +76,10 @@ public class QuestionController {
     }
     ///// month 질문들 리스트 조회수순으로 뜯어와 보내기
     @GetMapping("/month")
-    public ResponseEntity getQuestionsThisMonth(@Positive @RequestParam int page,
-                                               @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findQuestionsThisMonth(page-1,size);
+    public ResponseEntity getQuestionsThisMonth(@RequestParam String searchWord,
+                                                @Positive @RequestParam int page,
+                                                @Positive @RequestParam int size){
+        Page<Question> pageQuestions = questionService.findQuestionsThisMonth(searchWord,page-1,size);
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
@@ -89,9 +89,10 @@ public class QuestionController {
     }
     ///// 질문들 리스트 최신순으로 뜯어와 보내기
     @GetMapping
-    public ResponseEntity getNewestQuestions(@Positive @RequestParam int page,
-                                       @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findQuestions(page-1,size);
+    public ResponseEntity getNewestQuestions(@RequestParam String searchWord,
+                                             @Positive @RequestParam int page,
+                                             @Positive @RequestParam int size){
+        Page<Question> pageQuestions = questionService.findQuestions(searchWord,page-1,size);
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
@@ -100,11 +101,23 @@ public class QuestionController {
                 HttpStatus.OK);
     }
 
-    ///// Todo: unanswered question list! 정렬기준 알아보기!
+    ///// unanswered question list! 정렬기준(최신순)
+    @GetMapping("/unanswered")
+    public ResponseEntity getUnansweredQuestions(@RequestParam String searchWord,
+                                                 @Positive @RequestParam int page,
+                                                 @Positive @RequestParam int size){
+        Page<Question> pageQuestions = questionService.findUnansweredQuestions(searchWord,page-1,size);
+        List<Question> questions = pageQuestions.getContent();
+
+        return new ResponseEntity<>(
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
+                        pageQuestions),
+                HttpStatus.OK);
+    }
 
 
     ///// memberId를 통해 member가 작성한 answer들의 questions들 제목/생성시간 리스트 mypage로 가져오기
-    @GetMapping("/answers/{member-id}")
+    @GetMapping("/myanswers/{member-id}")
     public ResponseEntity getQuestionsWithMyAnswer(@PathVariable("member-id") long memberId,
                                                    @Positive @RequestParam int page,
                                                    @Positive @RequestParam int size){
