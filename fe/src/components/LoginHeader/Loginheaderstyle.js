@@ -387,3 +387,24 @@ list-style-type: none;
 background-color: #0072E3;
 }
 `;
+
+export const HeaderIconStyle2 = styled.ul`
+   display:flex; 
+   width: 218px;
+   height: 100%; 
+   padding: 0 12px 0 0 ; 
+   justify-content: center;
+   align-items:center; 
+`
+export const HeaderElementStyle = styled.li`
+     padding: 0 10px;
+     margin: 0px;
+     list-style: none; 
+     width: 52px; 
+     cursor: pointer;
+     
+     &:hover {
+        background: #d6d6d7;
+        color: #6a6a6c; 
+     }    
+`

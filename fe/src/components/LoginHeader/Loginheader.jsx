@@ -28,9 +28,7 @@ import {
   Textimg,
   LogoImage,
   LogoImage2,
-  NavLink,
   NavLink1,
-  NavLink2,
   Navbar,
   SearchElementStyle,
   SearchIcon,
@@ -114,9 +112,8 @@ return (
           <LogoImage src={picture2} alt="Stack Overflow" onClick={goToHome}></LogoImage>
           <LogoImage2 src={stack} alt="stackover" onClick={goToHome}/>  
            <Navbar>
-        <NavLink >About</NavLink>
+
         <NavLink1 >Products</NavLink1>
-        <NavLink2>For Teams</NavLink2>
         </Navbar>
         <SearchElementStyle> 
         <SearchIcon src={searchIcon} alt="Search" />
