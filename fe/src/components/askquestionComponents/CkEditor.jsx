@@ -1,13 +1,11 @@
-import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CustomEditor from 'ckeditor5-custom-build/build/ckeditor';
 
-function CkEditor () {
+function CkEditor ({setEditorData}) {
     return (
         <div className="App">
-            
             <CKEditor
-                editor={ ClassicEditor }
+                editor={CustomEditor}
                 data=""
                 config={{
                     
@@ -15,10 +13,10 @@ function CkEditor () {
                 // onReady={ editor => {
                 //     // You can store the "editor" and use when it is needed.
                 // } }
-                // onChange={ ( event, editor ) => {
-                //     const data = editor.getData();
-                //     console.log( { event, editor, data } );
-                // } }
+                onChange={ ( event, editor ) => {
+                    const data = editor.getData();
+                    setEditorData(data);
+                } }
                 // onBlur={ ( event, editor ) => {
                 //     console.log( 'Blur.', editor );
                 // } }

@@ -1,7 +1,15 @@
-import CkEditor from "../components/askquestionComponents/CkEditor";
 import { Container, ContentBox, QuestionNoticeBox, H5, P, QuestionNotice, UserInputBox, QuestionNoticeTitleBox, QuestionTitleInputBox, SupportCardBox, SupportCard, SupportCardTitle, SupportCardContentBox, SupportCardContent } from "../components/askquestionComponents/AskQuestionPageStyle";
+import CkEditor from "../components/askquestionComponents/CkEditor";
+import { useState } from "react";
+import Parser from 'html-react-parser';
+import { EditorViewBox } from "../style";
 
 function AskQuestionPage () {
+    const [isPreView1, setIsPreView1] = useState(false);
+    const [isPreView2, setIsPreView2] = useState(false);
+    const [preView1Data, setPreView1Data] = useState('');
+    const [preView2Data, setPreView2Data] = useState('');
+
     const noticeData = [
         "Summarize your problem in a one-line title.",
         "Describe your problem in more detail.",
@@ -38,10 +46,18 @@ function AskQuestionPage () {
         },
     ]
 
+    const togglePreView = (e,idx) => {
+        e.target.textContent === 'PreView' ? e.target.textContent = 'Close' : e.target.textContent = 'PreView';
+        if(idx === 1) {
+            setIsPreView1(!isPreView1);
+        } else if (idx === 2) {
+            setIsPreView2(!isPreView2);
+        }
+    }
+
     return (
         <Container>
             <ContentBox>
-
                 <QuestionNoticeBox>
                     <QuestionNoticeTitleBox>
                         <h1>Ask a public question</h1>
@@ -54,37 +70,46 @@ function AskQuestionPage () {
                         </ul>
                     </QuestionNotice>
                 </QuestionNoticeBox>
-
                 {inputData.map((el,idx)=>{
                     return (
-                            <UserInputBox key={idx}>
-                                <QuestionTitleInputBox>
-                                    <H5>{el.title}</H5>
-                                    <P>{el.secondTitle}</P>
-                                    {el.type==='text'?
-                                    <>
+                        <UserInputBox key={idx}>
+                            <QuestionTitleInputBox>
+                                <H5>{el.title}</H5>
+                                <P>{el.secondTitle}</P>
+                                {el.type==='text'
+                                ?   <>
                                         <input type="text" placeholder="e.g ls there an R function for finding the index of an element in a vector"/>
                                         <button>Next</button>
-                                    </>:
-                                    <CkEditor>
-                                    </CkEditor>}
-                                </QuestionTitleInputBox>
-                                {el.side?
-                                <SupportCardBox key={el.sideData.imgUrl}>
-                                    <SupportCard>
-                                        <SupportCardTitle>
-                                            <H5>{el.sideData.title}</H5>
-                                        </SupportCardTitle>
-                                        <SupportCardContentBox>
-                                            <img src={el.sideData.imgUrl} alt=""/>
-                                            <SupportCardContent>
-                                                {el.sideData.text.map((text,id)=><P key={id}>{text}</P>)}
-                                            </SupportCardContent>
-                                        </SupportCardContentBox>
-                                    </SupportCard>
-                                </SupportCardBox>:
-                                undefined}
-                            </UserInputBox>
+                                    </>
+                                :   <>
+                                        <CkEditor setEditorData={idx===1?setPreView1Data:setPreView2Data}></CkEditor>
+                                        <button onClick={(e)=>togglePreView(e,idx)}>PreView</button>
+                                        {
+                                        (idx===1 && isPreView1)
+                                        ?<EditorViewBox>{Parser(preView1Data)}</EditorViewBox>
+                                        :(idx===2 && isPreView2)
+                                        ?<EditorViewBox>{Parser(preView2Data)}</EditorViewBox>
+                                        :undefined
+                                        }
+                                    </>
+                                }
+                            </QuestionTitleInputBox>
+                            {el.side 
+                            ?<SupportCardBox key={el.sideData.imgUrl}>
+                                <SupportCard>
+                                    <SupportCardTitle>
+                                        <H5>{el.sideData.title}</H5>
+                                    </SupportCardTitle>
+                                    <SupportCardContentBox>
+                                        <img src={el.sideData.imgUrl} alt=""/>
+                                        <SupportCardContent>
+                                            {el.sideData.text.map((text,id)=><P key={id}>{text}</P>)}
+                                        </SupportCardContent>
+                                    </SupportCardContentBox>
+                                </SupportCard>
+                            </SupportCardBox>
+                            :undefined}
+                        </UserInputBox>
                     )
                 })}
             </ContentBox>
