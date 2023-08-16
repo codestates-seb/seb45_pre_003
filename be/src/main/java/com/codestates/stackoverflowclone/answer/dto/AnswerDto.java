@@ -1,5 +1,6 @@
 package com.codestates.stackoverflowclone.answer.dto;
 
+import com.codestates.stackoverflowclone.member.dto.MemberDto;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import lombok.AllArgsConstructor;
@@ -26,8 +27,8 @@ public class AnswerDto {
     public static class Response {
         private Long answerId;
         private String body;
-        private Member member;
-        private Question question;
+        private MemberDto.Response member;
+        private Long questionId;
 
         private Boolean isBest;
 
