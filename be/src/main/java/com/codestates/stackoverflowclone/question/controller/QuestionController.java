@@ -1,5 +1,6 @@
 package com.codestates.stackoverflowclone.question.controller;
 
+import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.dto.QuestionDto;
 import com.codestates.stackoverflowclone.question.dto.QuestionListDto;
@@ -23,12 +24,15 @@ public class QuestionController {
     private QuestionMapper questionMapper;
     private QuestionService questionService;
     private MemberService memberService;
+    private MemberMapper memberMapper;
+
 
     public QuestionController(QuestionMapper questionMapper, QuestionService questionService,
-                              MemberService memberService) {
+                              MemberService memberService, MemberMapper memberMapper) {
         this.questionMapper = questionMapper;
         this.questionService = questionService;
         this.memberService = memberService;
+        this.memberMapper = memberMapper;
     }
 
     ///// 질문 등록!
@@ -37,7 +41,7 @@ public class QuestionController {
         // mapper, Service, Repository 거쳐서 저장하고 저장해온거 반납
         Question question = questionMapper.questionPostToQuestion(requestBody, memberService);
         Question savedQuestion = questionService.createQuestion(question);
-        QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion, memberMapper);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -49,7 +53,7 @@ public class QuestionController {
         requestBody.setQuestionId(questionId);
         Question question = questionMapper.questionPatchToQuestion(requestBody);
         Question findQuestion = questionService.updateQuestion(question);
-        QuestionDto.Response response = questionMapper.questionToQuestionResponse(findQuestion);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(findQuestion,memberMapper);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -57,7 +61,7 @@ public class QuestionController {
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId){
         Question question = questionService.readQuestion(questionId);
-        QuestionDto.Response response = questionMapper.questionToQuestionResponse(question);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(question, memberMapper);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -70,7 +74,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions, memberMapper),
                         pageQuestions),
                 HttpStatus.OK);
     }
@@ -83,7 +87,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions,memberMapper),
                         pageQuestions),
                 HttpStatus.OK);
     }
@@ -96,7 +100,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions, memberMapper),
                         pageQuestions),
                 HttpStatus.OK);
     }
@@ -110,7 +114,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions,memberMapper),
                         pageQuestions),
                 HttpStatus.OK);
     }

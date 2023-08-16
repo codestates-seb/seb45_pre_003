@@ -1,5 +1,6 @@
 package com.codestates.stackoverflowclone.question.dto;
 
+import com.codestates.stackoverflowclone.member.dto.MemberDto;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class QuestionDto {
         private Long questionId;
         private String title;
         private String body;
-        private Member member;
+        private MemberDto.Response member;
 
         private Long answerCount;
         private Long visitCount;
@@ -41,7 +42,7 @@ public class QuestionDto {
     public static class ResponseElement {
         private Long questionId;
         private String title;
-        private Member member;
+        private MemberDto.Response member;
 
         private Long answerCount;
         private Long visitCount;
