@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Loginheader from '../components/LoginHeader/Loginheader';
 import googleLogo from '../assets/ico_google.png';
 import githubLogo from '../assets/github.png';
 import facebookLogo from '../assets/facebook2.png';
@@ -27,6 +27,9 @@ import {
   PasswordRequirements,
   RobotCheckContainer,
   RobotCheckWrapper,
+  SignupAll,
+  SignupText,
+  SignupLink,
   Checkboxlabel,
   CheckboxWrapper,
   CheckboxInput,
@@ -39,7 +42,7 @@ import {
 export default function SignupPage() {
   return (
     <Container>
-      <Header />
+      <Loginheader />
       <Content>
         <Wrapper>
           <TextContent>
@@ -97,6 +100,20 @@ export default function SignupPage() {
             <SignUpButton>Sign Up</SignUpButton>
             <Textminl>By clicking “Sign up”, you agree to our terms of service and acknowledge that you have read and understand our privacy policy and code of conduct.</Textminl>
             </Inputform>
+            <SignupAll>
+        <SignupText>
+        Already have an account?{' '}
+          <SignupLink href="http://localhost:3000/signup">
+            Log in
+          </SignupLink>
+        </SignupText>
+        <SignupText>
+          Are you an employer?{' '}
+          <SignupLink href="https://talent.stackoverflow.com/users/login">
+            Sign up on Talent
+          </SignupLink>
+        </SignupText>
+        </SignupAll>
           </SignupColumn>
         </Wrapper>
       </Content>

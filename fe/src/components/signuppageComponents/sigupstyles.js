@@ -217,3 +217,27 @@ export const Textminl = styled.p`
   color: #6A737C;
   margin: 32px 0px 0px;
 `;
+
+export const SignupAll = styled.div`
+  width: 316px;
+  height: 38px;
+  margin: 0px 0px 30px;
+`;
+
+export const SignupText = styled.p`
+  text-align: center;
+  font-size: 12px;
+  margin: 12px 0px 0px;
+`;
+
+export const SignupLink = styled.a`
+  font-size: 12px;
+  color: #0074cc;
+  margin: 6px 0px;
+  text-decoration: none;
+  
+
+  &:hover {
+  color: skyblue;
+}
+`;
