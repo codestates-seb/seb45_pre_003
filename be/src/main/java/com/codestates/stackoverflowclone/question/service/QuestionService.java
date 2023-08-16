@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -21,6 +22,10 @@ public class QuestionService {
         this.questionRepository = questionRepository;
     }
     public Question createQuestion(Question question){
+        question.setAnswerCount(0L);
+        question.setVisitCount(0L);
+        question.setAnswered(false);
+
         return questionRepository.save(question);
     }
     public Question updateQuestion(Question question){
@@ -30,28 +35,31 @@ public class QuestionService {
                 .ifPresent(title->findQuestion.setTitle(title));
         Optional.ofNullable(question.getBody())
                 .ifPresent(body->findQuestion.setBody(body));
-        Optional.ofNullable(question.getVisitCount())
-                .ifPresent(visitCount->findQuestion.setVisitCount(visitCount));
 
         return questionRepository.save(findQuestion);
     }
-    public Page<Question> findQuestionsThisMonth(int page, int size){
+    public Page<Question> findQuestionsThisMonth(String searchWord, int page, int size){
         LocalDateTime current = LocalDateTime.now();
         LocalDateTime monthAgo = current.minus(1, ChronoUnit.MONTHS);
 
-        return questionRepository.findQuestionListBetweenDates( monthAgo,current,
+        return questionRepository.findQuestionListBetweenDates( searchWord, monthAgo,current,
                 PageRequest.of(page,size, Sort.by("visitCount").descending()) );
     }
-    public Page<Question> findQuestionsThisWeek(int page, int size){
+    public Page<Question> findQuestionsThisWeek(String searchWord,int page,int size){
         LocalDateTime current = LocalDateTime.now();
         LocalDateTime weekAgo = current.minus(1, ChronoUnit.WEEKS);
 
-        return questionRepository.findQuestionListBetweenDates(weekAgo, current,
+        return questionRepository.findQuestionListBetweenDates(searchWord,weekAgo, current,
                 PageRequest.of(page,size, Sort.by("visitCount").descending()) );
     }
-    public Page<Question> findQuestions(int page, int size){
+    public Page<Question> findQuestions(String searchWord, int page, int size){
 
-        return questionRepository.findAll(PageRequest.of(page, size,
+        return questionRepository.findByTitleContaining(searchWord, PageRequest.of(page, size,
+                Sort.by("createdAt").descending()) );
+    }
+    public Page<Question> findUnansweredQuestions(String searchWord, int page, int size){
+
+        return questionRepository.findAllByAnswered(searchWord,false, PageRequest.of(page, size,
                 Sort.by("createdAt").descending()) );
     }
     public Page<Question> findMyQuestions( long memberId, int page, int size){
