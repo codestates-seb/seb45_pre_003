@@ -1,4 +1,4 @@
-import Header from '../components/Header';
+import Loginheader from '../components/LoginHeader/Loginheader';
 import React from 'react';
 import picture1 from '../assets/stack-overflow.png';
 import googleLogo from '../assets/ico_google.png';
@@ -27,8 +27,9 @@ import {
 
 export default function LoginPage() {
   return (
+    
     <LoginPageContainer>
-      <Header />
+      <Loginheader />
       <Card>
         <MyPageLink href="/">
           <MyPageImage src={picture1} alt="My Page" />
