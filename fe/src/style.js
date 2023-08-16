@@ -20,7 +20,6 @@ export const HeaderStyle = styled.header`
     min-width:auto;
     width:100%;
     height:56px;
-    border:1px solid black;
     background-color:white;
     z-index:5050;
 `
@@ -32,12 +31,11 @@ export const ContainerStyle = styled.div`
     display:flex;
     justify-content:space-between;
     margin: 0 auto;
-    border:1px solid red;
 `
 
 export const LeftBarStyle = styled.div`
     width:164px;
-    height:100%;
+    height:90vh;
     flex-shrink:0;
     position:relative !important;
     border-right:1px solid hsl(210,8%,75%);
@@ -77,7 +75,6 @@ export const NavBarLi = styled.li`
 export const ContentStyle = styled.main`
     max-width:1100px;
     width:calc(100% - 164px);
-    border:1px solid blue;
     @media screen and (max-width:640px){
         width: 100%;
     }
@@ -86,7 +83,6 @@ export const ContentStyle = styled.main`
 export const MainBarStyle = styled.div`
     float:left;
     width:calc(100% - 315px);
-    border:1px solid yellowgreen;
     height:800px;
     @media screen and (max-width:980px){
         width: 100%;
@@ -98,16 +94,16 @@ export const RightBarStyle = styled.div`
     width:300px;
     margin: 0 0 15px;
     height:100%;
-    border:1px solid gray;
     @media screen and (max-width:980px) {
         display:none;
     }
 `
+
 export const FooterStyle = styled.footer`
     display:block;
     height:322px;
     background-color: #232629; 
-
+    position:relative;
    @media screen and (max-width: 980px){
          background-color: #232629; 
          max-height: 1000px; 
@@ -177,7 +173,8 @@ export const SearchElementStyle = styled.form`
     flex-shrink:1;
     vertical-align: middle;
     position:relative !important;
-    border-radius: 5px; 
+    border-radius: 5px;import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
+ 
     border: 1px solid lightgray; 
 
     &:hover {
@@ -337,4 +334,50 @@ export const FooterCopyRightTextStyle = styled.div`
      @media screen and (max-width: 980px) {
         margin-bottom: 0;
      }
+`
+
+export const EditorViewBox = styled.div`
+    width:100%;
+    padding:9.6px;
+    border:1px solid lightgray;
+    border-radius:2px;
+    font-size:20px;
+
+    > * table {
+        border-spacing:0;
+        border-collapse:collapse;
+        margin:8px 0 8px 0;
+    }
+
+    > * th {
+        background-color: lightgray;
+        border:1px solid gray;
+        padding:6px;
+    }
+
+    > * td {
+        padding:10px;
+        border:1px solid gray;
+    }
+    
+    > * li {
+        margin-left:21px;
+    }
+
+    > blockquote {
+        border-left:5px solid gray;
+        padding-left:20px;
+    }
+
+    > * blockquote {
+        border-left:5px solid gray;
+        padding-left:20px;
+    }
+
+    > pre {
+        padding:10px;
+        background-color:#eee;
+        border:1px solid lightgray;
+        border-radius:3px;
+    }
 `

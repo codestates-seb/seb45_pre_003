@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
-import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, PageBox, PageButtonBox, PageButton, PerPageText } from "../components/homepage/HomePage.style";
+import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, PageBox, PageButtonBox, PageButton, PerPageText, Filter } from "../components/homepage/HomePage.style";
 import { ContainerStyle } from "../style";
 
 const DummyData = [
@@ -412,6 +412,7 @@ const DummyData = [
 
 ]
 
+const filters = ['Newest','Active','Unanswered'];
 
 function QuestionPage () {
     
@@ -428,14 +429,11 @@ function QuestionPage () {
                     </TopBox>
                     <SecondBox>
                         <QuestionsNum
-                        style={{
-                            visibility:"visible",
-                        }}
-                        >{`${DummyData.length} questions`}</QuestionsNum>
+                            style={{visibility:"visible"}}>
+                            {`${DummyData.length} questions`}
+                        </QuestionsNum>
                         <FilterBox>
-                            <FirstFilter>Newest</FirstFilter>
-                            <SecondFilter>Active</SecondFilter>
-                            <LastFilter>Unanswered</LastFilter>
+                            {filters.map((el,idx)=><Filter key={idx} className={idx===0?'first':idx===filters.length-1?'last':undefined}>{el}</Filter>)}
                         </FilterBox>
                     </SecondBox>
                     <Ul>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
-import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, ThirdFilter, ForthFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData } from "../components/homepage/HomePage.style";
+import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, ThirdFilter, ForthFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, Filter } from "../components/homepage/HomePage.style";
 import { ContainerStyle } from "../style";
 
 const DummyData = [
@@ -330,6 +330,7 @@ const DummyData = [
     },
 ]
 
+const filters = ['Interesting','Week','Month'];
 
 function HomePage () {
     
@@ -347,9 +348,7 @@ function HomePage () {
                     <SecondBox>
                         <QuestionsNum></QuestionsNum>
                         <FilterBox>
-                            <FirstFilter>interesting</FirstFilter>
-                            <SecondFilter>Week</SecondFilter>
-                            <LastFilter>Month</LastFilter>
+                            {filters.map((el,idx)=><Filter key={idx} className={idx===0?'first':idx===filters.length-1?'last':undefined}>{el}</Filter>)}
                         </FilterBox>
                     </SecondBox>
                     <Ul>
