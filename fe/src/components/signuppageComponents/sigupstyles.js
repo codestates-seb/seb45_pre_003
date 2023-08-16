@@ -168,6 +168,35 @@ export const RobotCheckWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+`;
+
+export const Icon2 = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  position: relative;
+  left: 5px;
+  background-color: rgba(0,0,0,0);
+`;
+
+export const Background = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #ffffffb7;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LoadingText = styled.div`
+  font: 1rem 'Noto Sans KR';
+  text-align: center;
 `;
 
 export const Checkboxlabel = styled.label`

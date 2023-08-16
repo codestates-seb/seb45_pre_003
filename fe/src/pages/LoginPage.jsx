@@ -67,12 +67,6 @@ export default function LoginPage() {
             Sign up
           </SignupLink>
         </SignupText>
-        <SignupText>
-          Are you an employer?{' '}
-          <SignupLink href="https://talent.stackoverflow.com/users/login">
-            Sign up on Talent
-          </SignupLink>
-        </SignupText>
         </SignupAll>
       </Card>
     </LoginPageContainer>

@@ -4,6 +4,7 @@ import googleLogo from '../assets/ico_google.png';
 import githubLogo from '../assets/github.png';
 import facebookLogo from '../assets/facebook2.png';
 import question from '../assets/question.png';
+import Recap from '../assets/RecaptchaLogo.png';
 import tag from '../assets/tag.png';
 import trophy from '../assets/trophy.png';
 import updowm from '../assets/up-down.png';
@@ -20,6 +21,7 @@ import {
   ButtonForm,
   IconButton,
   Icon,
+  Icon2,
   SignupColumn,
   Inputform,
   InputLabel,
@@ -40,6 +42,7 @@ import {
 
 
 export default function SignupPage() {
+  
   return (
     <Container>
       <Loginheader />
@@ -90,7 +93,9 @@ export default function SignupPage() {
                   <CheckboxWrapper>
                     <CheckboxInput type="checkbox" id="robotCheck" />
                     <Checkboxlabel >I'm not a robot</Checkboxlabel>
-                  </CheckboxWrapper>
+                    </CheckboxWrapper>
+                    <Icon2 src={Recap} alt="GitHub" />
+                    <PasswordRequirements>Privacy - Teams</PasswordRequirements>
                   </RobotCheckWrapper>
               </RobotCheckContainer>
                   <CheckboxWrapper>
@@ -103,14 +108,8 @@ export default function SignupPage() {
             <SignupAll>
         <SignupText>
         Already have an account?{' '}
-          <SignupLink href="http://localhost:3000/signup">
+          <SignupLink href="http://localhost:3000/login">
             Log in
-          </SignupLink>
-        </SignupText>
-        <SignupText>
-          Are you an employer?{' '}
-          <SignupLink href="https://talent.stackoverflow.com/users/login">
-            Sign up on Talent
           </SignupLink>
         </SignupText>
         </SignupAll>
