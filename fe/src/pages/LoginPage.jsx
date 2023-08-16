@@ -63,7 +63,7 @@ export default function LoginPage() {
         <SignupAll>
         <SignupText>
           Don’t have an account?{' '}
-          <SignupLink href="https://stackoverflow.com/users/signup?ssrc=head&returnurl=https%3a%2f%2fstackoverflow.com%2f">
+          <SignupLink href="http://localhost:3000/signup">
             Sign up
           </SignupLink>
         </SignupText>
