@@ -22,6 +22,8 @@ export const HeaderStyle = styled.header`
     height:56px;
     background-color:white;
     z-index:5050;
+    border-bottom: 1px solid lightgray;
+    border-top: 3px solid #FF8C0A;
 `
 
 export const ContainerStyle = styled.div`
@@ -115,15 +117,25 @@ position:relative;
 max-width: 1264px;
 height: 100%;
 display: flex;
-align-items: middle; 
+justify-content: space-between;
 margin: 0 auto;
-align-items: center;   
+align-items: center;
+vertical-align: baseline ;
 `
+export const HeaderWrapper = styled.div`
+
+`
+
 export const HamImage = styled.img`
   width: 20px;
   height: 20px;
-  margin: 0px 16px;
   cursor: pointer;
+  display: none;
+
+  @media (max-width: 640px) {
+  display: block;
+  margin: 0px 16px;
+  }
 `
 
 export const MyPageLink = styled.a`
@@ -198,7 +210,6 @@ position: relative !important;
 margin: 0px 0px 4px 8px;
 padding: 0px 6px 0px 8px;
 `
-
 
 export const DropdownItem = styled.a`
 display: block;
@@ -312,92 +323,58 @@ export const LogoImage = styled.img`
 export const LogoImage2 = styled.img`
 
   height: 30px;
-  margin-left: 20px; 
   position: relative;
   display: none;
+  padding: 0px 8px;
   @media (max-width: 640px) {
   display: block;
-  width: 25px;
-  margin-right: 5px;
   cursor: pointer;
+  bottom: 2px;
+  margin: 0px 5px;
+  right: 15px;
+  width: 41px;
   }
 `
-
-export const NavLink = styled.li`
-text-decoration: none;
-margin-left: 15px;
-font-size: 12px;
-color: #525960;
-padding: 6px 12px;
-height: 29px;
-width: 59.42px;
-cursor: pointer;
-
-&:hover {
-border: 1px solid gray; // Add border when hovered
-background-color: #e9e9e9;
-border-radius: 1000px;
-}
-@media (max-width: 812px) {
-display: none;
-}
-
-`;
 export const NavLink1 = styled.li`
 
 text-decoration: none;
-font-size: 12px;
+font-size: 13px;
 color: #525960;
 padding: 6px 12px;
 height: 29px;
-width: 74.36px;
+width: 68.36px;
+display: flex;
+justify-content: center;
+align-items: center;
 cursor: pointer;
 
 &:hover {
-border: 1px solid gray; // Add border when hovered
 background-color: #e9e9e9;
 border-radius: 1000px;
 }
 
 @media (max-width: 640px) {
 font-size: 11px;
-position: relative;
-right: 70px;
-}
-
-`;
-export const NavLink2 = styled.li`
-text-decoration: none;
-font-size: 12px;
-color: #525960;
-padding: 6px 12px;
-height: 29px;
-width: 81.72px;
-cursor: pointer;
-
-&:hover {
-border: 1px solid gray; // Add border when hovered
-background-color: #e9e9e9;
-border-radius: 1000px;
-}
-
-@media (max-width: 812px) {
-display: none;
 }
 
 `;
 
 export const Navbar = styled.ul`
-margin-left: auto;
 display: flex;
-flex-direction: row;
+justify-content: center;
+align-items: center;
+margin: 0px 16px;
 list-style-type: none;
+
+@media (max-width: 640px) {
+  position: relative;
+  right: 40px;
+}
 `;
 
 
 export const SearchElementStyle = styled.form`
 display: flex;
-justify-content : left;
 align-items: center;
 width: 773px;
 height: 32px; 
@@ -423,19 +400,42 @@ height: 21px;
 left: 5px;
 `;
 
-export const SearchIcon2 = styled.img`
-position: relative;
-left: 28px; // Adjust the position as needed
-width: 21px;
-height: 21px; 
+export const SearchIcondiv = styled.div`
 display: none;
 
 @media screen and (max-width:640px){
+  display: grid;
+    place-items: center; /* 가운데 정렬 */
+    width: 35px;
+    height: 45px;
+    position: relative;
+    left: 7px;
+    bottom: 1px;
+  }
+
+&:hover {
+  background-color: #dee2e6;
+}
+`
+
+export const SearchIcon2 = styled.img`
+width: 21px;
+height: 21px; 
+display: none;
+cursor: pointer;
+
+@media screen and (max-width:640px){
    display:block;
-   position: relative;
-   left: 8px;
-   bottom: 2px;
-} 
+   } 
+`;
+
+export const SearchIcon3 = styled.img`
+position: relative;
+width: 21px;
+height: 21px; 
+left: 5px;
+top: 6px;
+z-index: 5;
 `;
 
 
@@ -446,11 +446,47 @@ height: 15px;
 padding: 8px 9px; 
 border: none; 
 outline: none; 
+
+
 `
+
+export const InputSearchdiv =styled.div`
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+height: 48.59px;
+padding: 8px 12px;
+background-color: #E3E6E8;
+display: none;
+
+@media screen and (max-width:640px){
+   display:block
+} 
+`
+
+export const InputStyle2 = styled.input`
+width: 100%; 
+height: 32.59px;
+padding: 8px 28px; 
+border: none; 
+outline: none; 
+display: none;
+border-radius: 5px;
+position: relative;
+bottom: 25px;
+box-shadow: 0 0 6px 0px skyblue;
+
+@media screen and (max-width:640px){
+   display:block
+} 
+
+`
+
 export const HeaderIconStyle = styled.ul`
  display:flex; 
  width: 218px;
- height: 100%; 
+ height: 16px; 
  padding: 0 12px 0 0 ; 
  justify-content: center;
  align-items:center; 
@@ -469,6 +505,27 @@ export const HeaderElementStyle = styled.li`
      margin: 0px;
      list-style: none; 
      width: 52px; 
+     height: 45px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+     
+     &:hover {
+        background: #d6d6d7;
+        color: #6a6a6c; 
+     }    
+`
+
+export const HeaderElementStyle2 = styled.li`
+     padding: 0 8px;
+     list-style: none; 
+     margin-left: 5px;
+     width: 45px; 
+     height: 45px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
      cursor: pointer;
      
      &:hover {

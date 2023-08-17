@@ -8,38 +8,11 @@ import calendar from '../../assets/calendar.png';
 import stack from '../../assets/stack-overflow.png';
 import { useNavigate } from "react-router-dom";
 import {
-  HeaderStyle,
-  HeaderContainerStyle,
-  HamImage,
-  Dropdown,
-  DropOl,
-  DropLi,
-  DropLi2,
-  DropLiQs,
-  DropLi3,
-  DropLi4,
-  Droptext,
-  DropdownItem,
-  DropdownItem2,
-  DropdownItem5,
-  DropdownItem6,
-  DropButton,
-  Goimg,
-  Textimg,
-  LogoImage,
-  LogoImage2,
-  NavLink1,
-  Navbar,
-  InputSearchdiv,
-  SearchElementStyle,
-  SearchIcon,
-  SearchIcon2,
-  SearchIcon3,
-  InputStyle,
-  InputStyle2,
-  HeaderIconStyle,
-  LoginButton,
-  SignupButton,
+  HeaderStyle,HeaderContainerStyle,HamImage,Dropdown,DropOl,DropLi,
+  DropLi2,DropLiQs,DropLi3,DropLi4,Droptext,DropdownItem,DropdownItem2,
+  DropdownItem5,DropdownItem6,DropButton,Goimg,Textimg,LogoImage,LogoImage2,
+  NavLink1,Navbar,InputSearchdiv,SearchElementStyle,SearchIcon,SearchIcon2,
+  SearchIcon3,InputStyle,InputStyle2,HeaderIconStyle,LoginButton,SignupButton,SearchIcondiv,
 } from './Loginheaderstyle';
 
 
@@ -122,14 +95,15 @@ return (
           <LogoImage src={picture2} alt="Stack Overflow" onClick={goToHome}></LogoImage>
           <LogoImage2 src={stack} alt="stackover" onClick={goToHome}/>  
            <Navbar>
-
         <NavLink1 >Products</NavLink1>
         </Navbar>
         <SearchElementStyle> 
         <SearchIcon src={searchIcon} alt="Search" />
           <InputStyle type={'text'} placeholder='Search' maxLength={240}/>
        </SearchElementStyle>
+       <SearchIcondiv>
        <SearchIcon2 src={searchIcon} alt="Search"  onClick={seacchDrop}/>
+       </SearchIcondiv>
        {isSearchDropOpen && ( 
         <InputSearchdiv>
           <SearchIcon3 src={searchIcon} alt="Search" />

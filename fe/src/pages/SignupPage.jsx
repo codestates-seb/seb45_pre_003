@@ -9,34 +9,10 @@ import tag from '../assets/tag.png';
 import trophy from '../assets/trophy.png';
 import updowm from '../assets/up-down.png';
 import {
-  Container,
-  Wrapper,
-  Content,
-  TextContent,
-  Hypertext,
-  Textimg,
-  Text,
-  Stext,
-  Atext,
-  ButtonForm,
-  IconButton,
-  Icon,
-  Icon2,
-  SignupColumn,
-  Inputform,
-  InputLabel,
-  Input,
-  PasswordRequirements,
-  RobotCheckContainer,
-  RobotCheckWrapper,
-  SignupAll,
-  SignupText,
-  SignupLink,
-  Checkboxlabel,
-  CheckboxWrapper,
-  CheckboxInput,
-  SignUpButton,
-  Textminl,
+  Container,Wrapper,Content,TextContent,Hypertext,Textimg,Text,Stext,Atext,
+  ButtonForm,IconButton,Icon,Icon2,SignupColumn,Inputform,InputLabel,Input,
+  PasswordRequirements,RobotCheckContainer,RobotCheckWrapper,SignupAll,SignupText,
+  SignupLink,Checkboxlabel,CheckboxWrapper,CheckboxInput,SignUpButton,Textminl,
 } from '../components/signuppageComponents/sigupstyles';
 
 
