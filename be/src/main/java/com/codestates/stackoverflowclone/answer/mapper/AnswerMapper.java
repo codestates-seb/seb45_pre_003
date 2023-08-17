@@ -2,6 +2,7 @@ package com.codestates.stackoverflowclone.answer.mapper;
 
 import com.codestates.stackoverflowclone.answer.dto.AnswerDto;
 import com.codestates.stackoverflowclone.answer.entity.Answer;
+import com.codestates.stackoverflowclone.member.dto.MemberDto;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.service.QuestionService;
@@ -29,14 +30,17 @@ public interface AnswerMapper {
         }
     }
     Answer answerPatchToAnswer(AnswerDto.Patch requestBody);
-    default AnswerDto.Response answerToAnswerResponse(Answer answer, MemberMapper memberMapper) {
+    default AnswerDto.Response answerToAnswerResponse(Answer answer) {
         if (answer == null) {
             return null;
         } else {
             AnswerDto.Response response = new AnswerDto.Response();
             response.setAnswerId(answer.getAnswerId());
             response.setBody(answer.getBody());
-            response.setMember(memberMapper.memberToResponse(answer.getMember()));
+            response.setMember( MemberDto.Response.builder().id(answer.getMember().getId())
+                                                            .name(answer.getMember().getName())
+                                                            .email(answer.getMember().getEmail())
+                                                            .build());
             response.setQuestionId(answer.getQuestion().getQuestionId());
             response.setIsBest(answer.getIsBest());
             response.setCreatedAt(answer.getCreatedAt());
@@ -44,7 +48,7 @@ public interface AnswerMapper {
             return response;
         }
     }
-    default List<AnswerDto.Response> answersToAnswerResponses(List<Answer> answers, MemberMapper memberMapper) {
+    default List<AnswerDto.Response> answersToAnswerResponses(List<Answer> answers) {
         if (answers == null) {
             return null;
         } else {
@@ -53,7 +57,7 @@ public interface AnswerMapper {
 
             while(var3.hasNext()) {
                 Answer answer = (Answer)var3.next();
-                list.add(this.answerToAnswerResponse(answer, memberMapper));
+                list.add(this.answerToAnswerResponse(answer));
             }
 
             return list;
