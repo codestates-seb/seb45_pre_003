@@ -24,15 +24,12 @@ public class QuestionController {
     private QuestionMapper questionMapper;
     private QuestionService questionService;
     private MemberService memberService;
-    private MemberMapper memberMapper;
-
 
     public QuestionController(QuestionMapper questionMapper, QuestionService questionService,
-                              MemberService memberService, MemberMapper memberMapper) {
+                              MemberService memberService) {
         this.questionMapper = questionMapper;
         this.questionService = questionService;
         this.memberService = memberService;
-        this.memberMapper = memberMapper;
     }
 
     ///// 질문 등록!
@@ -41,7 +38,7 @@ public class QuestionController {
         // mapper, Service, Repository 거쳐서 저장하고 저장해온거 반납
         Question question = questionMapper.questionPostToQuestion(requestBody, memberService);
         Question savedQuestion = questionService.createQuestion(question);
-        QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion, memberMapper);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -53,7 +50,7 @@ public class QuestionController {
         requestBody.setQuestionId(questionId);
         Question question = questionMapper.questionPatchToQuestion(requestBody);
         Question findQuestion = questionService.updateQuestion(question);
-        QuestionDto.Response response = questionMapper.questionToQuestionResponse(findQuestion,memberMapper);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(findQuestion);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -61,7 +58,7 @@ public class QuestionController {
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId){
         Question question = questionService.readQuestion(questionId);
-        QuestionDto.Response response = questionMapper.questionToQuestionResponse(question, memberMapper);
+        QuestionDto.Response response = questionMapper.questionToQuestionResponse(question);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -74,7 +71,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions, memberMapper),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
                         pageQuestions),
                 HttpStatus.OK);
     }
@@ -87,7 +84,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions,memberMapper),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
                         pageQuestions),
                 HttpStatus.OK);
     }
@@ -100,7 +97,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions, memberMapper),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
                         pageQuestions),
                 HttpStatus.OK);
     }
@@ -114,7 +111,7 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions,memberMapper),
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
                         pageQuestions),
                 HttpStatus.OK);
     }
