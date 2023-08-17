@@ -289,7 +289,7 @@ public class AnswerControllerTest {
         // then
         actions
                 .andExpect(MockMvcResultMatchers.status().isNoContent())
-                .andDo(document("delete-member",
+                .andDo(document("delete-answer",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         pathParameters(parameterWithName("answer-id").description("삭제할 답변 식별자"))));
