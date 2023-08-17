@@ -1,5 +1,5 @@
 {
-    "questions": [
+    "questions" : [
       {
         "id": 1,
         "title": "CKEditor5 set language",
@@ -588,15 +588,9 @@
         "description": "<p>ID 38번 자료생성합니다.&nbsp;</p><p>이미지를 첨부합니다.&nbsp;</p>"
       },
       {
-        "id": "E140XgG"
-      },
-      {
         "id": "39",
         "title": "이미지 URL 첨부",
         "description": "<p>내용입력&nbsp;</p><p>이미지 URL첨부</p><p><a href=\"https://pixabay.com/photos/solar-wind-borealis-northern-lights-7917659/\">https://pixabay.com/photos/solar-wind-borealis-northern-lights-7917659/</a></p><p>이미지 첨부전&nbsp;</p>"
-      },
-      {
-        "id": "3fwsWlV"
       },
       {
         "id": "40",
@@ -620,12 +614,12 @@
         "id": "43",
         "title": "이미지 첨부 test",
         "description": "<p>이미지를 첨부합니다. <img>??</p>",
-        "author": "elena",
+        "author": "elena"
       },
       {
         "id": "44",
         "title": "이미지 첨부 test",
-        "description": "<p>이미지를 첨부합니다. <img>?? 아이디 수정</p>",
+        "description": "<p>이미지를 첨부합니다. <img>?? 아이디 수정</p>"
       },
       {
         "id": "45",
@@ -636,7 +630,7 @@
       {
         "id": "46",
         "title": "이미지 첨부 test46",
-        "description": "<p>이미지를 첨부합니다. <img>?? 아이디 수정<img></p>",
+        "description": "<p>이미지를 첨부합니다. <img>?? 아이디 수정<img></p>"
       },
       {
         "id": "50",

@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState} from 'react';
 import ActivityCard from './AcitivityCard';
 import { MyPageCardStyle } from '../mypageComponents/MyPage.styled';
 import { MypageNavStyle } from '../mypageComponents/MyPage.styled';
@@ -16,16 +16,16 @@ export default function Activities() {
     <>
     <MyPageCardStyle>
       <MypageNavStyle>
-      <ul>
-      {optionItems.map((el) => (
-      <MypageNavitemStyle
-      key={el} 
-      onClick = {() => setMypageOptions(el)} 
-      active = {mypageOptions === el}
-      >{el}
-      </MypageNavitemStyle>
-      ))}
-      </ul>
+        <ul>
+         {optionItems.map((el) => (
+           <MypageNavitemStyle
+             key={el} 
+             onClick = {() => setMypageOptions(el)} 
+            active = {mypageOptions === el}
+           >{el}
+          </MypageNavitemStyle>
+         ))}
+        </ul>
       </MypageNavStyle>
       <ActivityCardContainer>
         <ActivityCard mypageOptions={mypageOptions}/>
