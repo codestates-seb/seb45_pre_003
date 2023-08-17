@@ -118,7 +118,7 @@ public class QuestionController {
 
 
     ///// memberId를 통해 member가 작성한 answer들의 questions들 제목/생성시간 리스트 mypage로 가져오기
-    @GetMapping("/myanswers/{member-id}")
+    @GetMapping("/withmyanswer/{member-id}")
     public ResponseEntity getQuestionsWithMyAnswer(@PathVariable("member-id") long memberId,
                                                    @Positive @RequestParam int page,
                                                    @Positive @RequestParam int size){
@@ -132,7 +132,7 @@ public class QuestionController {
     }
 
     ///// memberId를 통해 questions들 제목/생성시간 리스트 가져오기
-    @GetMapping("/mypage/{member-id}")
+    @GetMapping("/onmypage/{member-id}")
     public ResponseEntity getMyQuestions(@PathVariable("member-id") long memberId,
                                          @Positive @RequestParam int page,
                                          @Positive @RequestParam int size ){

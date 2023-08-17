@@ -34,6 +34,17 @@ public class Question extends Auditable {
     @ColumnDefault("false")
     private Boolean answered;
 
+    public Question(Long questionId, String title, String body, Member member,
+                    Long answerCount, Long visitCount, Boolean answered) {
+        this.questionId = questionId;
+        this.title = title;
+        this.body = body;
+        this.member = member;
+        this.answerCount = answerCount;
+        this.visitCount = visitCount;
+        this.answered = answered;
+    }
+
     public void setAnswered(){
         answered = false;
         for(Answer answer : answers){
