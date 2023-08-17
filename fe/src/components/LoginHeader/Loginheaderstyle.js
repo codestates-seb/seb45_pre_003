@@ -4,27 +4,42 @@ export const HeaderStyle = styled.header`
 position:fixed !important;
 left:0 !important;
 top:0 !important;
-min-width:auto;
+min-width:483px;
 width:100%;
 height:56px;
 background-color:white;
 z-index:5050;
-border-bottom: 1px solid gray;
+border-bottom: 1px solid lightgray;
+border-top: 3px solid #FF8C0A;
+@media (max-width: 640px) {
+
+  }
+
 `
 export const HeaderContainerStyle =styled.div`
 position:relative;
 max-width: 1264px;
 height: 100%;
 display: flex;
-align-items: middle; 
+justify-content: space-between;
 margin: 0 auto;
-align-items: center;   
+align-items: center;
+vertical-align: baseline ;
 `
+export const HeaderWrapper = styled.div`
+
+`
+
 export const HamImage = styled.img`
   width: 20px;
   height: 20px;
   margin: 0px 16px;
   cursor: pointer;
+  display: none;
+
+  @media (max-width: 640px) {
+  display: block;
+  }
 `
 
 export const MyPageLink = styled.a`
@@ -212,92 +227,54 @@ export const LogoImage = styled.img`
 export const LogoImage2 = styled.img`
 
   height: 30px;
-  margin-left: 20px; 
   position: relative;
   display: none;
+  padding: 0px 8px;
   @media (max-width: 640px) {
   display: block;
-  width: 25px;
-  margin-right: 5px;
   cursor: pointer;
+  right: 40px;
+  bottom: 2px;
+  margin: 0px 3px;
   }
 `
-
-export const NavLink = styled.li`
-text-decoration: none;
-margin-left: 15px;
-font-size: 12px;
-color: #525960;
-padding: 6px 12px;
-height: 29px;
-width: 59.42px;
-cursor: pointer;
-
-&:hover {
-border: 1px solid gray; // Add border when hovered
-background-color: #e9e9e9;
-border-radius: 1000px;
-}
-@media (max-width: 812px) {
-display: none;
-}
-
-`;
 export const NavLink1 = styled.li`
 
 text-decoration: none;
-font-size: 12px;
+font-size: 13px;
 color: #525960;
 padding: 6px 12px;
 height: 29px;
-width: 74.36px;
+width: 68.36px;
 cursor: pointer;
 
 &:hover {
-border: 1px solid gray; // Add border when hovered
 background-color: #e9e9e9;
 border-radius: 1000px;
 }
 
 @media (max-width: 640px) {
 font-size: 11px;
-position: relative;
-right: 70px;
-}
-
-`;
-export const NavLink2 = styled.li`
-text-decoration: none;
-font-size: 12px;
-color: #525960;
-padding: 6px 12px;
-height: 29px;
-width: 81.72px;
-cursor: pointer;
-
-&:hover {
-border: 1px solid gray; // Add border when hovered
-background-color: #e9e9e9;
-border-radius: 1000px;
-}
-
-@media (max-width: 812px) {
-display: none;
 }
 
 `;
 
 export const Navbar = styled.ul`
-margin-left: auto;
 display: flex;
-flex-direction: row;
+justify-content: center;
+align-items: center;
+margin: 0px 16px;
 list-style-type: none;
+
+@media (max-width: 640px) {
+  position: relative;
+  right: 90px;
+}
 `;
 
 
 export const SearchElementStyle = styled.form`
 display: flex;
-justify-content : left;
 align-items: center;
 width: 773px;
 height: 32px; 
@@ -323,18 +300,32 @@ height: 21px;
 left: 5px;
 `;
 
+export const SearchIcondiv = styled.div`
+display: none;
+
+@media screen and (max-width:640px){
+  display: grid;
+    place-items: center; /* 가운데 정렬 */
+    width: 35px;
+    height: 38px;
+    position: relative;
+    left: 25px;
+  }
+
+&:hover {
+  background-color: #dee2e6;
+}
+`
+
 export const SearchIcon2 = styled.img`
-position: relative;
-left: 28px; // Adjust the position as needed
 width: 21px;
 height: 21px; 
 display: none;
 cursor: pointer;
 
-
 @media screen and (max-width:640px){
-   display:block
-} 
+   display:block;
+   } 
 `;
 
 export const SearchIcon3 = styled.img`
@@ -388,15 +379,17 @@ box-shadow: 0 0 6px 0px skyblue;
 @media screen and (max-width:640px){
    display:block
 } 
+
 `
 
 export const HeaderIconStyle = styled.ul`
  display:flex; 
- width: 218px;
- height: 100%; 
- padding: 0 12px 0 0 ; 
- justify-content: center;
+ justify-content: flex-end;
  align-items:center; 
+
+ @media screen and (max-width:500px){
+  margin-left: 5px;
+} 
 `
 
 export const LoginButton = styled.li`

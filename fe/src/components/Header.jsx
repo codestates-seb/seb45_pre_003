@@ -37,6 +37,11 @@ import {
   InputStyle,
   HeaderIconStyle2,
   HeaderElementStyle,
+  SearchIcondiv,
+  InputSearchdiv,
+  SearchIcon3,
+  InputStyle2,
+  HeaderElementStyle2,
 
 } from "../style";
 import { Avatar } from './mypageComponents/MyPage.styled'
@@ -45,6 +50,7 @@ import { Avatar } from './mypageComponents/MyPage.styled'
 function Header () {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isSearchDropOpen, setSearchDropOpen] = useState(false);
   const navigate = useNavigate();
 
   const goToHome = () => {
@@ -62,7 +68,11 @@ function Header () {
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
-  
+
+    const seacchDrop = () => {
+    setSearchDropOpen(!isSearchDropOpen);
+  }
+
   return (
     <HeaderStyle>
     <HeaderContainerStyle>
@@ -112,13 +122,21 @@ function Header () {
       <SearchIcon src={searchIcon} alt="Search" />
         <InputStyle type={'text'} placeholder='Search' maxLength={240}/>
      </SearchElementStyle>
-     <SearchIcon2 src={searchIcon} alt="Search" />
+     <SearchIcondiv>
+     <SearchIcon2 src={searchIcon} alt="Search"  onClick={seacchDrop}/>
+     </SearchIcondiv>
+     {isSearchDropOpen && ( 
+      <InputSearchdiv>
+        <SearchIcon3 src={searchIcon} alt="Search" />
+        <InputStyle2 type={'text'} placeholder='Search' maxLength={240}/>
+          </InputSearchdiv>
+     )}
              <HeaderIconStyle2>
-                <HeaderElementStyle>
+                <HeaderElementStyle2>
                 <a href="mypage">
                 <Avatar style={{height:"24px", width:"24px"}} alt="logo"/>
                 </a>
-                </HeaderElementStyle>
+                </HeaderElementStyle2>
                 <HeaderElementStyle>
                  <div>{iconInbox}</div>
                 </HeaderElementStyle>

@@ -5,23 +5,8 @@ import googleLogo from '../assets/ico_google.png';
 import githubLogo from '../assets/github.png';
 import facebookLogo from '../assets/facebook2.png';
 import {
-  LoginPageContainer,
-  Card,
-  ButtonForm,
-  IconButton,
-  Icon,
-  MyPageLink,
-  MyPageImage,
-  Form,
-  Input,
-  LoginButton,
-  SignupAll,
-  SignupText,
-  SignupLink,
-  Label,
-  ForgotPasswordLink,
-  Loginform,
-  SignupLink2,
+  LoginPageContainer,Card,ButtonForm,IconButton,Icon,MyPageLink,MyPageImage,Form,Input,
+  LoginButton,SignupAll,SignupText,SignupLink,Label,ForgotPasswordLink,Loginform,SignupLink2,
 } from '../components/loginpageComponents/styles';
 
 

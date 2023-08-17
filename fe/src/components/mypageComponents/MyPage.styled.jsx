@@ -32,6 +32,7 @@ export const Avatar = styled.img.attrs({
   height: 128px;
   border-radius: 10px; 
   margin: 8px; 
+  position: relative;
   `;
 
 export const UserInfomationConnected = styled.div`

@@ -28,6 +28,10 @@ export const Content = styled.div`
 
 export const TextContent = styled.div`
   margin-right: 48px;
+
+  @media screen and (max-width:840px){
+    display: none;
+}
 `;
 
 export const Hypertext = styled.p`
@@ -105,6 +109,10 @@ export const SignupColumn = styled.div`
   align-items: flex-start;
   flex: 1;
   text-align: left;
+
+  @media screen and (max-width:840px){
+    align-items: center;
+}
 `;
 
 export const Inputform = styled.form`
