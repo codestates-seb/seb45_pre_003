@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,9 +37,11 @@ public class MemberService {
     public Member createMember(Member member) {
         verifyEmail(member.getEmail());
 
-        String encryptedPassword = passwordEncoder.encode(member.getPassword());
+        if (!member.getPassword().isEmpty()) {
+            String encryptedPassword = passwordEncoder.encode(member.getPassword());
+            member.setPassword(encryptedPassword);
+        }
         List<String> roles = authorityUtils.createRoles();
-        member.setPassword(encryptedPassword);
         member.setRoles(roles);
 
         Member saveMember = repository.save(member);
@@ -77,13 +81,21 @@ public class MemberService {
     public Member updateMember(Member member) {
         Member findMember = verifyId(member.getId());
 
-        Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
-        Optional.ofNullable(member.getPassword())
-                .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String email = authentication.getName();
+            if (email.equals(member.getEmail())) {
+                Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
+                Optional.ofNullable(member.getPassword())
+                        .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
 
-        Member updateMember = repository.save(findMember);
+                Member updateMember = repository.save(findMember);
 
-        return updateMember;
+                return updateMember;
+            }
+        }
+        //TODO exception
+        throw new RuntimeException();
     }
 
     public void deleteMember(long memberId) {
