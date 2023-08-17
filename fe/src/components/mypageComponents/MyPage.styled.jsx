@@ -19,8 +19,9 @@ export const MypageContentStyle = styled.div`
     padding: 24px;
 `
 
-export const UserInformationStyle = styled.div`
+export const FlexStyle = styled.div`
     display:flex; 
+    flex-wrap: wrap; 
 `; 
 
 
@@ -105,7 +106,7 @@ export const ProfileLeftBarStyle = styled.div`
     font-size: 13px;
     padding: 20px 15px 20px 15px; 
     vertical-align: middle;
-    max-width:274px;
+    max-width: 260px;
     max-height: 128px; 
     flex-shrink:0;
     margin-bottom: 10px; 
@@ -118,7 +119,7 @@ export const ProfileLeftBarStyle = styled.div`
 `; 
 
 export const ProfileBoxStyle = styled.div`
-    width: 101px;
+    width: 95px;
     height: 40px;
 `
 
@@ -185,7 +186,7 @@ export const ActivityCardContainer = styled.div`
 `
 
 export const ActivityStyleCardTitleStyle = styled.div`
-    font-size: 21px; 
+    font-size: 21px;
     vertical-align: baseline; 
 
  &.profileDetails {
@@ -194,18 +195,32 @@ export const ActivityStyleCardTitleStyle = styled.div`
 `
 export const ActivityCardTextStyle = styled.div`
     font-size: 13px; 
-    padding: 48px; 
+    padding: 16px; 
     line-height: 17px; 
     vertical-align: baseline; 
     color : rgb(106, 115, 124);
-    border: 1px solid rgb(106, 115, 124);
+    border: 1px solid  rgb(190, 192, 194); 
     border-radius: 10px; 
     span {
-        color: blue; 
+        color: hsl(206,100%,40%);
     }
 
  &.profileDetails {
     margin-left: 20px; 
    }
 `
+export const MypageAnswersTitleStyle = styled.div`
+    color: #6A737C; 
+    font-size: 13px; 
+    padding: 2px 15px 0px 0px; 
 
+&.mypageItems_1 {
+    color: #0C0D0E;  
+}
+
+&.mypageAnwerTitle {
+    color: #00457A;
+    font-size: 18px;
+    padding: 5px 0px 10px 0px; 
+}
+`

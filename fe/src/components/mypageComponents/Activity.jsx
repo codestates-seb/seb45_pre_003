@@ -1,17 +1,18 @@
-import { React, useState} from 'react';
+import React, {useState} from 'react'; 
 import ActivityCard from './AcitivityCard';
-import { MyPageCardStyle } from '../mypageComponents/MyPage.styled';
-import { MypageNavStyle } from '../mypageComponents/MyPage.styled';
-import { ActivityCardContainer } from '../mypageComponents/MyPage.styled';
-import { MypageNavitemStyle } from '../mypageComponents/MyPage.styled';
+import { 
+  MyPageCardStyle,
+  MypageNavStyle,
+  ActivityCardContainer, 
+  MypageNavitemStyle
+} from '../mypageComponents/MyPage.styled';
 
 
+export default function Activities({userQuestions}) {
 
-export default function Activities() {
-
-  const [mypageOptions, setMypageOptions] = useState('Questions');
   const optionItems = ["Answers", "Questions", "Tags","Votes"]
-  
+  const [mypageOptions, setMypageOptions] = useState('Questions');
+
   return (
     <>
     <MyPageCardStyle>
@@ -28,7 +29,7 @@ export default function Activities() {
         </ul>
       </MypageNavStyle>
       <ActivityCardContainer>
-        <ActivityCard mypageOptions={mypageOptions}/>
+        <ActivityCard mypageOptions={mypageOptions} userQuestions={userQuestions}/>
       </ActivityCardContainer>
     </MyPageCardStyle>
 

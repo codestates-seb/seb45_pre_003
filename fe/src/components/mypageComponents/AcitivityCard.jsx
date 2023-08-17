@@ -1,47 +1,47 @@
-import React, {useState, useEffect} from 'react'
-import { ActivityStyleCardTitleStyle } from './MyPage.styled'
-import { ActivityCardTextStyle } from './MyPage.styled'
-import axios from 'axios'
+import React from 'react'
+import { 
+  ActivityStyleCardTitleStyle, 
+  ActivityCardTextStyle,
+  MypageAnswersTitleStyle, 
+  FlexStyle
+  } from './MyPage.styled'
 
-export default function Answers({mypageOptions}) {
-
-  const [ mypageQuestions, setMypageQuestions ] = useState({})
-  
-  useEffect(() => {
-    axios.get('http://localhost:3001/questions')
-      .then(res => {
-        console.log("Response from server:", res.data);
-      })
-      .catch(error => {
-        console.log("MyPage Question Mapping Error:", error);
-      });
-  }, []);
-
-
+  export default function Answers({mypageOptions, userQuestions}) {
   const pageOptionLowerCase = mypageOptions.toLowerCase();
-
+  console.log(userQuestions)
 
   return (
-    <>
-    { mypageQuestions === [] ? 
+  <>
+    { userQuestions.length === 0 ? 
     <>
     <ActivityStyleCardTitleStyle >
-     0 {mypageOptions}
+       0 {mypageOptions}
     </ActivityStyleCardTitleStyle>
-    <ActivityCardTextStyle>
-      You have not participated in any <span>{pageOptionLowerCase}</span>
-      </ActivityCardTextStyle>
-      </>
-      : 
-      <>
-      <ActivityStyleCardTitleStyle >
-      0 {mypageOptions}
-     </ActivityStyleCardTitleStyle>
      <ActivityCardTextStyle>
-       data표시
-       </ActivityCardTextStyle>    
+       You have not participated in any <span>{pageOptionLowerCase}</span>
+     </ActivityCardTextStyle>
     </>
+      : 
+    <>
+    <ActivityStyleCardTitleStyle >
+      {userQuestions.length} {mypageOptions}
+    </ActivityStyleCardTitleStyle>
+      <ActivityCardTextStyle >
+      { userQuestions
+      .map(el => (
+        <>
+        <FlexStyle className="mypageAnswer">
+        <MypageAnswersTitleStyle className='mypageItems_1'> {el.votes}votes </MypageAnswersTitleStyle>
+        <MypageAnswersTitleStyle className='mypageItems_2'> {el.answers}answers </MypageAnswersTitleStyle>
+        <MypageAnswersTitleStyle className='mypageItems_3'> {el.views}views </MypageAnswersTitleStyle>
+        </FlexStyle>
+        <MypageAnswersTitleStyle className='mypageAnwerTitle' key={el.id} title={el.title}>
+        {el.title}
+       </ MypageAnswersTitleStyle >
+       </>))}
+      </ActivityCardTextStyle>    
+      </>
     }
-    </>
+  </>  
   )
 }
