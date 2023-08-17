@@ -1,12 +1,15 @@
 package com.codestates.stackoverflowclone.answer.controller;
 
 import com.codestates.stackoverflowclone.answer.dto.AnswerDto;
+import com.codestates.stackoverflowclone.answer.dto.AnswerListDto;
 import com.codestates.stackoverflowclone.answer.entity.Answer;
 import com.codestates.stackoverflowclone.answer.mapper.AnswerMapper;
 import com.codestates.stackoverflowclone.answer.service.AnswerService;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
+import com.codestates.stackoverflowclone.question.dto.QuestionListDto;
 import com.codestates.stackoverflowclone.question.service.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,18 +23,15 @@ import java.util.List;
 @RequestMapping("/answers")
 @Validated
 public class AnswerController {
-    private AnswerService answerService;
-    private AnswerMapper answerMapper;
-    private MemberMapper memberMapper;
-    private MemberService memberService;
-    private QuestionService questionService;
+    private final AnswerService answerService;
+    private final AnswerMapper answerMapper;
+    private final MemberService memberService;
+    private final QuestionService questionService;
 
     public AnswerController(AnswerService answerService, AnswerMapper answerMapper,
-                            MemberMapper memberMapper, MemberService memberService,
-                            QuestionService questionService) {
+                            MemberService memberService, QuestionService questionService) {
         this.answerService = answerService;
         this.answerMapper = answerMapper;
-        this.memberMapper = memberMapper;
         this.memberService = memberService;
         this.questionService = questionService;
     }
@@ -41,7 +41,7 @@ public class AnswerController {
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerDto.Post requestBody){
         Answer answer = answerMapper.answerPostToAnswer(requestBody,memberService,questionService);
         Answer postedAnswer = answerService.createAnswer(answer);
-        AnswerDto.Response response = answerMapper.answerToAnswerResponse(postedAnswer, memberMapper);
+        AnswerDto.Response response = answerMapper.answerToAnswerResponse(postedAnswer);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -52,7 +52,7 @@ public class AnswerController {
         requestBody.setAnswerId(answerId);
         Answer answer = answerMapper.answerPatchToAnswer(requestBody);
         Answer findAnswer = answerService.updateAnswer(answer);
-        AnswerDto.Response response = answerMapper.answerToAnswerResponse(findAnswer, memberMapper);
+        AnswerDto.Response response = answerMapper.answerToAnswerResponse(findAnswer);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -60,7 +60,7 @@ public class AnswerController {
     ///// Todo:answer하나 골라서 best필드 지정. 해당 question은 answered 체크!
     @PatchMapping("/best/{answer-id}")
     public ResponseEntity setBest(@PathVariable("answer-id") @Positive long answerId,
-                                  @Positive @RequestParam boolean isBest){
+                                  @RequestParam boolean isBest){
         answerService.setBest(answerId,isBest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -70,9 +70,9 @@ public class AnswerController {
     @GetMapping("/question/{question-id}")
     public ResponseEntity getAnswers( @PathVariable("question-id") @Positive long questionId ){
         List<Answer> answers = answerService.findAnswersByQuestion(questionId);
-        List<AnswerDto.Response> responses = answerMapper.answersToAnswerResponses(answers,memberMapper);
+        List<AnswerDto.Response> responses = answerMapper.answersToAnswerResponses(answers);
 
-        return new ResponseEntity<>(responses, HttpStatus.OK);
+        return new ResponseEntity<>(new AnswerListDto<>(responses), HttpStatus.OK);
     }
 
 

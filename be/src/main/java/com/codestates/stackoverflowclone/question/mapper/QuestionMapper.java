@@ -1,5 +1,6 @@
 package com.codestates.stackoverflowclone.question.mapper;
 
+import com.codestates.stackoverflowclone.member.dto.MemberDto;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.dto.QuestionDto;
@@ -25,7 +26,7 @@ public interface QuestionMapper {
         }
     }
     Question questionPatchToQuestion(QuestionDto.Patch requestBody);
-    default QuestionDto.Response questionToQuestionResponse(Question question, MemberMapper memberMapper){
+    default QuestionDto.Response questionToQuestionResponse(Question question){
         if (question == null) {
             return null;
         } else {
@@ -33,7 +34,10 @@ public interface QuestionMapper {
             response.setQuestionId(question.getQuestionId());
             response.setTitle(question.getTitle());
             response.setBody(question.getBody());
-            response.setMember(memberMapper.memberToResponse(question.getMember()));
+            response.setMember( MemberDto.Response.builder().id(question.getMember().getId())
+                    .name(question.getMember().getName())
+                    .email(question.getMember().getEmail())
+                    .build());
             response.setAnswerCount(question.getAnswerCount());
             response.setVisitCount(question.getVisitCount());
             response.setAnswered(question.getAnswered());
@@ -43,14 +47,17 @@ public interface QuestionMapper {
         }
     }
 
-    default QuestionDto.ResponseElement questionToResponseElement(Question question, MemberMapper memberMapper) {
+    default QuestionDto.ResponseElement questionToResponseElement(Question question) {
         if (question == null) {
             return null;
         } else {
             QuestionDto.ResponseElement responseElement = new QuestionDto.ResponseElement();
             responseElement.setQuestionId(question.getQuestionId());
             responseElement.setTitle(question.getTitle());
-            responseElement.setMember(memberMapper.memberToResponse(question.getMember()));
+            responseElement.setMember( MemberDto.Response.builder().id(question.getMember().getId())
+                    .name(question.getMember().getName())
+                    .email(question.getMember().getEmail())
+                    .build());
             responseElement.setAnswerCount(question.getAnswerCount());
             responseElement.setVisitCount(question.getVisitCount());
             responseElement.setAnswered(question.getAnswered());
@@ -60,7 +67,7 @@ public interface QuestionMapper {
         }
     }
 
-    default List<QuestionDto.ResponseElement> questionsToQuestionResponseElements(List<Question> questions, MemberMapper memberMapper) {
+    default List<QuestionDto.ResponseElement> questionsToQuestionResponseElements(List<Question> questions) {
         if (questions == null) {
             return null;
         } else {
@@ -69,7 +76,7 @@ public interface QuestionMapper {
 
             while(var3.hasNext()) {
                 Question question = (Question)var3.next();
-                list.add(this.questionToResponseElement(question, memberMapper));
+                list.add(this.questionToResponseElement(question));
             }
 
             return list;
