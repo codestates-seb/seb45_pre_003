@@ -329,10 +329,21 @@ left: 28px; // Adjust the position as needed
 width: 21px;
 height: 21px; 
 display: none;
+cursor: pointer;
+
 
 @media screen and (max-width:640px){
    display:block
 } 
+`;
+
+export const SearchIcon3 = styled.img`
+position: relative;
+width: 21px;
+height: 21px; 
+left: 5px;
+top: 6px;
+z-index: 5;
 `;
 
 
@@ -343,7 +354,42 @@ height: 15px;
 padding: 8px 9px; 
 border: none; 
 outline: none; 
+
+
 `
+
+export const InputSearchdiv =styled.div`
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+height: 48.59px;
+padding: 8px 12px;
+background-color: #E3E6E8;
+display: none;
+
+@media screen and (max-width:640px){
+   display:block
+} 
+`
+
+export const InputStyle2 = styled.input`
+width: 100%; 
+height: 32.59px;
+padding: 8px 28px; 
+border: none; 
+outline: none; 
+display: none;
+border-radius: 5px;
+position: relative;
+bottom: 25px;
+box-shadow: 0 0 6px 0px skyblue;
+
+@media screen and (max-width:640px){
+   display:block
+} 
+`
+
 export const HeaderIconStyle = styled.ul`
  display:flex; 
  width: 218px;

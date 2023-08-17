@@ -30,10 +30,13 @@ import {
   LogoImage2,
   NavLink1,
   Navbar,
+  InputSearchdiv,
   SearchElementStyle,
   SearchIcon,
   SearchIcon2,
+  SearchIcon3,
   InputStyle,
+  InputStyle2,
   HeaderIconStyle,
   LoginButton,
   SignupButton,
@@ -42,6 +45,7 @@ import {
 
 export default function LoginHeader() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isSearchDropOpen, setSearchDropOpen] = useState(false);
   const navigate = useNavigate();
 
   const goToHome = () => {
@@ -67,6 +71,12 @@ export default function LoginHeader() {
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
+
+  const seacchDrop = () => {
+    setSearchDropOpen(!isSearchDropOpen);
+  }
+
+
 
 
 return (
@@ -119,12 +129,19 @@ return (
         <SearchIcon src={searchIcon} alt="Search" />
           <InputStyle type={'text'} placeholder='Search' maxLength={240}/>
        </SearchElementStyle>
-       <SearchIcon2 src={searchIcon} alt="Search" />
+       <SearchIcon2 src={searchIcon} alt="Search"  onClick={seacchDrop}/>
+       {isSearchDropOpen && ( 
+        <InputSearchdiv>
+          <SearchIcon3 src={searchIcon} alt="Search" />
+          <InputStyle2 type={'text'} placeholder='Search' maxLength={240}/>
+            </InputSearchdiv>
+       )}
        <HeaderIconStyle>
       <LoginButton onClick={goToLogin}>Log in</LoginButton>
       <SignupButton onClick={goToSignup}>Sign up</SignupButton>
       </HeaderIconStyle>
       </HeaderContainerStyle>    
   </HeaderStyle>
+  
 )
 }
