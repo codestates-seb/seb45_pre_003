@@ -62,6 +62,11 @@ public class QuestionController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
+
+
+
     ///// week 질문들 리스트 조회수순으로 뜯어와 보내기
     @GetMapping("/week")
     public ResponseEntity getQuestionsThisWeek(@RequestParam String searchWord,

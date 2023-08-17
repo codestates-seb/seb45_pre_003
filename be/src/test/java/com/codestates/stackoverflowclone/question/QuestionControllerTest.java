@@ -276,7 +276,7 @@ public class QuestionControllerTest {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestParameters(List.of(
-                                        parameterWithName("searchWord").description("검색어"),
+                                        parameterWithName("searchWord").description("검색어, 예시에선 공백으로 두었다."),
                                         parameterWithName("page").description("페이지 번호"),
                                         parameterWithName("size").description("페이지 하나의 크기")
                                 )
@@ -351,7 +351,7 @@ public class QuestionControllerTest {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestParameters(List.of(
-                                        parameterWithName("searchWord").description("검색어"),
+                                        parameterWithName("searchWord").description("검색어, 예시에선 공백으로 두었다."),
                                         parameterWithName("page").description("페이지 번호"),
                                         parameterWithName("size").description("페이지 하나의 크기")
                                 )
@@ -426,7 +426,7 @@ public class QuestionControllerTest {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestParameters(List.of(
-                                        parameterWithName("searchWord").description("검색어"),
+                                        parameterWithName("searchWord").description("검색어, 예시에선 공백으로 두었다."),
                                         parameterWithName("page").description("페이지 번호"),
                                         parameterWithName("size").description("페이지 하나의 크기")
                                 )
@@ -501,7 +501,7 @@ public class QuestionControllerTest {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestParameters(List.of(
-                                        parameterWithName("searchWord").description("검색어"),
+                                        parameterWithName("searchWord").description("검색어, 예시에선 공백으로 두었다."),
                                         parameterWithName("page").description("페이지 번호"),
                                         parameterWithName("size").description("페이지 하나의 크기")
                                 )
@@ -570,6 +570,7 @@ public class QuestionControllerTest {
                 .andDo(document("get-questionswithmyanswer",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
+                        pathParameters(parameterWithName("member-id").description("답변 작성자 식별자 - 답변자가 쓴 답변들에 해당하는 질문들 긁어올 때 쓰임.")),
                         requestParameters(List.of(
                                         parameterWithName("page").description("페이지 번호"),
                                         parameterWithName("size").description("페이지 하나의 크기")
@@ -631,6 +632,7 @@ public class QuestionControllerTest {
                 .andDo(document("get-myquestions",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
+                        pathParameters(parameterWithName("member-id").description("질문 작성자 식별자 - 해당 멤버가 쓴 질문들 긁어올 때 쓰임.")),
                         requestParameters(List.of(
                                         parameterWithName("page").description("페이지 번호"),
                                         parameterWithName("size").description("페이지 하나의 크기")

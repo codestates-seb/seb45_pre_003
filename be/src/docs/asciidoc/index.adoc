@@ -341,7 +341,7 @@ include::{snippets}/get-question/path-parameters.adoc[]
 include::{snippets}/get-question/http-response.adoc[]
 
 .response-body
-include::{snippets}/get-mquestion/response-body.adoc[]
+include::{snippets}/get-question/response-body.adoc[]
 
 .response-fields
 include::{snippets}/get-question/response-fields.adoc[]
@@ -419,82 +419,88 @@ include::{snippets}/get-newestquestions/http-response.adoc[]
 include::{snippets}/get-newestquestions/response-body.adoc[]
 
 .response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
+include::{snippets}/get-newestquestions/response-fields.adoc[]
 
 === Unanswered 질문 리스트(최신순)
 .curl-request
-include::{snippets}/get-newestquestions/curl-request.adoc[]
+include::{snippets}/get-unansweredquestions/curl-request.adoc[]
 
 .http-request
-include::{snippets}/get-newestquestions/http-request.adoc[]
+include::{snippets}/get-unansweredquestions/http-request.adoc[]
 
 .httpie-request
-include::{snippets}/get-newestquestions/httpie-request.adoc[]
+include::{snippets}/get-unansweredquestions/httpie-request.adoc[]
 
 .request-body
-include::{snippets}/get-newestquestions/request-body.adoc[]
+include::{snippets}/get-unansweredquestions/request-body.adoc[]
 
 .request-parameters
-include::{snippets}/get-newestquestions/request-parameters.adoc[]
+include::{snippets}/get-unansweredquestions/request-parameters.adoc[]
 
 .http-response
-include::{snippets}/get-newestquestions/http-response.adoc[]
+include::{snippets}/get-unansweredquestions/http-response.adoc[]
 
 .response-body
-include::{snippets}/get-newestquestions/response-body.adoc[]
+include::{snippets}/get-unansweredquestions/response-body.adoc[]
 
 .response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
+include::{snippets}/get-unansweredquestions/response-fields.adoc[]
 
-=== 내 답변들의 질문 리스트(최신순)
+=== mypage 내 답변의 질문리스트(최신순)
 .curl-request
-include::{snippets}/get-newestquestions/curl-request.adoc[]
+include::{snippets}/get-questionswithmyanswer/curl-request.adoc[]
 
 .http-request
-include::{snippets}/get-newestquestions/http-request.adoc[]
+include::{snippets}/get-questionswithmyanswer/http-request.adoc[]
 
 .httpie-request
-include::{snippets}/get-newestquestions/httpie-request.adoc[]
+include::{snippets}/get-questionswithmyanswer/httpie-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-questionswithmyanswer/path-parameters.adoc[]
 
 .request-body
-include::{snippets}/get-newestquestions/request-body.adoc[]
+include::{snippets}/get-questionswithmyanswer/request-body.adoc[]
 
 .request-parameters
-include::{snippets}/get-newestquestions/request-parameters.adoc[]
+include::{snippets}/get-questionswithmyanswer/request-parameters.adoc[]
 
 .http-response
-include::{snippets}/get-newestquestions/http-response.adoc[]
+include::{snippets}/get-questionswithmyanswer/http-response.adoc[]
 
 .response-body
-include::{snippets}/get-newestquestions/response-body.adoc[]
+include::{snippets}/get-questionswithmyanswer/response-body.adoc[]
 
 .response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
+include::{snippets}/get-questionswithmyanswer/response-fields.adoc[]
 
-=== 내가 한 질문 리스트(최신순)
+=== mypage 내질문리스트(최신순)
 .curl-request
-include::{snippets}/get-newestquestions/curl-request.adoc[]
+include::{snippets}/get-myquestions/curl-request.adoc[]
 
 .http-request
-include::{snippets}/get-newestquestions/http-request.adoc[]
+include::{snippets}/get-myquestions/http-request.adoc[]
 
 .httpie-request
-include::{snippets}/get-newestquestions/httpie-request.adoc[]
+include::{snippets}/get-myquestions/httpie-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-myquestions/path-parameters.adoc[]
 
 .request-body
-include::{snippets}/get-newestquestions/request-body.adoc[]
+include::{snippets}/get-myquestions/request-body.adoc[]
 
 .request-parameters
-include::{snippets}/get-newestquestions/request-parameters.adoc[]
+include::{snippets}/get-myquestions/request-parameters.adoc[]
 
 .http-response
-include::{snippets}/get-newestquestions/http-response.adoc[]
+include::{snippets}/get-myquestions/http-response.adoc[]
 
 .response-body
-include::{snippets}/get-newestquestions/response-body.adoc[]
+include::{snippets}/get-myquestions/response-body.adoc[]
 
 .response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
+include::{snippets}/get-myquestions/response-fields.adoc[]
 
 === 질문 삭제
 .curl-request
