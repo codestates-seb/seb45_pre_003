@@ -16,7 +16,7 @@ import {
 
 import picture1 from '../../assets/stack-overflow.png'
 
-export default function Profile() {
+export default function Profile({userQuestions}) {
   return (
     <>
     <MyPageCardStyle>
@@ -28,7 +28,7 @@ export default function Profile() {
               <ProfileBoxTextStyle  className="item _1">answers</ProfileBoxTextStyle>
             </ProfileBoxStyle>
             <ProfileBoxStyle >
-              <ProfileBoxTextStyle className="number _2">0</ProfileBoxTextStyle>
+              <ProfileBoxTextStyle className="number _2">{userQuestions.length}</ProfileBoxTextStyle>
               <ProfileBoxTextStyle  className="item _2">questions</ProfileBoxTextStyle>
             </ProfileBoxStyle>
             <ProfileBoxStyle>
