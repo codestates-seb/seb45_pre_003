@@ -8,13 +8,16 @@ import MyPage from './pages/MyPage';
 import SignupPage from './pages/SignupPage';
 import QuestionPage from './pages/QuestionPage';
 import AskQuestionPage from './pages/AskQuestionPage';
+import LoginHeader from './components/LoginHeader/Loginheader';
+import React, { useState } from 'react';
 
 
 function App() {
+  const [isLogout, setisLogout] = useState(false);
 
   return (
     <>
-      <Header/>
+    {isLogout ? <LoginHeader /> : <Header />}
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/question" element={<QuestionPage/>}/>
@@ -23,9 +26,8 @@ function App() {
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/askquestion" element={<AskQuestionPage/>}/>;
       </Routes>
-      <Footer/>
+      {isLogout ? <null/> : <Footer/>}
     </>
   );
 }
-
 export default App;
