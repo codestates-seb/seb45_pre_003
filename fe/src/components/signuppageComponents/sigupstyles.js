@@ -96,6 +96,50 @@ export const IconButton = styled.button`
   }
 `;
 
+export const IconButton2 = styled.button`
+  background-color: #2f3337;
+  width: 316px;
+  height: 37.78px;
+  padding: 10px;
+  margin: 8px 0px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: inherit;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #252121;
+  }
+`;
+
+export const IconButton3 = styled.button`
+  background-color: #385499;
+  width: 316px;
+  height: 37.78px;
+  padding: 10px;
+  margin: 8px 0px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: inherit;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #4752b4;
+  }
+`;
+
 export const Icon = styled.img`
   width: 20px;
   height: 20px;
@@ -248,6 +292,17 @@ export const SignUpButton = styled.button`
     background-color: #005fa1;
   }
 `;
+
+export const Test = styled.div`
+font-size: 12px;
+height: 15px;
+margin-top: 5px;
+margin-bottom: -5px;
+color: red;
+display: flex;
+justify-content: center;
+align-items: center;
+`
 
 export const Textminl = styled.p`
   font-size: 12px;
