@@ -4,6 +4,8 @@ import com.codestates.stackoverflowclone.member.dto.MemberDto;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
+import com.codestates.stackoverflowclone.question.entity.Question;
+import com.codestates.stackoverflowclone.question.mapper.QuestionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,11 +23,13 @@ import java.util.List;
 public class MemberController {
     private final MemberService service;
     private final MemberMapper mapper;
+    private final QuestionMapper questionMapper;
 
     @Autowired
-    public MemberController(MemberService service, MemberMapper mapper) {
+    public MemberController(MemberService service, MemberMapper mapper, QuestionMapper questionMapper) {
         this.service = service;
         this.mapper = mapper;
+        this.questionMapper = questionMapper;
     }
 
     @PostMapping
@@ -41,6 +45,28 @@ public class MemberController {
     public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
         Member findMember = service.findMember(memberId);
         MemberDto.GetMemberResponse response = mapper.memberToGetMemberResponse(findMember);
+
+        Page<Question> questions = service.getQuestionByMemberId(memberId);
+        Page<Question> questionsWithMyAnswers = service.getQuestionWithMyAnswerByMemberId(memberId);
+
+        response.setQuestionsData(
+                MemberDto.QuestionsResponse.builder()
+                        .data(questionMapper.questionsToQuestionMypageElements(questions.getContent()))
+                        .pageInfo(MemberDto.PageInfo.builder()
+                                .page(1)
+                                .totalElements(questions.getTotalElements())
+                                .totalPage(questions.getTotalPages())
+                                .build())
+                        .build());
+        response.setQuestionsWithMyAnswers(
+                MemberDto.QuestionsResponse.builder()
+                        .data(questionMapper.questionsToQuestionMypageElements(questionsWithMyAnswers.getContent()))
+                        .pageInfo(MemberDto.PageInfo.builder()
+                                .page(1)
+                                .totalElements(questionsWithMyAnswers.getTotalElements())
+                                .totalPage(questionsWithMyAnswers.getTotalPages())
+                                .build())
+                        .build());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
