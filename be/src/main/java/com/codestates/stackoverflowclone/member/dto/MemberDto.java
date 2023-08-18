@@ -1,11 +1,13 @@
 package com.codestates.stackoverflowclone.member.dto;
 
 import com.codestates.stackoverflowclone.member.entity.Member;
+import com.codestates.stackoverflowclone.question.dto.QuestionDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -48,8 +50,19 @@ public class MemberDto {
         private int tag;
         private int visitCount;
         private int continuousVisitCount;
+        @Setter
+        private QuestionsResponse questionsData;
+        @Setter
+        private QuestionsResponse questionsWithMyAnswers;
         private int questionCount;
         private int answerCount;
+    }
+
+    @Getter
+    @Builder
+    public static class QuestionsResponse {
+        private List<QuestionDto.MypageElement> data;
+        private PageInfo pageInfo;
     }
 
     @Getter

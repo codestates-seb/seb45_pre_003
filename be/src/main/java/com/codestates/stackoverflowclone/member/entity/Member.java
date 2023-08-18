@@ -38,6 +38,15 @@ public class Member extends Auditable {
 
     private int weekSinceRegistration;
 
+    @Setter
+    private int visitCount = 0;
+
+    @Setter
+    private int continuousVisitCount = 0;
+
+    @Setter
+    private LocalDateTime lastLoginTime;
+
     //TODO vote, tag 미구현으로 임시용 랜덤 숫자 생성
     //이하의 변수들은 아직 미구현. 구현 예정
     //특히 updatable! 값을 고정하기 위해 넣었지만, 구현 이후에는 필히 삭제할 것
@@ -47,24 +56,23 @@ public class Member extends Auditable {
     @Column(nullable = false, updatable = false)
     private int tag = (int)(Math.random() * 100);
 
-    @Setter
-    private int visitCount = 0;
-    @Setter
-    private int continuousVisitCount = 0;
-    @Setter
-    private LocalDateTime lastLoginTime;
-
-    private int questionCount = 1;
-
-    private int answerCount = 1;
-
     @OneToMany(mappedBy = "member")
     private List<Question> questions = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
     private List<Answer> answers = new ArrayList<>();
 
+    private int questionCount = 0;
 
+    private int answerCount = 0;
+
+    public int getQuestionCount () {
+        return this.questions.size();
+    }
+
+    public int getAnswerCount() {
+        return this.answers.size();
+    }
 
     @PostLoad
     private void caculateweekSinceRegistration() {

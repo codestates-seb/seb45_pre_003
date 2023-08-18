@@ -5,6 +5,8 @@ import com.codestates.stackoverflowclone.member.dto.MemberDto;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
+import com.codestates.stackoverflowclone.question.entity.Question;
+import com.codestates.stackoverflowclone.question.mapper.QuestionMapper;
 import com.codestates.stackoverflowclone.security.config.SecurityConfiguration;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
@@ -30,6 +32,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.codestates.stackoverflowclone.util.ApiDocumentUtils.getRequestPreProcessor;
@@ -42,11 +45,12 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 
-@WebMvcTest(controllers = MemberController.class,
-excludeAutoConfiguration = SecurityAutoConfiguration.class,
-excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
-})
+//@WebMvcTest(controllers = MemberController.class,
+//excludeAutoConfiguration = SecurityAutoConfiguration.class,
+//excludeFilters = {
+//        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
+//})
+@WebMvcTest(controllers = MemberController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 public class MemberControllerTest {
@@ -57,6 +61,8 @@ public class MemberControllerTest {
     private MemberService service;
     @MockBean
     private MemberMapper mapper;
+    @MockBean
+    private QuestionMapper questionMapper;
 
     @Autowired
     private Gson gson;
@@ -82,6 +88,8 @@ public class MemberControllerTest {
         given(mapper.postToMember(Mockito.any(MemberDto.Post.class))).willReturn(member);
         given(service.createMember(Mockito.any(Member.class))).willReturn(member);
         given(mapper.memberToResponse(Mockito.any(Member.class))).willReturn(response);
+        given(service.getQuestionByMemberId(Mockito.anyLong())).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(service.getQuestionWithMyAnswerByMemberId(Mockito.anyLong())).willReturn(new PageImpl<>(new ArrayList<>()));
 
         ResultActions actions = mockMvc.perform(
                 RestDocumentationRequestBuilders.post("/members")
@@ -124,6 +132,7 @@ public class MemberControllerTest {
         int questionCount = 1;
         int answerCount = 1;
 
+
         MemberDto.GetMemberResponse response = MemberDto.GetMemberResponse.builder()
                 .id(id).name(name).email(email).createdAt(createdAt).weekSinceRegistration(weekSinceRegistration).vote(vote).tag(tag).visitCount(visitCount).continuousVisitCount(continuousVisitCount).questionCount(questionCount).answerCount(answerCount).build();
 
@@ -154,8 +163,8 @@ public class MemberControllerTest {
                                         fieldWithPath("tag").type(JsonFieldType.NUMBER).description("Tag 수. 미구현"),
                                         fieldWithPath("visitCount").type(JsonFieldType.NUMBER).description("방문 횟수"),
                                         fieldWithPath("continuousVisitCount").type(JsonFieldType.NUMBER).description("연속 방문 횟수"),
-                                        fieldWithPath("questionCount").type(JsonFieldType.NUMBER).description("질문 수. 미구현"),
-                                        fieldWithPath("answerCount").type(JsonFieldType.NUMBER).description("답변 수. 미구현")
+                                        fieldWithPath("questionCount").type(JsonFieldType.NUMBER).description("질문 수."),
+                                        fieldWithPath("answerCount").type(JsonFieldType.NUMBER).description("답변 수.")
                                         )
                         )
                 ));
