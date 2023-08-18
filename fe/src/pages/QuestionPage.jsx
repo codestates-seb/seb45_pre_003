@@ -488,8 +488,7 @@ function QuestionPage () {
 
                     </PageBox>
                 </HomePageMainBarStyle>
-                <HomePageRightBarStyle href="https://github.com/codestates-seb/seb45_pre_003">
-                </HomePageRightBarStyle>
+                <HomePageRightBarStyle href="https://github.com/codestates-seb/seb45_pre_003"/>
             </HomePageContentStyle>
         </ContainerStyle>
     )
