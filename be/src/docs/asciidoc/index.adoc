@@ -341,160 +341,71 @@ include::{snippets}/get-question/path-parameters.adoc[]
 include::{snippets}/get-question/http-response.adoc[]
 
 .response-body
-include::{snippets}/get-mquestion/response-body.adoc[]
+include::{snippets}/get-question/response-body.adoc[]
 
 .response-fields
 include::{snippets}/get-question/response-fields.adoc[]
 
-=== Week 질문 리스트(조회순)
+=== Week/Month/Newest/Unanswered
+
+***
+    week의 경우는 searchWord=,tab=week,page=1,size=30
+    month의 경우는 searchWord=,tab=month,page=1,size=30
+    newest의 경우는 searchword, page, size 자유, tab=newest
+    unanswered의 경우는 searchword, page, size 자유 tab=unanswered
+***
+
 .curl-request
-include::{snippets}/get-questionsthisweek/curl-request.adoc[]
+include::{snippets}/get-questions/curl-request.adoc[]
 
 .http-request
-include::{snippets}/get-questionsthisweek/http-request.adoc[]
+include::{snippets}/get-questions/http-request.adoc[]
 
 .httpie-request
-include::{snippets}/get-questionsthisweek/httpie-request.adoc[]
+include::{snippets}/get-questions/httpie-request.adoc[]
 
 .request-body
-include::{snippets}/get-questionsthisweek/request-body.adoc[]
+include::{snippets}/get-questions/request-body.adoc[]
 
 .request-parameters
-include::{snippets}/get-questionsthisweek/request-parameters.adoc[]
+include::{snippets}/get-questions/request-parameters.adoc[]
 
 .http-response
-include::{snippets}/get-questionsthisweek/http-response.adoc[]
+include::{snippets}/get-questions/http-response.adoc[]
 
 .response-body
-include::{snippets}/get-questionsthisweek/response-body.adoc[]
+include::{snippets}/get-questions/response-body.adoc[]
 
 .response-fields
-include::{snippets}/get-questionsthisweek/response-fields.adoc[]
+include::{snippets}/get-questions/response-fields.adoc[]
 
-=== Month 질문 리스트(조회순)
+=== mypage Answers/Questions
 .curl-request
-include::{snippets}/get-questionsthismonth/curl-request.adoc[]
+include::{snippets}/get-questionsOnMypage/curl-request.adoc[]
 
 .http-request
-include::{snippets}/get-questionsthismonth/http-request.adoc[]
+include::{snippets}/get-questionsOnMypage/http-request.adoc[]
 
 .httpie-request
-include::{snippets}/get-questionsthismonth/httpie-request.adoc[]
+include::{snippets}/get-questionsOnMypage/httpie-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-questionsOnMypage/path-parameters.adoc[]
 
 .request-body
-include::{snippets}/get-questionsthismonth/request-body.adoc[]
+include::{snippets}/get-questionsOnMypage/request-body.adoc[]
 
 .request-parameters
-include::{snippets}/get-questionsthismonth/request-parameters.adoc[]
+include::{snippets}/get-questionsOnMypage/request-parameters.adoc[]
 
 .http-response
-include::{snippets}/get-questionsthismonth/http-response.adoc[]
+include::{snippets}/get-questionsOnMypage/http-response.adoc[]
 
 .response-body
-include::{snippets}/get-questionsthismonth/response-body.adoc[]
+include::{snippets}/get-questionsOnMypage/response-body.adoc[]
 
 .response-fields
-include::{snippets}/get-questionsthismonth/response-fields.adoc[]
-
-=== Newest 질문 리스트
-.curl-request
-include::{snippets}/get-newestquestions/curl-request.adoc[]
-
-.http-request
-include::{snippets}/get-newestquestions/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/get-newestquestions/httpie-request.adoc[]
-
-.request-body
-include::{snippets}/get-newestquestions/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/get-newestquestions/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/get-newestquestions/http-response.adoc[]
-
-.response-body
-include::{snippets}/get-newestquestions/response-body.adoc[]
-
-.response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
-
-=== Unanswered 질문 리스트(최신순)
-.curl-request
-include::{snippets}/get-newestquestions/curl-request.adoc[]
-
-.http-request
-include::{snippets}/get-newestquestions/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/get-newestquestions/httpie-request.adoc[]
-
-.request-body
-include::{snippets}/get-newestquestions/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/get-newestquestions/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/get-newestquestions/http-response.adoc[]
-
-.response-body
-include::{snippets}/get-newestquestions/response-body.adoc[]
-
-.response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
-
-=== 내 답변들의 질문 리스트(최신순)
-.curl-request
-include::{snippets}/get-newestquestions/curl-request.adoc[]
-
-.http-request
-include::{snippets}/get-newestquestions/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/get-newestquestions/httpie-request.adoc[]
-
-.request-body
-include::{snippets}/get-newestquestions/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/get-newestquestions/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/get-newestquestions/http-response.adoc[]
-
-.response-body
-include::{snippets}/get-newestquestions/response-body.adoc[]
-
-.response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
-
-=== 내가 한 질문 리스트(최신순)
-.curl-request
-include::{snippets}/get-newestquestions/curl-request.adoc[]
-
-.http-request
-include::{snippets}/get-newestquestions/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/get-newestquestions/httpie-request.adoc[]
-
-.request-body
-include::{snippets}/get-newestquestions/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/get-newestquestions/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/get-newestquestions/http-response.adoc[]
-
-.response-body
-include::{snippets}/get-newestquestions/response-body.adoc[]
-
-.response-fields
-include::{snippets}/get-qnewestquestions/response-fields.adoc[]
+include::{snippets}/get-questionsOnMypage/response-fields.adoc[]
 
 === 질문 삭제
 .curl-request
