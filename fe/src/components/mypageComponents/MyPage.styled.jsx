@@ -32,6 +32,7 @@ export const Avatar = styled.img.attrs({
   height: 128px;
   border-radius: 10px; 
   margin: 8px; 
+  position: relative;
   `;
 
 export const UserdetailsStyle = styled.div`
@@ -166,7 +167,7 @@ export const MypageNavitemStyle = styled.li`
     height: 29px; 
     width: 126px; 
     color: #6a6a6c; 
-    padding: 6px 48px 12px 6px; 
+    padding: 7px 48px 12px 16px; 
     cursor: pointer;
     border-radius: 15px; 
 

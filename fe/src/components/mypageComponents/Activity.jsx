@@ -6,7 +6,7 @@ import {
   ActivityCardContainer, 
   MypageNavitemStyle
 } from '../mypageComponents/MyPage.styled';
-
+import {v4 as uuidv4 } from 'uuid'; 
 
 export default function Activities({userQuestions}) {
 
@@ -20,7 +20,7 @@ export default function Activities({userQuestions}) {
         <ul>
          {optionItems.map((el) => (
            <MypageNavitemStyle
-             key={el} 
+             key={uuidv4()} 
              onClick = {() => setMypageOptions(el)} 
             active = {mypageOptions === el}
            >{el}
