@@ -192,14 +192,14 @@ public class AnswerControllerTest {
 
         // (7) Mock 객체를 이용한 Stubbing
         doNothing().when(answerService).setBest(Mockito.anyLong(), Mockito.anyBoolean());
-        MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
-        params.add("isBest","true");
+        //MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
+        //params.add("isBest","true");
         // when
         ResultActions actions =
                 mockMvc.perform(
                         RestDocumentationRequestBuilders.patch("/answers/best/{answer-id}", 1L)
                                 .accept(MediaType.APPLICATION_JSON)
-                                .params(params)
+                                .queryParam("isBest", "true")
                         // (8) request 전송
                 );
 

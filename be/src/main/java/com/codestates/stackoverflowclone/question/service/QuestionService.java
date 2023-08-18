@@ -72,10 +72,10 @@ public class QuestionService {
         return questionRepository.findQuestionsWithMyAnswer(memberId,
                 PageRequest.of(page,size,Sort.by("createdAt").descending()) );
     }
-    @Transactional(readOnly = true)
     public Question readQuestion(long questionId){
         Question question = findVerifiedQuestion(questionId);
         question.setVisitCount(question.getVisitCount() + 1);
+        //LocalDateTime modifiedAt = question.getModifiedAt();
         Question readQ = questionRepository.save(question);
 
         return readQ;
