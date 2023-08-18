@@ -13,10 +13,10 @@ export default function MyPage() {
   return (
     <>
     <Header />
-    <MyPageContainerStyle>
+    <MyPageContainerStyle className ="PageContainerSt">
         <LeftBar/>
-        <MypageContentStyle>
-          <MypageContent 
+        <MypageContentStyle className ="MypageContentStyle">
+          <MypageContent className = "MypageContent"
           selectedContent={selectedContent}
           setSelectedContent={setSelectedContent}
           />

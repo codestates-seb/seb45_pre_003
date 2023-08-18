@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import { FooterStyle, FooterContainerStyle,
          FooterItemContainer, 
          FooterCopyrightStyle, FooterTitleStyle,
@@ -8,6 +9,12 @@ import { FooterStyle, FooterContainerStyle,
 
 function Footer () {
  
+  const navigate = useNavigate();
+
+  const goToQuestion = () => {
+     navigate("/question");
+  };
+
   return (
     <>  
     <FooterStyle>
@@ -20,7 +27,7 @@ function Footer () {
           <FooterCategoryContainerStyle>
           <FooterTitleStyle>STACK OVERFLOW</FooterTitleStyle>
           <FooterItemContainer>
-            <FooterItemStyle>Question</FooterItemStyle>
+            <FooterItemStyle onClick={goToQuestion}>Question</FooterItemStyle>
             <FooterItemStyle>Help</FooterItemStyle>
           </FooterItemContainer>
           </FooterCategoryContainerStyle>

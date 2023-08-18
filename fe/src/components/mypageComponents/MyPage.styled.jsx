@@ -167,7 +167,7 @@ export const MypageNavitemStyle = styled.li`
     height: 29px; 
     width: 126px; 
     color: #6a6a6c; 
-    padding: 6px 48px 12px 6px; 
+    padding: 7px 48px 12px 16px; 
     cursor: pointer;
     border-radius: 15px; 
 
