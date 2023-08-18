@@ -1,5 +1,7 @@
 package com.codestates.stackoverflowclone.member.service;
 
+import com.codestates.stackoverflowclone.exception.BusinessLogicException;
+import com.codestates.stackoverflowclone.exception.ExceptionCode;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.repository.MemberRepository;
 import com.codestates.stackoverflowclone.member.repository.PageRepository;
@@ -51,8 +53,7 @@ public class MemberService {
 
     private void verifyEmail(String email) {
         Optional<Member> findMember = repository.findByEmail(email);
-        //TODO BusinessException구현 후 대체하기
-        if (findMember.isPresent()) throw new RuntimeException();
+        if (findMember.isPresent()) throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
 
     public Member findMember(long memberId) {
@@ -63,8 +64,7 @@ public class MemberService {
 
     public Member verifyId(long memberId) {
         Optional<Member> optionalMember = repository.findById(memberId);
-        //TODO BusinessException 구현 후 대체
-        Member findMember = optionalMember.orElseThrow(() -> new RuntimeException());
+        Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 
         return findMember;
     }
@@ -94,8 +94,7 @@ public class MemberService {
                 return updateMember;
             }
         }
-        //TODO exception
-        throw new RuntimeException();
+        throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
     }
 
     public void deleteMember(long memberId) {
