@@ -100,6 +100,14 @@ public class MemberService {
     public void deleteMember(long memberId) {
         Member findMember = verifyId(memberId);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String email = authentication.getName();
+            if (!email.equals(findMember.getEmail())) {
+                throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+            }
+        }
+
         repository.delete(findMember);
     }
 
