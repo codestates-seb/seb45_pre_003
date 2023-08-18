@@ -50,20 +50,19 @@ align-items: flex-start;
 `; 
 
 
-
 export const MypageFilterStyle = styled.span`
-    padding: 6px 12px;
-    margin: 5px;
-    font-size: 13px;
-    color: ${props => props.active ? 'white' : 'gray'};
-     background: ${props => props.active ? '#f48225' : 'none'};
-     border: none;
-     border-radius: 20px;
-     cursor: pointer;
-     &:hover {
-       background: #d6d6d7;
-       color: white;
-     }
+  padding: 6px 12px;
+  margin: 5px;
+  font-size: 13px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  color: gray; 
+
+  &:hover {
+    background: #dad9d9;
+    color: white;
+  }
 `;
 
 
@@ -87,6 +86,7 @@ export const ProfileLeftBarContainerStyle = styled.div`
 
 export const ProfileLeftBarContainerTitlelStyle = styled.div`
    font-size: 21px; 
+   color: #232629 ; 
    @media screen and (max-width:980px){
         display:none
     }
@@ -111,7 +111,7 @@ export const ProfileLeftBarStyle = styled.div`
     max-height: 128px; 
     flex-shrink:0;
     margin-bottom: 10px; 
-    border: 1px solid rgb(106, 115, 124);
+    border: 1px solid rgb(204, 205, 206);
     border-radius: 5px; 
     position:relative !important;
     @media screen and (max-width:980px){
@@ -119,19 +119,39 @@ export const ProfileLeftBarStyle = styled.div`
     }
 `; 
 
+export const CommunitySetItemStyle= styled.div`
+    display: flex;
+    justify-content: space-between;
+    text-align: left; 
+    font-size: 13px;
+    vertical-align: baseline;
+    padding: 15px 15px 15px 15px; 
+    width: 260px;
+    height: 55px; 
+    border: 1px solid rgb(204, 205, 206);
+    border-radius: 5px; 
+    position:relative !important;
+    @media screen and (max-width:980px){
+        display:none;
+    }
+`
+    
 export const ProfileBoxStyle = styled.div`
     width: 95px;
     height: 40px;
 `
 
 export const ProfileBoxTextStyle = styled.div`
+ 
  &.number { 
     font-size : 17px;
     font-weight: 700;
+    color: #0C0D0E; 
 }  
 &.item{
     font-size : 13px;
     font-weight: 400;
+    color: #6A737C; 
 }
 `
 
@@ -146,9 +166,6 @@ export const CommunitySetStyle = styled.div`
     }
 
 `; 
-
-
-
 
 
 export const MypageNavStyle = styled.div`
@@ -166,7 +183,7 @@ export const MypageNavitemStyle = styled.li`
     font-size: 13px; 
     height: 29px; 
     width: 126px; 
-    color: #6a6a6c; 
+    color: #232629; 
     padding: 7px 48px 12px 16px; 
     cursor: pointer;
     border-radius: 15px; 

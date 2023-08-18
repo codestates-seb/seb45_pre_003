@@ -1,35 +1,43 @@
 import React, {useState} from 'react'; 
-import ActivityCard from './AcitivityCard';
+import Questions from './QuestionCard';
+import Answers from './AnswerCard'
 import { 
   MyPageCardStyle,
   MypageNavStyle,
   ActivityCardContainer, 
   MypageNavitemStyle
 } from '../mypageComponents/MyPage.styled';
-import {v4 as uuidv4 } from 'uuid'; 
+
+
+
 
 export default function Activities({userQuestions}) {
 
-  const optionItems = ["Answers", "Questions", "Tags","Votes"]
-  const [mypageOptions, setMypageOptions] = useState('Questions');
-
+  const [ mypageOptions, setMypageOptions] = useState('Questions');
+ 
+  const handleOption = (el) => {
+    setMypageOptions(el)
+  }
+  console.log(mypageOptions)
   return (
     <>
     <MyPageCardStyle>
       <MypageNavStyle>
-        <ul>
-         {optionItems.map((el) => (
-           <MypageNavitemStyle
-             key={uuidv4()} 
-             onClick = {() => setMypageOptions(el)} 
-            active = {mypageOptions === el}
-           >{el}
-          </MypageNavitemStyle>
-         ))}
-        </ul>
+      { mypageOptions === "Questions" ?
+        <div>
+            <MypageNavitemStyle onClick={() => handleOption("Answers")}>Answers</MypageNavitemStyle>
+            <MypageNavitemStyle style={{backgroundColor: '#F1F2F3'}} onClick = {()=>handleOption("Questions")}>Questions</MypageNavitemStyle>
+        </div>
+      : 
+        <div>
+          <MypageNavitemStyle  style={{backgroundColor: '#F1F2F3'}} onClick={() => handleOption("Answers")}>Answers</MypageNavitemStyle>
+          <MypageNavitemStyle  onClick = {()=>handleOption("Questions")}>Questions</MypageNavitemStyle>
+        </div>
+      }    
       </MypageNavStyle>
       <ActivityCardContainer>
-        <ActivityCard mypageOptions={mypageOptions} userQuestions={userQuestions}/>
+      {mypageOptions === 'Questions' && <Questions userQuestions={userQuestions} />}
+      {mypageOptions === 'Answers' && <Answers userQuestions={userQuestions} />}
       </ActivityCardContainer>
     </MyPageCardStyle>
 
