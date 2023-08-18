@@ -7,9 +7,7 @@ import {
   } from './MyPage.styled'
   import {v4 as uuidv4 } from 'uuid'; 
 
-  export default function Answers({mypageOptions, userQuestions}) {
-  console.log(userQuestions)
-
+  export default function Questions({mypageOptions, userQuestions}) {
   return (
   <>
     { userQuestions.length === 0 ? 
@@ -29,7 +27,7 @@ import {
       <ActivityCardTextStyle >
       { userQuestions
       .map(el => (
-        <>
+        <div key={uuidv4()}>
         <FlexStyle key={uuidv4()} className="mypageAnswer">
         <MypageAnswersTitleStyle key={uuidv4()} className='mypageItems_1'> {el.votes}votes </MypageAnswersTitleStyle>
         <MypageAnswersTitleStyle key={uuidv4()} className='mypageItems_2'> {el.answers}answers </MypageAnswersTitleStyle>
@@ -38,7 +36,7 @@ import {
         <MypageAnswersTitleStyle className='mypageAnwerTitle' key={uuidv4()} title={el.title}>
         {el.title}
        </ MypageAnswersTitleStyle >
-       </>))}
+       </div>))}
       </ActivityCardTextStyle>    
       </>
     }
