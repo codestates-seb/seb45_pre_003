@@ -46,8 +46,6 @@ public class MemberDto {
         private String email;
         private LocalDateTime createdAt;
         private int weekSinceRegistration;
-        private int vote;
-        private int tag;
         private int visitCount;
         private int continuousVisitCount;
         @Setter
@@ -62,7 +60,6 @@ public class MemberDto {
     @Builder
     public static class QuestionsResponse {
         private List<QuestionDto.MypageElement> data;
-        private PageInfo pageInfo;
     }
 
     @Getter

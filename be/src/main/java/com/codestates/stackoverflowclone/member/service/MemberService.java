@@ -8,7 +8,6 @@ import com.codestates.stackoverflowclone.member.repository.MemberRepository;
 import com.codestates.stackoverflowclone.member.repository.PageRepository;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
-import com.codestates.stackoverflowclone.security.util.CustomAuthorityUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +25,7 @@ import java.util.Optional;
 @Transactional
 public class MemberService {
     private final MemberRepository repository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 //    private final CustomAuthorityUtils authorityUtils;
     private final PageRepository pageRepository;
     private final QuestionRepository questionRepository;
@@ -34,10 +33,10 @@ public class MemberService {
     private final int QUESTION_PAGE_SIZE = 3;
     private final int QUESTION_PAGE_NUMBER = 0;
 
-    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, PageRepository pageRepository, QuestionRepository questionRepository) {
+    public MemberService(MemberRepository repository, PageRepository pageRepository, QuestionRepository questionRepository) {
         this.repository = repository;
-        this.passwordEncoder = passwordEncoder;
-        this.authorityUtils = authorityUtils;
+//        this.passwordEncoder = passwordEncoder;
+//        this.authorityUtils = authorityUtils;
         this.pageRepository = pageRepository;
         this.questionRepository = questionRepository;
     }
@@ -45,12 +44,12 @@ public class MemberService {
     public Member createMember(Member member) {
         verifyEmail(member.getEmail());
 
-        if (!member.getPassword().isEmpty()) {
-            String encryptedPassword = passwordEncoder.encode(member.getPassword());
-            member.setPassword(encryptedPassword);
-        }
-        List<String> roles = authorityUtils.createRoles();
-        member.setRoles(roles);
+//        if (!member.getPassword().isEmpty()) {
+//            String encryptedPassword = passwordEncoder.encode(member.getPassword());
+//            member.setPassword(encryptedPassword);
+//        }
+//        List<String> roles = authorityUtils.createRoles();
+//        member.setRoles(roles);
 
         Member saveMember = repository.save(member);
 
@@ -103,8 +102,8 @@ public class MemberService {
 //        throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
         Member findMember = verifyId(member.getId());
                         Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
-                Optional.ofNullable(member.getPassword())
-                        .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
+//                Optional.ofNullable(member.getPassword())
+//                        .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
 
                 Member updateMember = repository.save(findMember);
 
