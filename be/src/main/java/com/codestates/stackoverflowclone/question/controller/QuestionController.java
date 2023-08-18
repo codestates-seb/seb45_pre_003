@@ -63,85 +63,49 @@ public class QuestionController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    ///// week month 질문들 리스트 조회수순으로 뜯어와 보내기
+    ///// newest unanswered 질문들 리스트 최신순으로 뜯어와 보내기
+    ///// tab = "week" "month" "newest" "unanswered"
+    @GetMapping
+    public ResponseEntity getQuestions(@RequestParam String searchWord,
+                                       @RequestParam String tab,
+                                       @Positive @RequestParam int page,
+                                       @Positive @RequestParam int size){
+        Page<Question> pageQuestions = null;
 
+        if(tab.equals("week"))
+            pageQuestions = questionService.findQuestionsThisWeek(searchWord,page-1,size);
+        else if(tab.equals("month"))
+            pageQuestions = questionService.findQuestionsThisMonth(searchWord, page-1, size);
+        else if(tab.equals("newest"))
+            pageQuestions = questionService.findQuestions(searchWord, page-1, size);
+        else if(tab.equals("unanswered"))
+            pageQuestions = questionService.findUnansweredQuestions(searchWord, page-1, size);
 
+        List<Question> questions = pageQuestions.getContent();
 
+        return new ResponseEntity<>(
+                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
+                        pageQuestions),
+                HttpStatus.OK);
+    }
 
-    ///// week 질문들 리스트 조회수순으로 뜯어와 보내기
-    @GetMapping("/week")
-    public ResponseEntity getQuestionsThisWeek(@RequestParam String searchWord,
+    ///// 마이페이지에 올릴 질문들
+    ///// classification = "answers" "questions"
+    @GetMapping("/onmypage/{member-id}")
+    public ResponseEntity getQuestionsOnMypage(@PathVariable("member-id") long memberId,
+                                               @RequestParam String classification,
                                                @Positive @RequestParam int page,
                                                @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findQuestionsThisWeek(searchWord,page-1,size);
-        List<Question> questions = pageQuestions.getContent();
+        Page<Question> pageQuestions;
 
-        return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
-                        pageQuestions),
-                HttpStatus.OK);
-    }
-    ///// month 질문들 리스트 조회수순으로 뜯어와 보내기
-    @GetMapping("/month")
-    public ResponseEntity getQuestionsThisMonth(@RequestParam String searchWord,
-                                                @Positive @RequestParam int page,
-                                                @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findQuestionsThisMonth(searchWord,page-1,size);
-        List<Question> questions = pageQuestions.getContent();
+        if(classification.equals("answers"))
+            pageQuestions = questionService.findQuestionsWithMyAnswer(memberId,page-1,size);
+        else if(classification.equals("questions"))
+            pageQuestions = questionService.findMyQuestions(memberId,page-1,size);
+        else
+            throw new RuntimeException("answers나 questions 중 하나 택해야 합니다. 타이포일수도");
 
-        return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
-                        pageQuestions),
-                HttpStatus.OK);
-    }
-    ///// 질문들 리스트 최신순으로 뜯어와 보내기
-    @GetMapping
-    public ResponseEntity getNewestQuestions(@RequestParam String searchWord,
-                                             @Positive @RequestParam int page,
-                                             @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findQuestions(searchWord,page-1,size);
-        List<Question> questions = pageQuestions.getContent();
-
-        return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
-                        pageQuestions),
-                HttpStatus.OK);
-    }
-
-    ///// unanswered question list! 정렬기준(최신순)
-    @GetMapping("/unanswered")
-    public ResponseEntity getUnansweredQuestions(@RequestParam String searchWord,
-                                                 @Positive @RequestParam int page,
-                                                 @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findUnansweredQuestions(searchWord,page-1,size);
-        List<Question> questions = pageQuestions.getContent();
-
-        return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionResponseElements(questions),
-                        pageQuestions),
-                HttpStatus.OK);
-    }
-
-
-    ///// memberId를 통해 member가 작성한 answer들의 questions들 제목/생성시간 리스트 mypage로 가져오기
-    @GetMapping("/withmyanswer/{member-id}")
-    public ResponseEntity getQuestionsWithMyAnswer(@PathVariable("member-id") long memberId,
-                                                   @Positive @RequestParam int page,
-                                                   @Positive @RequestParam int size){
-        Page<Question> pageQuestions = questionService.findQuestionsWithMyAnswer(memberId,page-1,size);
-        List<Question> questions = pageQuestions.getContent();
-
-        return new ResponseEntity<>(
-                new QuestionListDto<>(questionMapper.questionsToQuestionMypageElements(questions),
-                        pageQuestions),
-                HttpStatus.OK);
-    }
-
-    ///// memberId를 통해 questions들 제목/생성시간 리스트 가져오기
-    @GetMapping("/onmypage/{member-id}")
-    public ResponseEntity getMyQuestions(@PathVariable("member-id") long memberId,
-                                         @Positive @RequestParam int page,
-                                         @Positive @RequestParam int size ){
-        Page<Question> pageQuestions = questionService.findMyQuestions(memberId,page-1,size);
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity<>(
