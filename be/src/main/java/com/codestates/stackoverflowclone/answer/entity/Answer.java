@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter@Setter@AllArgsConstructor@NoArgsConstructor
 @Entity
@@ -25,5 +26,6 @@ public class Answer extends Auditable {
     @Column(nullable = false)
     @ColumnDefault("false")
     private Boolean isBest;
+    private LocalDateTime modifiedAt;
 
 }
