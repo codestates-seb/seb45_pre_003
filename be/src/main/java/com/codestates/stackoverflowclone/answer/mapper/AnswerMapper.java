@@ -44,7 +44,6 @@ public interface AnswerMapper {
             response.setQuestionId(answer.getQuestion().getQuestionId());
             response.setIsBest(answer.getIsBest());
             response.setCreatedAt(answer.getCreatedAt());
-            response.setModifiedAt(answer.getModifiedAt());
             return response;
         }
     }

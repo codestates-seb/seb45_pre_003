@@ -42,7 +42,6 @@ public interface QuestionMapper {
             response.setVisitCount(question.getVisitCount());
             response.setAnswered(question.getAnswered());
             response.setCreatedAt(question.getCreatedAt());
-            response.setModifiedAt(question.getModifiedAt());
             return response;
         }
     }
@@ -62,7 +61,6 @@ public interface QuestionMapper {
             responseElement.setVisitCount(question.getVisitCount());
             responseElement.setAnswered(question.getAnswered());
             responseElement.setCreatedAt(question.getCreatedAt());
-            responseElement.setModifiedAt(question.getModifiedAt());
             return responseElement;
         }
     }

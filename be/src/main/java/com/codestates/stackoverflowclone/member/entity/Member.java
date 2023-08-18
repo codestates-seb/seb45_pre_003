@@ -36,8 +36,6 @@ public class Member extends Auditable {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
-    private int weekSinceRegistration;
-
     @Setter
     private int visitCount = 0;
 
@@ -46,15 +44,6 @@ public class Member extends Auditable {
 
     @Setter
     private LocalDateTime lastLoginTime;
-
-    //TODO vote, tag 미구현으로 임시용 랜덤 숫자 생성
-    //이하의 변수들은 아직 미구현. 구현 예정
-    //특히 updatable! 값을 고정하기 위해 넣었지만, 구현 이후에는 필히 삭제할 것
-    @Column(nullable = false, updatable = false)
-    private int vote = (int)(Math.random() * 1000);
-
-    @Column(nullable = false, updatable = false)
-    private int tag = (int)(Math.random() * 100);
 
     @OneToMany(mappedBy = "member")
     private List<Question> questions = new ArrayList<>();
@@ -74,9 +63,9 @@ public class Member extends Auditable {
         return this.answers.size();
     }
 
-    @PostLoad
-    private void caculateweekSinceRegistration() {
-        this.weekSinceRegistration = (int) ChronoUnit.WEEKS.between(getCreatedAt(), LocalDateTime.now());
-    }
+//    @PostLoad
+//    private void caculateweekSinceRegistration() {
+//        this.weekSinceRegistration = (int) ChronoUnit.WEEKS.between(getCreatedAt(), LocalDateTime.now());
+//    }
 
 }

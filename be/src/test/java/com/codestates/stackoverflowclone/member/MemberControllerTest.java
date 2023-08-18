@@ -124,20 +124,22 @@ public class MemberControllerTest {
         String name = "test";
         String email = "test@test.com";
         LocalDateTime createdAt = LocalDateTime.now();
-        int weekSinceRegistration = 0;
-        int vote = 1;
-        int tag = 1;
         int visitCount = 0;
         int continuousVisitCount = 0;
         int questionCount = 1;
         int answerCount = 1;
 
+        List<>
+
 
         MemberDto.GetMemberResponse response = MemberDto.GetMemberResponse.builder()
-                .id(id).name(name).email(email).createdAt(createdAt).weekSinceRegistration(weekSinceRegistration).vote(vote).tag(tag).visitCount(visitCount).continuousVisitCount(continuousVisitCount).questionCount(questionCount).answerCount(answerCount).build();
+                .id(id).name(name).email(email).createdAt(createdAt).visitCount(visitCount).continuousVisitCount(continuousVisitCount).questionCount(questionCount).answerCount(answerCount).build();
 
         given(service.findMember(Mockito.anyLong())).willReturn(new Member());
         given(mapper.memberToGetMemberResponse(Mockito.any(Member.class))).willReturn(response);
+        given(service.getQuestionByMemberId(anyLong())).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(service.getQuestionWithMyAnswerByMemberId(anyLong())).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(questionMapper.questionsToQuestionMypageElements(Mockito.anyList())).willReturn(new ArrayList<>());
 
         ResultActions actions = mockMvc.perform(
                 RestDocumentationRequestBuilders.get("/members/{member-id}", id)
@@ -158,9 +160,6 @@ public class MemberControllerTest {
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원 등록 날짜"),
-                                        fieldWithPath("weekSinceRegistration").type(JsonFieldType.NUMBER).description("가입 주수"),
-                                        fieldWithPath("vote").type(JsonFieldType.NUMBER).description("Vote 수. 미구현"),
-                                        fieldWithPath("tag").type(JsonFieldType.NUMBER).description("Tag 수. 미구현"),
                                         fieldWithPath("visitCount").type(JsonFieldType.NUMBER).description("방문 횟수"),
                                         fieldWithPath("continuousVisitCount").type(JsonFieldType.NUMBER).description("연속 방문 횟수"),
                                         fieldWithPath("questionCount").type(JsonFieldType.NUMBER).description("질문 수."),
