@@ -1,10 +1,13 @@
 package com.codestates.stackoverflowclone.member.service;
 
+import com.codestates.stackoverflowclone.answer.entity.Answer;
 import com.codestates.stackoverflowclone.exception.BusinessLogicException;
 import com.codestates.stackoverflowclone.exception.ExceptionCode;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.repository.MemberRepository;
 import com.codestates.stackoverflowclone.member.repository.PageRepository;
+import com.codestates.stackoverflowclone.question.entity.Question;
+import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
 import com.codestates.stackoverflowclone.security.util.CustomAuthorityUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +29,17 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
     private final PageRepository pageRepository;
-    private final int PAGESIZE = 36;
+    private final QuestionRepository questionRepository;
+    private final int PAGE_SIZE = 36;
+    private final int QUESTION_PAGE_SIZE = 10;
+    private final int QUESTION_PAGE_NUMBER = 0;
 
-    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, PageRepository pageRepository) {
+    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, PageRepository pageRepository, QuestionRepository questionRepository) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.authorityUtils = authorityUtils;
         this.pageRepository = pageRepository;
+        this.questionRepository = questionRepository;
     }
 
     public Member createMember(Member member) {
@@ -72,7 +78,7 @@ public class MemberService {
     public Page<Member> findMembers(int page) {
         //일단은 최신순 정렬
         //추후 tab, filter에 따라 분기해서 처리할 예정
-        Pageable pageable = PageRequest.of(page, PAGESIZE, Sort.by("createdAt").descending());
+        Pageable pageable = PageRequest.of(page, PAGE_SIZE, Sort.by("createdAt").descending());
         Page<Member> memberPage = pageRepository.findBy(pageable);
 
         return memberPage;
@@ -111,4 +117,17 @@ public class MemberService {
         repository.delete(findMember);
     }
 
+    public Page<Question> getQuestionByMemberId(long memberId) {
+        Pageable pageable = PageRequest.of(QUESTION_PAGE_NUMBER, QUESTION_PAGE_SIZE, Sort.by("createdAt").descending());
+        Page<Question> questions = questionRepository.findQuestionsByMemberId(memberId, pageable);
+
+        return questions;
+    }
+
+    public Page<Question> getQuestionWithMyAnswerByMemberId(long memberId) {
+        Pageable pageable = PageRequest.of(QUESTION_PAGE_NUMBER, QUESTION_PAGE_SIZE, Sort.by("createdAt").descending());
+        Page<Question> questions = questionRepository.findQuestionsWithMyAnswer(memberId, pageable);
+
+        return questions;
+    }
 }
