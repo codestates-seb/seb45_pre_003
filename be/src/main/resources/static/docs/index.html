@@ -687,7 +687,7 @@ Content-Length: 273
   "id" : 1,
   "name" : "test",
   "email" : "test@test.com",
-  "createdAt" : "2023-08-18T08:55:43.0752863",
+  "createdAt" : "2023-08-18T10:30:31.9414072",
   "weekSinceRegistration" : 0,
   "vote" : 1,
   "tag" : 1,
@@ -705,7 +705,7 @@ Content-Length: 273
   "id" : 1,
   "name" : "test",
   "email" : "test@test.com",
-  "createdAt" : "2023-08-18T08:55:43.0752863",
+  "createdAt" : "2023-08-18T10:30:31.9414072",
   "weekSinceRegistration" : 0,
   "vote" : 1,
   "tag" : 1,
@@ -1264,8 +1264,8 @@ Content-Length: 281
   },
   "questionId" : 1,
   "isBest" : false,
-  "createdAt" : "2023-08-18T08:55:42.4815176",
-  "modifiedAt" : "2023-08-18T08:55:42.4815176"
+  "createdAt" : "2023-08-18T10:30:31.2955697",
+  "modifiedAt" : "2023-08-18T10:30:31.2955697"
 }</code></pre>
 </div>
 </div>
@@ -1282,8 +1282,8 @@ Content-Length: 281
   },
   "questionId" : 1,
   "isBest" : false,
-  "createdAt" : "2023-08-18T08:55:42.4815176",
-  "modifiedAt" : "2023-08-18T08:55:42.4815176"
+  "createdAt" : "2023-08-18T10:30:31.2955697",
+  "modifiedAt" : "2023-08-18T10:30:31.2955697"
 }</code></pre>
 </div>
 </div>
@@ -1406,7 +1406,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 669
+Content-Length: 673
 
 {
   "data" : [ {
@@ -1419,8 +1419,8 @@ Content-Length: 669
     },
     "questionId" : 1,
     "isBest" : false,
-    "createdAt" : "2023-08-04T08:55:42.272213",
-    "modifiedAt" : "2023-08-18T08:55:42.272213"
+    "createdAt" : "2023-08-04T10:30:31.0686897",
+    "modifiedAt" : "2023-08-18T10:30:31.0686897"
   }, {
     "answerId" : 2,
     "body" : "두번째 테스트용 답변",
@@ -1431,8 +1431,8 @@ Content-Length: 669
     },
     "questionId" : 1,
     "isBest" : false,
-    "createdAt" : "2023-08-11T08:55:42.272213",
-    "modifiedAt" : "2023-08-18T08:55:42.272213"
+    "createdAt" : "2023-08-11T10:30:31.0686897",
+    "modifiedAt" : "2023-08-18T10:30:31.0686897"
   } ]
 }</code></pre>
 </div>
@@ -1451,8 +1451,8 @@ Content-Length: 669
     },
     "questionId" : 1,
     "isBest" : false,
-    "createdAt" : "2023-08-04T08:55:42.272213",
-    "modifiedAt" : "2023-08-18T08:55:42.272213"
+    "createdAt" : "2023-08-04T10:30:31.0686897",
+    "modifiedAt" : "2023-08-18T10:30:31.0686897"
   }, {
     "answerId" : 2,
     "body" : "�몢踰덉㎏ �뀒�뒪�듃�슜 �떟蹂�",
@@ -1463,8 +1463,8 @@ Content-Length: 669
     },
     "questionId" : 1,
     "isBest" : false,
-    "createdAt" : "2023-08-11T08:55:42.272213",
-    "modifiedAt" : "2023-08-18T08:55:42.272213"
+    "createdAt" : "2023-08-11T10:30:31.0686897",
+    "modifiedAt" : "2023-08-18T10:30:31.0686897"
   } ]
 }</code></pre>
 </div>
@@ -1654,8 +1654,8 @@ Content-Length: 292
   },
   "questionId" : 1,
   "isBest" : false,
-  "createdAt" : "2023-08-11T08:55:42.5665639",
-  "modifiedAt" : "2023-08-18T08:55:42.5665639"
+  "createdAt" : "2023-08-11T10:30:31.3864109",
+  "modifiedAt" : "2023-08-18T10:30:31.3864109"
 }</code></pre>
 </div>
 </div>
@@ -1672,8 +1672,8 @@ Content-Length: 292
   },
   "questionId" : 1,
   "isBest" : false,
-  "createdAt" : "2023-08-11T08:55:42.5665639",
-  "modifiedAt" : "2023-08-18T08:55:42.5665639"
+  "createdAt" : "2023-08-11T10:30:31.3864109",
+  "modifiedAt" : "2023-08-18T10:30:31.3864109"
 }</code></pre>
 </div>
 </div>
@@ -1750,14 +1750,14 @@ Content-Length: 292
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/answers/best/1' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/answers/best/1?isBest=true' -i -X PATCH \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /answers/best/1 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /answers/best/1?isBest=true HTTP/1.1
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
@@ -1765,7 +1765,7 @@ Host: localhost:8080</code></pre>
 <div class="listingblock">
 <div class="title">httpie-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ http --form PATCH 'http://localhost:8080/answers/best/1' \
+<pre class="prettyprint highlight"><code data-lang="bash">$ http PATCH 'http://localhost:8080/answers/best/1?isBest=true' \
     'Accept:application/json'</code></pre>
 </div>
 </div>
@@ -2000,8 +2000,8 @@ Content-Length: 347
   "answerCount" : 0,
   "visitCount" : 1,
   "answered" : false,
-  "createdAt" : "2023-08-18T08:55:43.7809273",
-  "modifiedAt" : "2023-08-18T08:55:43.7809273"
+  "createdAt" : "2023-08-18T10:30:32.6919135",
+  "modifiedAt" : "2023-08-18T10:30:32.6919135"
 }</code></pre>
 </div>
 </div>
@@ -2020,8 +2020,8 @@ Content-Length: 347
   "answerCount" : 0,
   "visitCount" : 1,
   "answered" : false,
-  "createdAt" : "2023-08-18T08:55:43.7809273",
-  "modifiedAt" : "2023-08-18T08:55:43.7809273"
+  "createdAt" : "2023-08-18T10:30:32.6919135",
+  "modifiedAt" : "2023-08-18T10:30:32.6919135"
 }</code></pre>
 </div>
 </div>
@@ -2226,8 +2226,8 @@ Content-Length: 347
   "answerCount" : 0,
   "visitCount" : 1,
   "answered" : false,
-  "createdAt" : "2023-08-11T08:55:43.7469262",
-  "modifiedAt" : "2023-08-18T08:55:43.7469262"
+  "createdAt" : "2023-08-11T10:30:32.6635905",
+  "modifiedAt" : "2023-08-18T10:30:32.6635905"
 }</code></pre>
 </div>
 </div>
@@ -2246,8 +2246,8 @@ Content-Length: 347
   "answerCount" : 0,
   "visitCount" : 1,
   "answered" : false,
-  "createdAt" : "2023-08-11T08:55:43.7469262",
-  "modifiedAt" : "2023-08-18T08:55:43.7469262"
+  "createdAt" : "2023-08-11T10:30:32.6635905",
+  "modifiedAt" : "2023-08-18T10:30:32.6635905"
 }</code></pre>
 </div>
 </div>
@@ -2383,7 +2383,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 347
+Content-Length: 341
 
 {
   "questionId" : 1,
@@ -2397,8 +2397,8 @@ Content-Length: 347
   "answerCount" : 0,
   "visitCount" : 2,
   "answered" : false,
-  "createdAt" : "2023-08-11T08:55:43.8339274",
-  "modifiedAt" : "2023-08-11T08:55:43.8339274"
+  "createdAt" : "2023-08-11T10:30:32.7516",
+  "modifiedAt" : "2023-08-11T10:30:32.7516"
 }</code></pre>
 </div>
 </div>
@@ -2417,8 +2417,8 @@ Content-Length: 347
   "answerCount" : 0,
   "visitCount" : 2,
   "answered" : false,
-  "createdAt" : "2023-08-11T08:55:43.8339274",
-  "modifiedAt" : "2023-08-11T08:55:43.8339274"
+  "createdAt" : "2023-08-11T10:30:32.7516",
+  "modifiedAt" : "2023-08-11T10:30:32.7516"
 }</code></pre>
 </div>
 </div>
@@ -2590,8 +2590,8 @@ Content-Length: 818
     "answerCount" : 0,
     "visitCount" : 17,
     "answered" : false,
-    "createdAt" : "2023-08-18T08:55:43.6749266",
-    "modifiedAt" : "2023-08-18T08:55:43.6749266"
+    "createdAt" : "2023-08-18T10:30:32.5902695",
+    "modifiedAt" : "2023-08-18T10:30:32.5902695"
   }, {
     "questionId" : 1,
     "title" : "2번 질문 제목",
@@ -2603,8 +2603,8 @@ Content-Length: 818
     "answerCount" : 0,
     "visitCount" : 10,
     "answered" : false,
-    "createdAt" : "2023-08-11T08:55:43.6749266",
-    "modifiedAt" : "2023-08-18T08:55:43.6749266"
+    "createdAt" : "2023-08-11T10:30:32.5902695",
+    "modifiedAt" : "2023-08-18T10:30:32.5902695"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -2630,8 +2630,8 @@ Content-Length: 818
     "answerCount" : 0,
     "visitCount" : 17,
     "answered" : false,
-    "createdAt" : "2023-08-18T08:55:43.6749266",
-    "modifiedAt" : "2023-08-18T08:55:43.6749266"
+    "createdAt" : "2023-08-18T10:30:32.5902695",
+    "modifiedAt" : "2023-08-18T10:30:32.5902695"
   }, {
     "questionId" : 1,
     "title" : "2踰� 吏덈Ц �젣紐�",
@@ -2643,8 +2643,8 @@ Content-Length: 818
     "answerCount" : 0,
     "visitCount" : 10,
     "answered" : false,
-    "createdAt" : "2023-08-11T08:55:43.6749266",
-    "modifiedAt" : "2023-08-18T08:55:43.6749266"
+    "createdAt" : "2023-08-11T10:30:32.5902695",
+    "modifiedAt" : "2023-08-18T10:30:32.5902695"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -2839,17 +2839,17 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 360
+Content-Length: 356
 
 {
   "data" : [ {
     "questionId" : 2,
     "title" : "2번 질문 제목",
-    "createdAt" : "2023-08-18T08:55:43.8079285"
+    "createdAt" : "2023-08-18T10:30:32.71495"
   }, {
     "questionId" : 1,
     "title" : "1번 질문 제목",
-    "createdAt" : "2023-08-11T08:55:43.8079285"
+    "createdAt" : "2023-08-11T10:30:32.71495"
   } ],
   "pageInfo" : {
     "page" : 1,
@@ -2867,11 +2867,11 @@ Content-Length: 360
   "data" : [ {
     "questionId" : 2,
     "title" : "2踰� 吏덈Ц �젣紐�",
-    "createdAt" : "2023-08-18T08:55:43.8079285"
+    "createdAt" : "2023-08-18T10:30:32.71495"
   }, {
     "questionId" : 1,
     "title" : "1踰� 吏덈Ц �젣紐�",
-    "createdAt" : "2023-08-11T08:55:43.8079285"
+    "createdAt" : "2023-08-11T10:30:32.71495"
   } ],
   "pageInfo" : {
     "page" : 1,

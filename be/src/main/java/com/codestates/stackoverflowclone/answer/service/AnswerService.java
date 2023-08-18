@@ -7,6 +7,7 @@ import com.codestates.stackoverflowclone.question.service.QuestionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ public class AnswerService {
 
     public Answer createAnswer(Answer answer){
         answer.getQuestion().setAnswerCount(answer.getQuestion().getAnswerCount() + 1);
+        answer.setModifiedAt(LocalDateTime.now());
 
         return answerRepository.save(answer);
     }
@@ -30,6 +32,8 @@ public class AnswerService {
 
         Optional.ofNullable(answer.getBody())
                 .ifPresent(body->findAnswer.setBody(body));
+
+        findAnswer.setModifiedAt(LocalDateTime.now());
 
         return answerRepository.save(findAnswer);
     }

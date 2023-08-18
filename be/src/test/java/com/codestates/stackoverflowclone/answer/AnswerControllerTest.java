@@ -14,13 +14,14 @@ import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
 import com.codestates.stackoverflowclone.question.service.QuestionService;
-import com.codestates.stackoverflowclone.security.config.SecurityConfiguration;
+//import com.codestates.stackoverflowclone.security.config.SecurityConfiguration;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -34,6 +35,7 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -54,13 +56,15 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 
-@WebMvcTest(controllers = AnswerController.class,
-        excludeAutoConfiguration = SecurityAutoConfiguration.class,
-        excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
-        })
+//@WebMvcTest(controllers = AnswerController.class,
+//        excludeAutoConfiguration = SecurityAutoConfiguration.class,
+//        excludeFilters = {
+//                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
+//        })
+//@WebMvcTest(AnswerController.class) // webmvctest 복구 대상
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
+@SpringBootTest@AutoConfigureMockMvc // 제거대상, @WithMockUser(roles = "USER")각 메서드에서 제거 대상
 public class AnswerControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -74,7 +78,7 @@ public class AnswerControllerTest {
     private QuestionService questionService;
     @Autowired
     private Gson gson;
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void postAnswerTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -126,7 +130,7 @@ public class AnswerControllerTest {
                         )
                 ));// (10) API 문서 스펙 정보 추가
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void patchAnswerTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -184,7 +188,7 @@ public class AnswerControllerTest {
 
                 ));
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void setBestTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -192,14 +196,14 @@ public class AnswerControllerTest {
 
         // (7) Mock 객체를 이용한 Stubbing
         doNothing().when(answerService).setBest(Mockito.anyLong(), Mockito.anyBoolean());
-        MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
-        params.add("isBest","true");
+        //MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
+        //params.add("isBest","true");
         // when
         ResultActions actions =
                 mockMvc.perform(
                         RestDocumentationRequestBuilders.patch("/answers/best/{answer-id}", 1L)
                                 .accept(MediaType.APPLICATION_JSON)
-                                .params(params)
+                                .queryParam("isBest", "true")
                         // (8) request 전송
                 );
 
@@ -217,12 +221,12 @@ public class AnswerControllerTest {
                         )
                     );
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void getAnswersTest() throws Exception {
         // given
         // (6) 테스트 데이터
-        Answer answer1 = new Answer(1L, "첫번째 테스트용 답변", new Member(), new Question(), false);
-        Answer answer2 = new Answer(2L, "두번째 테스트용 답변", new Member(), new Question(), false);
+        Answer answer1 = new Answer(1L, "첫번째 테스트용 답변", new Member(), new Question(), false, LocalDateTime.now());
+        Answer answer2 = new Answer(2L, "두번째 테스트용 답변", new Member(), new Question(), false, LocalDateTime.now());
         List<Answer> list = new ArrayList<>();
         list.add(answer1);
         list.add(answer2);
@@ -269,7 +273,7 @@ public class AnswerControllerTest {
 
                 ));
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void deleteAnswerTest() throws Exception {
         // given
         // (6) 테스트 데이터
