@@ -27,11 +27,11 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository repository;
     private final PasswordEncoder passwordEncoder;
-    private final CustomAuthorityUtils authorityUtils;
+//    private final CustomAuthorityUtils authorityUtils;
     private final PageRepository pageRepository;
     private final QuestionRepository questionRepository;
     private final int PAGE_SIZE = 36;
-    private final int QUESTION_PAGE_SIZE = 10;
+    private final int QUESTION_PAGE_SIZE = 3;
     private final int QUESTION_PAGE_NUMBER = 0;
 
     public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, PageRepository pageRepository, QuestionRepository questionRepository) {
@@ -85,34 +85,46 @@ public class MemberService {
     }
 
     public Member updateMember(Member member) {
+//        Member findMember = verifyId(member.getId());
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication != null && authentication.isAuthenticated()) {
+//            String email = authentication.getName();
+//            if (email.equals(member.getEmail())) {
+//                Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
+//                Optional.ofNullable(member.getPassword())
+//                        .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
+//
+//                Member updateMember = repository.save(findMember);
+//
+//                return updateMember;
+//            }
+//        }
+//        throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
         Member findMember = verifyId(member.getId());
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            String email = authentication.getName();
-            if (email.equals(member.getEmail())) {
-                Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
+                        Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
                 Optional.ofNullable(member.getPassword())
                         .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
 
                 Member updateMember = repository.save(findMember);
 
                 return updateMember;
-            }
-        }
-        throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+
     }
 
     public void deleteMember(long memberId) {
+//        Member findMember = verifyId(memberId);
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication != null && authentication.isAuthenticated()) {
+//            String email = authentication.getName();
+//            if (!email.equals(findMember.getEmail())) {
+//                throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+//            }
+//        }
+//
+//        repository.delete(findMember);
         Member findMember = verifyId(memberId);
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            String email = authentication.getName();
-            if (!email.equals(findMember.getEmail())) {
-                throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
-            }
-        }
 
         repository.delete(findMember);
     }
