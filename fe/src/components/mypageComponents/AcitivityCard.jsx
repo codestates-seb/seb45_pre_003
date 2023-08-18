@@ -5,7 +5,7 @@ import {
   MypageAnswersTitleStyle, 
   FlexStyle
   } from './MyPage.styled'
-
+import { v4 as uuidv4 } from 'uuid';
   export default function Answers({mypageOptions, userQuestions}) {
   const pageOptionLowerCase = mypageOptions.toLowerCase();
   console.log(userQuestions)
@@ -29,7 +29,7 @@ import {
       <ActivityCardTextStyle >
       { userQuestions
       .map(el => (
-        <>
+        <div key={uuidv4()}>
         <FlexStyle className="mypageAnswer">
         <MypageAnswersTitleStyle className='mypageItems_1'> {el.votes}votes </MypageAnswersTitleStyle>
         <MypageAnswersTitleStyle className='mypageItems_2'> {el.answers}answers </MypageAnswersTitleStyle>
@@ -38,7 +38,7 @@ import {
         <MypageAnswersTitleStyle className='mypageAnwerTitle' key={el.id} title={el.title}>
         {el.title}
        </ MypageAnswersTitleStyle >
-       </>))}
+       </div >))}
       </ActivityCardTextStyle>    
       </>
     }
