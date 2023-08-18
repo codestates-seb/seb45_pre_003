@@ -97,6 +97,7 @@ export const RightBarStyle = styled.div`
     width:300px;
     margin: 0 0 15px;
     height:100%;
+    padding:24px;
     @media screen and (max-width:980px) {
         display:none;
     }
