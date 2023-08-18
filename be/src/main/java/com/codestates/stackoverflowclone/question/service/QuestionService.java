@@ -25,6 +25,7 @@ public class QuestionService {
         question.setAnswerCount(0L);
         question.setVisitCount(0L);
         question.setAnswered(false);
+        question.setModifiedAt(LocalDateTime.now());
 
         return questionRepository.save(question);
     }
@@ -35,6 +36,8 @@ public class QuestionService {
                 .ifPresent(title->findQuestion.setTitle(title));
         Optional.ofNullable(question.getBody())
                 .ifPresent(body->findQuestion.setBody(body));
+
+        findQuestion.setModifiedAt(LocalDateTime.now());
 
         return questionRepository.save(findQuestion);
     }

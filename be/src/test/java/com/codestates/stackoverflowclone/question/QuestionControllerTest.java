@@ -11,14 +11,16 @@ import com.codestates.stackoverflowclone.question.dto.QuestionDto;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.mapper.QuestionMapper;
 import com.codestates.stackoverflowclone.question.service.QuestionService;
-import com.codestates.stackoverflowclone.security.config.SecurityConfiguration;
+//import com.codestates.stackoverflowclone.security.config.SecurityConfiguration;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
@@ -30,6 +32,7 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -50,13 +53,15 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 
-@WebMvcTest(controllers = QuestionController.class,
-    excludeAutoConfiguration = SecurityAutoConfiguration.class,
-        excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
-        })
+//@WebMvcTest(controllers = QuestionController.class,
+//    excludeAutoConfiguration = SecurityAutoConfiguration.class,
+//        excludeFilters = {
+//                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
+//        })
+//@WebMvcTest(QuestionController.class)  //webmvctest 복구 대상
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
+@SpringBootTest@AutoConfigureMockMvc // 제거대상, @WithMockUser(roles = "USER")각 메서드에서 제거 대상
 public class QuestionControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -69,7 +74,7 @@ public class QuestionControllerTest {
     @Autowired
     private Gson gson;
 
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void postQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -126,7 +131,7 @@ public class QuestionControllerTest {
                         )
                 ));
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void patchQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -184,7 +189,7 @@ public class QuestionControllerTest {
                         )
                 ));
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void getQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -230,7 +235,7 @@ public class QuestionControllerTest {
 
                 ));
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void getQuestionsTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -310,7 +315,7 @@ public class QuestionControllerTest {
 
                 ));
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void getQuestionsOnMypageTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -375,7 +380,7 @@ public class QuestionControllerTest {
 
                 ));
     }
-    @Test
+    @Test@WithMockUser(roles = "USER")
     public void deleteQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터

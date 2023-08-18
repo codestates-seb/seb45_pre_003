@@ -35,6 +35,7 @@ public class Question extends Auditable {
     @ColumnDefault("false")
     private Boolean answered;
 
+    @Column(name = "last_modified_at")
     private LocalDateTime modifiedAt;
 
     public Question(Long questionId, String title, String body, Member member,

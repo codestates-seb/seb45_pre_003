@@ -26,6 +26,8 @@ public class Answer extends Auditable {
     @Column(nullable = false)
     @ColumnDefault("false")
     private Boolean isBest;
+
+    @Column(name = "last_modified_at")
     private LocalDateTime modifiedAt;
 
 }
