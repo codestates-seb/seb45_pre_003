@@ -26,6 +26,7 @@ export const HomePageRightBarStyle = styled.a`
     background-image:url("/images/깃허브이미지.png");
     background-size:contain;
     background-repeat:no-repeat;
+
     &:hover {
         cursor:pointer;
     }
@@ -109,6 +110,14 @@ export const Filter = styled.button`
     &.last{
         border-top-right-radius:6px;
         border-bottom-right-radius:6px;
+    }
+
+    &.focus{
+        background-color:#E3E6E8;
+    }
+
+    &:hover{
+        cursor: pointer;
     }
 ` 
 
@@ -237,10 +246,18 @@ export const MetaData = styled.div`
     > a:nth-child(2) {
         color:hsl(206,100%,52%);
     }
+
+    > span {
+        margin:2px;
+        text-decoration:none;
+        overflow-wrap:break-word;
+    }
 `
 
 export const PageBox = styled.div`
     display:flex;
+    flex-direction:row-reverse;
+    flex-wrap:wrap;
     align-items:center;
     justify-content:space-between;
     padding:20px;
@@ -248,7 +265,7 @@ export const PageBox = styled.div`
 
 export const PageButtonBox = styled.div`
     display:flex;
-    
+    margin:16px 0 16px 0;
 `
 
 export const PageButton = styled.div`
@@ -258,10 +275,20 @@ export const PageButton = styled.div`
     border:1px solid hsl(210,8%,85%);
     border-radius:4px;
     color:hsl(210,8%,25%);
-    &:hover{
+    &:hover {
         background-color:hsl(210,8%,75%);
+        cursor: pointer;
     }
-
+    &.focus {
+        color:white;
+        background-color:#FF8C0A;
+    }
+    &.dot   {
+        border:0;
+        &:hover{
+            background-color:white;
+        }
+    }
 `
 
 export const PerPageText = styled.span`
