@@ -52,20 +52,10 @@ public class MemberController {
         response.setQuestionsData(
                 MemberDto.QuestionsResponse.builder()
                         .data(questionMapper.questionsToQuestionMypageElements(questions.getContent()))
-                        .pageInfo(MemberDto.PageInfo.builder()
-                                .page(1)
-                                .totalElements(questions.getTotalElements())
-                                .totalPage(questions.getTotalPages())
-                                .build())
                         .build());
         response.setQuestionsWithMyAnswers(
                 MemberDto.QuestionsResponse.builder()
                         .data(questionMapper.questionsToQuestionMypageElements(questionsWithMyAnswers.getContent()))
-                        .pageInfo(MemberDto.PageInfo.builder()
-                                .page(1)
-                                .totalElements(questionsWithMyAnswers.getTotalElements())
-                                .totalPage(questionsWithMyAnswers.getTotalPages())
-                                .build())
                         .build());
 
         return new ResponseEntity<>(response, HttpStatus.OK);

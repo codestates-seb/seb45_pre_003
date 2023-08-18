@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class Question extends Auditable {
     @Column(nullable = false)
     @ColumnDefault("false")
     private Boolean answered;
+
+    private LocalDateTime modifiedAt;
 
     public Question(Long questionId, String title, String body, Member member,
                     Long answerCount, Long visitCount, Boolean answered) {

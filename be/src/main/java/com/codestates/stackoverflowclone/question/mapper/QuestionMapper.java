@@ -43,6 +43,7 @@ public interface QuestionMapper {
             response.setAnswered(question.getAnswered());
             response.setCreatedAt(question.getCreatedAt());
             response.setModifiedAt(question.getModifiedAt());
+
             return response;
         }
     }
