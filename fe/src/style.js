@@ -147,8 +147,8 @@ export const Dropdown = styled.div`
 position: absolute;
 top: 100%;
 left: 0;
-width: 240px;
-height: 590.94px;
+width: 180px;
+height: 250.94px;
 margin: 0px 0px 8px;
 padding: 24px 0px 0px;
 background-color: white;
@@ -158,8 +158,7 @@ box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const DropOl = styled.ol`
-width: 240px;
-height: 554.94px;
+width: 180px;
 display: flex;
 flex-direction: column;
 margin: 0px 0px 12px;
@@ -180,16 +179,6 @@ list-style-type: none;
 position: relative !important;
 margin: 16px 0px 0px 0px;
 position: relative;
-`
-export const DropLi4 = styled.li`
-vertical-align: baseline;
-font: inherit;
-font-size: 11px;
-list-style-type: none;
-position: relative !important;
-margin: 16px 0px 0px 0px;
-position: relative;
-bottom: 7px;
 `
 
 export const DropLiQs = styled.li`
@@ -220,25 +209,6 @@ text-decoration: none;
 cursor: pointer;
 `;
 
-export const DropdownItem5= styled.strong`
-display: block;
-padding: 8px 12px;
-color: #333;
-font-size: 12px;
-text-decoration: none;
-cursor: pointer;
-`;
-
-export const DropdownItem6= styled.p`
-display: block;
-padding: 0px 12px;
-color: #333;
-font-size: 11px;
-width: 180px;
-position: relative;
-bottom: 5px;
-
-`;
 
 export const Textimg = styled.img`
   position: relative;
@@ -248,15 +218,6 @@ export const Textimg = styled.img`
   right: 3px;
   background-color: rgba(0,0,0,0);
 `
-export const Goimg = styled.img`
-display: flex;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  position: relative;
-  right: 5px;
-`
 
 export const DropdownItem2 = styled.a`
 display: block;
@@ -265,49 +226,6 @@ color: #333;
 text-decoration: none;
 cursor: pointer;
 `;
-
-export const DropdownItem3 = styled.a`
-display: block;
-padding: 8px 12px;
-color: #333;
-text-decoration: none;
-cursor: pointer;
-`;
-
-export const DropButton = styled.button`
-background-color: #F48225;
-color: #ffffff;
-border: none;
-border-radius: 4px;
-position: relative;
-left: 5px;
-width: 176px;
-height: 27.88px;
-cursor: pointer;
-font-size: 11px;
-display: flex;
-align-items: center;
-justify-content: center;
-`
-
-export const Droptext = styled.p`
-cursor: pointer;
-width: 176px;
-height: 27.88px;
-font-size: 11px;
-padding: 6.6px;
-background-color: transparent;
-align-items: center;
-justify-content: center;
-display: flex;
-position: relative;
-left: 5px;
-
-&:hover{
-  background-color: #dcdcdc;
-  border-radius: 5px;
-}
-`
 
 export const LogoImage = styled.img`
   width: 140px;
