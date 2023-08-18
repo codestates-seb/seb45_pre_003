@@ -96,6 +96,7 @@ export const QuestionTitleInputBox = styled.div`
     border:1px solid hsl(210,8%,90%);
     border-radius:4px;
     margin-bottom:16px;
+
     > input {
         margin:4px 0 4px 0;
         background-image:url();
@@ -126,6 +127,19 @@ export const QuestionTitleInputBox = styled.div`
             cursor: pointer;
             background-color:hsl(209,100%,37%)
         }
+    }
+
+    > .warning {
+        margin:4px 0 4px 0;
+        color:red;
+    }
+
+    > .notice {
+        padding-left:8px;
+    }
+
+    > .App {
+        margin:6px 0 6px 0;
     }
 
     @media screen and (max-width:1050px) {
@@ -171,4 +185,13 @@ export const SupportCardContentBox = styled.div`
 export const SupportCardContent = styled.div`
     display:flex;
     flex-direction:column;
+`
+
+export const PostingButtonBox = styled.div`
+    width:70%;
+    padding:24px;
+    font-size:1rem;
+    background-color:white;
+    border:1px solid hsl(210,8%,90%);
+    border-radius:3px;
 `

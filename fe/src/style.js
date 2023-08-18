@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
         margin:0;
         padding:0;
         vertical-align:baseline;
+        font-family:'';
     }
 
     body {
@@ -37,7 +38,7 @@ export const ContainerStyle = styled.div`
 
 export const LeftBarStyle = styled.div`
     width:164px;
-    height:90vh;
+    height:94vh;
     flex-shrink:0;
     position:relative !important;
     border-right:1px solid hsl(210,8%,75%);
@@ -513,7 +514,8 @@ export const HeaderElementStyle = styled.li`
      
      &:hover {
         background: #d6d6d7;
-        color: #6a6a6c; 
+        color: #6a6a6c;
+        height:100%;
      }    
 `
 
@@ -531,6 +533,7 @@ export const HeaderElementStyle2 = styled.li`
      &:hover {
         background: #d6d6d7;
         color: #6a6a6c; 
+        height:100%;
      }    
 `
 
@@ -655,6 +658,7 @@ export const EditorViewBox = styled.div`
     border:1px solid lightgray;
     border-radius:2px;
     font-size:20px;
+    overflow-x:scroll;
 
     > * table {
         border-spacing:0;

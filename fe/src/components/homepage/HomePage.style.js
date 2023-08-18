@@ -100,25 +100,6 @@ export const FilterBox = styled.div`
     }
 `
 
-export const FirstFilter = styled.button`
-    border-top-left-radius:6px;
-    border-bottom-left-radius:6px;
-`
-
-export const SecondFilter = styled.button`
-`
-
-export const ThirdFilter = styled.button`
-`
-
-export const ForthFilter = styled.button`
-`
-
-export const LastFilter = styled.button`
-    border-top-right-radius:6px;
-    border-bottom-right-radius:6px;
-`
-
 export const Filter = styled.button`
     &.first{
         border-top-left-radius:6px;
