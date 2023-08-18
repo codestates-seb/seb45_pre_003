@@ -1,0 +1,672 @@
+{
+    "questions" : [
+      {
+        "id": 1,
+        "title": "CKEditor5 set language",
+        "description": "내용은 개략적으로 입력합니다.제목보다 짧은 경우입니다. ",
+        "tags": [],
+        "author": "elena",
+        "imageURL": "",
+        "createdAt": "2023-08-15T02:14:25",
+        "modified": "true",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 2,
+        "title": "Combine results in a data set via common values in each column",
+        "description": "I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav ",
+        "tags": [],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-08-13T08:14:25",
+        "modified": true,
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 3,
+        "title": "My plot is not showing in Spyder (Mac OS), specifically I think it might be something to do with plt.show() not working?",
+        "description": "I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav .I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav So I can at that moment load the audio file into the QAudioPlayer and it works and plays. I then store this URL in a json file to later retrieve it. And the problem is that this seems to be a sort of temporary file url, because upon restart of my application, that URL does not work anymore.So, my question is how to handle this? Do I need to copy it myself to my own dir that I can create for example under the 'Library/Application Support' path: /var /mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/Library/Application Support/App? Or is there some other way? I saw this post which allows a user to share a file with your application and seems to copy it inside your apps' storage. Then probably it will not be a 'tmp' file anymore and the link to that file will work even after application restarts. Is that how you should do it? I don't really like that approach and would like to avoid it if possible.",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "elena",
+        "imageURL": "",
+        "createdAt": "2023-07-13T11:15:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 4,
+        "title": "I am trying to implement swagger for my django drf project but it's displaying all endpoint methods I don't want post put delete methods",
+        "description": "I'm not completely clear on what you are doing. Reading text and extracting text are generally the same thing. iText won't save the text to a file for you but once you have the text you should be able to do that fairly easily. iText does a really great job of extracting text as long as it is actually text (not outlines or bitmaps). When searching this site also look for iTextSharp which is the .Net port of iText. It has more questions/answers and the code is almost completely the same for C#.",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "elena",
+        "imageURL": "",
+        "createdAt": "2022-07-13T11:10:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 5,
+        "title": "this is second test title",
+        "description": "In all cases, to load data or check other properties in the page load cycle before toggling the indicators will take time, sometimes a really small time, other times much longer. In Blazor Server this is even more relevant than other JS frameworks because the client needs to connect to the server for the logic to be executed. This is the pause or delay that you experience at the start, so given that you want to show the indicator specifically during this time where there is a delay for everything in the view port, then it makes sense that the default state should be for the indicator to be visible.",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2021-12-13T11:15:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 6,
+        "title": "this is test title",
+        "description": "In Blazor, we have a tendency when we are starting out to cheat and execute large complex expressions and or functions in-line with the razor template. STOP! just because you can, doesn't mean you should. I encourage all Blazor devs to try to implement a View Model pattern for managing visual states, create a discrete valued property on the view model or property/field in the code behind class and databind the any visibility or conditional statements to that property as @RBee has a demonstrated. The problem with the following @if block is that there is no way to determine a default state, the code MUST be executed to determine if the truthy or falsey branch of the nested razor template should be executed.",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 7,
+        "title": "Next.js build error on Vercel but not in Local",
+        "description": "For evaluating conditions of visual assets that you want a default state to render first, the first logical event to use is to override the OnAfterRenderAsync method. That is rendered after the DOM has been evaluated once, so you can see that if our DOM requires code to be evaluated first, then our standard initialization logic hasn't even been executed yet. Where this can be confusing is in the example for how to Handle incomplete async actions at render",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-08-16T01:15:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 8,
+        "title": "this is test title",
+        "description": "If you know what is going on, pls help me with this! In the meantime, if you dont know how to fix this but do know how to disable pry console to use irb for rails instead then show me how to pls.",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-08-09T01:15:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 9,
+        "title": "this is second test title",
+        "description": "Not sure why I get this error trying to copy a file that's passed to my app via openURLContexts. The source file is one on my iCloud drive that I tapped that opened up my app.",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-08-01T01:15:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 10,
+        "title": "this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title",
+        "description": "I have the following Python code. The purpose of this code is for the user to type in a unique ID to search for. The code will then iterate through a list of XML files contained in a folder called XMLContentFiles, and then it will display the result back in the terminal.",
+        "tags": [],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-08-01T09:15:25",
+        "modified": true,
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 11,
+        "title": "this is second test title",
+        "description": "In my html file, I created a user input so that the user can enter the Unique ID, and the Submit button to send the data to the python function and then display the response data to the page.",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-07-01T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 12,
+        "title": "this is test title",
+        "description": "To make this work, I needed to run sudo apt-get install freetds-dev in WSL. This was sufficient to make it work, and I was able to successfully connect to the remote database. The issue arises when trying to deploy the API on Railway, where I encounter an error during the build process, presumably because Railway doesn't seem to have freetds-dev installed by default. Does anyone know how to solve this problem? I thought about sending that command in the To make this work, I needed to run sudo apt-get install freetds-dev in WSL. This was sufficient to make it work, and I was able to successfully connect to the remote database. The issue arises when trying to deploy the API on Railway, where I encounter an error during the build process, presumably because Railway doesn't seem to have freetds-dev installed by default. Does anyone know how to solve this problem? I thought about sending that command in the 'build command', but it didn't work (pepepe). Alternatively, has anyone been able to connect to a SQL Server database in any other way? enter image description here'build command', but it didn't work (pepepe). Alternatively, has anyone been able to connect to a SQL Server database in any other way? enter image description here",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-06-01T09:13:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 13,
+        "title": "this is second test title",
+        "description": "We recently upgraded our solution to .NET 6 and we are having issues with an object not being null as we would expect. I have read the documentation for nullable types on .NET 6 here. We elected to disable the Nullable setting in our projects for the time-being, while we get the code working. Because we have disabled the nullable setting, I would expect that the object behaves as it previously did, being a nullable type.",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-05-01T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 14,
+        "title": "this is test title",
+        "description": "I've also tried turning Nullable back ON, and using ? annotations to signal a nullable type, and also setting the object = null in the constructor, but none of this worked. We'd prefer to have Nullable disabled for now.",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-04-01T09:13:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 15,
+        "title": "this is second test title",
+        "description": "First, I'm a student so please be gentle. This is all very new to me.I'm attempting to generate my first Highcharts Map and it's not going well. I've used console.log statements to verify the accuracy of the data being passed to the map so I assume the error pertains to the map initiation or configuration itself. I'm executing the Javascript in an html file running the following scripts:",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-01-01T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 16,
+        "title": "this is test title",
+        "description": "I've been troubleshooting for about a week(!) now. Too stubborn to walk away and try something else. I've added console.log statements throughout the Javascript code to verify that the data being passed to the map is formatted correctly. All data logs correctly up to and including the DOM ready function. I have been working with ChatGPT 3.5 to correct syntax errors and resolve problems with my code logic. I have also consulted the Highcharts GPT to work through console errors and identify alternate solution, such as rendering with JQuery rather than using the 'async' and 'await fetch' functions. I have also commented out the events 'click:function' to see if that was holding things up but it failed to resolve the issue. The TAs in my class have also provided support. One of the TAs was able to get the code to generate a map with limited functionality but I'm trying to build a dynamic 'rich information on click' map wherein an array of values (defined as 'highRisk') are displayed next to the map when clicking on a state.",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 17,
+        "title": "this is second test title",
+        "description": "For study == Larson, we see the exact same pattern. Therefore, foo2() should simply group the Data into one group including study == Larson and study == Mecartty together, because study == Mecartty and study == Larson have exactly the same pattern.QUESTION: I wonder why foo2() groups study == Mecartty and study == Larson into 2 different groups (i.e., 2 list elements)?",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-03-13T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 18,
+        "title": "this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title",
+        "description": "We are working on migrating Hive table from on-premise to GCP Bigquery. We have a few timestamp columns in Hive table which stores the timestamp in 'Europe/London' timezone. These Hive timestamp columns needs to be migrated to Bigquery table columns. Note - Our Bigquery tables are not partitioned on these timestamp columns. Example Hive timestamp column value - '2023-07-20T12:20:50' (this is in 'Europe/London' timezone)",
+        "tags": [],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2020-03-13T09:13:25",
+        "modified": true,
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 19,
+        "title": "this is second test title",
+        "description": "If anyone has ever encountered a similar use case, would like to hear suggestions.Can we use STRING type column to store timestamp values('Europe/London' timezone) in Bigquery ??? Will it be a good idea to use STRING type column??? Any other suggestions ???",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2019-03-13T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 20,
+        "title": "this is test title",
+        "description": "After some experiments, it works for non-secret files and secret with type=opaque but not type=kubernetes.io/tls. It’s strange that the same config work for KubeadmConfigTemplate . Anyone have any clue on this?",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-08-16T09:13:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 21,
+        "title": "this is second test title",
+        "description": "I'm trying to create a python script that deals with audios and videos. so, I need to use ffmpeg and it works -for details, I used a CLI program that deals with it, not me-, but when I tried to create an exe file using pyinstaller, it doesn't contain ffmpeg packages within it! Now, if anyone want to use the app, he couldn't until he downloads ffmpeg independently, and it's a further step that makes it harder reach my app. What is the solution/the way to embed ffmpeg with my app? What I'm expecting is to find a solution...What I've tried is that: I tried to search on google, but I found nothing. I tried to ask chatGPT and it gives me a script that doesn't work :)",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-08-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 22,
+        "title": "this is test title",
+        "description": "Our CI/CD uses GitHub actions for, among other things, running our test suite. When the database is set up in the action workflow, it fails when it attempts to run 'CREATE EXTENSION vector;' (in the Rails migration, it's 'enable_extension 'vector'', which I'm sure is the correct syntax since all the other extensions work. I consistently get this error:",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-07-14T09:13:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 23,
+        "title": "this is second test title",
+        "description": "I'm not able to determine if the problem is with the rake task, or if it is just passing through the error from PG, but I suspect the latter since it says 'PG::UndefinedFile' in the error message.My container is ubuntu-latest and the image is redis:alpine. Ruby is version 3.2.2 and all the gems install correctly.",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2023-06-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 24,
+        "title": "this is test title",
+        "description": "After installing everything, I restart postgres. I've attempted to install pgvector with apt-get and manually using the provided examples at https://github.com/pgvector/pgvector. As far as I can tell it's installed (as I said above, the missing file is right where it should be). I see this in the log trace:",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 25,
+        "title": "this is second test title",
+        "description": "enable.service.ts @Injectable({ providedIn: 'root'}) export class EnableService {isEnabled$ = from(this.client.init()).pipe(switchMap(() => this.client.getEnabled()),map(([enabled, isAdmin]) => ({enabled: true, isAdmin: false})),share()); constructor() {}} // some constructor",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2022-03-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 26,
+        "title": "this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title",
+        "description": "export class MainComponent implements OnInit, AfterViewInit, OnDestroy {@ViewChild('mymap') containerRef: ElementRef<HTMLDivElement>; isAdmin: boolean = false; isEnable: boolean = false; constructor(private enableService: EnableService,) {this.enableService.isEnabled$.subscribe(res => {this.enable = res.enabled; this.isAdmin = res.isAdmin});}",
+        "tags": [],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2021-03-14T09:13:25",
+        "modified": true,
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 27,
+        "title": "this is second test title",
+        "description": "main.component.html <div #mymap *ngIf='!isEnable || isAdmin'></div>",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2022-03-14T10:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 28,
+        "title": "this is test title",
+        "description": "Is there anyway to make sure ngAfterViewInit got executed after enableService retrieve the value?or is there a better way so I don't have to use that 1 second delay. If I set the initial value of isEnable to false, and then it ended up true, it will cause an issue, likewise if it's true and ended up true, it will cause error too. I tried moving the observable subscription from constructor to ngOnInit, it also does not work. ",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-03-14T09:13:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 29,
+        "title": "Vuforia Area Target version 10-16-5 doesn't work with HL2",
+        "description": "Does anyone have Vuforia Area Target work with HL2, I have try multiple version even the latest 10-16-5 on Hololens 2 and it doesn't work. Just a simple scene with a cube as a child of an area target in the scene => built and deployed on hololens 2, doesn't work. The cube won't show up at all. Of course, I do have MRTK, OpenXR and all the setting as instruct by vuforia here https://library.vuforia.com/platform-support/working-hololens-sample-unity and here https://library.vuforia.com/develop-area-targets/area-targets-unity  ",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2021-02-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 30,
+        "title": "How to store the url to a sound file in ios",
+        "description": "I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav ",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2022-01-14T09:13:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 31,
+        "title": "How to create a bounding box given in distance, projection, and point to select points given in coordinates?",
+        "description": "Given a a point (lat, lng) and a projection crs create a bounding box square given by miles to select rows in a geopandas GeoDataFrame where the geometry is made up of other points. ",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2022-05-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 32,
+        "title": "CKEditor image plugin configuration for CKeditor 3 not available",
+        "description": "config.toolbarGroups = [ { name: 'document',    groups: [ 'mode', 'document', 'doctools' ] },{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] }, { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },{ name: 'forms' },{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] }{ name: 'links' },{ name: 'insert' },{ name: 'styles' },{ name: 'colors' },{ name: 'tools' },{ name: 'others' },{ name: 'about' } ]};",
+        "tags": [
+          "python",
+          "image",
+          "java"
+        ],
+        "author": "stefan",
+        "imageURL": "",
+        "createdAt": "2023-03-30T09:13:25",
+        "votes": 0,
+        "answers": 0,
+        "views": 2
+      },
+      {
+        "id": 33,
+        "title": "ckeditor image dialog size",
+        "description": "I have configured my own custom image repository using ckeditor image plugin. Now i want to change the size of image dialog. I have checked a lot but found properties for changing height and width of file browser and ckeditor itself only. How could i change the size of image dialog that appears on oncliking the image icon in ckeditor toolbar.",
+        "tags": [
+          "javascript",
+          "c++",
+          "c#"
+        ],
+        "author": "starball",
+        "imageURL": "",
+        "createdAt": "2022-03-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 34,
+        "title": "CKEditor React Image Resize Plugine",
+        "description": "How to use ImageResize with react. I can't find any sample. I want to resize image which I add from CKEditor on my react component.",
+        "tags": [
+          "react",
+          "c++",
+          "c#"
+        ],
+        "author": "elena",
+        "imageURL": "",
+        "createdAt": "2023-03-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 3
+      },
+      {
+        "id": 35,
+        "title": "How to increase the size of CKEditor React component with Material UI react?",
+        "description": "I am using CKEditor React Component (https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html) at multiple times in my project. RichTextEditor.js (in folder A)",
+        "tags": [
+          "react",
+          "c++",
+          "c#"
+        ],
+        "author": "elena",
+        "imageURL": "",
+        "createdAt": "2023-05-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 1
+      },
+      {
+        "id": 36,
+        "title": "Error 500 and SyntaxError: Unexpected end of JSON input when fetching data from Prisma in NextJs13",
+        "description": "I am using CKEditor React Component (https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html) at multiple times in my project. RichTextEditor.js (in folder A)",
+        "tags": [
+          "react",
+          "c++",
+          "c#"
+        ],
+        "author": "elena",
+        "imageURL": "",
+        "createdAt": "2023-05-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 1
+      },
+      {
+        "id": 136,
+        "title": "How to fix error 'Failed to compile : ./node_modules/@itwin/object-storage- azure/lib/frontend/wrappers/FrontendBlockBlobClientWrapper.js 17:59'",
+        "description": "I am using CKEditor React Component (https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html) at multiple times in my project. RichTextEditor.js (in folder A)",
+        "tags": [
+          "react",
+          "c++",
+          "c#"
+        ],
+        "author": "elena",
+        "imageURL": "",
+        "createdAt": "2023-05-14T09:13:25",
+        "votes": 5,
+        "answers": 2,
+        "views": 1
+      },
+      {
+        "id": "37",
+        "title": "테스트 제목",
+        "description": "<p>내용입력합니다.</p><p>줄바꿈 합니다.</p>",
+        "votes": 5,
+        "answers": 2,
+        "views": 1
+      },
+      {
+        "id": "38",
+        "title": "38번 데이터의 제목",
+        "description": "<p>ID 38번 자료생성합니다.&nbsp;</p><p>이미지를 첨부합니다.&nbsp;</p>",
+        "votes": 5,
+        "answers": 2,
+        "views": 1
+      },
+      {
+        "id": "39",
+        "title": "이미지 URL 첨부",
+        "description": "<p>내용입력&nbsp;</p><p>이미지 URL첨부</p><p><a href=\"https://pixabay.com/photos/solar-wind-borealis-northern-lights-7917659/\">https://pixabay.com/photos/solar-wind-borealis-northern-lights-7917659/</a></p><p>이미지 첨부전&nbsp;</p>"
+      },
+      {
+        "id": "40",
+        "title": "이미지 첨부",
+        "description": "<p>json 서버에 이미지 업로드</p><p>&nbsp;</p>"
+      },
+      {
+        "id": "41",
+        "title": "데이터 인풋 ",
+        "description": "<p>이미지를 첨부합니다.&nbsp;</p>",
+        "imageURL": null
+      },
+      {
+        "id": "42",
+        "title": "Next Js App error in cpanel shared hosting; WebAssembly.instantiate(): Out of memory: wasm memory at lazyllhttp",
+        "description": "<p>입력합니다.</p>",
+        "author": "elena",
+        "votes": 5,
+        "answers": 2,
+        "views": 1,
+        "imageURL": null
+      },
+      {
+        "id": "43",
+        "title": "이미지 첨부 test",
+        "description": "<p>이미지를 첨부합니다. <img>??</p>",
+        "votes": 5,
+        "answers": 2,
+        "views": 1
+      },
+      {
+        "id": "44",
+        "title": "이미지 첨부 test",
+        "description": "<p>이미지를 첨부합니다. <img>?? 아이디 수정</p>"
+      },
+      {
+        "id": "45",
+        "title": "이미지 첨부 test45",
+        "description": "<p>이미지를 첨부합니다. <img>?? 아이디 수정<img></p>",
+        "imageURL": null
+      },
+      {
+        "id": "46",
+        "title": "이미지 첨부 test46",
+        "description": "<p>이미지를 첨부합니다. <img>?? 아이디 수정<img></p>"
+      },
+      {
+        "id": "50",
+        "title": "이미지 넣은 50번 문서",
+        "description": "<p>내용이 있습니다. 이미지도 있습니다.</p><p><img></p>"
+      },
+      {
+        "id": "51",
+        "title": "test",
+        "description": "<p>1234<img></p>"
+      },
+      {
+        "id": "52",
+        "title": "testtest52",
+        "description": "<p>1234<img></p>"
+      },
+      {
+        "id": "53",
+        "title": "test53",
+        "description": "<figure class=\"image\"><img></figure><p>12344</p>"
+      },
+      {
+        "id": "54",
+        "title": "test54",
+        "description": "<figure class=\"image\"><img></figure>"
+      }
+    ]
+  }
