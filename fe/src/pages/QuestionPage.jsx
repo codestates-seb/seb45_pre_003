@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
 import Loading from "../components/Loading";
 import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, PageBox, PageButtonBox, PageButton, PerPageText, Filter } from "../components/homepage/HomePage.style";
 import { ContainerStyle } from "../style";
 import { useEffect, useState } from "react";
+import QuestionDetail from "../components/homepage/QuestionDetail";
+import axios from "axios";
 
 const DummyData = {
     "data" : [ {
-      "questionId" : 2,
+      "questionId" : 3,
       "title" : "1踰� 吏덈Ц �젣紐�",
       "member" : {
         "id" : 1,
@@ -128,16 +130,19 @@ function QuestionPage () {
 
     const perPageArr = [15,30,50];
     const filters = ['Newest','Active','Unanswered'];
-    const testURL = `http://localhost:8080/questions?searchWord=&tab=newest&page=1&size=15/`
+    const testURL = `http://localhost:3000/questions`
 
     //pageInfo, tap, perPage중 하나라도 값이 변경된다면 밑에 useEffect를 통해 api요청을 보내고 apidata를 갱신함
     useEffect(()=>{
         setIsloading(true);
-        console.log(`http://localhost:8080/questions?searchWord=&tab=${tap}&page=${page}&size=${perPage}/`);
-        setTimeout(()=>{
-            setApiData({...DummyData});
+        axios.get(testURL)
+        .then((res)=>{
+            setApiData({...res.data});
             setIsloading(false);
-        },1000)
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     },[page,tap,perPage])
 
     const pageSizeRendering = (pageInfo) => {
@@ -223,79 +228,86 @@ function QuestionPage () {
             <LeftBar/>
             <HomePageContentStyle>
                 <HomePageMainBarStyle>
-                    {isLoading
-                    ?<Loading/>
-                    :<><TopBox>
-                        <Title>All Questions</Title>
-                        <Link to={'/askquestion'}>
-                            <AskQuestionBtn>Ask Question</AskQuestionBtn>
-                        </Link>
-                    </TopBox>
-                    <SecondBox>
-                        <QuestionsNum
-                            style={{visibility:"visible"}}>
-                            {`${apiData.pageInfo.totalElements.toLocaleString()} questions`}
-                        </QuestionsNum>
-                        <FilterBox>
-                            {filters.map((el,idx)=>
-                            <Filter
-                            key={idx}
-                            className={`
-                                ${idx===0?'first':idx===filters.length-1?'last':''}
-                                ${tap===el.toLowerCase()?'focus':''}
-                                `}
-                            onClick={e=>changeTap(e,setTap)}
-                            >{el}
-                            </Filter>)}
-                        </FilterBox>
-                    </SecondBox>
-                    <Ul>
-                        {apiData.data.map((el)=>{
-                            return (
-                                <Li key={el.questionId}>
-                                    <LiStatusBox>
-                                        {/* <StatsItem>
-                                            <StatsItemNumber>{el.votes}</StatsItemNumber>
-                                            <StatsItemUnit>votes</StatsItemUnit>
-                                        </StatsItem> */}
-                                        <StatsItem>
-                                            <StatsItemNumber>{el.answerCount}</StatsItemNumber>
-                                            <StatsItemUnit>answers</StatsItemUnit>
-                                        </StatsItem>
-                                        <StatsItem>
-                                            <StatsItemNumber>{el.visitCount}</StatsItemNumber>
-                                            <StatsItemUnit>views</StatsItemUnit>
-                                        </StatsItem>
-                                    </LiStatusBox>
-                                    <LiContentBox>
-                                        <LiTitle>{el.title}</LiTitle>
-                                        <LiTagAuthorBox>
-                                            {/* {el.tag.map((_,idx)=>{
-                                                return (
-                                                    <LiTag key={idx}>{el.tag[idx]}</LiTag>
-                                                )
-                                            })} */}
-                                            <MetaData>
-                                                {/* <img src="" alt="img"/> */}
-                                                <span >{el.member.name}</span>
-                                                <span href="/" style={{color:el.createdAt !== el.modifiedAt ? 'gray' : 'black'}} >{whenCorM(el.createdAt, el.modifiedAt)}</span>
-                                            </MetaData>
-                                        </LiTagAuthorBox>
-                                    </LiContentBox>
-                                </Li>
-                            )
-                        })}
-                    </Ul>
-                    <PageBox>
-                        <PageButtonBox>
-                            {pageSizeRendering(apiData.pageInfo)}
-                            <PerPageText>per page</PerPageText>
-                        </PageButtonBox>
-                        <PageButtonBox>
-                            {pageNationRendering(apiData.pageInfo)}
-                        </PageButtonBox>
-                    </PageBox></>
-                    }
+                    <Routes>
+                        <Route path=":id" element={<QuestionDetail/>}/>
+                        <Route path="" element={<>
+                        {isLoading
+                        ?<Loading/>
+                        :<>
+                            <TopBox>
+                                <Title>All Questions</Title>
+                                <Link to={'/askquestion'}>
+                                    <AskQuestionBtn>Ask Question</AskQuestionBtn>
+                                </Link>
+                            </TopBox>
+                            <SecondBox>
+                                <QuestionsNum
+                                    style={{visibility:"visible"}}>
+                                    {`${apiData.pageInfo.totalElements.toLocaleString()} questions`}
+                                </QuestionsNum>
+                                <FilterBox>
+                                    {filters.map((el,idx)=>
+                                    <Filter
+                                    key={idx}
+                                    className={`
+                                    ${idx===0?'first':idx===filters.length-1?'last':''}
+                                    ${tap===el.toLowerCase()?'focus':''}
+                                    `}
+                                    onClick={e=>changeTap(e,setTap)}
+                                    >{el}
+                                    </Filter>)}
+                                </FilterBox>
+                            </SecondBox>
+                            <Ul>
+                                {apiData.data.map((el)=>{
+                                return (
+                                    <Li key={el.questionId}>
+                                        <LiStatusBox>
+                                            {/* <StatsItem>
+                                                <StatsItemNumber>{el.votes}</StatsItemNumber>
+                                                <StatsItemUnit>votes</StatsItemUnit>
+                                            </StatsItem> */}
+                                            <StatsItem>
+                                                <StatsItemNumber>{el.answerCount}</StatsItemNumber>
+                                                <StatsItemUnit>answers</StatsItemUnit>
+                                            </StatsItem>
+                                            <StatsItem>
+                                                <StatsItemNumber>{el.visitCount}</StatsItemNumber>
+                                                <StatsItemUnit>views</StatsItemUnit>
+                                            </StatsItem>
+                                        </LiStatusBox>
+                                        <LiContentBox>
+                                            <LiTitle>
+                                                <Link to={`${el.questionId}`}>{el.title}</Link>
+                                            </LiTitle>
+                                            <LiTagAuthorBox>
+                                                {/* {el.tag.map((_,idx)=>{
+                                                    return (
+                                                        <LiTag key={idx}>{el.tag[idx]}</LiTag>
+                                                    )
+                                                })} */}
+                                                <MetaData>
+                                                    {/* <img src="" alt="img"/> */}
+                                                    <span >{el.member.name}</span>
+                                                    <span href="/" style={{color:el.createdAt !== el.modifiedAt ? 'gray' : 'black'}} >{whenCorM(el.createdAt, el.modifiedAt)}</span>
+                                                </MetaData>
+                                            </LiTagAuthorBox>
+                                        </LiContentBox>
+                                    </Li>
+                                    )
+                                })}
+                            </Ul>
+                            <PageBox>
+                                <PageButtonBox>
+                                    {pageSizeRendering(apiData.pageInfo)}
+                                    <PerPageText>per page</PerPageText>
+                                </PageButtonBox>
+                                <PageButtonBox>
+                                    {pageNationRendering(apiData.pageInfo)}
+                                </PageButtonBox>
+                            </PageBox></>
+                    }</>}/>
+                    </Routes>
                 </HomePageMainBarStyle>
                 <HomePageRightBarStyle href="https://github.com/codestates-seb/seb45_pre_003"/>
             </HomePageContentStyle>

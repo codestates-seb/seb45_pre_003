@@ -207,6 +207,13 @@ export const LiTitle = styled.h3`
     &:hover{
         cursor: pointer;
     }
+    > a {
+        text-decoration:none;
+        color:hsl(206,100%,40%);
+        &:hover{
+            color:black;
+        }
+    }
 `
 
 export const LiTagAuthorBox = styled.div`
@@ -294,4 +301,84 @@ export const PageButton = styled.div`
 export const PerPageText = styled.span`
     font-size:0.9rem;
     margin-left:10px;
+`
+
+
+
+export const QDTitleBox = styled.div`
+    display:flex;
+    flex-direction:column;
+    flex :1;
+`
+
+export const QDTitleStatsBox = styled.div`
+    margin-bottom:6px;
+    > span {
+        margin:0 24px 0 4px;
+    }
+`
+
+export const BodyBox = styled.div`
+    width:100%;
+    margin-top:16px;
+`
+
+export const CommentUl = styled.ul`
+    margin:16px 0 16px 0;
+    padding:0 20px 0 20px;
+    list-style: none;
+`
+
+export const CommentLi = styled.li`
+    padding:4px 0 4px 0;
+    border-bottom:1px solid lightgray;
+    > span {
+        font-size:12px;
+        margin:0 4px 0 4px;
+    }
+    
+    >.name {
+        color: #0a95ff;
+    }
+
+    >.time {
+        color:lightgray;
+    }
+
+    > textarea {
+        margin:4px 0 4px 0;
+        display:block;
+        width:50%;
+        resize:none;
+    }
+
+    > button {
+        margin-right:4px;
+        padding:4px;
+        border-radius:3px;
+        border:1px solid hsl(210,8%,70%);
+        &:hover{
+            cursor: pointer;
+            opacity:0.8
+        }
+        &.cancle{
+            background-color:lightgray;
+        }
+        &.send{
+            background-color:#0a95ff;
+            color:white;
+        }
+    }
+
+`
+
+export const AddCommentBtn = styled.button`
+    margin:16px 0 16px 0;
+    font-size:14px;
+    color:gray;
+    border:0;
+    background-color:white;
+    &:hover{
+        cursor: pointer;
+    }
 `
