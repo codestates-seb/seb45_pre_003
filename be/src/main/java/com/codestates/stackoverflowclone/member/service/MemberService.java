@@ -83,8 +83,12 @@ public class MemberService {
         return memberPage;
     }
 
-    public Member updateMember(Member member) {
+    public Member updateMember(Member member, String email) {
         Member findMember = verifyId(member.getId());
+
+        if (!email.equals(findMember.getEmail())) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
 
         Optional.ofNullable(member.getName()).ifPresent(
                 name -> findMember.setName(name)
