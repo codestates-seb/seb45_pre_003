@@ -10,6 +10,7 @@ import QuestionPage from './pages/QuestionPage';
 import AskQuestionPage from './pages/AskQuestionPage';
 import LoginHeader from './components/LoginHeader/Loginheader';
 import React, { useState } from 'react';
+import PageNotFound from './components/PageNotFound';
 
 
 function App() {
@@ -19,12 +20,13 @@ function App() {
     <>
     {isLogout ? <LoginHeader /> : <Header />}
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/question" element={<QuestionPage/>}/>
+        <Route path="/*" element={<HomePage/>}/>
+        <Route path="/question/*" element={<QuestionPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/mypage" element={<MyPage/>}/>
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/askquestion" element={<AskQuestionPage/>}/>;
+        <Route path="404" element={<PageNotFound/>}/>
       </Routes>
       {isLogout ? <null/> : <Footer/>}
     </>
