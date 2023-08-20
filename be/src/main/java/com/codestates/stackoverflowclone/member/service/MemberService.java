@@ -100,35 +100,16 @@ public class MemberService {
         Member updateMember = repository.save(findMember);
 
         return updateMember;
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.isAuthenticated()) {
-//            String email = authentication.getName();
-//            if (email.equals(member.getEmail())) {
-//                Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
-//                Optional.ofNullable(member.getPassword())
-//                        .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
-//
-//                updateMember = repository.save(findMember);
-//            }
-//            else throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
-//        }
-//        return updateMember;
     }
 
-    public void deleteMember(long memberId) {
+    public void deleteMember(long memberId, String email) {
         Member findMember = verifyId(memberId);
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            String email = authentication.getName();
-            if (!email.equals(findMember.getEmail())) {
-                throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
-            }
+        if (!email.equals(findMember.getEmail())) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
         }
 
         repository.delete(findMember);
-
     }
 
     public Page<Question> getQuestionByMemberId(long memberId) {

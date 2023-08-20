@@ -102,7 +102,11 @@ public class MemberController {
 
     @DeleteMapping("/{member-id}")
     public ResponseEntity deleteMember(@PathVariable("member-id") long memberId) {
-        service.deleteMember(memberId);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String email = authentication.getName();
+
+        service.deleteMember(memberId, email);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
