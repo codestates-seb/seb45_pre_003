@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,32 +26,29 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository repository;
     private final PasswordEncoder passwordEncoder;
-    private final CustomAuthorityUtils authorityUtils;
     private final PageRepository pageRepository;
     private final QuestionRepository questionRepository;
+    private final CustomAuthorityUtils customAuthorityUtils;
     private final int PAGE_SIZE = 36;
     private final int QUESTION_PAGE_SIZE = 3;
     private final int QUESTION_PAGE_NUMBER = 0;
 
-    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, PageRepository pageRepository, QuestionRepository questionRepository) {
+    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, PageRepository pageRepository, QuestionRepository questionRepository, CustomAuthorityUtils customAuthorityUtils) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
-        this.authorityUtils = authorityUtils;
         this.pageRepository = pageRepository;
         this.questionRepository = questionRepository;
+        this.customAuthorityUtils = customAuthorityUtils;
     }
 
     public Member createMember(Member member) {
         verifyEmail(member.getEmail());
 
-//        if (!member.getPassword().isEmpty()) {
-//            String encryptedPassword = passwordEncoder.encode(member.getPassword());
-//            member.setPassword(encryptedPassword);
-//        }
+        if (member.getRegistrationType() != Member.RegistrationType.OAUTH2) {
+            member.setPassword(passwordEncoder.encode(member.getPassword()));
+        }
 
-        member.setPassword(passwordEncoder.encode(member.getPassword()));
-
-        List<String> roles = authorityUtils.getUSER_ROLES_STRING();
+        List<String> roles = customAuthorityUtils.getUSER_ROLES_STRING();
         member.setRoles(roles);
 
         Member saveMember = repository.save(member);
@@ -85,8 +84,19 @@ public class MemberService {
     }
 
     public Member updateMember(Member member) {
-//        Member findMember = verifyId(member.getId());
-//
+        Member findMember = verifyId(member.getId());
+
+        Optional.ofNullable(member.getName()).ifPresent(
+                name -> findMember.setName(name)
+        );
+        Optional.ofNullable(member.getPassword()).ifPresent(
+                password -> findMember.setPassword(passwordEncoder.encode(password))
+        );
+
+        Member updateMember = repository.save(findMember);
+
+        return updateMember;
+
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        if (authentication != null && authentication.isAuthenticated()) {
 //            String email = authentication.getName();
@@ -95,38 +105,26 @@ public class MemberService {
 //                Optional.ofNullable(member.getPassword())
 //                        .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
 //
-//                Member updateMember = repository.save(findMember);
-//
-//                return updateMember;
+//                updateMember = repository.save(findMember);
 //            }
+//            else throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
 //        }
-//        throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
-        Member findMember = verifyId(member.getId());
-                        Optional.ofNullable(member.getName()).ifPresent(name -> findMember.setName(name));
-//                Optional.ofNullable(member.getPassword())
-//                        .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
-
-                Member updateMember = repository.save(findMember);
-
-                return updateMember;
-
+//        return updateMember;
     }
 
     public void deleteMember(long memberId) {
-//        Member findMember = verifyId(memberId);
-//
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.isAuthenticated()) {
-//            String email = authentication.getName();
-//            if (!email.equals(findMember.getEmail())) {
-//                throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
-//            }
-//        }
-//
-//        repository.delete(findMember);
         Member findMember = verifyId(memberId);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String email = authentication.getName();
+            if (!email.equals(findMember.getEmail())) {
+                throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+            }
+        }
+
         repository.delete(findMember);
+
     }
 
     public Page<Question> getQuestionByMemberId(long memberId) {
