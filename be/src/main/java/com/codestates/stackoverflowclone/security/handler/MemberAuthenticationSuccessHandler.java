@@ -13,6 +13,6 @@ import java.io.IOException;
 public class MemberAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-      log.info("### Authenticated successfully!");
+        log.info("### Authenticated successfully!");
     }
 }
