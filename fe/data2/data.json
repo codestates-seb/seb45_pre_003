@@ -2,7 +2,7 @@
   "questions" : [
     {
       "id": 1,
-      "title": "CKEditor5 set language",
+      "title": "CKEditor5 set language for data2 server",
       "description": "내용은 개략적으로 입력합니다.제목보다 짧은 경우입니다. ",
       "tags": [],
       "author": "elena",
@@ -67,7 +67,7 @@
         "c++",
         "c#"
       ],
-      "author": "starball",
+      "author": "james",
       "imageURL": "",
       "createdAt": "2021-12-13T11:15:25",
       "votes": 5,
@@ -99,7 +99,7 @@
         "c++",
         "c#"
       ],
-      "author": "starball",
+      "author": "james",
       "imageURL": "",
       "createdAt": "2023-08-16T01:15:25",
       "votes": 5,
@@ -131,7 +131,7 @@
         "c++",
         "c#"
       ],
-      "author": "starball",
+      "author": "james",
       "imageURL": "",
       "createdAt": "2023-08-01T01:15:25",
       "votes": 5,
@@ -220,7 +220,7 @@
         "c++",
         "c#"
       ],
-      "author": "starball",
+      "author": "james",
       "imageURL": "",
       "createdAt": "2021-12-13T11:15:25",
       "votes": 5,
@@ -252,7 +252,7 @@
         "c++",
         "c#"
       ],
-      "author": "starball",
+      "author": "james",
       "imageURL": "",
       "createdAt": "2023-08-16T01:15:25",
       "votes": 5,
@@ -284,7 +284,7 @@
         "c++",
         "c#"
       ],
-      "author": "starball",
+      "author": "james",
       "imageURL": "",
       "createdAt": "2023-08-01T01:15:25",
       "votes": 5,
@@ -304,5 +304,22 @@
       "answers": 0,
       "views": 2
     }
-   ]
+],
+   "users" : [
+   { "id": "1",
+     "name" : "elena", 
+     "email" : "elena@gmail.com", 
+     "password" : "123456"
+  },
+  { "id": "2",
+  "name" : "james", 
+  "email" : "james@gmail.com", 
+  "password" : "123456"
+  }, 
+  { "id": "3",
+  "name" : "stefan", 
+  "email" : "stephan@gmail.com", 
+  "password" : "123456"
   }
+]
+}
