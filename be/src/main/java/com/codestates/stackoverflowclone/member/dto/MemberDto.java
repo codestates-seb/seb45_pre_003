@@ -45,7 +45,6 @@ public class MemberDto {
         private String name;
         private String email;
         private LocalDateTime createdAt;
-        private int weekSinceRegistration;
         private int visitCount;
         private int continuousVisitCount;
         @Setter
