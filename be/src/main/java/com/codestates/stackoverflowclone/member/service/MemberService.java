@@ -1,6 +1,5 @@
 package com.codestates.stackoverflowclone.member.service;
 
-import com.codestates.stackoverflowclone.answer.entity.Answer;
 import com.codestates.stackoverflowclone.exception.BusinessLogicException;
 import com.codestates.stackoverflowclone.exception.ExceptionCode;
 import com.codestates.stackoverflowclone.member.entity.Member;
@@ -8,12 +7,11 @@ import com.codestates.stackoverflowclone.member.repository.MemberRepository;
 import com.codestates.stackoverflowclone.member.repository.PageRepository;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
+import com.codestates.stackoverflowclone.security.utils.CustomAuthorityUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,18 +23,18 @@ import java.util.Optional;
 @Transactional
 public class MemberService {
     private final MemberRepository repository;
-//    private final PasswordEncoder passwordEncoder;
-//    private final CustomAuthorityUtils authorityUtils;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
     private final PageRepository pageRepository;
     private final QuestionRepository questionRepository;
     private final int PAGE_SIZE = 36;
     private final int QUESTION_PAGE_SIZE = 3;
     private final int QUESTION_PAGE_NUMBER = 0;
 
-    public MemberService(MemberRepository repository, PageRepository pageRepository, QuestionRepository questionRepository) {
+    public MemberService(MemberRepository repository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, PageRepository pageRepository, QuestionRepository questionRepository) {
         this.repository = repository;
-//        this.passwordEncoder = passwordEncoder;
-//        this.authorityUtils = authorityUtils;
+        this.passwordEncoder = passwordEncoder;
+        this.authorityUtils = authorityUtils;
         this.pageRepository = pageRepository;
         this.questionRepository = questionRepository;
     }
@@ -48,8 +46,11 @@ public class MemberService {
 //            String encryptedPassword = passwordEncoder.encode(member.getPassword());
 //            member.setPassword(encryptedPassword);
 //        }
-//        List<String> roles = authorityUtils.createRoles();
-//        member.setRoles(roles);
+
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+
+        List<String> roles = authorityUtils.getUSER_ROLES_STRING();
+        member.setRoles(roles);
 
         Member saveMember = repository.save(member);
 
