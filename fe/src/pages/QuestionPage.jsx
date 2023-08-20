@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
 import Loading from "../components/Loading";
 import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, PageBox, PageButtonBox, PageButton, PerPageText, Filter } from "../components/homepage/HomePage.style";
@@ -122,15 +122,26 @@ export const changeTap = (e,callback) => {
 }
 
 function QuestionPage () {
+    const navigate = useNavigate();
     const [isLoading,setIsloading] = useState(true);
-    const [apiData,setApiData] = useState({});
+    const [apiData,setApiData] = useState({
+        "pageInfo" : {
+            "page" : 1,
+            "size" : 0,
+            "totalElements" : 0,
+            "totalPages" : 1
+        }
+    });
+
     const [page,setPage] = useState(1);
     const [tap,setTap] = useState('newest');
     const [perPage,setPerPage] = useState('15');
 
     const perPageArr = [15,30,50];
     const filters = ['Newest','Active','Unanswered'];
-    const testURL = `http://localhost:3000/questions`
+
+    const apiURL = `http://localhost:8080/questions?searchWord=&tab=${tap}&page=${page}&size=${perPage}/`
+    const testURL = `http://localhost:3001/questions`
 
     //pageInfo, tap, perPage중 하나라도 값이 변경된다면 밑에 useEffect를 통해 api요청을 보내고 apidata를 갱신함
     useEffect(()=>{
@@ -141,6 +152,8 @@ function QuestionPage () {
             setIsloading(false);
         })
         .catch(err=>{
+            setIsloading(false);
+            navigate('/404');
             console.log(err);
         })
     },[page,tap,perPage])
@@ -243,7 +256,7 @@ function QuestionPage () {
                             <SecondBox>
                                 <QuestionsNum
                                     style={{visibility:"visible"}}>
-                                    {`${apiData.pageInfo.totalElements.toLocaleString()} questions`}
+                                    {`${apiData.pageInfo?.totalElements.toLocaleString()} questions`}
                                 </QuestionsNum>
                                 <FilterBox>
                                     {filters.map((el,idx)=>
@@ -259,7 +272,7 @@ function QuestionPage () {
                                 </FilterBox>
                             </SecondBox>
                             <Ul>
-                                {apiData.data.map((el)=>{
+                                {apiData.data?.map((el)=>{
                                 return (
                                     <Li key={el.questionId}>
                                         <LiStatusBox>

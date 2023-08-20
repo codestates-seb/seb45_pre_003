@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
 import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, Filter } from "../components/homepage/HomePage.style";
 import { ContainerStyle } from "../style";
@@ -60,6 +60,7 @@ const DummyData = {
 
 
 function HomePage () {
+    const navigate = useNavigate();
     const filters = ['Week','Month','Interesting'];
     const [isLoading,setIsloading] = useState(true);
     const [apiData,setApiData] = useState({});
@@ -69,12 +70,14 @@ function HomePage () {
 
     //tap이 변경될때 새로운 testURL로 api요청을 보냄
     useEffect(()=>{
-        axios.get('http://localhost:3000/questions')
+        axios.get('http://localhost:3001/questions')
         .then((res)=>{
             setApiData({...res.data});
             setIsloading(false);
         })
         .catch(err=>{
+            setIsloading(false);
+            navigate('/404');
             console.log(err);
         })
     },[tap])
@@ -111,7 +114,7 @@ function HomePage () {
                                 </FilterBox>
                             </SecondBox>
                             <Ul>
-                                {apiData.data.map((el)=>{
+                                {apiData.data?.map((el)=>{
                                     return (
                                         <Li key={el.questionId}>
                                             <LiStatusBox>

@@ -315,6 +315,7 @@ export const QDTitleStatsBox = styled.div`
     margin-bottom:6px;
     > span {
         margin:0 24px 0 4px;
+        color:gray;
     }
 `
 
@@ -348,7 +349,7 @@ export const CommentLi = styled.li`
     > textarea {
         margin:4px 0 4px 0;
         display:block;
-        width:50%;
+        width:100%;
         resize:none;
     }
 
@@ -373,7 +374,8 @@ export const CommentLi = styled.li`
 `
 
 export const AddCommentBtn = styled.button`
-    margin:16px 0 16px 0;
+    margin:8px 0 4px 0;
+    padding-left:4px;
     font-size:14px;
     color:gray;
     border:0;

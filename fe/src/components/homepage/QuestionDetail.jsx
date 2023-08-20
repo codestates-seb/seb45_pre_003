@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AddCommentBtn, AskQuestionBtn, BodyBox, CommentLi, CommentUl, QDTitleBox, QDTitleStatsBox, Title, TopBox } from "./HomePage.style";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { whenCorM } from "../../pages/QuestionPage";
 import { EditorViewBox } from "../../style";
 import Parser from 'html-react-parser';
@@ -52,14 +52,16 @@ const dummyansweredData = {
 }
 
 function QuestionDetail () {
+    const navigate = useNavigate();
     const {id} = useParams();
     const [isLoading,setIsLoading] = useState(true);
     const [questionData,setQuestionData] = useState({});
     const [answeredData,setAnsweredData] = useState({});
     const [isAddActive,setIsAddActive] = useState(false);
+    const [update,setUpdate] = useState(true);
 
-    const questionIdURL = `http://localhost:3000/question2`
-    const answersIdURL = `http://localhost:3000/answers`
+    const questionIdURL = `http://localhost:3001/question2`
+    const answersIdURL = `http://localhost:3001/answers`
     
     const CommentData = {
         "body" : "",
@@ -73,9 +75,11 @@ function QuestionDetail () {
 
     const send = () => {
         if(CommentData.body.length < 20) {
-            alert('20글자 이상 남겨주세요')
+            alert('20글자 입력해주세요')
         } else {
             console.log(CommentData.body);
+            setUpdate(!update);
+            setIsAddActive(false);
         }
     }
 
@@ -89,13 +93,15 @@ function QuestionDetail () {
                 setIsLoading(false);
             })
             .catch(err2=>{
+                navigate('/404');
                 console.log(err2);
             })
         })
         .catch(err=>{
+            navigate('/404');
             console.log(err);
         })
-    },[])
+    },[update])
 
     return (
         <>
