@@ -137,7 +137,7 @@ public class MemberControllerTest {
         int questionCount = 1;
         int answerCount = 1;
 
-        QuestionDto.MypageElement mypageElement = new QuestionDto.MypageElement(1L, "question title", createdAt);
+        QuestionDto.MypageElement mypageElement = new QuestionDto.MypageElement(1L, "question title", 10L, 1L, createdAt);
         MemberDto.QuestionsResponse questionsResponse = MemberDto.QuestionsResponse.builder().data(List.of(mypageElement)).build();
 
         MemberDto.GetMemberResponse response = MemberDto.GetMemberResponse.builder()
@@ -175,11 +175,15 @@ public class MemberControllerTest {
                                         fieldWithPath("questionsData.data[].questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                         fieldWithPath("questionsData.data[].title").type(JsonFieldType.STRING).description("질문 제목"),
                                         fieldWithPath("questionsData.data[].createdAt").type(JsonFieldType.STRING).description("질문 작성된 날짜"),
+                                        fieldWithPath("questionsData.data[].visitCount").type(JsonFieldType.NUMBER).description("질문 조회수"),
+                                        fieldWithPath("questionsData.data[].answerCount").type(JsonFieldType.NUMBER).description("질문에 작성된 답변 수"),
                                         fieldWithPath("questionsWithMyAnswers").type(JsonFieldType.OBJECT).description("답변을 작성한 질문"),
                                         fieldWithPath("questionsWithMyAnswers.data").type(JsonFieldType.ARRAY).description("조회된 데이터"),
                                         fieldWithPath("questionsWithMyAnswers.data[].questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                         fieldWithPath("questionsWithMyAnswers.data[].title").type(JsonFieldType.STRING).description("질문 제목"),
                                         fieldWithPath("questionsWithMyAnswers.data[].createdAt").type(JsonFieldType.STRING).description("질문 작성된 날짜"),
+                                        fieldWithPath("questionsWithMyAnswers.data[].visitCount").type(JsonFieldType.NUMBER).description("질문 조회수"),
+                                        fieldWithPath("questionsWithMyAnswers.data[].answerCount").type(JsonFieldType.NUMBER).description("질문에 작성된 답변 수"),
                                         fieldWithPath("questionCount").type(JsonFieldType.NUMBER).description("질문 수."),
                                         fieldWithPath("answerCount").type(JsonFieldType.NUMBER).description("답변 수.")
                                         )
