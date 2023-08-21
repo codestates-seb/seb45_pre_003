@@ -65,14 +65,13 @@ export const MypageFilterStyle = styled.span`
   }
 `;
 
-
 export const MyPageCardStyle = styled.div`
   display:flex ; 
   justify-content: flex-start;
   position :relative;
   width: 100%;
   text-align: left; 
-  vertical-align:baseline ;  
+  vertical-align: baseline ;  
 `; 
 
 export const ProfileLeftBarContainerStyle = styled.div`
@@ -87,6 +86,7 @@ export const ProfileLeftBarContainerStyle = styled.div`
 export const ProfileLeftBarContainerTitlelStyle = styled.div`
    font-size: 21px; 
    color: #232629 ; 
+   margin-bottom: 7px; 
    @media screen and (max-width:980px){
         display:none
     }
@@ -178,6 +178,97 @@ export const MypageNavStyle = styled.div`
     }
 `; 
 
+export const ProfileCardContainer = styled.div`
+    display:flex;
+    flex-direction: column;
+    float:left;
+    width: 100%;
+    margin-top: 3px; 
+    margin-left: 20px; 
+`
+
+export const EditProfileStyle=styled.div`
+    display:flex;
+    flex-direction: column;
+`
+export const EditProfileTitle = styled.div`
+    color: #0C0D0E; 
+    margin: 0 0 0 15px; 
+
+&.profileTitle {
+    font-size: 27px;
+    padding-bottom: 10px; 
+    margin: 5px 0 10px 15px; 
+    border-bottom: 1px solid  rgb(190, 192, 194);
+    font-weight: 600; 
+}
+
+ &.profileTitlePublic{
+    font-size: 21px;
+    font-weight: 500; 
+    padding: 20px 0 13x 0; 
+ }
+
+ &.profileTitleImage{
+    padding: 10px 0 0 15px; 
+    font-size: 15px;
+    font-weight: 500; 
+ }
+`
+export const EditProfileCardContainer= styled.div`
+    border:  1px solid  rgb(190, 192, 194);
+    margin: 10px 0 0 15px; 
+    border-radius: 5px; 
+`
+export const ProfileInputStyle = styled.input`
+display:left; 
+width: 90%; 
+height: 15px;
+margin: 5px 0 0 10px; 
+border: none; 
+outline: none; 
+`
+
+export const ProfileElementStyle = styled.form`
+width: 421px;
+height: 33px; 
+flex-shrink:1;
+margin: 5px 0 0 30px; 
+vertical-align: middle;
+position:relative !important;
+border-radius: 5px; 
+border: 1px solid lightgray; 
+
+&:hover {
+    box-shadow: 0 0 6px 0px skyblue;
+}
+`
+
+export const CustomEditorStyle = styled.div`
+    margin: 5px 30px 5px 30px; 
+    
+    & > * .ck-content {
+        min-height:100px;
+    }
+`
+
+export const ButtonStyle = styled.button`
+    height: 37px; 
+    color : #FFFFFF; 
+    background-color: #0A95FF; 
+    border : 1px solid #0A95FF; 
+    margin : 5px 0px 5px 30px; 
+    padding :  10.4px; 
+    border-radius : 5px; 
+`
+
+export const MyPageQuestionStyle = styled.div`
+  width: calc(100% - 164px); 
+  @media screen and (max-width:980px){
+    max-width: 750px; 
+           } 
+`; 
+
 export const MypageNavitemStyle = styled.li`
     list-style: None;
     font-size: 13px; 
@@ -196,45 +287,101 @@ export const MypageNavitemStyle = styled.li`
 
 `
 export const ActivityCardContainer = styled.div`
+    display:flex;
+    flex-direction: column;
     float:left;
-    width:calc(100% - 164px);
-    @media screen and (max-width:980px){
     width: 100%;
-    }
 `
 
-export const ActivityStyleCardTitleStyle = styled.div`
+export const CardTitleStyle = styled.div`
+    float:left;
     font-size: 21px;
     vertical-align: baseline; 
-
- &.profileDetails {
-    margin-left: 20px; 
-   }
+    margin-bottom : 10px;
 `
-export const ActivityCardTextStyle = styled.div`
+
+export const ActivityCardItemContainer=styled.div`
+    display:flex;
+    flex-direction: column; 
     font-size: 13px; 
-    padding: 16px; 
-    line-height: 17px; 
-    vertical-align: baseline; 
-    color : rgb(106, 115, 124);
-    border: 1px solid  rgb(190, 192, 194); 
+    line-height: 17px;
+    border: 1px solid  rgb(190, 192, 194);
     border-radius: 10px; 
+    color : rgb(106, 115, 124);
+    
     span {
         color: hsl(206,100%,40%);
     }
 
- &.profileDetails {
-    margin-left: 20px; 
-   }
 `
-export const MypageAnswersTitleStyle = styled.div`
+export const ActivityCardAnswerNoneStyle=styled.div`
+    float:letf; 
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    width: 100%; 
+    height: 109px; 
+    border: 1px solid  rgb(190, 192, 194);
+    border-radius: 5px;  
+`
+
+export const ActivityQuestionBoxInnerStyle = styled.div`
+    display: flex;
+    flex-direction: column;  
+    justify-content: left;
+    width: 100%; 
+    border-bottom: 1px solid  rgb(190, 192, 194);
+    padding: 16px;
+`
+
+export const QuestionUpperText = styled.div`
+   display: flex; 
+   flex-direction: row; 
+   align-items: center;
+`
+
+export const MypageQuestionSummary = styled.div`
+    display: flex;  
+    margin: 3px; 
+    margin-bottom: 2px; 
+    
+&.answersGreenBox {
+    border: 1px solid hsl(140,41%,31%);
+    border-radius: 5px; 
+}
+`
+
+export const MypageQuestionUpperTextStyle = styled.div`
+    color: #6A737C; 
+    font-size: 13px; 
+    font-weight: 600; 
+    padding: 2px; 
+
+ &.mypageItems_1 {
+    color: #2F6F44;  
+    margin-right: 3px; 
+ }
+
+ &.mypageItemCreatedAt{
+   font-size: 11px; 
+ }
+ `
+export const NothingToshow = styled.div`
+     font-size: 13px; 
+     color: #6A737C;
+     padding: 10px; 
+     align-self: center;
+     span {
+        color: blue; 
+     }
+`
+
+export const MypageQuestionTitleStyle = styled.div`
     color: #6A737C; 
     font-size: 13px; 
     padding: 2px 15px 0px 0px; 
+    font-weight: 600; 
 
-&.mypageItems_1 {
-    color: #0C0D0E;  
-}
 
 &.mypageAnwerTitle {
     color: #00457A;
