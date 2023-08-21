@@ -59,6 +59,8 @@ public class QuestionDto {
     public static class MypageElement {
         private Long questionId;
         private String title;
+        private Long visitCount;
+        private Long answerCount;
 
         private LocalDateTime createdAt;
 
