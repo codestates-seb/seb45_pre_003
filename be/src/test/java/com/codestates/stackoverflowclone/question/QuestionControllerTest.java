@@ -32,6 +32,7 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -58,10 +59,10 @@ import static org.springframework.restdocs.request.RequestDocumentation.*;
 //        excludeFilters = {
 //                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
 //        })
-//@WebMvcTest(QuestionController.class)  //webmvctest 복구 대상
+@WebMvcTest(QuestionController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-@SpringBootTest@AutoConfigureMockMvc // 제거대상, @WithMockUser(roles = "USER")각 메서드에서 제거 대상
+@AutoConfigureMockMvc(addFilters = false)
 public class QuestionControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -74,7 +75,7 @@ public class QuestionControllerTest {
     @Autowired
     private Gson gson;
 
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithMockUser(authorities = {"ROLE_USER"})
     public void postQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -131,7 +132,7 @@ public class QuestionControllerTest {
                         )
                 ));
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithMockUser(authorities = {"ROLE_USER"})
     public void patchQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -189,7 +190,7 @@ public class QuestionControllerTest {
                         )
                 ));
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithAnonymousUser
     public void getQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -235,7 +236,7 @@ public class QuestionControllerTest {
 
                 ));
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithAnonymousUser
     public void getQuestionsTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -315,7 +316,7 @@ public class QuestionControllerTest {
 
                 ));
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithAnonymousUser
     public void getQuestionsOnMypageTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -380,7 +381,7 @@ public class QuestionControllerTest {
 
                 ));
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithMockUser(authorities = {"ROLE_USER"})
     public void deleteQuestionTest() throws Exception {
         // given
         // (6) 테스트 데이터

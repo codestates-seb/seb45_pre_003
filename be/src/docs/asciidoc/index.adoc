@@ -379,34 +379,6 @@ include::{snippets}/get-questions/response-body.adoc[]
 .response-fields
 include::{snippets}/get-questions/response-fields.adoc[]
 
-=== mypage Answers/Questions
-.curl-request
-include::{snippets}/get-questionsOnMypage/curl-request.adoc[]
-
-.http-request
-include::{snippets}/get-questionsOnMypage/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/get-questionsOnMypage/httpie-request.adoc[]
-
-.path-parameters
-include::{snippets}/get-questionsOnMypage/path-parameters.adoc[]
-
-.request-body
-include::{snippets}/get-questionsOnMypage/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/get-questionsOnMypage/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/get-questionsOnMypage/http-response.adoc[]
-
-.response-body
-include::{snippets}/get-questionsOnMypage/response-body.adoc[]
-
-.response-fields
-include::{snippets}/get-questionsOnMypage/response-fields.adoc[]
-
 === 질문 삭제
 .curl-request
 include::{snippets}/delete-question/curl-request.adoc[]

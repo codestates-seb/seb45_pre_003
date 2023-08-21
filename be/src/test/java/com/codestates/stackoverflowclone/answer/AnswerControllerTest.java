@@ -11,6 +11,7 @@ import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.repository.MemberRepository;
 import com.codestates.stackoverflowclone.member.service.MemberService;
+import com.codestates.stackoverflowclone.question.controller.QuestionController;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
 import com.codestates.stackoverflowclone.question.service.QuestionService;
@@ -35,6 +36,7 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -62,9 +64,10 @@ import static org.springframework.restdocs.request.RequestDocumentation.*;
 //                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfiguration.class)
 //        })
 //@WebMvcTest(AnswerController.class) // webmvctest 복구 대상
+@WebMvcTest(AnswerController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-@SpringBootTest@AutoConfigureMockMvc // 제거대상, @WithMockUser(roles = "USER")각 메서드에서 제거 대상
+@AutoConfigureMockMvc(addFilters = false)
 public class AnswerControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -78,7 +81,7 @@ public class AnswerControllerTest {
     private QuestionService questionService;
     @Autowired
     private Gson gson;
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithMockUser(authorities = {"ROLE_USER"})
     public void postAnswerTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -130,7 +133,7 @@ public class AnswerControllerTest {
                         )
                 ));// (10) API 문서 스펙 정보 추가
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithMockUser(authorities = {"ROLE_USER"})
     public void patchAnswerTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -188,7 +191,7 @@ public class AnswerControllerTest {
 
                 ));
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithMockUser(authorities = {"ROLE_USER"})
     public void setBestTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -221,7 +224,7 @@ public class AnswerControllerTest {
                         )
                     );
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithAnonymousUser
     public void getAnswersTest() throws Exception {
         // given
         // (6) 테스트 데이터
@@ -273,7 +276,7 @@ public class AnswerControllerTest {
 
                 ));
     }
-    @Test@WithMockUser(roles = "USER")
+    @Test@WithMockUser(authorities = {"ROLE_USER"})
     public void deleteAnswerTest() throws Exception {
         // given
         // (6) 테스트 데이터
