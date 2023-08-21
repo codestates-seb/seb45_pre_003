@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94a17651-61df-4b1e-9ff9-3704e36b8a6a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/be/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/be/src/test/java/com/codestates/stackoverflowclone/security/LoginTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/OAuth2MemberSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/OAuth2MemberSuccessHandler.java" afterDir="false" />
     </list>
@@ -263,7 +265,7 @@
       <workItem from="1692575365303" duration="13847000" />
       <workItem from="1692601762588" duration="15000" />
       <workItem from="1692601843534" duration="31000" />
-      <workItem from="1692601886862" duration="860000" />
+      <workItem from="1692601886862" duration="1256000" />
     </task>
     <servers />
   </component>
