@@ -8,26 +8,34 @@ import { FlexStyle,
 import Profile from './Profile';
 import Activities from './Activity'; 
 import axios from 'axios'; 
-
+import Loading from '../Loading'
 
 export default function MypageContent({selectedContent,setSelectedContent}) {
 
     const [mypageQuestions, setMypageQuestions ] = useState([])
     const [mypageAnswers, setMypageAnswers ] = useState([])
-
+    const [isLoading, setIsLoading] = useState(true);
     
     const handleFilter = (el) => {
       setSelectedContent(el)
     }
     
     useEffect(() => {
+      const loadingTimeout = setTimeout(() => {
       axios.get('http://localhost:8080/questions')
         .then(res => {
+          setIsLoading(true); 
           setMypageQuestions(res.data);
+          setIsLoading(false); 
         })
         .catch(error => {
           console.log("MyPage Question Mapping Error:", error);
         });
+
+      }, 300); 
+    
+      return () => clearTimeout(loadingTimeout);
+       
     }, []);
 
     useEffect(() => {
@@ -39,6 +47,11 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
           console.log("MyPage Question Mapping Error:", error);
         });
     }, []);
+
+
+    if(isLoading){
+      return <Loading />
+    }
   
     const userName = "elena"; //로그인시에 확정된 값을 이용할것 
     const userQuestions = mypageQuestions.filter(el => el.author === userName) //백엔드에서 최신 3개

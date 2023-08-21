@@ -16,6 +16,13 @@ import {
   export default function Answers({userQuestions}) {
      const numberofAnswers = userQuestions.length
     
+     function createdDate(el) {
+      const newDate = new Date(el) ; 
+      const dateMypage = newDate.toLocaleString('en-Us', { month: "short", day: "numeric"})
+      const timeMypage = newDate.toLocaleString ('en-Us', {hour:'numeric', minute: 'numeric', hour12: false})
+      return `${dateMypage} at ${timeMypage}`
+      };
+
      return (
           <div className = "QustionCard">
               <ActivityCardContainer>
@@ -48,7 +55,7 @@ import {
                                            {el.title}
                                            </MypageQuestionTitleStyle >
                                            <MypageQuestionUpperTextStyle className='mypageItemCreatedAt' key={uuidv4()} style={{ alignSelf: 'flex-end' }}>
-                                           {el.createdAt.toLocaleString()}
+                                           answered {createdDate(el.createdAt)}
                                            </MypageQuestionUpperTextStyle >
                                     </ActivityQuestionBoxInnerStyle>
                                 </div> ))}                                               
