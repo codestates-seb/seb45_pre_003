@@ -329,8 +329,8 @@ public class QuestionControllerTest {
         Page<Question> page = new PageImpl<>(list, PageRequest.of(0,10,
                 Sort.by("createdAt").descending()),list.size());
 
-        QuestionDto.MypageElement response1 = new QuestionDto.MypageElement(2L, "2번 질문 제목", LocalDateTime.now());
-        QuestionDto.MypageElement response2 = new QuestionDto.MypageElement(1L, "1번 질문 제목", LocalDateTime.now().minus(1, ChronoUnit.WEEKS) );
+        QuestionDto.MypageElement response1 = new QuestionDto.MypageElement(2L, "2번 질문 제목", 1L, 0L,LocalDateTime.now());
+        QuestionDto.MypageElement response2 = new QuestionDto.MypageElement(1L, "1번 질문 제목", 2L,0L,LocalDateTime.now().minus(1, ChronoUnit.WEEKS) );
         List<QuestionDto.MypageElement> responses = new ArrayList<>();
         responses.add(response1);
         responses.add(response2);
