@@ -19,6 +19,11 @@ spring:
             scope:
               - email
               - profile
+          github:
+            clientId: ${GITHUB_CLIENT_ID}
+            clientSecret: ${GITHUB_CLIENT_SECRET}
+            scope:
+              - user:email
 jwt:
   key: ${JWT_SECRET_KEY} #secretKey는 환경변수로
   access-token-expiration-minutes: 30
