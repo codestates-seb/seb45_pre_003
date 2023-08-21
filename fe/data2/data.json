@@ -1,0 +1,325 @@
+{
+  "questions" : [
+    {
+      "id": 1,
+      "title": "CKEditor5 set language for data2 server",
+      "description": "내용은 개략적으로 입력합니다.제목보다 짧은 경우입니다. ",
+      "tags": [],
+      "author": "elena",
+      "imageURL": "",
+      "createdAt": "2023-08-15T02:14:25",
+      "modified": "true",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 2,
+      "title": "Combine results in a data set v",
+      "description": "I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav ",
+      "tags": [],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "2023-08-13T08:14:25",
+      "modified": true,
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 3,
+      "title": "I get I can open a sound file",
+      "description": "I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav .I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav So I can at that moment load the audio file into the QAudioPlayer and it works and plays. I then store this URL in a json file to later retrieve it. And the problem is that this seems to be a sort of temporary file url, because upon restart of my application, that URL does not work anymore.So, my question is how to handle this? Do I need to copy it myself to my own dir that I can create for example under the 'Library/Application Support' path: /var /mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/Library/Application Support/App? Or is there some other way? I saw this post which allows a user to share a file with your application and seems to copy it inside your apps' storage. Then probably it will not be a 'tmp' file anymore and the link to that file will work even after application restarts. Is that how you should do it? I don't really like that approach and would like to avoid it if possible.",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "elena",
+      "imageURL": "",
+      "createdAt": "2023-07-13T11:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 4,
+      "title": "I am trying to implement swagger for my django drf projallndpoint methods I don't want post put delete methodect  ebut it's displaying s",
+      "description": "I'm not completely clear on what you are doing. Reading text and extracting text are generally the same thing. iText won't save the text to a file for you but once you have the text you should be able to do that fairly easily. iText does a really great job of extracting text as long as it is actually text (not outlines or bitmaps). When searching this site also look for iTextSharp which is the .Net port of iText. It has more questions/answers and the code is almost completely the same for C#.",
+      "tags": [
+        "python",
+        "image",
+        "java"
+      ],
+      "author": "elena",
+      "imageURL": "",
+      "createdAt": "2022-07-13T11:10:25",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 5,
+      "title": "this is second test title",
+      "description": "In all cases, to load data or check other properties in the page load cycle before toggling the indicators will take time, sometimes a really small time, other times much longer. In Blazor Server this is even more relevant than other JS frameworks because the client needs to connect to the server for the logic to be executed. This is the pause or delay that you experience at the start, so given that you want to show the indicator specifically during this time where there is a delay for everything in the view port, then it makes sense that the default state should be for the indicator to be visible.",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "james",
+      "imageURL": "",
+      "createdAt": "2021-12-13T11:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 6,
+      "title": "this is test title",
+      "description": "In Blazor, we have a tendency when we are starting out to cheat and execute large complex expressions and or functions in-line with the razor template. STOP! just because you can, doesn't mean you should. I encourage all Blazor devs to try to implement a View Model pattern for managing visual states, create a discrete valued property on the view model or property/field in the code behind class and databind the any visibility or conditional statements to that property as @RBee has a demonstrated. The problem with the following @if block is that there is no way to determine a default state, the code MUST be executed to determine if the truthy or falsey branch of the nested razor template should be executed.",
+      "tags": [
+        "python",
+        "image",
+        "java"
+      ],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 7,
+      "title": "Next.js build error on Vercel but not in Local",
+      "description": "For evaluating conditions of visual assets that you want a default state to render first, the first logical event to use is to override the OnAfterRenderAsync method. That is rendered after the DOM has been evaluated once, so you can see that if our DOM requires code to be evaluated first, then our standard initialization logic hasn't even been executed yet. Where this can be confusing is in the example for how to Handle incomplete async actions at render",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "james",
+      "imageURL": "",
+      "createdAt": "2023-08-16T01:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 8,
+      "title": "this is test title",
+      "description": "If you know what is going on, pls help me with this! In the meantime, if you dont know how to fix this but do know how to disable pry console to use irb for rails instead then show me how to pls.",
+      "tags": [
+        "python",
+        "image",
+        "java"
+      ],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "2023-08-09T01:15:25",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 9,
+      "title": "this is second test title",
+      "description": "Not sure why I get this error trying to copy a file that's passed to my app via openURLContexts. The source file is one on my iCloud drive that I tapped that opened up my app.",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "james",
+      "imageURL": "",
+      "createdAt": "2023-08-01T01:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 10,
+      "title": "this is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test titlethis is test title",
+      "description": "I have the following Python code. The purpose of this code is for the user to type in a unique ID to search for. The code will then iterate through a list of XML files contained in a folder called XMLContentFiles, and then it will display the result back in the terminal.",
+      "tags": [],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "2023-08-01T09:15:25",
+      "modified": true,
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    }
+   ],
+    "answers" : [
+    {
+      "id": 1,
+      "title": "First, I'm a student so please be gentle. This is all very new to me",
+      "description": "내용은 개략적으로 입력합니다.제목보다 짧은 경우입니다. ",
+      "tags": [],
+      "author": "elena",
+      "imageURL": "",
+      "createdAt": "2023-08-15T02:14:25",
+      "modified": "true",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 2,
+      "title": "I've been troubleshooting for about a week(!) now. Too stubborn to walk away and try something else.",
+      "description": "I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav ",
+      "tags": [],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "2023-08-13T08:14:25",
+      "modified": true,
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 3,
+      "title": "we see the exact same pattern. Therefore, foo2() should simply group the Data",
+      "description": "I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav .I use Qt to develop an IOS application. I can open a sound file using the Qt file picker dialog and then I get the url to that sound file. For example, I get file:///private/var/mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/tmp/runsomething.App-Inbox/myaudiofile.wav So I can at that moment load the audio file into the QAudioPlayer and it works and plays. I then store this URL in a json file to later retrieve it. And the problem is that this seems to be a sort of temporary file url, because upon restart of my application, that URL does not work anymore.So, my question is how to handle this? Do I need to copy it myself to my own dir that I can create for example under the 'Library/Application Support' path: /var /mobile/Containers/Data/Application/4557D5E4-68BA-4341-9F4F-2A07D5E87B4D/Library/Application Support/App? Or is there some other way? I saw this post which allows a user to share a file with your application and seems to copy it inside your apps' storage. Then probably it will not be a 'tmp' file anymore and the link to that file will work even after application restarts. Is that how you should do it? I don't really like that approach and would like to avoid it if possible.",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "elena",
+      "imageURL": "",
+      "createdAt": "2023-07-13T11:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 4,
+      "title": "I am trying to implement swagger for my django drf projallndpoint methods I don't want post put delete methodect  ebut it's displaying s",
+      "description": "I'm not completely clear on what you are doing. Reading text and extracting text are generally the same thing. iText won't save the text to a file for you but once you have the text you should be able to do that fairly easily. iText does a really great job of extracting text as long as it is actually text (not outlines or bitmaps). When searching this site also look for iTextSharp which is the .Net port of iText. It has more questions/answers and the code is almost completely the same for C#.",
+      "tags": [
+        "python",
+        "image",
+        "java"
+      ],
+      "author": "elena",
+      "imageURL": "",
+      "createdAt": "2022-07-13T11:10:25",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 5,
+      "title": "We are working on migrating Hive table from on-premise to GCP Bigquery",
+      "description": "In all cases, to load data or check other properties in the page load cycle before toggling the indicators will take time, sometimes a really small time, other times much longer. In Blazor Server this is even more relevant than other JS frameworks because the client needs to connect to the server for the logic to be executed. This is the pause or delay that you experience at the start, so given that you want to show the indicator specifically during this time where there is a delay for everything in the view port, then it makes sense that the default state should be for the indicator to be visible.",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "james",
+      "imageURL": "",
+      "createdAt": "2021-12-13T11:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 6,
+      "title": "If anyone has ever encountered a similar use case, would like to hear suggestions.",
+      "description": "In Blazor, we have a tendency when we are starting out to cheat and execute large complex expressions and or functions in-line with the razor template. STOP! just because you can, doesn't mean you should. I encourage all Blazor devs to try to implement a View Model pattern for managing visual states, create a discrete valued property on the view model or property/field in the code behind class and databind the any visibility or conditional statements to that property as @RBee has a demonstrated. The problem with the following @if block is that there is no way to determine a default state, the code MUST be executed to determine if the truthy or falsey branch of the nested razor template should be executed.",
+      "tags": [
+        "python",
+        "image",
+        "java"
+      ],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 7,
+      "title": "Next.js build error on Vercel but not in Local",
+      "description": "For evaluating conditions of visual assets that you want a default state to render first, the first logical event to use is to override the OnAfterRenderAsync method. That is rendered after the DOM has been evaluated once, so you can see that if our DOM requires code to be evaluated first, then our standard initialization logic hasn't even been executed yet. Where this can be confusing is in the example for how to Handle incomplete async actions at render",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "james",
+      "imageURL": "",
+      "createdAt": "2023-08-16T01:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 8,
+      "title": "After some experiments, it works for non-secret files and secret with type=opaque but not type=kubernetes",
+      "description": "If you know what is going on, pls help me with this! In the meantime, if you dont know how to fix this but do know how to disable pry console to use irb for rails instead then show me how to pls.",
+      "tags": [
+        "python",
+        "image",
+        "java"
+      ],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "2023-08-09T01:15:25",
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    },
+    {
+      "id": 9,
+      "title": "I'm trying to create a python script that deals with audios and videos",
+      "description": "Not sure why I get this error trying to copy a file that's passed to my app via openURLContexts. The source file is one on my iCloud drive that I tapped that opened up my app.",
+      "tags": [
+        "javascript",
+        "c++",
+        "c#"
+      ],
+      "author": "james",
+      "imageURL": "",
+      "createdAt": "2023-08-01T01:15:25",
+      "votes": 5,
+      "answers": 2,
+      "views": 3
+    },
+    {
+      "id": 10,
+      "title": "Our CI/CD uses GitHub actions for, among other things, running our test suite.",
+      "description": "I have the following Python code. The purpose of this code is for the user to type in a unique ID to search for. The code will then iterate through a list of XML files contained in a folder called XMLContentFiles, and then it will display the result back in the terminal.",
+      "tags": [],
+      "author": "stefan",
+      "imageURL": "",
+      "createdAt": "2023-08-01T09:15:25",
+      "modified": true,
+      "votes": 0,
+      "answers": 0,
+      "views": 2
+    }
+],
+   "users" : [
+   { "id": "1",
+     "name" : "elena", 
+     "email" : "elena@gmail.com", 
+     "password" : "123456"
+  },
+  { "id": "2",
+  "name" : "james", 
+  "email" : "james@gmail.com", 
+  "password" : "123456"
+  }, 
+  { "id": "3",
+  "name" : "stefan", 
+  "email" : "stephan@gmail.com", 
+  "password" : "123456"
+  }
+]
+}
