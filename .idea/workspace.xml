@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="94a17651-61df-4b1e-9ff9-3704e36b8a6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/entity/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/OAuth2MemberSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/OAuth2MemberSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/MemberAuthenticationSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/MemberAuthenticationSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,12 +23,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/be">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="stackoverflowclone" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="stackoverflowclone" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="stackoverflowclone" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -79,8 +93,13 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ahong\Desktop\F\seb45_pre_003\be\src\main\resources\static" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.StackoverflowcloneApplication">
-    <configuration name="MemberControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MemberControllerTest.deleteMemberTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/be" />
@@ -93,7 +112,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.codestates.stackoverflowclone.member.MemberControllerTest&quot;" />
+            <option value="&quot;com.codestates.stackoverflowclone.member.MemberControllerTest.deleteMemberTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -104,7 +123,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="MemberControllerTest.postMemberTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MemberControllerTest.getMemberTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/be" />
@@ -117,7 +136,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.codestates.stackoverflowclone.member.MemberControllerTest.postMemberTest&quot;" />
+            <option value="&quot;com.codestates.stackoverflowclone.member.MemberControllerTest.getMemberTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -128,7 +147,7 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="StackoverflowcloneApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MemberControllerTest.getMembersTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/be" />
@@ -141,7 +160,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.codestates.stackoverflowclone.StackoverflowcloneApplicationTests&quot;" />
+            <option value="&quot;com.codestates.stackoverflowclone.member.MemberControllerTest.getMembersTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -150,6 +169,52 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="MemberControllerTest.patchMemberTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/be" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.codestates.stackoverflowclone.member.MemberControllerTest.patchMemberTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="be [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/be" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="StackoverflowcloneApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -161,9 +226,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MemberControllerTest" />
-        <item itemvalue="Gradle.MemberControllerTest.postMemberTest" />
-        <item itemvalue="Gradle.StackoverflowcloneApplicationTests" />
+        <item itemvalue="Gradle.be [build]" />
+        <item itemvalue="Gradle.MemberControllerTest.getMemberTest" />
+        <item itemvalue="Gradle.MemberControllerTest.deleteMemberTest" />
+        <item itemvalue="Gradle.MemberControllerTest.patchMemberTest" />
+        <item itemvalue="Gradle.MemberControllerTest.getMembersTest" />
       </list>
     </recent_temporary>
   </component>
@@ -191,7 +258,10 @@
       <workItem from="1692316327680" duration="15629000" />
       <workItem from="1692337622936" duration="8157000" />
       <workItem from="1692520419525" duration="6373000" />
-      <workItem from="1692533032227" duration="2119000" />
+      <workItem from="1692533032227" duration="14820000" />
+      <workItem from="1692550124058" duration="217000" />
+      <workItem from="1692575101681" duration="250000" />
+      <workItem from="1692575365303" duration="3497000" />
     </task>
     <servers />
   </component>

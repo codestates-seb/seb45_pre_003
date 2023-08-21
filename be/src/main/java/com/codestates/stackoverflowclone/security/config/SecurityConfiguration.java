@@ -7,6 +7,7 @@ import com.codestates.stackoverflowclone.security.handler.*;
 import com.codestates.stackoverflowclone.security.jwt.JwtTokenizer;
 import com.codestates.stackoverflowclone.security.utils.CustomAuthorityUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -30,6 +31,7 @@ public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils customAuthorityUtils;
     private final MemberService memberService;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Value("${spring.security.oauth2.client.registration.google.clientId}")
     private String clientId;
@@ -37,10 +39,11 @@ public class SecurityConfiguration {
     @Value("${spring.security.oauth2.client.registration.google.clientSecret}")
     private String clientSecret;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils customAuthorityUtils, MemberService memberService) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils customAuthorityUtils, MemberService memberService, ApplicationEventPublisher applicationEventPublisher) {
         this.jwtTokenizer = jwtTokenizer;
         this.customAuthorityUtils = customAuthorityUtils;
         this.memberService = memberService;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @Bean
@@ -99,7 +102,7 @@ public class SecurityConfiguration {
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
 //            jwtAuthenticationFilter.setFilterProcessesUrl("/login");
-            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());
+            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler(applicationEventPublisher));
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());
 
             JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, customAuthorityUtils);
