@@ -9,7 +9,7 @@ import {
   LoginPageContainer,Card,ButtonForm,IconButton,IconButton2,IconButton3,Icon,MyPageLink,MyPageImage,Form,Input,
   LoginButton,SignupAll,SignupText,SignupLink,Label,ForgotPasswordLink,Loginform,SignupLink2,
 } from '../components/loginpageComponents/styles';
-
+import axios from 'axios';
 
 export default function LoginPage() {
   const [inputemail, setInputId] = useState('')
@@ -31,6 +31,8 @@ const isFormValid =
 
 // login 버튼 클릭 이벤트
 const onClickLogin = () => {
+  console.log(inputemail);
+  console.log(inputPw);
   if(!isFormValid){
 
     if (inputemail.trim() === '' || inputPw.trim() === '') {
@@ -48,25 +50,23 @@ const onClickLogin = () => {
     }
   }
 else 
-  fetch('http://localhost:8080/members', {
+  axios.post('https://ffce-211-49-219-142.ngrok-free.app/login', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      'email': inputemail.value,
-      'password': inputPw.value,
+      email: inputemail,
+      password: inputPw,
     }),
   })
     .then((res) => {
-      const jwtToken = res.headers.get("usertoken");
-      localStorage.setItem("usertoken", jwtToken);
-      return res.json();
-    })
-    .then(() => {
+      console.log("로그인 성공", res);
       navigate("/");
     })
-    .catch();
+    .catch(err => {
+      console.log("로그인 실패",err);
+    });
 }
 
 
