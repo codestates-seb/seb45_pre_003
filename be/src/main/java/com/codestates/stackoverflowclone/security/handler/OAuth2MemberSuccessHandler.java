@@ -40,33 +40,36 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         String email = String.valueOf(oAuth2User.getAttributes().get("email"));
         List<String> authorities = authorityUtils.getUSER_ROLES_STRING();
 
-        saveMember(email);
-        redirect(request, response, email, authorities);
+        Member saveMember = saveMember(email);
+        redirect(request, response, saveMember);
     }
 
-    private void saveMember(String email) {
+    private Member saveMember(String email) {
         Member member = new Member();
         member.setEmail(email);
         member.setName(email.substring(0, email.indexOf('@')));
         member.setRegistrationType(Member.RegistrationType.OAUTH2);
 
-        memberService.createMember(member);
+        Member saveMember = memberService.createMember(member);
+
+        return saveMember;
     }
 
-    private void redirect(HttpServletRequest request, HttpServletResponse response, String username, List<String> authorities) throws IOException {
-        String accessToken = delegateAccessToken(username, authorities);
-        String refreshToken = delegateRefreshToken(username);
+    private void redirect(HttpServletRequest request, HttpServletResponse response, Member member) throws IOException {
+        String accessToken = delegateAccessToken(member);
+        String refreshToken = delegateRefreshToken(member.getEmail());
 
         String uri = createURI(accessToken, refreshToken).toString();
         getRedirectStrategy().sendRedirect(request, response, uri);
     }
 
-    private String delegateAccessToken(String username, List<String> authorities) {
+    private String delegateAccessToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", username);
-        claims.put("roles", authorities);
+        claims.put("username", member.getEmail());
+        claims.put("roles", member.getRoles());
+        claims.put("id", member.getId());
 
-        String subject = username;
+        String subject = member.getEmail();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
 
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
