@@ -13,15 +13,13 @@ import axios from 'axios';
 export default function MypageContent({selectedContent,setSelectedContent}) {
 
     const [mypageQuestions, setMypageQuestions ] = useState([])
-    const [mypageAnswers, setMypageAnswers ] = useState([])
-
+    const userName = "elena"; //로그인시에 확정되므로 Backend에서 받을것 
     
     const handleFilter = (el) => {
       setSelectedContent(el)
     }
-    
     useEffect(() => {
-      axios.get('http://localhost:8080/questions')
+      axios.get('http://localhost:3001/questions')
         .then(res => {
           setMypageQuestions(res.data);
         })
@@ -29,31 +27,17 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
           console.log("MyPage Question Mapping Error:", error);
         });
     }, []);
-
-    useEffect(() => {
-      axios.get('http://localhost:8080/answers')
-        .then(res => {
-          setMypageAnswers(res.data)
-        })
-        .catch(error => {
-          console.log("MyPage Question Mapping Error:", error);
-        });
-    }, []);
   
-    const userName = "elena"; //로그인시에 확정된 값을 이용할것 
-    const userQuestions = mypageQuestions.filter(el => el.author === userName) //백엔드에서 최신 3개
-    const userAnswers = mypageAnswers.filter(el => el.author === userName) //백엔드에서 최신 3개
-    const numberOfuserQuestions = 5; // 통신을 통해 Backend에서 받아옴  (유저의 총 질문수)
-    const numberOfuserAnswers = 4 ; // 통신을 통해 Backend에서 받아옴  (유저의 총 답변수)
-    console.log(userQuestions)
-
+    const userQuestions = mypageQuestions.filter(el => el.author === userName)
+  
+  
     return (
       <>
       <div className = 'mypageContent'>
       <FlexStyle className = 'userInformation'>
         <Avatar />
         <UserInfomationConnected>
-          <div style={{fontSize:"34px", margin: "4px"}}> {userName} </div>
+          <div style={{fontSize:"34px", margin: "4px"}}> Elena </div>
           <UserdetailsStyle>
              <li style={{listStyle:'none', margin:'0px 2px'}}>🎂 Members for 3days </li>
              <li style={{listStyle:'none', margin:'0px 2px'}}>🕓 Last seen this week </li>
@@ -74,9 +58,9 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
       </div>
       }
       </div>
-      {selectedContent === 'Profile' && <Profile numberOfuserQuestions={numberOfuserQuestions} numberOfuserAnswers={numberOfuserAnswers} userName={userName}
+      {selectedContent === 'Profile' && <Profile userQuestions={userQuestions} 
       />}
-      {selectedContent === 'Activity' && <Activities userQuestions={userQuestions} userAnswers={userAnswers}
+      {selectedContent === 'Activity' && <Activities userQuestions={userQuestions} 
       />}
 
       </div>
