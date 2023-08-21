@@ -329,8 +329,8 @@ public class QuestionControllerTest {
         Page<Question> page = new PageImpl<>(list, PageRequest.of(0,10,
                 Sort.by("createdAt").descending()),list.size());
 
-        QuestionDto.MypageElement response1 = new QuestionDto.MypageElement(2L, "2번 질문 제목", 1L, 0L,LocalDateTime.now());
-        QuestionDto.MypageElement response2 = new QuestionDto.MypageElement(1L, "1번 질문 제목", 2L,0L,LocalDateTime.now().minus(1, ChronoUnit.WEEKS) );
+        QuestionDto.MypageElement response1 = new QuestionDto.MypageElement(2L, "2번 질문 제목", 17L, 0L,LocalDateTime.now());
+        QuestionDto.MypageElement response2 = new QuestionDto.MypageElement(1L, "1번 질문 제목", 10L, 0L, LocalDateTime.now().minus(1, ChronoUnit.WEEKS) );
         List<QuestionDto.MypageElement> responses = new ArrayList<>();
         responses.add(response1);
         responses.add(response2);
@@ -371,6 +371,8 @@ public class QuestionControllerTest {
                                         fieldWithPath("data[].questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
                                         fieldWithPath("data[].title").type(JsonFieldType.STRING).description("질문 제목"),
                                         fieldWithPath("data[].createdAt").type(JsonFieldType.STRING).description("질문생성일시"),
+                                        fieldWithPath("data[].visitCount").type(JsonFieldType.NUMBER).description("질문 조회수"),
+                                        fieldWithPath("data[].answerCount").type(JsonFieldType.NUMBER).description("질문 답변 갯수"),
                                         fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지정보를 담은 객체"),
                                         fieldWithPath("pageInfo.page").type(JsonFieldType.NUMBER).description("현재 페이지 번호"),
                                         fieldWithPath("pageInfo.size").type(JsonFieldType.NUMBER).description("페이지의 크기"),
