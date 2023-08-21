@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,7 +91,10 @@ public class MemberController {
         Member member = mapper.patchToMember(request);
         member.setId(memberId);
 
-        Member updateMember = service.updateMember(member);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String email = authentication.getName();
+        Member updateMember = service.updateMember(member, email);
         MemberDto.Response response = mapper.memberToResponse(updateMember);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -95,7 +102,11 @@ public class MemberController {
 
     @DeleteMapping("/{member-id}")
     public ResponseEntity deleteMember(@PathVariable("member-id") long memberId) {
-        service.deleteMember(memberId);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String email = authentication.getName();
+
+        service.deleteMember(memberId, email);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
