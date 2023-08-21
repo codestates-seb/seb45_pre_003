@@ -9,6 +9,7 @@ import tag from '../assets/tag.png';
 import trophy from '../assets/trophy.png';
 import updowm from '../assets/up-down.png';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import {
   Container,Wrapper,Content,TextContent,Hypertext,Textimg,Text,Stext,Atext,
   ButtonForm,IconButton,Icon,Icon2,SignupColumn,Inputform,InputLabel,Input,
@@ -36,6 +37,7 @@ export default function SignupPage() {
   
   const handleDisplayNameChange = (e) => {
     setDisplayName(e.target.value);
+    
   };
 
   const handleEmailChange = (e) => {
@@ -51,48 +53,47 @@ export default function SignupPage() {
   };
 
   const handleSignUp = () => {
-    if(!isFormValid){
-
-    if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
+    if (!isFormValid) {
       alert('모든 필드를 작성해주세요.');
       return;
     }
-
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       alert('유효한 이메일 주소를 입력해주세요.');
       return;
     }
-
-    else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+  
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
       alert('유효한 비밀번호를 입력해주세요.');
       return;
     }
-
-    else if (!isRobotChecked) {
+  
+    if (!isRobotChecked) {
       alert('로봇이 아닙니다 체크해주세요.');
       return;
     }
+  
+    axios.post('https://ffce-211-49-219-142.ngrok-free.app/members', {
+      name: name,
+      email: email,
+      password: password
+  }, {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      }
+  })
+  .then(response => {
+      console.log('회원가입 성공:', response.data);
+      navigate("/login");
+  })
+  .catch(error => {
+      console.error('회원가입 실패:', error);
+  });
   }
-  else {
-    fetch('http://localhost:8080/members', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        name: 'name',
-        email: 'email',
-        password: 'password',
-      })
-    })
-      .then(response => response.json())
-      .then((json) => {
-        console.log('회원가입 성공:', json);
-        navigate("/login");
-      })
-      .catch(error => {
-        console.error('회원가입 실패:', error);
-      });
-  }
-  }
+
+
+
 
 
   return (

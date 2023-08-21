@@ -1,5 +1,5 @@
 {
-  "questions" : [
+  "questions": [
     {
       "id": 1,
       "title": "CKEditor5 set language for data2 server",
@@ -151,8 +151,8 @@
       "answers": 0,
       "views": 2
     }
-   ],
-    "answers" : [
+  ],
+  "answers": [
     {
       "id": 1,
       "title": "First, I'm a student so please be gentle. This is all very new to me",
@@ -304,22 +304,54 @@
       "answers": 0,
       "views": 2
     }
-],
-   "members" : [
-   { "id": "1",
-     "name" : "elena", 
-     "email" : "elena@gmail.com", 
-     "password" : "123456"
-  },
-  { "id": "2",
-  "name" : "james", 
-  "email" : "james@gmail.com", 
-  "password" : "123456"
-  }, 
-  { "id": "3",
-  "name" : "stefan", 
-  "email" : "stephan@gmail.com", 
-  "password" : "123456"
-  }
-]
+  ],
+  "members": [
+    {
+      "id": "1",
+      "name": "elena",
+      "email": "elena@gmail.com",
+      "password": "test1234"
+    },
+    {
+      "id": "2",
+      "name": "james",
+      "email": "james@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "3",
+      "name": "stefan",
+      "email": "stephan@gmail.com",
+      "password": "123456"
+    },
+    {
+      "name": "test",
+      "email": "test@test.com",
+      "password": "test1234",
+      "id": "PE_nTtV"
+    }
+  ],
+  "login": [
+    {
+      "id": "1",
+      "email": "test@test.com",
+      "password": "test1234"
+    },
+    {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{}",
+      "id": "2B0BEWo"
+    },
+    {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{}",
+      "id": "nYBtrPI"
+    }
+  ]
 }
