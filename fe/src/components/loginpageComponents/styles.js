@@ -21,7 +21,7 @@ export const ButtonForm = styled.form`
 `;
 
 export const IconButton = styled.button`
-  background: ${({ color }) => (color ? color : 'white')};
+  background-color: white;
   width: 278px;
   height: 37.78px;
   padding: 10px;
@@ -31,14 +31,58 @@ export const IconButton = styled.button`
   font-size: 13px;
   font-weight: inherit;
   cursor: pointer;
-  color: ${({ colors }) => (colors ? 'white' : colors)};
+  color: block;
   transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    background-color: ${({ hoverColor }) => (hoverColor ? hoverColor : 'lightgray')};
+    background-color:lightgray;
+  }
+`;
+
+export const IconButton2 = styled.button`
+  background-color: #2f3337;
+  width: 278px;
+  height: 37.78px;
+  padding: 10px;
+  margin: 8px 0px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: inherit;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #252121;
+  }
+`;
+
+export const IconButton3 = styled.button`
+  background-color: #385499;
+  width: 278px;
+  height: 37.78px;
+  padding: 10px;
+  margin: 8px 0px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: inherit;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #4752b4;
   }
 `;
 

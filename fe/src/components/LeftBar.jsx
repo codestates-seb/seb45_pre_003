@@ -11,7 +11,8 @@ function LeftBar () {
         "":"Home",
         mypage:"Users"
     }
-    const pathArr = document.location.pathname.split('/')[1];
+    const url = document.location.pathname.split('/')[1];
+    const pathArr = isNaN(Number(url)) ? url : "";
 
     const where = pathToLocate[pathArr];
 

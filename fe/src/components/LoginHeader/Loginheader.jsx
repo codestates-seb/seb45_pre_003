@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useRef, useEffect} from 'react';
 import picture2 from '../../assets/stackover.png';
 import picture3 from '../../assets/hamicon.png';
 import searchIcon from '../../assets/conicon.png';
-import star from '../../assets/star.png';
 import earth from '../../assets/earth.png';
-import calendar from '../../assets/calendar.png';
 import stack from '../../assets/stack-overflow.png';
 import { useNavigate } from "react-router-dom";
 import {
   HeaderStyle,HeaderContainerStyle,HamImage,Dropdown,DropOl,DropLi,
-  DropLi2,DropLiQs,DropLi3,DropLi4,Droptext,DropdownItem,DropdownItem2,
-  DropdownItem5,DropdownItem6,DropButton,Goimg,Textimg,LogoImage,LogoImage2,
+  DropLi2,DropLiQs,DropLi3,DropdownItem,DropdownItem2,Textimg,LogoImage,LogoImage2,
   NavLink1,Navbar,InputSearchdiv,SearchElementStyle,SearchIcon,SearchIcon2,
   SearchIcon3,InputStyle,InputStyle2,HeaderIconStyle,LoginButton,SignupButton,SearchIcondiv,
 } from './Loginheaderstyle';
@@ -20,6 +17,7 @@ export default function LoginHeader() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchDropOpen, setSearchDropOpen] = useState(false);
   const navigate = useNavigate();
+
 
   const goToHome = () => {
     navigate("/");
@@ -53,8 +51,8 @@ export default function LoginHeader() {
 
 
 return (
-  <HeaderStyle>
-      <HeaderContainerStyle>
+  <HeaderStyle >
+      <HeaderContainerStyle onBlur={() => setDropdownOpen(false)}>  
       <HamImage src={picture3} alt="ham" onClick={toggleDropdown} />
       {isDropdownOpen && (
       <Dropdown>
@@ -73,22 +71,6 @@ return (
                 <DropdownItem onClick={goToMypage}>Users</DropdownItem>
                 <DropdownItem>Companies</DropdownItem>
                 </DropLi3>
-                <DropLi4>
-                <DropdownItem>COLLECTIVES</DropdownItem>
-                <DropLiQs>
-                <DropdownItem><Textimg src={star}/>Explore Collectives</DropdownItem>
-                </DropLiQs>
-                </DropLi4>
-                <DropLi4>
-                <DropdownItem>TEAMS</DropdownItem>
-                <DropLi3>
-                <DropdownItem5>Stack Overflow for Teams –</DropdownItem5>
-                <DropdownItem6>Start collaborating and sharing organizational knowledge.</DropdownItem6>
-                <Goimg src={calendar}/>
-                <DropButton>Create a free Team</DropButton>
-                <Droptext>Why Teams?</Droptext>
-                </DropLi3>
-                </DropLi4>
                 </DropOl>
               </Dropdown>
                   )}

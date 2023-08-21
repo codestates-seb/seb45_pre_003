@@ -6,7 +6,8 @@ import { EditorViewBox } from "../style";
 
 function AskQuestionPage () {
     const [isPreView1, setIsPreView1] = useState(false);
-    const [preView1Data, setPreView1Data] = useState('');
+    const [titleData,setTitleData] = useState('');
+    const [preViewData, setPreViewData] = useState('');
     const [isPossibleTitle,setIsPossibleTitle] = useState(true);
     const [titleLen,setTitleLen] = useState(0);
     const [isPossibleContent,setIsPossibleContent] = useState(true);
@@ -15,15 +16,25 @@ function AskQuestionPage () {
     const togglePreView = (e,idx) => {
         e.target.textContent === 'PreView' ? e.target.textContent = 'Close' : e.target.textContent = 'PreView';
         setIsPreView1(!isPreView1);
-        
     }
 
     const checkCondition = (dataLen,condition,callback) => {
         if(dataLen >= condition) {
             callback(true)
+            return true;
         } else if (dataLen < condition) {
             callback(false);
+            return false;
         }
+    }
+
+    const sendPosting = (title,body,memberId) => {
+        const rqData = {
+            "title" : title,
+            "body" : body,
+            "momberId" : memberId,
+        }
+        console.log(rqData);
     }
 
     const noticeData = [
@@ -33,6 +44,7 @@ function AskQuestionPage () {
         "Add “tags” which help surface your question to members of the community.",
         "Review your question and post it to the site.",
     ]
+
     const inputData = [
         {
             title:"Title",
@@ -42,6 +54,7 @@ function AskQuestionPage () {
                     onChange={(e)=>{
                     checkCondition(e.target.value.length,15,setIsPossibleTitle);
                     setTitleLen(e.target.value.length);
+                    setTitleData(e.target.value);
                     }}
                     type="text"
                     placeholder="e.g ls there an R function for finding the index of an element in a vector"
@@ -62,11 +75,11 @@ function AskQuestionPage () {
             title:"What are the details of your problem?",
             secondTitle:"Introduce the problem and expand on what you put in the title. Minimum 20 characters.",
             type:(el, idx)=>{return <>
-                <CkEditor setEditorData={setPreView1Data} setDatalen={setDatalen}></CkEditor>
+                <CkEditor setEditorData={setPreViewData} setDatalen={setDatalen}></CkEditor>
                 {!isPossibleContent ? <p className='warning'>{el.warning} 현재 {contentLen}글자 </p> : <p className="notice">{contentLen} 글자</p>}
                 <button onClick={(e)=>togglePreView(e,idx)}>PreView</button>
                 {isPreView1
-                ?<EditorViewBox>{Parser(preView1Data)}</EditorViewBox>
+                ?<EditorViewBox>{Parser(preViewData)}</EditorViewBox>
                 :undefined
                 }
             </>},
@@ -78,10 +91,11 @@ function AskQuestionPage () {
             secondTitle:"The title needs 15 characters and the body needs at least 100 characters.",
             type:(el)=>{return <>
                 {!isPossibleTitle || !isPossibleContent ? <p className='warning'>{el.warning}</p> : undefined}
-                <button onClick={()=>{
-                    checkCondition(titleLen,15,setIsPossibleTitle);
-                    checkCondition(contentLen,100,setIsPossibleContent);
-                    }}>Posting
+                <button onClick={()=>
+                    checkCondition(titleLen,15,setIsPossibleTitle) && checkCondition(contentLen,100,setIsPossibleContent)
+                    ? sendPosting(titleData,preViewData,2)
+                    : undefined
+                }>Posting
                 </button>
                 </>},
             warning:'Check Conditions.',

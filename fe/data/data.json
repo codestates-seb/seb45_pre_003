@@ -1,121 +1,121 @@
 {
-  "questions" : {
-    "data" : [
-      {
-      "questionId" : 1,
-      "title" : "1踰� 吏덈Ц �젣紐�",
-      "member" : {
-        "id" : 1,
-        "name" : "�솉湲몃룞",
-        "email" : "hgd@gmail.com"
-      },
-      "answerCount" : 2,
-      "visitCount" : 17,
-      "answered" : false,
-      "createdAt" : "2023-08-18T08:34:16.3319161",
-      "modifiedAt" : "2023-08-18T08:34:16.3319161"
-    }, {
-      "questionId" : 2,
-      "title" : "2踰� 吏덈Ц �젣紐�",
-      "member" : {
-        "id" : 2,
-        "name" : "�엫爰쎌젙",
-        "email" : "lgj@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 10,
-      "answered" : false,
-      "createdAt" : "2023-08-11T08:34:16.3319161",
-      "modifiedAt" : "2023-08-18T08:34:16.3319161"
-    }, {
-      "questionId" :3,
-      "title" : "21231ㅌ[스트",
-      "member" : {
-        "id" : 2,
-        "name" : "�엫爰쎌젙",
-        "email" : "lgj@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 10,
-      "answered" : false,
-      "createdAt" : "2023-08-11T08:34:16.3319161",
-      "modifiedAt" : "2023-06-18T08:34:16.3319161"
-    }, {
-      "questionId" :4,
-      "title" : "21231ㅌ[스트",
-      "member" : {
-        "id" : 2,
-        "name" : "�엫爰쎌젙",
-        "email" : "lgj@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 10,
-      "answered" : false,
-      "createdAt" : "2023-08-11T08:34:16.3319161",
-      "modifiedAt" : "2023-06-18T08:34:16.3319161"
-    }, {
-      "questionId" :5,
-      "title" : "21231ㅌ[스트",
-      "member" : {
-        "id" : 2,
-        "name" : "�엫爰쎌젙",
-        "email" : "lgj@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 10,
-      "answered" : false,
-      "createdAt" : "2023-08-11T08:34:16.3319161",
-      "modifiedAt" : "2023-06-18T08:34:16.3319161"
-    }],
-    "pageInfo" : {
-      "page" : 1,
-      "size" : 15,
-      "totalElements" : 15,
-      "totalPages" : 1
-    }
-  },
-
-  "question2" : {
-    "questionId" : 1,
-    "title" : "질문의 제목",
-    "body" : "<p>ㅁㅈㅁㅇㅈㅁㅈㅇㅈawdanwdknwln</p><h4>akwdnalwkdnalw</h4><blockquote><p>adnaklwdn</p></blockquote><p>&nbsp;</p><figure class='table'><table><tbody><tr><td>w</td><td>ed</td><td>er</td></tr><tr><td>q</td><td>d</td><td>w</td></tr><tr><td>&nbsp;</td><td>h</td><td>g</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>",
-    "member" : {
-      "id" : 1,
-      "name" : "홍길동",
-      "email" : "hgd@gmail.com"
+    "questions" : {
+      "data" : [
+        {
+        "questionId" : 1,
+        "title" : "1踰� 吏덈Ц �젣紐�",
+        "member" : {
+          "id" : 1,
+          "name" : "�솉湲몃룞",
+          "email" : "hgd@gmail.com"
+        },
+        "answerCount" : 2,
+        "visitCount" : 17,
+        "answered" : false,
+        "createdAt" : "2023-08-18T08:34:16.3319161",
+        "modifiedAt" : "2023-08-18T08:34:16.3319161"
+      }, {
+        "questionId" : 2,
+        "title" : "2踰� 吏덈Ц �젣紐�",
+        "member" : {
+          "id" : 2,
+          "name" : "�엫爰쎌젙",
+          "email" : "lgj@gmail.com"
+        },
+        "answerCount" : 0,
+        "visitCount" : 10,
+        "answered" : false,
+        "createdAt" : "2023-08-11T08:34:16.3319161",
+        "modifiedAt" : "2023-08-18T08:34:16.3319161"
+      }, {
+        "questionId" :3,
+        "title" : "21231ㅌ[스트",
+        "member" : {
+          "id" : 2,
+          "name" : "�엫爰쎌젙",
+          "email" : "lgj@gmail.com"
+        },
+        "answerCount" : 0,
+        "visitCount" : 10,
+        "answered" : false,
+        "createdAt" : "2023-08-11T08:34:16.3319161",
+        "modifiedAt" : "2023-06-18T08:34:16.3319161"
+      }, {
+        "questionId" :4,
+        "title" : "21231ㅌ[스트",
+        "member" : {
+          "id" : 2,
+          "name" : "�엫爰쎌젙",
+          "email" : "lgj@gmail.com"
+        },
+        "answerCount" : 0,
+        "visitCount" : 10,
+        "answered" : false,
+        "createdAt" : "2023-08-11T08:34:16.3319161",
+        "modifiedAt" : "2023-06-18T08:34:16.3319161"
+      }, {
+        "questionId" :5,
+        "title" : "21231ㅌ[스트",
+        "member" : {
+          "id" : 2,
+          "name" : "�엫爰쎌젙",
+          "email" : "lgj@gmail.com"
+        },
+        "answerCount" : 0,
+        "visitCount" : 10,
+        "answered" : false,
+        "createdAt" : "2023-08-11T08:34:16.3319161",
+        "modifiedAt" : "2023-06-18T08:34:16.3319161"
+      }],
+      "pageInfo" : {
+        "page" : 1,
+        "size" : 15,
+        "totalElements" : 15,
+        "totalPages" : 1
+      }
     },
-    "answerCount" : 0,
-    "visitCount" : 2,
-    "answered" : false,
-    "createdAt" : "2023-08-11T10:30:32.7516",
-    "modifiedAt" : "2023-08-11T10:30:32.7516"
-  },
 
-  "answers" : {
-    "data" : [ {
-      "answerId" : 1,
-      "body" : "첫번째 테스트용 답변",
+    "question2" : {
+      "questionId" : 1,
+      "title" : "질문의 제목",
+      "body" : "<p>ㅁㅈㅁㅇㅈㅁㅈㅇㅈawdanwdknwln</p><h4>akwdnalwkdnalw</h4><blockquote><p>adnaklwdn</p></blockquote><p>&nbsp;</p><figure class='table'><table><tbody><tr><td>w</td><td>ed</td><td>er</td></tr><tr><td>q</td><td>d</td><td>w</td></tr><tr><td>&nbsp;</td><td>h</td><td>g</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>",
       "member" : {
         "id" : 1,
         "name" : "홍길동",
         "email" : "hgd@gmail.com"
       },
-      "questionId" : 1,
-      "isBest" : false,
-      "createdAt" : "2023-08-04T10:30:31.0686897",
-      "modifiedAt" : "2023-08-18T10:30:31.0686897"
-    }, {
-      "answerId" : 2,
-      "body" : "두번째 테스트용 답변",
-      "member" : {
-        "id" : 2,
-        "name" : "임꺽정",
-        "email" : "lgj@gmail.com"
-      },
-      "questionId" : 1,
-      "isBest" : false,
-      "createdAt" : "2023-08-11T10:30:31.0686897",
-      "modifiedAt" : "2023-08-18T10:30:31.0686897"
-    } ]
+      "answerCount" : 0,
+      "visitCount" : 2,
+      "answered" : false,
+      "createdAt" : "2023-08-11T10:30:32.7516",
+      "modifiedAt" : "2023-08-11T10:30:32.7516"
+    },
+
+    "answers" : {
+      "data" : [ {
+        "answerId" : 1,
+        "body" : "첫번째 테스트용 답변",
+        "member" : {
+          "id" : 1,
+          "name" : "홍길동",
+          "email" : "hgd@gmail.com"
+        },
+        "questionId" : 1,
+        "isBest" : false,
+        "createdAt" : "2023-08-04T10:30:31.0686897",
+        "modifiedAt" : "2023-08-18T10:30:31.0686897"
+      }, {
+        "answerId" : 2,
+        "body" : "두번째 테스트용 답변",
+        "member" : {
+          "id" : 2,
+          "name" : "임꺽정",
+          "email" : "lgj@gmail.com"
+        },
+        "questionId" : 1,
+        "isBest" : false,
+        "createdAt" : "2023-08-11T10:30:31.0686897",
+        "modifiedAt" : "2023-08-18T10:30:31.0686897"
+      } ]
+    }
   }
-}
