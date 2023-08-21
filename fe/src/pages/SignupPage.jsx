@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState} from 'react';
 import Loginheader from '../components/LoginHeader/Loginheader';
 import googleLogo from '../assets/ico_google.png';
 import githubLogo from '../assets/github.png';
@@ -8,61 +8,93 @@ import Recap from '../assets/RecaptchaLogo.png';
 import tag from '../assets/tag.png';
 import trophy from '../assets/trophy.png';
 import updowm from '../assets/up-down.png';
+import { useNavigate } from "react-router-dom";
 import {
   Container,Wrapper,Content,TextContent,Hypertext,Textimg,Text,Stext,Atext,
   ButtonForm,IconButton,Icon,Icon2,SignupColumn,Inputform,InputLabel,Input,
   PasswordRequirements,RobotCheckContainer,RobotCheckWrapper,SignupAll,SignupText,
-  SignupLink,Checkboxlabel,CheckboxWrapper,CheckboxInput,SignUpButton,Textminl,IconButton2,IconButton3,Test
+  SignupLink,Checkboxlabel,CheckboxWrapper,CheckboxInput,SignUpButton,Textminl,IconButton2,IconButton3
 } from '../components/signuppageComponents/sigupstyles';
 
 
 
+
 export default function SignupPage() {
-  const [usermail, setUsermail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isRobotChecked, setIsRobotChecked] = useState(false);
+
+  const [name, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isRobotChecked, setRobotChecked] = useState(false);
+  const navigate = useNavigate();
 
 
-  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
-  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
-
-
-  const emailCheck = (usermail) => {
-    return emailRegEx.test(usermail);
-  };
-
-  const passwordCheck = (password) => {
-    return password.match(passwordRegEx) !== null;
-  };
-
-  // 로봇 체크 여부 업데이트
-  const handleRobotCheck = (e) => {
-    setIsRobotChecked(e.target.checked);
-  };
-
-  // 이메일과 패스워드 입력시 유효성 검사 및 버튼 활성화 여부 업데이트
-  const handleUsermailChange = (e) => {
-    const newValue = e.target.value;
-    setUsermail(newValue);
-    setIsFormValid(emailCheck(newValue) && passwordCheck(password) && isRobotChecked);
-  };
+  const isFormValid =
+  name.trim() !== '' &&
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password) &&
+  isRobotChecked;
   
-  const handlePasswordChange = (e) => {
-    const newValue = e.target.value;
-    setPassword(newValue);
-    setIsFormValid(emailCheck(usermail) && passwordCheck(newValue) && isRobotChecked);
+  const handleDisplayNameChange = (e) => {
+    setDisplayName(e.target.value);
   };
 
-  // 회원가입 버튼 클릭시 실행될 함수
-  const handleSignUp = () => {
-    if (isFormValid) {
-      // 회원가입 성공시 메시지 표시
-      setIsRegistered(true);
-      // 나머지 회원가입 관련 동작 수행
-    }
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleRobotCheckChange = () => {
+    setRobotChecked(!isRobotChecked);
+  };
+
+  const handleSignUp = () => {
+    if(!isFormValid){
+
+    if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
+      alert('모든 필드를 작성해주세요.');
+      return;
+    }
+
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('유효한 이메일 주소를 입력해주세요.');
+      return;
+    }
+
+    else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+      alert('유효한 비밀번호를 입력해주세요.');
+      return;
+    }
+
+    else if (!isRobotChecked) {
+      alert('로봇이 아닙니다 체크해주세요.');
+      return;
+    }
+  }
+  else {
+    fetch('http://localhost:8080/members', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        name: 'name',
+        email: 'email',
+        password: 'password',
+      })
+    })
+      .then(response => response.json())
+      .then((json) => {
+        console.log('회원가입 성공:', json);
+        navigate("/login");
+      })
+      .catch(error => {
+        console.error('회원가입 실패:', error);
+      });
+  }
+  }
+
+
   return (
     <Container>
       <Loginheader />
@@ -102,16 +134,16 @@ export default function SignupPage() {
         </ButtonForm>
         <Inputform>
             <InputLabel>Display name</InputLabel>
-            <Input type='text' />
+            <Input type='text' value={name} onChange={handleDisplayNameChange} />
             <InputLabel>Email</InputLabel>
-            <Input type='email' onChange={handleUsermailChange} placeholder='이메일을 입력하세요.' />
+            <Input type='email' value={email} onChange={handleEmailChange} />
             <InputLabel>Password</InputLabel>
-            <Input type='password' onChange={handlePasswordChange} placeholder='패스워드를 입력하세요.'/>
+            <Input type='password' value={password} onChange={handlePasswordChange} />
             <PasswordRequirements>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</PasswordRequirements>
             <RobotCheckContainer>
                 <RobotCheckWrapper>
                   <CheckboxWrapper>
-                    <CheckboxInput type="checkbox" id="robotCheck" checked={isRobotChecked} onChange={handleRobotCheck} />
+                    <CheckboxInput type="checkbox" id="robotCheck" checked={isRobotChecked} onChange={handleRobotCheckChange} />
                     <Checkboxlabel >I'm not a robot</Checkboxlabel>
                     </CheckboxWrapper>
                     <Icon2 src={Recap} alt="GitHub" />
@@ -119,13 +151,10 @@ export default function SignupPage() {
                   </RobotCheckWrapper>
               </RobotCheckContainer>
                   <CheckboxWrapper>
-                    <CheckboxInput type="checkbox" id="optInCheck" />
+                    <CheckboxInput type="checkbox"  />
                     <PasswordRequirements htmlFor="optInCheck">Opt-in to receive occasional product updates, user research invitations, company announcements, and digests.</PasswordRequirements>
                   </CheckboxWrapper>
-                  <SignUpButton disabled={!isFormValid} onClick={handleSignUp}>
-                    Sign Up
-                  </SignUpButton>
-                  {isRegistered ? <Test>회원가입 되셨습니다.</Test> : <Test> 입력이 잘못되었습니다. 다시한번 확인해 주세요. </Test>}
+                  <SignUpButton  onClick={handleSignUp}>Sign up</SignUpButton>
             <Textminl>By clicking “Sign up”, you agree to our terms of service and acknowledge that you have read and understand our privacy policy and code of conduct.</Textminl>
             </Inputform>
             <SignupAll>
@@ -141,4 +170,4 @@ export default function SignupPage() {
       </Content>
     </Container>
   );
-}
+} 
