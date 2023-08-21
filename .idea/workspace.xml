@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="94a17651-61df-4b1e-9ff9-3704e36b8a6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/be/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/be/src/main/resources/static/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/resources/static/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/test/java/com/codestates/stackoverflowclone/security/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/test/java/com/codestates/stackoverflowclone/security/LoginTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,7 @@
       <recent name="C:\Users\ahong\Desktop\F\seb45_pre_003\be\src\main\resources\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.be [build]">
+  <component name="RunManager" selected="Spring Boot.StackoverflowcloneApplication">
     <configuration name="MemberControllerTest.deleteMemberTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -263,6 +264,12 @@
       <workItem from="1692601762588" duration="15000" />
       <workItem from="1692601843534" duration="31000" />
       <workItem from="1692601886862" duration="3449000" />
+      <workItem from="1692607303297" duration="683000" />
+      <workItem from="1692619680205" duration="376000" />
+      <workItem from="1692656906250" duration="886000" />
+      <workItem from="1692657803639" duration="665000" />
+      <workItem from="1692658483354" duration="25000" />
+      <workItem from="1692658519744" duration="417000" />
     </task>
     <servers />
   </component>
