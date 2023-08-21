@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94a17651-61df-4b1e-9ff9-3704e36b8a6a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/be/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/member/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/OAuth2MemberSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/codestates/stackoverflowclone/security/handler/OAuth2MemberSuccessHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +40,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -57,6 +61,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -184,7 +189,9 @@
       <workItem from="1692230702880" duration="3862000" />
       <workItem from="1692269377064" duration="1746000" />
       <workItem from="1692316327680" duration="15629000" />
-      <workItem from="1692337622936" duration="648000" />
+      <workItem from="1692337622936" duration="8157000" />
+      <workItem from="1692520419525" duration="6373000" />
+      <workItem from="1692533032227" duration="2119000" />
     </task>
     <servers />
   </component>

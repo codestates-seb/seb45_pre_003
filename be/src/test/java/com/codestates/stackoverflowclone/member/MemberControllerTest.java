@@ -5,6 +5,7 @@ import com.codestates.stackoverflowclone.member.dto.MemberDto;
 import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.mapper.MemberMapper;
 import com.codestates.stackoverflowclone.member.service.MemberService;
+import com.codestates.stackoverflowclone.question.dto.QuestionDto;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.mapper.QuestionMapper;
 import com.codestates.stackoverflowclone.security.config.SecurityConfiguration;
@@ -14,6 +15,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,6 +29,8 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.test.context.support.WithAnonymousUser;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -41,6 +45,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
@@ -53,6 +58,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 @WebMvcTest(controllers = MemberController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
+@AutoConfigureMockMvc(addFilters = false)
 public class MemberControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -68,6 +74,7 @@ public class MemberControllerTest {
     private Gson gson;
 
     @Test
+    @WithAnonymousUser
     public void postMemberTest() throws Exception {
         long memberId = 1L;
         String name = "test";
@@ -119,6 +126,7 @@ public class MemberControllerTest {
     }
 
     @Test
+    @WithAnonymousUser
     public void getMemberTest() throws Exception {
         long id = 1L;
         String name = "test";
@@ -129,17 +137,17 @@ public class MemberControllerTest {
         int questionCount = 1;
         int answerCount = 1;
 
-        List<>
-
+        QuestionDto.MypageElement mypageElement = new QuestionDto.MypageElement(1L, "question title", createdAt);
+        MemberDto.QuestionsResponse questionsResponse = MemberDto.QuestionsResponse.builder().data(List.of(mypageElement)).build();
 
         MemberDto.GetMemberResponse response = MemberDto.GetMemberResponse.builder()
-                .id(id).name(name).email(email).createdAt(createdAt).visitCount(visitCount).continuousVisitCount(continuousVisitCount).questionCount(questionCount).answerCount(answerCount).build();
+                .id(id).name(name).email(email).createdAt(createdAt).visitCount(visitCount).continuousVisitCount(continuousVisitCount).questionCount(questionCount).answerCount(answerCount).questionsData(questionsResponse).questionsWithMyAnswers(questionsResponse).build();
 
         given(service.findMember(Mockito.anyLong())).willReturn(new Member());
         given(mapper.memberToGetMemberResponse(Mockito.any(Member.class))).willReturn(response);
         given(service.getQuestionByMemberId(anyLong())).willReturn(new PageImpl<>(new ArrayList<>()));
         given(service.getQuestionWithMyAnswerByMemberId(anyLong())).willReturn(new PageImpl<>(new ArrayList<>()));
-        given(questionMapper.questionsToQuestionMypageElements(Mockito.anyList())).willReturn(new ArrayList<>());
+        given(questionMapper.questionsToQuestionMypageElements(Mockito.anyList())).willReturn(List.of(mypageElement));
 
         ResultActions actions = mockMvc.perform(
                 RestDocumentationRequestBuilders.get("/members/{member-id}", id)
@@ -162,6 +170,16 @@ public class MemberControllerTest {
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원 등록 날짜"),
                                         fieldWithPath("visitCount").type(JsonFieldType.NUMBER).description("방문 횟수"),
                                         fieldWithPath("continuousVisitCount").type(JsonFieldType.NUMBER).description("연속 방문 횟수"),
+                                        fieldWithPath("questionsData").type(JsonFieldType.OBJECT).description("작성한 질문"),
+                                        fieldWithPath("questionsData.data").type(JsonFieldType.ARRAY).description("조회된 데이터"),
+                                        fieldWithPath("questionsData.data[].questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
+                                        fieldWithPath("questionsData.data[].title").type(JsonFieldType.STRING).description("질문 제목"),
+                                        fieldWithPath("questionsData.data[].createdAt").type(JsonFieldType.STRING).description("질문 작성된 날짜"),
+                                        fieldWithPath("questionsWithMyAnswers").type(JsonFieldType.OBJECT).description("답변을 작성한 질문"),
+                                        fieldWithPath("questionsWithMyAnswers.data").type(JsonFieldType.ARRAY).description("조회된 데이터"),
+                                        fieldWithPath("questionsWithMyAnswers.data[].questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
+                                        fieldWithPath("questionsWithMyAnswers.data[].title").type(JsonFieldType.STRING).description("질문 제목"),
+                                        fieldWithPath("questionsWithMyAnswers.data[].createdAt").type(JsonFieldType.STRING).description("질문 작성된 날짜"),
                                         fieldWithPath("questionCount").type(JsonFieldType.NUMBER).description("질문 수."),
                                         fieldWithPath("answerCount").type(JsonFieldType.NUMBER).description("답변 수.")
                                         )
@@ -171,6 +189,7 @@ public class MemberControllerTest {
     }
 
     @Test
+    @WithAnonymousUser
     public void getMembersTest() throws Exception {
         int page = 1;
         Member member1 = new Member();
@@ -227,6 +246,7 @@ public class MemberControllerTest {
     }
 
     @Test
+    @WithMockUser(authorities = {"ROLE_USER"})
     public void patchMemberTest() throws Exception {
 
         long id = 1L;
@@ -242,7 +262,7 @@ public class MemberControllerTest {
         member.setId(id);
 
         given(mapper.patchToMember(Mockito.any(MemberDto.Patch.class))).willReturn(member);
-        given(service.updateMember(Mockito.any(Member.class))).willReturn(member);
+        given(service.updateMember(Mockito.any(Member.class), Mockito.anyString())).willReturn(member);
         given(mapper.memberToResponse(Mockito.any(Member.class))).willReturn(response);
 
         ResultActions actions = mockMvc.perform(
@@ -277,10 +297,11 @@ public class MemberControllerTest {
     }
 
     @Test
+    @WithMockUser(authorities = {"ROLE_USER"})
     public void deleteMemberTest() throws Exception {
         long id = 1L;
 
-        doNothing().when(service).deleteMember(anyLong());
+        doNothing().when(service).deleteMember(anyLong(), Mockito.anyString());
 
         ResultActions actions = mockMvc.perform(
                 RestDocumentationRequestBuilders.delete("/members/{member-id}", id)

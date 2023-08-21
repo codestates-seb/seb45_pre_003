@@ -55,6 +55,8 @@ public class Member extends Auditable {
 
     private int answerCount = 0;
 
+    private RegistrationType registrationType = RegistrationType.SELF;
+
     public int getQuestionCount () {
         return this.questions.size();
     }
@@ -67,5 +69,10 @@ public class Member extends Auditable {
 //    private void caculateweekSinceRegistration() {
 //        this.weekSinceRegistration = (int) ChronoUnit.WEEKS.between(getCreatedAt(), LocalDateTime.now());
 //    }
+
+    public enum RegistrationType {
+        SELF,
+        OAUTH2
+    }
 
 }

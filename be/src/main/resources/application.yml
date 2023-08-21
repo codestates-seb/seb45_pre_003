@@ -10,18 +10,15 @@ spring:
       ddl-auto: create  # (1) 스키마 자동 생성
     show-sql: true      # (2) SQL 쿼리 출력
   security:
-    basic:
-      enabled: false
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            client-id: ${GOOGLE_CLIENT_ID}
-#            client-secret: ${GOOGLE_CLIENT_SECRET}
-#            scope:
-#              - email
-#              - profile
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
 jwt:
   key: ${JWT_SECRET_KEY} #secretKey는 환경변수로
   access-token-expiration-minutes: 30
