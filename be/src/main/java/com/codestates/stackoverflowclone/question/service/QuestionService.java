@@ -1,5 +1,10 @@
 package com.codestates.stackoverflowclone.question.service;
 
+import com.codestates.stackoverflowclone.exception.BusinessLogicException;
+import com.codestates.stackoverflowclone.exception.ExceptionCode;
+import com.codestates.stackoverflowclone.member.entity.Member;
+import com.codestates.stackoverflowclone.member.repository.MemberRepository;
+import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.question.entity.Question;
 import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
 import org.springframework.data.domain.Page;
@@ -21,7 +26,13 @@ public class QuestionService {
     public QuestionService(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
-    public Question createQuestion(Question question){
+
+    public Question createQuestion(Question question, String email){
+
+        if ( !email.equals( question.getMember().getEmail() ) ) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
+
         question.setAnswerCount(0L);
         question.setVisitCount(0L);
         question.setAnswered(false);
@@ -29,8 +40,12 @@ public class QuestionService {
 
         return questionRepository.save(question);
     }
-    public Question updateQuestion(Question question){
+    public Question updateQuestion(Question question, String email){
         Question findQuestion = findVerifiedQuestion(question.getQuestionId());
+
+        if ( !email.equals( findQuestion.getMember().getEmail() ) ) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
 
         Optional.ofNullable(question.getTitle())
                 .ifPresent(title->findQuestion.setTitle(title));
@@ -83,8 +98,15 @@ public class QuestionService {
 
         return readQ;
     }
-    public void deleteQuestion( long questionId ){
+
+    public void deleteQuestion( long questionId, String email ){
+
         Question question = findVerifiedQuestion(questionId);
+
+        if ( !email.equals( question.getMember().getEmail() ) ) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
+
         questionRepository.delete(question);
     }
     public Question saveQuestion( Question question ){
