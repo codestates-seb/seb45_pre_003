@@ -5,73 +5,29 @@ import { whenCorM } from "../../pages/QuestionPage";
 import { EditorViewBox } from "../../style";
 import Parser from 'html-react-parser';
 import Loading from './../Loading';
-import axios from "axios";
+import base64 from 'base-64'
 import customAxios from "../../customaxios";
-
-const dummyQuestionData = {
-    "questionId" : 1,
-    "title" : "질문의 제목",
-    "body" : '',
-    "member" : {
-      "id" : 1,
-      "name" : "홍길동",
-      "email" : "hgd@gmail.com"
-    },
-    "answerCount" : 0,
-    "visitCount" : 2,
-    "answered" : false,
-    "createdAt" : "2023-08-11T10:30:32.7516",
-    "modifiedAt" : "2023-08-11T10:30:32.7516"
-}
-
-const dummyansweredData = {
-    "data" : [ {
-      "answerId" : 1,
-      "body" : "첫번째 테스트용 답변",
-      "member" : {
-        "id" : 1,
-        "name" : "홍길동",
-        "email" : "hgd@gmail.com"
-      },
-      "questionId" : 1,
-      "isBest" : false,
-      "createdAt" : "2023-08-04T10:30:31.0686897",
-      "modifiedAt" : "2023-08-18T10:30:31.0686897"
-    }, {
-      "answerId" : 2,
-      "body" : "두번째adwdawdawdawdawdawdawdawdawdawdawdawdawd 테스트용 답변",
-      "member" : {
-        "id" : 2,
-        "name" : "임꺽정",
-        "email" : "lgj@gmail.com"
-      },
-      "questionId" : 1,
-      "isBest" : false,
-      "createdAt" : "2023-08-11T10:30:31.0686897",
-      "modifiedAt" : "2023-08-18T10:30:31.0686897"
-    } ]
-}
+import { checkAuth } from "../../PathProtection";
 
 function QuestionDetail () {
+    console.log('질문디테일')
     const navigate = useNavigate();
-    const {questionId} = useParams();
-    const [memeberId,setMemberId] = useState(null);
+    const {id} = useParams();
     const [isLoading,setIsLoading] = useState(true);
     const [questionData,setQuestionData] = useState({});
     const [answeredData,setAnsweredData] = useState({});
     const [isAddActive,setIsAddActive] = useState(false);
     const [update,setUpdate] = useState(true);
 
-    const answersURL = 'http://localhost:3001/answers';
-
-    const questionIdURL = `http://localhost:3001/question1` //`http://localhost:8080/questions/${id}`
-    const answersIdURL = `http://localhost:3001/answers`    //`http://localhost:8080/answers/question/${id}`
+    const answersURL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/answers`;
+    const questionIdURL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions/${id}` //`http://localhost:8080/questions/${id}`
+    const answersIdURL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/answers/question/${id}`    //`http://localhost:8080/answers/question/${id}`
     
     
     const CommentData = {
         "body" : "",
-        "questionId" : questionData?.questionId,
-        "memberId" : questionData.member?.id,
+        "questionId" : Number(id),
+        "memberId" : null
     }
 
     const changeComment = (e) => {
@@ -82,17 +38,26 @@ function QuestionDetail () {
         if(CommentData.body.length < 20) {
             alert('20글자 입력해주세요')
         } else {
-            customAxios.post(answersURL,CommentData)
-            .then(()=>{
-                setUpdate(!update);
-            })
-            .catch(()=>{
-                alert('답변을 달기 위해서는 로그인이 필요합니다.');
-            })
+            const memberId = checkAuth();
+            if(memberId) {
+                CommentData["memberId"] = memberId;
+                customAxios.post(answersURL,CommentData)
+                .then((res)=>{
+                    setUpdate(!update);
+                })
+                .catch(()=>{
+                    alert('다시 시도해 주세요.');
+                })
+            } else {
+                alert('로그인이 필요한 기능입니다.')
+            }
         }
     }
 
+    
+
     useEffect(()=>{
+        window.scrollTo(0,0)
         setIsLoading(true)
         customAxios.get(questionIdURL)
         .then(Data=>{
@@ -118,14 +83,14 @@ function QuestionDetail () {
         <>
             { isLoading
             ? <Loading/>
-            :
-            <>
+            :<>
             <TopBox style={{
                 borderBottom : '1px solid hsl(210,8%,70%)'
             }}>
                 <QDTitleBox>
                     <Title style={{marginBottom:'6px'}}>{questionData.title}</Title>
                     <QDTitleStatsBox>
+                        <span>{questionData.member.name}</span>
                         <span>{whenCorM(questionData.createdAt,questionData.modifiedAt)}</span>
                         <span>viewed {questionData.visitCount}</span>
                     </QDTitleStatsBox>
@@ -141,6 +106,10 @@ function QuestionDetail () {
                 <EditorViewBox>
                     {Parser(questionData.body)}
                 </EditorViewBox>
+                <QDTitleStatsBox>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                </QDTitleStatsBox>
                 <CommentUl>
                     {answeredData.data?.map(item=>{
                         return (

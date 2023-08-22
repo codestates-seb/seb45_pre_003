@@ -1,4 +1,5 @@
 import axios from "axios";
+import base64 from "base-64"
 
 const customAxios = axios.create();
 
@@ -21,7 +22,7 @@ customAxios.interceptors.response.use(
         if(token) {
             localStorage.setItem('usertoken',token);
         }
-        return res
+        return res;
     },
     async (err) => {
         return Promise.reject(err);

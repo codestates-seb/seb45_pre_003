@@ -11,7 +11,7 @@ import {
 } from '../components/loginpageComponents/styles';
 import customAxios from '../customaxios';
 
-export default function LoginPage() {
+export default function LoginPage({setisLogout}) {
   const [inputemail, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
   const navigate = useNavigate();
@@ -56,12 +56,13 @@ const onClickLogin = () => {
         'ngrok-skip-browser-warning': '69420'
       }
     }
-    customAxios.post('https://ffce-211-49-219-142.ngrok-free.app/login',
+    customAxios.post('http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/login',
         requestData,
         headers,
       )
       .then((res) => {
         console.log("로그인 성공", res);
+        setisLogout(false);
         navigate("/",{replace:true});
       })
       .catch(err => {

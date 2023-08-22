@@ -89,6 +89,11 @@ function Header () {
     setDropdownOpen(!isDropdownOpen);
   };
 
+  const handlelogout = () => {
+    localStorage.removeItem('usertoken');
+    window.location.reload();
+  }
+
   return ( 
     <HeaderStyle >
     <HeaderContainerStyle>
@@ -148,7 +153,7 @@ function Header () {
                 </HeaderElementStyle>
             </HeaderIconStyle2>
             <HeaderIconStyle3>
-                   <LogoutButton>Log out</LogoutButton>
+              <LogoutButton onClick={handlelogout}>Log out</LogoutButton>
             </HeaderIconStyle3>
             </HeaderContainerStyle>    
         </HeaderStyle>

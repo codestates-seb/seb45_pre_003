@@ -65,13 +65,13 @@ function HomePage () {
     const [isLoading,setIsloading] = useState(true);
     const [apiData,setApiData] = useState({});
     const [tap,setTap] = useState('week');
-    //https://ffce-211-49-219-142.ngrok-free.app/
-    let URL = `https://8821-211-58-167-65.ngrok-free.app/questions?searchWord=&tab=${tap}&page=1&size=30`
-    // let jsonURL = `https://ffce-211-49-219-142.ngrok-free.app/questions`
+    let URL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions?searchWord=&tab=${tap}&page=1&size=30`
 
-    //tap이 변경될때 새로운 testURL로 api요청을 보냄
+
     useEffect(()=>{
-        customAxios.get(URL,{headers:{'ngrok-skip-browser-warning': '69420'}})
+        setIsloading(true);
+        window.scrollTo(0, 0);
+        customAxios.get(URL)
         .then((res)=>{
             console.log(res);
             setApiData({...res.data});
@@ -89,7 +89,7 @@ function HomePage () {
             <HomePageContentStyle>
                 <HomePageMainBarStyle>
                     <Routes>
-                        <Route path=":id" element={<QuestionDetail/>}></Route>
+                        <Route path="/:id" element={<QuestionDetail/>}></Route>
                         <Route path="" element={<>
                             {isLoading
                             ?<Loading/>
@@ -134,7 +134,7 @@ function HomePage () {
                                             </LiStatusBox>
                                             <LiContentBox>
                                                 <LiTitle>
-                                                    <Link to={`${el.questionId}`}>{el.title}</Link>
+                                                    <Link to={`/question/${el.questionId}`}>{el.title}</Link>
                                                 </LiTitle>
                                                 <LiTagAuthorBox>
                                                     {/* {el.tag.map((_,idx)=>{
