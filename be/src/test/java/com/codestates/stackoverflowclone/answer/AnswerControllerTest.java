@@ -92,7 +92,7 @@ public class AnswerControllerTest {
         // (7) Mock 객체를 이용한 Stubbing
         given(answerMapper.answerPostToAnswer(Mockito.any(AnswerDto.Post.class),
                 Mockito.any(MemberService.class),Mockito.any(QuestionService.class))).willReturn(new Answer());
-        given(answerService.createAnswer(Mockito.any(Answer.class))).willReturn(new Answer());
+        given(answerService.createAnswer(Mockito.any(Answer.class),Mockito.anyString())).willReturn(new Answer());
         given(answerMapper.answerToAnswerResponse(Mockito.any(Answer.class))).willReturn(response);
         // when
         ResultActions actions =
@@ -146,7 +146,7 @@ public class AnswerControllerTest {
         // (7) Mock 객체를 이용한 Stubbing
         given(answerMapper.answerPatchToAnswer(Mockito.any(AnswerDto.Patch.class)))
                 .willReturn(new Answer());
-        given(answerService.updateAnswer(Mockito.any(Answer.class)))
+        given(answerService.updateAnswer(Mockito.any(Answer.class),Mockito.anyString()))
                 .willReturn(new Answer());
         given(answerMapper.answerToAnswerResponse(Mockito.any(Answer.class)))
                 .willReturn(response);
@@ -198,7 +198,7 @@ public class AnswerControllerTest {
         long answerId = 1L;
 
         // (7) Mock 객체를 이용한 Stubbing
-        doNothing().when(answerService).setBest(Mockito.anyLong(), Mockito.anyBoolean());
+        doNothing().when(answerService).setBest(Mockito.anyLong(), Mockito.anyBoolean(),Mockito.anyString());
         //MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
         //params.add("isBest","true");
         // when
@@ -283,7 +283,7 @@ public class AnswerControllerTest {
         long answerId = 1L;
 
         // (7) Mock 객체를 이용한 Stubbing
-        doNothing().when(answerService).deleteAnswer(Mockito.anyLong());
+        doNothing().when(answerService).deleteAnswer(Mockito.anyLong(), Mockito.anyString());
 
         // when
         ResultActions actions =
