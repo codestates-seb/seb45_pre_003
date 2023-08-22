@@ -4,6 +4,7 @@ import com.codestates.stackoverflowclone.member.entity.Member;
 import com.codestates.stackoverflowclone.member.service.MemberService;
 import com.codestates.stackoverflowclone.security.jwt.JwtTokenizer;
 import com.codestates.stackoverflowclone.security.utils.CustomAuthorityUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -25,6 +26,9 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
     private final MemberService memberService;
+
+    @Value("${ec2Endpoint}")
+    private String ec2Endpoint;
 
     public OAuth2MemberSuccessHandler(JwtTokenizer jwtTokenizer,
                                       CustomAuthorityUtils authorityUtils,
@@ -97,8 +101,8 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
-                .host("localhost")
-                .port(80)
+                .host(ec2Endpoint)
+                .port(8080)
                 .path("/token")
                 .queryParams(queryParams)
                 .build()
