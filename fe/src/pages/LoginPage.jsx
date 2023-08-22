@@ -9,7 +9,7 @@ import {
   LoginPageContainer,Card,ButtonForm,IconButton,IconButton2,IconButton3,Icon,MyPageLink,MyPageImage,Form,Input,
   LoginButton,SignupAll,SignupText,SignupLink,Label,ForgotPasswordLink,Loginform,SignupLink2,
 } from '../components/loginpageComponents/styles';
-import axios from 'axios';
+import customAxios from '../customaxios';
 
 export default function LoginPage() {
   const [inputemail, setInputId] = useState('')
@@ -18,22 +18,20 @@ export default function LoginPage() {
 
   const handleInputemail = (e) => {
     setInputId(e.target.value)
-}
+  }
 
-const handleInputPw = (e) => {
-    setInputPw(e.target.value)
-}
+  const handleInputPw = (e) => {
+      setInputPw(e.target.value)
+  }
 
-const isFormValid =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputemail) &&
-/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(inputPw);
+  const isFormValid =
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputemail) &&
+  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(inputPw);
 
 
 // login 버튼 클릭 이벤트
 const onClickLogin = () => {
-  console.log(inputemail);
-  console.log(inputPw);
-  if(!isFormValid){
+  if(!isFormValid){ 
 
     if (inputemail.trim() === '' || inputPw.trim() === '') {
       alert('모든 필드를 작성해주세요.');
@@ -48,26 +46,30 @@ const onClickLogin = () => {
       alert('유효한 비밀번호를 입력해주세요.');
       return;
     }
+  } else {
+    const requestData = {
+      "email" : inputemail,
+      "password" : inputPw,
+    };
+    const headers = {
+      headers : {
+        'ngrok-skip-browser-warning': '69420'
+      }
+    }
+    customAxios.post('https://8821-211-58-167-65.ngrok-free.app/login',
+        requestData,
+        headers,
+      )
+      .then((res) => {
+        console.log("로그인 성공", res);
+        navigate("/",{replace:true});
+      })
+      .catch(err => {
+        console.log("로그인 실패", err);
+      });
   }
-else 
-  axios.post('https://ffce-211-49-219-142.ngrok-free.app/login', {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: inputemail,
-      password: inputPw,
-    }),
-  })
-    .then((res) => {
-      console.log("로그인 성공", res);
-      navigate("/");
-    })
-    .catch(err => {
-      console.log("로그인 실패",err);
-    });
 }
+
 
 
   return (
@@ -95,13 +97,13 @@ else
         <Form>
           <Loginform>
           <Label>Email</Label>
-          <Input type="email" value={inputemail} onChange={handleInputemail} />
+          <Input type="email" value={inputemail} onChange={e=>handleInputemail(e)} />
           <ForgotPasswordLink>
             <Label>Password</Label>
             <SignupLink2>Forgot password?</SignupLink2>
           </ForgotPasswordLink>
-          <Input type="password" value={inputPw} onChange={handleInputPw} />
-          <LoginButton onClick={onClickLogin}>Log in</LoginButton>
+          <Input type="password" value={inputPw} onChange={e=>handleInputPw(e)} />
+          <LoginButton type='button' onClick={onClickLogin}>Log in</LoginButton>
           </Loginform>
         </Form>
         <SignupAll>

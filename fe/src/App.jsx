@@ -11,22 +11,22 @@ import AskQuestionPage from './pages/AskQuestionPage';
 import LoginHeader from './components/LoginHeader/Loginheader';
 import React, { useState } from 'react';
 import PageNotFound from './components/PageNotFound';
+import PathProtection from './PathProtection';
 
 
 function App() {
   const [isLogout, setisLogout] = useState(false);
-
   return (
     <>
     {isLogout ? <LoginHeader /> : <Header />}
       <Routes>
-        <Route path="/*" element={<HomePage/>}/>
+        <Route path="/" element={<HomePage/>}/>
         <Route path="/question/*" element={<QuestionPage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/mypage" element={<MyPage/>}/>
-        <Route path="/signup" element={<SignupPage/>}/>
-        <Route path="/askquestion" element={<AskQuestionPage/>}/>;
-        <Route path="404" element={<PageNotFound/>}/>
+        <Route path="/login" element={<PathProtection component={<HomePage/>} fallback={<LoginPage/>}></PathProtection>}/>
+        <Route path="/mypage" element={<PathProtection component={<MyPage/>} fallback={<LoginPage/>}></PathProtection>}/>
+        <Route path="/signup" element={<PathProtection component={<HomePage/>} fallback={<SignupPage/>}></PathProtection>}/>
+        <Route path="/askquestion" element={<PathProtection component={<AskQuestionPage/>} fallback={<LoginPage/>}/>}/>;
+        <Route path="/*" element={<PageNotFound/>}/>
       </Routes>
       {isLogout ? <null/> : <Footer/>}
     </>
