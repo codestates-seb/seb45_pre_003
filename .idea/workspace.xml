@@ -223,8 +223,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.be [bootJar]" />
         <item itemvalue="Gradle.be [build]" />
+        <item itemvalue="Gradle.be [bootJar]" />
         <item itemvalue="Gradle.QuestionControllerTest.getQuestionsOnMypageTest" />
         <item itemvalue="Gradle.MemberControllerTest.getMemberTest" />
         <item itemvalue="Gradle.MemberControllerTest.deleteMemberTest" />
@@ -269,7 +269,7 @@
       <workItem from="1692658483354" duration="25000" />
       <workItem from="1692658519744" duration="1035000" />
       <workItem from="1692661106287" duration="22000" />
-      <workItem from="1692661944173" duration="3115000" />
+      <workItem from="1692661944173" duration="11822000" />
     </task>
     <servers />
   </component>
