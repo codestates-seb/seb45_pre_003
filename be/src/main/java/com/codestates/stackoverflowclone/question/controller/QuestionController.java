@@ -10,6 +10,9 @@ import com.codestates.stackoverflowclone.question.service.QuestionService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,8 +39,12 @@ public class QuestionController {
     @PostMapping
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionDto.Post requestBody){
         // mapper, Service, Repository 거쳐서 저장하고 저장해온거 반납
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String email = authentication.getName();
+
         Question question = questionMapper.questionPostToQuestion(requestBody, memberService);
-        Question savedQuestion = questionService.createQuestion(question);
+        Question savedQuestion = questionService.createQuestion(question, email);
         QuestionDto.Response response = questionMapper.questionToQuestionResponse(savedQuestion);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -47,9 +54,13 @@ public class QuestionController {
     public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                         @Valid @RequestBody QuestionDto.Patch requestBody){
         // mapper, service, repository 거쳐서 수정하고 반납
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String email = authentication.getName();
+
         requestBody.setQuestionId(questionId);
         Question question = questionMapper.questionPatchToQuestion(requestBody);
-        Question findQuestion = questionService.updateQuestion(question);
+        Question findQuestion = questionService.updateQuestion(question, email);
         QuestionDto.Response response = questionMapper.questionToQuestionResponse(findQuestion);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -117,7 +128,11 @@ public class QuestionController {
     ///// 질문 하나 아예 삭제
     @DeleteMapping("/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId){
-        questionService.deleteQuestion( questionId );
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String email = authentication.getName();
+
+        questionService.deleteQuestion( questionId, email );
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
