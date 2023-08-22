@@ -1,11 +1,13 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import LeftBar from "../components/LeftBar";
 import Loading from "../components/Loading";
-import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, FirstFilter, SecondFilter, LastFilter, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, PageBox, PageButtonBox, PageButton, PerPageText, Filter } from "../components/homepage/HomePage.style";
+import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopBox, Title, AskQuestionBtn, SecondBox, QuestionsNum, FilterBox, Ul, Li, LiStatusBox, StatsItem, StatsItemNumber, StatsItemUnit, LiContentBox, LiTitle, LiTag, LiTagAuthorBox, MetaData, PageBox, PageButtonBox, PageButton, PerPageText, Filter } from "../components/homepage/HomePage.style";
 import { ContainerStyle } from "../style";
 import { useEffect, useState } from "react";
 import QuestionDetail from "../components/homepage/QuestionDetail";
 import axios from "axios";
+import { PathProtection } from "../PathProtection";
+import customAxios from "../customaxios";
 
 const DummyData = {
     "data" : [ {
@@ -132,34 +134,29 @@ function QuestionPage () {
             "totalPages" : 1
         }
     });
-
     const [page,setPage] = useState(1);
-    const [tap,setTap] = useState('newest');
-    const [perPage,setPerPage] = useState('15');
-
+    const [tap,setTap] = useState('month');
+    const [perPage,setPerPage] = useState(30);
     const perPageArr = [15,30,50];
     const filters = ['Newest','Active','Unanswered'];
-
-    const apiURL = `http://localhost:8080/questions?searchWord=&tab=${tap}&page=${page}&size=${perPage}/`
-    const testURL = `http://localhost:3001/questions`
-
+    let URL = `https://8821-211-58-167-65.ngrok-free.app/questions?searchWord=&tab=${tap}&page=${page}&size=${perPage}`
+    // const testURL = `http://localhost:3001/questions`
     //pageInfo, tap, perPage중 하나라도 값이 변경된다면 밑에 useEffect를 통해 api요청을 보내고 apidata를 갱신함
     useEffect(()=>{
         setIsloading(true);
-        axios.get(testURL)
+        customAxios.get(URL,{headers:{'ngrok-skip-browser-warning': '69420'}})
         .then((res)=>{
+            console.log(res);
             setApiData({...res.data});
             setIsloading(false);
         })
         .catch(err=>{
             setIsloading(false);
-            navigate('/404');
             console.log(err);
         })
     },[page,tap,perPage])
 
     const pageSizeRendering = (pageInfo) => {
-
         const changeSize = (size) => {
             setPerPage(size)
         }
@@ -199,20 +196,24 @@ function QuestionPage () {
         for(let i = LEFTNUM; i <= RIGHTNUM; i++) {
             renderArr.push(i);
         }
-
-        if(renderArr[0] !== 1) {
-            renderArr.unshift('...');
-            renderArr.unshift(1);
-        }
-        if (renderArr[renderArr.length-1] !== pageInfo.totalPages) {
-            renderArr.push('...');
-            renderArr.push(pageInfo.totalPages);
-        }
-        if(pageInfo.page !== 1) {
-            renderArr.unshift('Prev');
-        }
-        if(pageInfo.page !== pageInfo.totalPages) {
-            renderArr.push('Next')
+        
+        if(pageInfo.totalPages === 0) {
+            renderArr.push(1);
+        } else {
+            if(renderArr[0] !== 1) {
+                renderArr.unshift('...');
+                renderArr.unshift(1);
+            }
+            if (renderArr[renderArr.length-1] !== pageInfo.totalPages) {
+                renderArr.push('...');
+                renderArr.push(pageInfo.totalPages);
+            }
+            if(pageInfo.page !== 1) {
+                renderArr.unshift('Prev');
+            }
+            if(pageInfo.page !== pageInfo.totalPages) {
+                renderArr.push('Next')
+            }
         }
         
         const changePage = (e) => {
@@ -276,10 +277,6 @@ function QuestionPage () {
                                 return (
                                     <Li key={el.questionId}>
                                         <LiStatusBox>
-                                            {/* <StatsItem>
-                                                <StatsItemNumber>{el.votes}</StatsItemNumber>
-                                                <StatsItemUnit>votes</StatsItemUnit>
-                                            </StatsItem> */}
                                             <StatsItem>
                                                 <StatsItemNumber>{el.answerCount}</StatsItemNumber>
                                                 <StatsItemUnit>answers</StatsItemUnit>
@@ -294,13 +291,7 @@ function QuestionPage () {
                                                 <Link to={`${el.questionId}`}>{el.title}</Link>
                                             </LiTitle>
                                             <LiTagAuthorBox>
-                                                {/* {el.tag.map((_,idx)=>{
-                                                    return (
-                                                        <LiTag key={idx}>{el.tag[idx]}</LiTag>
-                                                    )
-                                                })} */}
                                                 <MetaData>
-                                                    {/* <img src="" alt="img"/> */}
                                                     <span >{el.member.name}</span>
                                                     <span href="/" style={{color:el.createdAt !== el.modifiedAt ? 'gray' : 'black'}} >{whenCorM(el.createdAt, el.modifiedAt)}</span>
                                                 </MetaData>

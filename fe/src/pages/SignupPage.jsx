@@ -9,13 +9,13 @@ import tag from '../assets/tag.png';
 import trophy from '../assets/trophy.png';
 import updowm from '../assets/up-down.png';
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import {
   Container,Wrapper,Content,TextContent,Hypertext,Textimg,Text,Stext,Atext,
   ButtonForm,IconButton,Icon,Icon2,SignupColumn,Inputform,InputLabel,Input,
   PasswordRequirements,RobotCheckContainer,RobotCheckWrapper,SignupAll,SignupText,
   SignupLink,Checkboxlabel,CheckboxWrapper,CheckboxInput,SignUpButton,Textminl,IconButton2,IconButton3
 } from '../components/signuppageComponents/sigupstyles';
+import customAxios from '../customaxios';
 
 
 
@@ -27,7 +27,6 @@ export default function SignupPage() {
   const [password, setPassword] = useState('');
   const [isRobotChecked, setRobotChecked] = useState(false);
   const navigate = useNavigate();
-
 
   const isFormValid =
   name.trim() !== '' &&
@@ -53,6 +52,7 @@ export default function SignupPage() {
   };
 
   const handleSignUp = () => {
+    console.log(name,email,password)
     if (!isFormValid) {
       alert('모든 필드를 작성해주세요.');
       return;
@@ -73,24 +73,24 @@ export default function SignupPage() {
       return;
     }
   
-    axios.post('https://ffce-211-49-219-142.ngrok-free.app/members', {
+    customAxios.post('https://ffce-211-49-219-142.ngrok-free.app/members', {
       name: name,
       email: email,
       password: password
-  }, {
+      }, {
       headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
       }
-  })
-  .then(response => {
-      console.log('회원가입 성공:', response.data);
-      navigate("/login");
-  })
-  .catch(error => {
-      console.error('회원가입 실패:', error);
-  });
-  }
+    })
+    .then(response => {
+        console.log('회원가입 성공:', response.data);
+        navigate("/login");
+    })
+    .catch(error => {
+        console.error('회원가입 실패:', error);
+    });
+}
 
 
 
@@ -135,11 +135,11 @@ export default function SignupPage() {
         </ButtonForm>
         <Inputform>
             <InputLabel>Display name</InputLabel>
-            <Input type='text' value={name} onChange={handleDisplayNameChange} />
+            <Input type='text' value={name} onChange={e=>handleDisplayNameChange(e)} />
             <InputLabel>Email</InputLabel>
-            <Input type='email' value={email} onChange={handleEmailChange} />
+            <Input type='email' value={email} onChange={e=>handleEmailChange(e)} />
             <InputLabel>Password</InputLabel>
-            <Input type='password' value={password} onChange={handlePasswordChange} />
+            <Input type='password' value={password} onChange={e=>handlePasswordChange(e)} />
             <PasswordRequirements>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</PasswordRequirements>
             <RobotCheckContainer>
                 <RobotCheckWrapper>

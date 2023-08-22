@@ -13,7 +13,7 @@ function AskQuestionPage () {
     const [isPossibleContent,setIsPossibleContent] = useState(true);
     const [contentLen,setDatalen] = useState(0);
 
-    const togglePreView = (e,idx) => {
+    const togglePreView = (e) => {
         e.target.textContent === 'PreView' ? e.target.textContent = 'Close' : e.target.textContent = 'PreView';
         setIsPreView1(!isPreView1);
     }
@@ -59,9 +59,9 @@ function AskQuestionPage () {
                     type="text"
                     placeholder="e.g ls there an R function for finding the index of an element in a vector"
                 />
-                {!isPossibleTitle
-                ?<p className='warning'>{el.warning}</p>
-                :undefined}
+                {!isPossibleTitle &&
+                <p className='warning'>{el.warning}</p>
+                }
             </>)},
             placeholder:"e.g ls there an R function for finding the index of an element in a vector",
             warning:'15글자 이상 입력해주세요.',
@@ -78,9 +78,8 @@ function AskQuestionPage () {
                 <CkEditor setEditorData={setPreViewData} setDatalen={setDatalen}></CkEditor>
                 {!isPossibleContent ? <p className='warning'>{el.warning} 현재 {contentLen}글자 </p> : <p className="notice">{contentLen} 글자</p>}
                 <button onClick={(e)=>togglePreView(e,idx)}>PreView</button>
-                {isPreView1
-                ?<EditorViewBox>{Parser(preViewData)}</EditorViewBox>
-                :undefined
+                {isPreView1 &&
+                <EditorViewBox>{Parser(preViewData)}</EditorViewBox>
                 }
             </>},
             warning:'100글자 이상 입력해주세요.',
@@ -92,11 +91,9 @@ function AskQuestionPage () {
             type:(el)=>{return <>
                 {!isPossibleTitle || !isPossibleContent ? <p className='warning'>{el.warning}</p> : undefined}
                 <button onClick={()=>
-                    checkCondition(titleLen,15,setIsPossibleTitle) && checkCondition(contentLen,100,setIsPossibleContent)
-                    ? sendPosting(titleData,preViewData,2)
-                    : undefined
-                }>Posting
-                </button>
+                    checkCondition(titleLen,15,setIsPossibleTitle) && checkCondition(contentLen,100,setIsPossibleContent) &&
+                    sendPosting(titleData,preViewData,2)
+                }>Posting</button>
                 </>},
             warning:'Check Conditions.',
             side:false,
@@ -127,7 +124,7 @@ function AskQuestionPage () {
                                 {el.type(el,idx)}
                             </QuestionTitleInputBox>
                             {el.side 
-                            ?<SupportCardBox key={el.side.imgUrl}>
+                            &&<SupportCardBox key={el.side.imgUrl}>
                                 <SupportCard>
                                     <SupportCardTitle>
                                         <H5>{el.side.title}</H5>
@@ -139,8 +136,7 @@ function AskQuestionPage () {
                                         </SupportCardContent>
                                     </SupportCardContentBox>
                                 </SupportCard>
-                            </SupportCardBox>
-                            :undefined}
+                            </SupportCardBox>}
                         </UserInputBox>
                     )
                 })}

@@ -7,6 +7,7 @@ import { whenCorM, changeTap } from "./QuestionPage";
 import Loading from "../components/Loading";
 import QuestionDetail from "../components/homepage/QuestionDetail";
 import axios from "axios";
+import customAxios from "../customaxios";
 
 const DummyData = {
     "data" : [ {
@@ -60,24 +61,24 @@ const DummyData = {
 
 
 function HomePage () {
-    const navigate = useNavigate();
     const filters = ['Week','Month','Interesting'];
     const [isLoading,setIsloading] = useState(true);
     const [apiData,setApiData] = useState({});
     const [tap,setTap] = useState('week');
-    let testURL = `http://localhost:8080/questions?searchWord=&tab=${tap}&page=1&size=30/`
-    let jsonURL = `http://localhost:8080/questions`
+    //https://ffce-211-49-219-142.ngrok-free.app/
+    let URL = `https://8821-211-58-167-65.ngrok-free.app/questions?searchWord=&tab=${tap}&page=1&size=30`
+    // let jsonURL = `https://ffce-211-49-219-142.ngrok-free.app/questions`
 
     //tap이 변경될때 새로운 testURL로 api요청을 보냄
     useEffect(()=>{
-        axios.get('http://localhost:3001/questions')
+        customAxios.get(URL,{headers:{'ngrok-skip-browser-warning': '69420'}})
         .then((res)=>{
+            console.log(res);
             setApiData({...res.data});
             setIsloading(false);
         })
         .catch(err=>{
             setIsloading(false);
-            navigate('/404');
             console.log(err);
         })
     },[tap])

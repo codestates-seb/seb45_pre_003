@@ -6,6 +6,7 @@ import { EditorViewBox } from "../../style";
 import Parser from 'html-react-parser';
 import Loading from './../Loading';
 import axios from "axios";
+import customAxios from "../../customaxios";
 
 const dummyQuestionData = {
     "questionId" : 1,
@@ -53,15 +54,19 @@ const dummyansweredData = {
 
 function QuestionDetail () {
     const navigate = useNavigate();
-    const {id} = useParams();
+    const {questionId} = useParams();
+    const [memeberId,setMemberId] = useState(null);
     const [isLoading,setIsLoading] = useState(true);
     const [questionData,setQuestionData] = useState({});
     const [answeredData,setAnsweredData] = useState({});
     const [isAddActive,setIsAddActive] = useState(false);
     const [update,setUpdate] = useState(true);
 
-    const questionIdURL = `http://localhost:3001/question2`
-    const answersIdURL = `http://localhost:3001/answers`
+    const answersURL = 'http://localhost:3001/answers';
+
+    const questionIdURL = `http://localhost:3001/question1` //`http://localhost:8080/questions/${id}`
+    const answersIdURL = `http://localhost:3001/answers`    //`http://localhost:8080/answers/question/${id}`
+    
     
     const CommentData = {
         "body" : "",
@@ -77,20 +82,26 @@ function QuestionDetail () {
         if(CommentData.body.length < 20) {
             alert('20글자 입력해주세요')
         } else {
-            console.log(CommentData.body);
-            setUpdate(!update);
-            setIsAddActive(false);
+            customAxios.post(answersURL,CommentData)
+            .then(()=>{
+                setUpdate(!update);
+            })
+            .catch(()=>{
+                alert('답변을 달기 위해서는 로그인이 필요합니다.');
+            })
         }
     }
 
     useEffect(()=>{
-        axios.get(questionIdURL)
+        setIsLoading(true)
+        customAxios.get(questionIdURL)
         .then(Data=>{
-            setQuestionData({...Data.data});
-            axios.get(answersIdURL)
+            customAxios.get(answersIdURL)
             .then(Data2=>{
+                setQuestionData({...Data.data});
                 setAnsweredData({...Data2.data});
                 setIsLoading(false);
+                //멤버의 아이디를 받기위해서 API요청을 할지 상태로 관리할지 정해야할듯
             })
             .catch(err2=>{
                 navigate('/404');
@@ -123,13 +134,15 @@ function QuestionDetail () {
                 <Link to={'/askquestion'}>
                     <AskQuestionBtn>Ask Question</AskQuestionBtn>
                 </Link>
+
             </TopBox>
+
             <BodyBox>
                 <EditorViewBox>
                     {Parser(questionData.body)}
                 </EditorViewBox>
                 <CommentUl>
-                    {answeredData.data.map(item=>{
+                    {answeredData.data?.map(item=>{
                         return (
                             <CommentLi key={item.answerId}>
                                 <span className="body">{item.body}</span>
@@ -142,24 +155,25 @@ function QuestionDetail () {
                     <AddCommentBtn
                     onClick={()=>setIsAddActive(!isAddActive)}
                     >Add a comment</AddCommentBtn>
-                    {isAddActive
-                        ?<>
+                    {isAddActive &&
                         <CommentLi>
                             <textarea
                             onChange={e=>changeComment(e)}
                             />
+
                             <button
                             className="cancle"
                             onClick={()=>setIsAddActive(!isAddActive)}
-                            >Cancle</button>
+                            >Cancle
+                            </button>
 
                             <button
                             className="send"
                             onClick={send}
-                            >Send</button>
+                            >Send
+                            </button>
                         </CommentLi>
-                        </>
-                        :undefined}
+                    }
                 </CommentUl>
                 
             </BodyBox>
