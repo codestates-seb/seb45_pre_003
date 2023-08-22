@@ -1,7 +1,7 @@
 import Loginheader from '../components/LoginHeader/Loginheader';
 import React,{useState} from 'react';
 import picture1 from '../assets/stack-overflow.png';
-import googleLogo from '../assets/ico_google.png';
+
 import githubLogo from '../assets/github.png';
 import facebookLogo from '../assets/facebook2.png';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import {
   LoginButton,SignupAll,SignupText,SignupLink,Label,ForgotPasswordLink,Loginform,SignupLink2,
 } from '../components/loginpageComponents/styles';
 import customAxios from '../customaxios';
+import GoogleButton from '../components/loginpageComponents/GoogleButton';
 
 export default function LoginPage({setisLogout}) {
   const [inputemail, setInputId] = useState('')
@@ -82,10 +83,9 @@ const onClickLogin = () => {
           <MyPageImage src={picture1} alt="My Page" />
         </MyPageLink>
         <ButtonForm>
-          <IconButton> 
-            <Icon src={googleLogo} alt="Google" />
-            Log in with Google
-          </IconButton>
+          <IconButton>
+         <GoogleButton />
+         </IconButton>
           <IconButton2>
             <Icon src={githubLogo} alt="GitHub" />
             Log in with GitHub
