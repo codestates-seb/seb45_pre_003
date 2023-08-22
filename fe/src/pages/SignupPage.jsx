@@ -155,7 +155,7 @@ export default function SignupPage() {
                     <CheckboxInput type="checkbox"  />
                     <PasswordRequirements htmlFor="optInCheck">Opt-in to receive occasional product updates, user research invitations, company announcements, and digests.</PasswordRequirements>
                   </CheckboxWrapper>
-                  <SignUpButton  onClick={handleSignUp}>Sign up</SignUpButton>
+                  <SignUpButton type='button' onClick={handleSignUp}>Sign up</SignUpButton>
             <Textminl>By clicking “Sign up”, you agree to our terms of service and acknowledge that you have read and understand our privacy policy and code of conduct.</Textminl>
             </Inputform>
             <SignupAll>

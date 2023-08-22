@@ -5,7 +5,7 @@ import earth from '../assets/earth.png';
 import stack from '../assets/stack-overflow.png';
 import { useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect} from 'react';
-import {  iconInbox, iconAchievements, iconHelp, iconStackExchange } from '../components/mypageComponents/icons'
+import {  iconInbox, iconAchievements, iconHelp } from '../components/mypageComponents/icons'
 import {
   HeaderStyle,
   HeaderContainerStyle,
@@ -33,6 +33,8 @@ import {
   InputSearchdiv,
   SearchIcon3,
   InputStyle2,
+  HeaderIconStyle3,
+  LogoutButton,
   HeaderElementStyle2,
 
 } from "../style";
@@ -144,10 +146,10 @@ function Header () {
                 <HeaderElementStyle>
                   <div>{iconHelp}</div>
                 </HeaderElementStyle>
-                <HeaderElementStyle>
-                  <div>{iconStackExchange}</div>
-                </HeaderElementStyle>
             </HeaderIconStyle2>
+            <HeaderIconStyle3>
+                   <LogoutButton>Log out</LogoutButton>
+            </HeaderIconStyle3>
             </HeaderContainerStyle>    
         </HeaderStyle>
     )
