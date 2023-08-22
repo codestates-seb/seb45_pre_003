@@ -346,6 +346,8 @@ cursor: pointer;
 
 @media screen and (max-width:640px){
    display:block;
+   position: relative;
+   right: 4px;
    } 
 `;
 
@@ -402,29 +404,51 @@ box-shadow: 0 0 6px 0px skyblue;
 } 
 
 `
-
-export const HeaderIconStyle = styled.ul`
- display:flex; 
- width: 218px;
- height: 16px; 
- padding: 0 12px 0 0 ; 
- justify-content: center;
- align-items:center; 
-`
-
 export const HeaderIconStyle2 = styled.ul`
    display:flex; 
    width: 218px;
    height: 100%; 
-   padding: 0 12px 0 0 ; 
+   padding: 0 30px 0 0 ; 
    justify-content: center;
    align-items:center; 
 `
+
+export const HeaderIconStyle3 = styled.ul`
+ display:flex; 
+ justify-content: flex-end;
+ align-items:center; 
+`
+
+export const LogoutButton = styled.li`
+background-color: orangered;
+color: #ffffff;
+border: none;
+border-radius: 4px;
+width: 65.25px;
+height: 33px;
+padding: 8px 8.4px;
+align-self: center;
+position: relative;
+right: 20px;
+cursor: pointer;
+font-size: 13px;
+list-style-type: none;
+
+@media screen and (max-width:640px){
+        right: 30px;
+    }
+
+&:hover {
+background-color: tomato;
+}
+`;
+
+
 export const HeaderElementStyle = styled.li`
      padding: 0 10px;
      margin: 0px;
      list-style: none; 
-     width: 52px; 
+     width: 60px; 
      height: 45px;
      display: flex;
      justify-content: center;
