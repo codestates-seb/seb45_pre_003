@@ -50,19 +50,19 @@ import {
                                                      <MypageQuestionUpperTextStyle key={uuidv4()}>0</MypageQuestionUpperTextStyle>
                                                      <MypageQuestionUpperTextStyle key={uuidv4()}>votes</MypageQuestionUpperTextStyle>
                                                 </MypageQuestionSummary>
-                                             {el.answers === 0 ? 
+                                             {el.answerCount === 0 ? 
                                                  <MypageQuestionSummary key={uuidv4()}>
-                                                     <MypageQuestionUpperTextStyle key={uuidv4()}>{el.answers}</MypageQuestionUpperTextStyle>
+                                                     <MypageQuestionUpperTextStyle key={uuidv4()}>0</MypageQuestionUpperTextStyle>
                                                      <MypageQuestionUpperTextStyle key={uuidv4()} >answers</MypageQuestionUpperTextStyle>
                                                  </MypageQuestionSummary>
                                                :
                                                  <MypageQuestionSummary key={uuidv4()} className="answersGreenBox">
-                                                     <MypageQuestionUpperTextStyle key={uuidv4()} className='mypageItems_1'>{el.answers}</MypageQuestionUpperTextStyle>
+                                                     <MypageQuestionUpperTextStyle key={uuidv4()} className='mypageItems_1'>{el.answerCount}</MypageQuestionUpperTextStyle>
                                                      <MypageQuestionUpperTextStyle key={uuidv4()} className='mypageItems_1'>answer</  MypageQuestionUpperTextStyle>
                                                  </MypageQuestionSummary>
                                              }
                                                  <MypageQuestionSummary>
-                                                     <MypageQuestionUpperTextStyle key={uuidv4()}>{el.views}</MypageQuestionUpperTextStyle>
+                                                     <MypageQuestionUpperTextStyle key={uuidv4()}>{el.visitCount}</MypageQuestionUpperTextStyle>
                                                      <MypageQuestionUpperTextStyle key={uuidv4()}>views</MypageQuestionUpperTextStyle>
                                                 </MypageQuestionSummary>
                                              </QuestionUpperText>

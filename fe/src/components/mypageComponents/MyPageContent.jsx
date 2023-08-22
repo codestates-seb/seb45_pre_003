@@ -9,23 +9,39 @@ import Profile from './Profile';
 import Activities from './Activity'; 
 import axios from 'axios'; 
 import Loading from '../Loading'
+import checkAuth from '../../PathProtection'
 
 export default function MypageContent({selectedContent,setSelectedContent}) {
 
-    const [mypageQuestions, setMypageQuestions ] = useState([])
-    const [mypageAnswers, setMypageAnswers ] = useState([])
     const [isLoading, setIsLoading] = useState(true);
+    const [userName, setUserName] = useState('')
+    const [signupDate, setSignupDate] = useState(null); 
+    const [visit, setVisit] = useState(null)
+    const [answerCount, setAnswerCount] = useState(null)
+    const [questionCount, setQuestionCount] = useState(null)
+    const [userQuestions, setMypageQuestions ] = useState([])
+    const [userAnswers, setMypageAnswers ] = useState([])
     
+    const userId = checkAuth(); 
+      //  const userId = 9; 
     const handleFilter = (el) => {
       setSelectedContent(el)
     }
     
     useEffect(() => {
       const loadingTimeout = setTimeout(() => {
-      axios.get('http://localhost:8080/questions')
+      axios.get(`http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/members/${userId}`)
         .then(res => {
           setIsLoading(true); 
-          setMypageQuestions(res.data);
+          console.log(res)
+          setUserName(res.data.name)
+          setSignupDate(res.data.createdAt)
+          setVisit(res.data.continuousVisitCount)
+          setAnswerCount(res.data.answerCount)
+          setQuestionCount(res.data.questionCount); 
+          setMypageQuestions(res.data.questionsData.data);
+          setMypageAnswers(res.data.questionsWithMyAnswers.data)
+   
           setIsLoading(false); 
         })
         .catch(error => {
@@ -34,31 +50,25 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
 
       }, 300); 
     
-      return () => clearTimeout(loadingTimeout);
-       
+      return () => clearTimeout(loadingTimeout); 
     }, []);
 
-    useEffect(() => {
-      axios.get('http://localhost:8080/answers')
-        .then(res => {
-          setMypageAnswers(res.data)
-        })
-        .catch(error => {
-          console.log("MyPage Question Mapping Error:", error);
-        });
-    }, []);
-
+   console.log(userQuestions)
+   console.log(userAnswers)
 
     if(isLoading){
       return <Loading />
     }
-  
-    const userName = "elena"; //로그인시에 확정된 값을 이용할것 
-    const userQuestions = mypageQuestions.filter(el => el.author === userName) //백엔드에서 최신 3개
-    const userAnswers = mypageAnswers.filter(el => el.author === userName) //백엔드에서 최신 3개
-    const numberOfuserQuestions = 5; // 통신을 통해 Backend에서 받아옴  (유저의 총 질문수)
-    const numberOfuserAnswers = 4 ; // 통신을 통해 Backend에서 받아옴  (유저의 총 답변수)
-    console.log(userQuestions)
+    
+    function duration(el) {
+      const createdDate = new Date(el) ; 
+      const today = new Date(); 
+      const durations = today - createdDate
+      const dayDifference = Math.ceil(durations/(1000*60*60*24))
+      return dayDifference; 
+      };
+
+
 
     return (
       <>
@@ -68,9 +78,9 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
         <UserInfomationConnected>
           <div style={{fontSize:"34px", margin: "4px"}}> {userName} </div>
           <UserdetailsStyle>
-             <li style={{listStyle:'none', margin:'0px 2px'}}>🎂 Members for 3days </li>
+             <li style={{listStyle:'none', margin:'0px 2px'}}>🎂 Members for {duration(signupDate)}days </li>
              <li style={{listStyle:'none', margin:'0px 2px'}}>🕓 Last seen this week </li>
-             <li style={{listStyle:'none', margin:'0px 2px'}}>🗒️ Visited 3 days, 3consecutive </li>
+             <li style={{listStyle:'none', margin:'0px 2px'}}>🗒️ Visited {visit}days, {visit}consecutive </li>
           </UserdetailsStyle>
         </UserInfomationConnected>
      </FlexStyle>
@@ -87,7 +97,7 @@ export default function MypageContent({selectedContent,setSelectedContent}) {
       </div>
       }
       </div>
-      {selectedContent === 'Profile' && <Profile numberOfuserQuestions={numberOfuserQuestions} numberOfuserAnswers={numberOfuserAnswers} userName={userName}
+      {selectedContent === 'Profile' && <Profile answerCount={answerCount} questionCount={questionCount} userName={userName}
       />}
       {selectedContent === 'Activity' && <Activities userQuestions={userQuestions} userAnswers={userAnswers}
       />}
