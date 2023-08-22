@@ -2,6 +2,8 @@ package com.codestates.stackoverflowclone.answer.service;
 
 import com.codestates.stackoverflowclone.answer.entity.Answer;
 import com.codestates.stackoverflowclone.answer.repository.AnswerRepository;
+import com.codestates.stackoverflowclone.exception.BusinessLogicException;
+import com.codestates.stackoverflowclone.exception.ExceptionCode;
 import com.codestates.stackoverflowclone.question.repository.QuestionRepository;
 import com.codestates.stackoverflowclone.question.service.QuestionService;
 import org.springframework.stereotype.Service;
@@ -20,15 +22,24 @@ public class AnswerService {
         this.answerRepository = answerRepository;
     }
 
-    public Answer createAnswer(Answer answer){
+    public Answer createAnswer(Answer answer, String email){
+
+        if ( !email.equals( answer.getMember().getEmail() ) ) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
+
         answer.getQuestion().setAnswerCount(answer.getQuestion().getAnswerCount() + 1);
         answer.setModifiedAt(LocalDateTime.now());
 
         return answerRepository.save(answer);
     }
 
-    public Answer updateAnswer(Answer answer){
+    public Answer updateAnswer(Answer answer, String email){
         Answer findAnswer = findVerifiedAnswer(answer.getAnswerId());
+
+        if ( !email.equals( answer.getMember().getEmail() ) ) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
 
         Optional.ofNullable(answer.getBody())
                 .ifPresent(body->findAnswer.setBody(body));
@@ -42,8 +53,12 @@ public class AnswerService {
         return answerRepository.findAnswersByQuestionId(questionId);
 
     }
-    public void setBest( long answerId, boolean isBest){
+    public void setBest( long answerId, boolean isBest, String email){
         Answer answer = findVerifiedAnswer(answerId);
+        if ( !email.equals( answer.getQuestion().getMember().getEmail() ) ) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
+
         answer.setIsBest(isBest);
         answerRepository.save(answer);
 
@@ -51,8 +66,14 @@ public class AnswerService {
         answer.getQuestion().setAnswered();//TODO: 잘 작동하는지 확인!
         answerRepository.save(answer);
     }
-    public void deleteAnswer(long answerId){
+    public void deleteAnswer(long answerId, String email){
+
         Answer answer = findVerifiedAnswer(answerId);
+
+        if ( !email.equals( answer.getMember().getEmail() ) ) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
+
         answer.getQuestion().setAnswerCount(answer.getQuestion().getAnswerCount() - 1);
         Answer deleteAnswer = answerRepository.save(answer);
         answerRepository.delete(deleteAnswer);

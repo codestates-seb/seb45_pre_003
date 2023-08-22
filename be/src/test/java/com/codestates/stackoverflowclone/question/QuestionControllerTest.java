@@ -87,7 +87,7 @@ public class QuestionControllerTest {
         // (7) Mock 객체를 이용한 Stubbing
         given(questionMapper.questionPostToQuestion(Mockito.any(QuestionDto.Post.class), Mockito.any(MemberService.class)))
                 .willReturn(new Question());
-        given(questionService.createQuestion(Mockito.any(Question.class))).willReturn(new Question());
+        given(questionService.createQuestion(Mockito.any(Question.class),Mockito.anyString())).willReturn(new Question());
         given(questionMapper.questionToQuestionResponse(Mockito.any(Question.class))).willReturn(response);
 
         // when
@@ -144,7 +144,7 @@ public class QuestionControllerTest {
         // (7) Mock 객체를 이용한 Stubbing
         given(questionMapper.questionPatchToQuestion(Mockito.any(QuestionDto.Patch.class)))
                 .willReturn(new Question());
-        given(questionService.updateQuestion(Mockito.any(Question.class))).willReturn(new Question());
+        given(questionService.updateQuestion(Mockito.any(Question.class), Mockito.anyString() )).willReturn(new Question());
         given(questionMapper.questionToQuestionResponse(Mockito.any(Question.class))).willReturn(response);
 
         // when
@@ -390,7 +390,7 @@ public class QuestionControllerTest {
         long answerId = 1L;
 
         // (7) Mock 객체를 이용한 Stubbing
-        doNothing().when(questionService).deleteQuestion(Mockito.anyLong());
+        doNothing().when(questionService).deleteQuestion(Mockito.anyLong(), Mockito.anyString());
 
         // when
         ResultActions actions =
