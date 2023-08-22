@@ -5,7 +5,6 @@ import MypageContent from '../components/mypageComponents/MyPageContent';
 import { MyPageContainerStyle } from '../components/mypageComponents/MyPage.styled';
 import { MypageContentStyle } from  '../components/mypageComponents/MyPage.styled';
 
-
 export default function MyPage() {
 
    const [selectedContent, setSelectedContent] = useState('Activity');

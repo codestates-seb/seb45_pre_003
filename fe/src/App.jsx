@@ -18,7 +18,7 @@ function App() {
   const [isLogout, setisLogout] = useState(false);
   return (
     <>
-    {isLogout ? <LoginHeader /> : <Header />}
+    {isLogout ? <LoginHeader /> : <Header setisLogout={setisLogout}/>}
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/question/*" element={<QuestionPage/>}/>

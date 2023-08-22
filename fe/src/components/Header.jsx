@@ -41,7 +41,7 @@ import {
 import { Avatar } from './mypageComponents/MyPage.styled'
 
 
-function Header () {
+function Header ({setisLogout}) {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchDropOpen, setSearchDropOpen] = useState(false);
@@ -88,6 +88,12 @@ function Header () {
   const handleHamImageClick = () => {
     setDropdownOpen(!isDropdownOpen);
   };
+
+  const logoutHandler = () => {
+    setisLogout(true);
+    navigate("/login")
+
+  }
 
   return ( 
     <HeaderStyle >
@@ -148,7 +154,7 @@ function Header () {
                 </HeaderElementStyle>
             </HeaderIconStyle2>
             <HeaderIconStyle3>
-                   <LogoutButton>Log out</LogoutButton>
+                   <LogoutButton onClick={logoutHandler}>Log out</LogoutButton>
             </HeaderIconStyle3>
             </HeaderContainerStyle>    
         </HeaderStyle>
