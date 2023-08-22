@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://s-clone.cgk5vpusct7m.ap-northeast-2.rds.amazonaws.com:3306/stackoverflow?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://s-clone.cgk5vpusct7m.ap-northeast-2.rds.amazonaws.com:3306/stackoverflow?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: ${MYSQL_PASSWORD}
   #  h2:
