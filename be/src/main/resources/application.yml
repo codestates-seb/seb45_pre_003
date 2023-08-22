@@ -12,7 +12,7 @@ spring:
 #    url: jdbc:h2:mem:test
   jpa:
     hibernate:
-      ddl-auto: validate  # (1) 스키마 자동 생성
+      ddl-auto: none  # (1) 스키마 자동 생성
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true      # (2) SQL 쿼리 출력
@@ -34,10 +34,9 @@ spring:
             scope:
               - user:email
 #  config:
-#    domain:
+#    domain:cd ~
 #      s3엔드포인트
 jwt:
   key: ${JWT_SECRET_KEY} #secretKey는 환경변수로
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
-ec2Endpoint: ${EC2_ENDPOINT}
