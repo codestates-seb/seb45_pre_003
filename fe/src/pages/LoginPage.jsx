@@ -1,7 +1,7 @@
 import Loginheader from '../components/LoginHeader/Loginheader';
 import React,{useState} from 'react';
 import picture1 from '../assets/stack-overflow.png';
-import googleLogo from '../assets/ico_google.png';
+
 import githubLogo from '../assets/github.png';
 import facebookLogo from '../assets/facebook2.png';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import {
   LoginButton,SignupAll,SignupText,SignupLink,Label,ForgotPasswordLink,Loginform,SignupLink2,
 } from '../components/loginpageComponents/styles';
 import customAxios from '../customaxios';
+import GoogleButton from '../components/loginpageComponents/GoogleButton';
 
 export default function LoginPage() {
   const [inputemail, setInputId] = useState('')
@@ -56,7 +57,7 @@ const onClickLogin = () => {
         'ngrok-skip-browser-warning': '69420'
       }
     }
-    customAxios.post('https://ffce-211-49-219-142.ngrok-free.app/login',
+    customAxios.post('http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/login',
         requestData,
         headers,
       )
@@ -81,10 +82,9 @@ const onClickLogin = () => {
           <MyPageImage src={picture1} alt="My Page" />
         </MyPageLink>
         <ButtonForm>
-          <IconButton> 
-            <Icon src={googleLogo} alt="Google" />
-            Log in with Google
-          </IconButton>
+          <IconButton>
+         <GoogleButton />
+         </IconButton>
           <IconButton2>
             <Icon src={githubLogo} alt="GitHub" />
             Log in with GitHub

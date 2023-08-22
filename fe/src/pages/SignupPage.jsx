@@ -73,7 +73,7 @@ export default function SignupPage() {
       return;
     }
   
-    customAxios.post('https://ffce-211-49-219-142.ngrok-free.app/members', {
+    customAxios.post('http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/members', {
       name: name,
       email: email,
       password: password
