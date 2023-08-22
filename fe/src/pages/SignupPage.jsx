@@ -73,7 +73,7 @@ export default function SignupPage() {
       return;
     }
   
-    customAxios.post('https://ffce-211-49-219-142.ngrok-free.app/members', {
+    customAxios.post('http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/members', {
       name: name,
       email: email,
       password: password
@@ -155,7 +155,7 @@ export default function SignupPage() {
                     <CheckboxInput type="checkbox"  />
                     <PasswordRequirements htmlFor="optInCheck">Opt-in to receive occasional product updates, user research invitations, company announcements, and digests.</PasswordRequirements>
                   </CheckboxWrapper>
-                  <SignUpButton type='button' onClick={handleSignUp}>Sign up</SignUpButton>
+                  <SignUpButton type='button'  onClick={handleSignUp}>Sign up</SignUpButton>
             <Textminl>By clicking “Sign up”, you agree to our terms of service and acknowledge that you have read and understand our privacy policy and code of conduct.</Textminl>
             </Inputform>
             <SignupAll>

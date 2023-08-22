@@ -5,97 +5,8 @@ import { HomePageContentStyle, HomePageMainBarStyle, HomePageRightBarStyle, TopB
 import { ContainerStyle } from "../style";
 import { useEffect, useState } from "react";
 import QuestionDetail from "../components/homepage/QuestionDetail";
-import axios from "axios";
-import { PathProtection } from "../PathProtection";
 import customAxios from "../customaxios";
 
-const DummyData = {
-    "data" : [ {
-      "questionId" : 3,
-      "title" : "1踰� 吏덈Ц �젣紐�",
-      "member" : {
-        "id" : 1,
-        "name" : "�솉湲몃룞",
-        "email" : "hgd@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 17,
-      "answered" : false,
-      "createdAt" : "2023-08-18T08:34:16.3319161",
-      "modifiedAt" : "2023-08-18T08:34:16.3319161"
-    }, {
-      "questionId" : 1,
-      "title" : "2踰� 吏덈Ц �젣紐�",
-      "member" : {
-        "id" : 2,
-        "name" : "�엫爰쎌젙",
-        "email" : "lgj@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 10,
-      "answered" : false,
-      "createdAt" : "2023-08-11T08:34:16.3319161",
-      "modifiedAt" : "2023-08-18T08:34:16.3319161"
-    }, {
-        "questionId" : 4,
-        "title" : "21231ㅌ[스트",
-        "member" : {
-          "id" : 2,
-          "name" : "�엫爰쎌젙",
-          "email" : "lgj@gmail.com"
-        },
-        "answerCount" : 0,
-        "visitCount" : 10,
-        "answered" : false,
-        "createdAt" : "2023-08-11T08:34:16.3319161",
-        "modifiedAt" : "2023-06-18T08:34:16.3319161"
-    },{
-        "questionId" : 5,
-        "title" : "1踰� 吏덈Ц �젣紐�",
-        "member" : {
-          "id" : 1,
-          "name" : "�솉湲몃룞",
-          "email" : "hgd@gmail.com"
-        },
-        "answerCount" : 0,
-        "visitCount" : 17,
-        "answered" : false,
-        "createdAt" : "2023-08-18T08:34:16.3319161",
-        "modifiedAt" : "2023-08-18T08:34:16.3319161"
-      }, {
-        "questionId" : 6,
-        "title" : "2踰� 吏덈Ц �젣紐�",
-        "member" : {
-          "id" : 2,
-          "name" : "�엫爰쎌젙",
-          "email" : "lgj@gmail.com"
-        },
-        "answerCount" : 0,
-        "visitCount" : 10,
-        "answered" : false,
-        "createdAt" : "2023-08-11T08:34:16.3319161",
-        "modifiedAt" : "2023-08-18T08:34:16.3319161"
-      }, {
-          "questionId" : 7,
-          "title" : "21231ㅌ[스트",
-          "member" : {
-            "id" : 2,
-            "name" : "�엫爰쎌젙",
-            "email" : "lgj@gmail.com"
-          },
-          "answerCount" : 0,
-          "visitCount" : 10,
-          "answered" : false,
-          "createdAt" : "2023-08-11T08:34:16.3319161",
-          "modifiedAt" : "2023-06-18T08:34:16.3319161"
-      },],
-    "pageInfo" : {
-      "page" : 1,
-      "size" : 15,
-      "totalElements" : 205465460,
-      "totalPages" : 10
-    }
-}
 
 export const whenCorM = (createdAt, modifiedAt) => {
     
@@ -124,7 +35,6 @@ export const changeTap = (e,callback) => {
 }
 
 function QuestionPage () {
-    const navigate = useNavigate();
     const [isLoading,setIsloading] = useState(true);
     const [apiData,setApiData] = useState({
         "pageInfo" : {
@@ -136,17 +46,15 @@ function QuestionPage () {
     });
     const [page,setPage] = useState(1);
     const [tap,setTap] = useState('month');
-    const [perPage,setPerPage] = useState(30);
+    const [perPage,setPerPage] = useState(15);
     const perPageArr = [15,30,50];
-    const filters = ['Newest','Active','Unanswered'];
-    let URL = `https://8821-211-58-167-65.ngrok-free.app/questions?searchWord=&tab=${tap}&page=${page}&size=${perPage}`
-    // const testURL = `http://localhost:3001/questions`
-    //pageInfo, tap, perPage중 하나라도 값이 변경된다면 밑에 useEffect를 통해 api요청을 보내고 apidata를 갱신함
+    const filters = ['Newest','Unanswered'];
+    let URL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions?searchWord=&tab=${tap}&page=${page}&size=${perPage}`
     useEffect(()=>{
         setIsloading(true);
-        customAxios.get(URL,{headers:{'ngrok-skip-browser-warning': '69420'}})
+        window.scrollTo(0, 0);
+        customAxios.get(URL)
         .then((res)=>{
-            console.log(res);
             setApiData({...res.data});
             setIsloading(false);
         })
@@ -243,7 +151,7 @@ function QuestionPage () {
             <HomePageContentStyle>
                 <HomePageMainBarStyle>
                     <Routes>
-                        <Route path=":id" element={<QuestionDetail/>}/>
+                        <Route path="/:id" element={<QuestionDetail/>}/>
                         <Route path="" element={<>
                         {isLoading
                         ?<Loading/>

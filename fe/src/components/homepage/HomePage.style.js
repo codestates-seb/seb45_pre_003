@@ -317,6 +317,17 @@ export const QDTitleStatsBox = styled.div`
         margin:0 24px 0 4px;
         color:gray;
     }
+
+    > button {
+        margin:8px;
+        border:0;
+        background-color:white;
+        color:gray;
+        &:hover{
+            cursor: pointer;
+            color:black;
+        }
+    }
 `
 
 export const BodyBox = styled.div`

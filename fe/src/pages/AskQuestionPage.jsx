@@ -3,8 +3,12 @@ import CkEditor from "../components/askquestionComponents/CkEditor";
 import { useState } from "react";
 import Parser from 'html-react-parser';
 import { EditorViewBox } from "../style";
+import customAxios from "../customaxios";
+import base64 from 'base-64'
+import { useNavigate } from "react-router-dom";
 
 function AskQuestionPage () {
+    const navigate = useNavigate();
     const [isPreView1, setIsPreView1] = useState(false);
     const [titleData,setTitleData] = useState('');
     const [preViewData, setPreViewData] = useState('');
@@ -28,13 +32,33 @@ function AskQuestionPage () {
         }
     }
 
-    const sendPosting = (title,body,memberId) => {
+    const sendPosting = (title,body) => {
+        const token = localStorage.getItem('usertoken');
+        const payload = token?.substring(token.indexOf('.')+1,token.lastIndexOf('.'));
         const rqData = {
             "title" : title,
             "body" : body,
-            "momberId" : memberId,
+            "memberId" : null,
         }
+
+        try {
+            const decode = JSON.parse(base64.decode(payload));
+            rqData["memberId"] = decode.id;
+        } catch {
+            localStorage.removeItem('usertoken');
+            window.location.reload();
+        }
+        
+        
         console.log(rqData);
+        customAxios.post('http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions',rqData)
+        .then(res=>{
+            console.log('질문생성성공');
+            navigate("/");
+        })
+        .catch(err=>{
+            console.log('질문생성실패');
+        })
     }
 
     const noticeData = [
