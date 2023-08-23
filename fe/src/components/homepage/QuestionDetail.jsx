@@ -5,12 +5,10 @@ import { whenCorM } from "../../pages/QuestionPage";
 import { EditorViewBox } from "../../style";
 import Parser from 'html-react-parser';
 import Loading from './../Loading';
-import base64 from 'base-64'
 import customAxios from "../../customaxios";
 import { checkAuth } from "../../PathProtection";
 
 function QuestionDetail () {
-    console.log('질문디테일')
     const navigate = useNavigate();
     const {id} = useParams();
     const [isLoading,setIsLoading] = useState(true);
@@ -34,7 +32,7 @@ function QuestionDetail () {
         CommentData.body = e.target.value;
     }
 
-    const send = () => {
+    const handleSendAnswer = () => {
         if(CommentData.body.length < 20) {
             alert('20글자 입력해주세요')
         } else {
@@ -54,6 +52,19 @@ function QuestionDetail () {
         }
     }
 
+    const handleDeletePost = (url) => {
+        const memberId = checkAuth();
+        if(memberId) {
+            customAxios.delete(url)
+            .then(()=>{
+                alert('삭제성공')
+                navigate(-1);
+            })
+            .catch(()=>alert('유효한 로그인 상태가 아닙니다.'))
+        } else {
+            alert('로그인이 필요한 기능입니다.')
+        }
+    }
     
 
     useEffect(()=>{
@@ -107,8 +118,7 @@ function QuestionDetail () {
                     {Parser(questionData.body)}
                 </EditorViewBox>
                 <QDTitleStatsBox>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={()=>handleDeletePost(questionIdURL)}>Delete</button>
                 </QDTitleStatsBox>
                 <CommentUl>
                     {answeredData.data?.map(item=>{
@@ -118,6 +128,7 @@ function QuestionDetail () {
                                 <span>-</span>
                                 <span className="name">{item.member.name}</span>
                                 <span className="time">{whenCorM(item.createdAt, item.modifiedAt)}</span>
+                                <span className="delete" onClick={()=>handleDeletePost(`${answersURL}/${item.answerId}`)}>Delete</span>
                             </CommentLi>
                         )
                     })}
@@ -138,7 +149,7 @@ function QuestionDetail () {
 
                             <button
                             className="send"
-                            onClick={send}
+                            onClick={handleSendAnswer}
                             >Send
                             </button>
                         </CommentLi>

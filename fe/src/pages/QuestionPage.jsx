@@ -34,7 +34,8 @@ export const changeTap = (e,callback) => {
     callback(e.target.textContent.toLowerCase());
 }
 
-function QuestionPage () {
+function QuestionPage ({keyWord}) {
+    const navigate = useNavigate();
     const [isLoading,setIsloading] = useState(true);
     const [apiData,setApiData] = useState({
         "pageInfo" : {
@@ -45,11 +46,12 @@ function QuestionPage () {
         }
     });
     const [page,setPage] = useState(1);
-    const [tap,setTap] = useState('month');
+    const [tap,setTap] = useState('newest');
     const [perPage,setPerPage] = useState(15);
     const perPageArr = [15,30,50];
     const filters = ['Newest','Unanswered'];
-    let URL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions?searchWord=&tab=${tap}&page=${page}&size=${perPage}`
+    let URL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions?searchWord=${keyWord}&tab=${tap}&page=${page}&size=${perPage}`
+
     useEffect(()=>{
         setIsloading(true);
         window.scrollTo(0, 0);
@@ -60,9 +62,10 @@ function QuestionPage () {
         })
         .catch(err=>{
             setIsloading(false);
+            navigate("/404");
             console.log(err);
         })
-    },[page,tap,perPage])
+    },[page,tap,perPage,keyWord])
 
     const pageSizeRendering = (pageInfo) => {
         const changeSize = (size) => {
@@ -77,7 +80,7 @@ function QuestionPage () {
                     className={item === pageInfo.size ? 'focus' : ''}
                     onClick={e=>changeSize(e.target.textContent)}
                     >
-                        {item}
+                    {item}
                     </PageButton>
                 )}
             </>

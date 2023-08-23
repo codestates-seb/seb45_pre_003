@@ -6,82 +6,30 @@ import { useEffect, useState } from "react";
 import { whenCorM, changeTap } from "./QuestionPage";
 import Loading from "../components/Loading";
 import QuestionDetail from "../components/homepage/QuestionDetail";
-import axios from "axios";
 import customAxios from "../customaxios";
 
-const DummyData = {
-    "data" : [ {
-      "questionId" : 2,
-      "title" : "1踰� 吏덈Ц �젣紐�",
-      "member" : {
-        "id" : 1,
-        "name" : "�솉湲몃룞",
-        "email" : "hgd@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 17,
-      "answered" : false,
-      "createdAt" : "2023-08-18T08:34:16.3319161",
-      "modifiedAt" : "2023-08-18T08:34:16.3319161"
-    }, {
-      "questionId" : 1,
-      "title" : "2踰� 吏덈Ц �젣紐�",
-      "member" : {
-        "id" : 2,
-        "name" : "�엫爰쎌젙",
-        "email" : "lgj@gmail.com"
-      },
-      "answerCount" : 0,
-      "visitCount" : 10,
-      "answered" : false,
-      "createdAt" : "2023-08-11T08:34:16.3319161",
-      "modifiedAt" : "2023-08-18T08:34:16.3319161"
-    }, {
-        "questionId" : 3,
-        "title" : "21231ㅌ[스트",
-        "member" : {
-          "id" : 2,
-          "name" : "�엫爰쎌젙",
-          "email" : "lgj@gmail.com"
-        },
-        "answerCount" : 0,
-        "visitCount" : 10,
-        "answered" : false,
-        "createdAt" : "2023-08-11T08:34:16.3319161",
-        "modifiedAt" : "2023-06-18T08:34:16.3319161"
-    },],
-    "pageInfo" : {
-      "page" : 1,
-      "size" : 30,
-      "totalElements" : 2,
-      "totalPages" : 10
-    }
-}
-
-
-
-function HomePage () {
-    const filters = ['Week','Month','Interesting'];
+function HomePage ({keyWord}) {
+    const filters = ['Week','Month'];
+    const navigate = useNavigate();
     const [isLoading,setIsloading] = useState(true);
     const [apiData,setApiData] = useState({});
     const [tap,setTap] = useState('week');
-    let URL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions?searchWord=&tab=${tap}&page=1&size=30`
-
+    let URL = `http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions?searchWord=${keyWord}&tab=${tap}&page=1&size=30`
 
     useEffect(()=>{
         setIsloading(true);
         window.scrollTo(0, 0);
         customAxios.get(URL)
         .then((res)=>{
-            console.log(res);
             setApiData({...res.data});
             setIsloading(false);
         })
         .catch(err=>{
             setIsloading(false);
+            navigate('/404');
             console.log(err);
         })
-    },[tap])
+    },[tap,keyWord])
     
     return (
         <ContainerStyle>
@@ -159,8 +107,6 @@ function HomePage () {
                             </Routes>
                 </HomePageMainBarStyle>
                 <HomePageRightBarStyle href="https://github.com/codestates-seb/seb45_pre_003"/>
-                
-
             </HomePageContentStyle>
         </ContainerStyle>
     )

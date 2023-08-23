@@ -32,6 +32,8 @@ function AskQuestionPage () {
         }
     }
 
+    
+
     const sendPosting = (title,body) => {
         const token = localStorage.getItem('usertoken');
         const payload = token?.substring(token.indexOf('.')+1,token.lastIndexOf('.'));
@@ -48,16 +50,19 @@ function AskQuestionPage () {
             localStorage.removeItem('usertoken');
             window.location.reload();
         }
-        
-        
-        console.log(rqData);
-        customAxios.post('http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions',rqData)
+
+        customAxios.post('http://ec2-3-39-194-234.ap-northeast-2.compute.amazonaws.com:8080/questions',JSON.stringify(rqData),{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then(res=>{
-            console.log('질문생성성공');
-            navigate("/");
+            navigate(-1);
         })
         .catch(err=>{
-            console.log('질문생성실패');
+            if(err.response.status === 500) {
+                alert('본문의 길이가 너무 깁니다.');
+            }
         })
     }
 

@@ -241,23 +241,15 @@ export const LiTag = styled.button`
 export const MetaData = styled.div`
     margin-left:auto;
     font-size:12px;
-    > a {
-        margin:2px;
-        text-decoration:none;
-        overflow-wrap:break-word;
-        &:hover{
-            cursor:pointer;
-        }
-    }
-
-    > a:nth-child(2) {
-        color:hsl(206,100%,52%);
-    }
 
     > span {
         margin:2px;
         text-decoration:none;
         overflow-wrap:break-word;
+    }
+
+    > span:nth-child(1) {
+        color:#0074AC;
     }
 `
 
@@ -319,7 +311,7 @@ export const QDTitleStatsBox = styled.div`
     }
 
     > button {
-        margin:8px;
+        margin:8px 0 8px 0;
         border:0;
         background-color:white;
         color:gray;
@@ -355,6 +347,14 @@ export const CommentLi = styled.li`
 
     >.time {
         color:lightgray;
+    }
+
+    >.delete {
+        color:#eee;
+        &:hover{
+            cursor:pointer;
+            color:#FF4500;
+        }
     }
 
     > textarea {

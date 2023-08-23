@@ -13,9 +13,10 @@ import {
 } from './Loginheaderstyle';
 
 
-export default function LoginHeader() {
+export default function LoginHeader({setKeyWord = ()=>{}}) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchDropOpen, setSearchDropOpen] = useState(false);
+  const [key,setKey] = useState('');
   const navigate = useNavigate();
 
 
@@ -47,8 +48,13 @@ export default function LoginHeader() {
     setSearchDropOpen(!isSearchDropOpen);
   }
 
+  const handleChangeKeyWord = (e) => {
+    setKey(e.target.value);
+  }
 
-
+  const handleSearchKeyWord = () => {
+    setKeyWord(key);
+  }
 
 return (
   <HeaderStyle >
@@ -80,16 +86,34 @@ return (
         <NavLink1 >Products</NavLink1>
         </Navbar>
         <SearchElementStyle> 
-        <SearchIcon src={searchIcon} alt="Search" />
-          <InputStyle type={'text'} placeholder='Search' maxLength={240}/>
+        <SearchIcon
+          src={searchIcon}
+          alt="Search"
+          onClick={handleSearchKeyWord()}
+        />
+          <InputStyle
+            type={'text'}
+            placeholder='Search'
+            maxLength={240}
+            onChange={e=>handleChangeKeyWord(e)}
+          />
        </SearchElementStyle>
        <SearchIcondiv>
        <SearchIcon2 src={searchIcon} alt="Search"  onClick={seacchDrop}/>
        </SearchIcondiv>
        {isSearchDropOpen && ( 
         <InputSearchdiv>
-          <SearchIcon3 src={searchIcon} alt="Search" />
-          <InputStyle2 type={'text'} placeholder='Search' maxLength={240}/>
+          <SearchIcon3
+            src={searchIcon}
+            alt="Search"
+            onClick={handleSearchKeyWord()}
+          />
+          <InputStyle2
+            type={'text'}
+            placeholder='Search'
+            maxLength={240}
+            onChange={e=>handleChangeKeyWord(e)}
+          />
             </InputSearchdiv>
        )}
        <HeaderIconStyle>
