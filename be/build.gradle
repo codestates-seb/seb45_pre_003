@@ -16,6 +16,7 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+	asciidoctorExtensions
 }
 
 repositories {
@@ -34,13 +35,21 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
+//	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly	'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+	implementation 'com.google.code.gson:gson:2.10.1'
+	asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 
 tasks.named('test') {
@@ -49,6 +58,24 @@ tasks.named('test') {
 }
 
 tasks.named('asciidoctor') {
+	configurations "asciidoctorExtensions"
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+task copyDocument(type: Copy) {
+	dependsOn asciidoctor
+	from file("${asciidoctor.outputDir}")
+	into file("src/main/resources/static/docs")
+}
+
+build {
+	dependsOn copyDocument
+}
+
+bootJar {
+	dependsOn copyDocument
+	from ("${asciidoctor.outputDir}") {
+		into 'static/docs'
+	}
 }
