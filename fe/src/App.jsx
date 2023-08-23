@@ -14,7 +14,6 @@ import PageNotFound from './components/PageNotFound';
 import PathProtection from './PathProtection';
 import { checkAuth } from './PathProtection';
 
-
 function App() {
   const [isLogout, setisLogout] = useState(false);
   useEffect(()=>{
