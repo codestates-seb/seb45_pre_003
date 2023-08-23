@@ -1,7 +1,7 @@
 import Loginheader from '../components/LoginHeader/Loginheader';
 import React,{useState} from 'react';
 import picture1 from '../assets/stack-overflow.png';
-
+import google from '../assets/ico_google.png';
 import githubLogo from '../assets/github.png';
 import facebookLogo from '../assets/facebook2.png';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +10,8 @@ import {
   LoginButton,SignupAll,SignupText,SignupLink,Label,ForgotPasswordLink,Loginform,SignupLink2,
 } from '../components/loginpageComponents/styles';
 import customAxios from '../customaxios';
-import GoogleButton from '../components/loginpageComponents/GoogleButton';
 
-export default function LoginPage({setisLogout}) {
+export default function LoginPage() {
   const [inputemail, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
   const navigate = useNavigate();
@@ -63,7 +62,6 @@ const onClickLogin = () => {
       )
       .then((res) => {
         console.log("로그인 성공", res);
-        setisLogout(false);
         navigate("/",{replace:true});
       })
       .catch(err => {
@@ -72,7 +70,11 @@ const onClickLogin = () => {
   }
 }
 
-
+const loginRequestHandler = () => {
+  return window.location.assign(
+    `https://github.com/login/oauth/authorize?client_id=${'1080660686567-rqrevbajc9tg7blt32q2kfihoe4kbono.apps.googleusercontent.com'}`
+  );
+};
 
   return (
     
@@ -83,8 +85,9 @@ const onClickLogin = () => {
           <MyPageImage src={picture1} alt="My Page" />
         </MyPageLink>
         <ButtonForm>
-          <IconButton>
-         <GoogleButton />
+          <IconButton onClick={loginRequestHandler}>
+          <Icon src={google} alt="Google" />
+            Log in with Google
          </IconButton>
           <IconButton2>
             <Icon src={githubLogo} alt="GitHub" />
