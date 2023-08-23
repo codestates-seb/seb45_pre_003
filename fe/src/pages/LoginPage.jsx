@@ -11,7 +11,7 @@ import {
 } from '../components/loginpageComponents/styles';
 import customAxios from '../customaxios';
 
-export default function LoginPage() {
+export default function LoginPage({setisLogout=()=>{}}) {
   const [inputemail, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
   const navigate = useNavigate();
@@ -61,11 +61,17 @@ const onClickLogin = () => {
         headers,
       )
       .then((res) => {
-        console.log("로그인 성공", res);
-        navigate("/",{replace:true});
+        console.log("로그인 성공");
+        try {
+          setisLogout(false);
+          navigate("/",{replace:true});
+        } catch {
+          navigate("/",{replace:true});
+        }
+        
       })
       .catch(err => {
-        console.log("로그인 실패", err);
+        console.log("로그인 실패");
       });
   }
 }

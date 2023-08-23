@@ -16,6 +16,8 @@ import { checkAuth } from './PathProtection';
 
 function App() {
   const [isLogout, setisLogout] = useState(false);
+  const [keyWord, setKeyWord] = useState('');
+
   useEffect(()=>{
     const memberId = checkAuth();
     if(memberId) {
@@ -23,21 +25,21 @@ function App() {
     } else {
       setisLogout(true);
     }
-  })
+  },[])
   
   return (
     <>
-    {isLogout ? <LoginHeader/> : <Header />}
+    {isLogout ? <LoginHeader setisLogout={setisLogout} setKeyWord={setKeyWord}/> : <Header  setisLogout={setisLogout} setKeyWord={setKeyWord}/>}
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/question/*" element={<QuestionPage/>}/>
+        <Route path="/*" element={<HomePage keyWord={keyWord}/>}/>
+        <Route path="/question/*" element={<QuestionPage keyWord={keyWord}/>}/>
         <Route path="/login" element={<PathProtection component={<HomePage/>} fallback={<LoginPage  setisLogout={setisLogout}/>}></PathProtection>}/>
         <Route path="/mypage" element={<PathProtection component={<MyPage/>} fallback={<LoginPage/>}></PathProtection>}/>
         <Route path="/signup" element={<PathProtection component={<HomePage/>} fallback={<SignupPage/>}></PathProtection>}/>
         <Route path="/askquestion" element={<PathProtection component={<AskQuestionPage/>} fallback={<LoginPage/>}/>}/>;
         <Route path="/404" element={<PageNotFound/>}/>
       </Routes>
-      {isLogout ? <null/> : <Footer/>}
+      {!isLogout && <Footer/>}
     </>
   );
 }

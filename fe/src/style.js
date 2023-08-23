@@ -313,11 +313,14 @@ border: 1px solid lightgray;
 } 
 `
 export const SearchIcon = styled.img`
-position: relative;
-left: 28px; // Adjust the position as needed
-width: 21px;
-height: 21px; 
-left: 5px;
+    position: relative;
+    left: 28px; // Adjust the position as needed
+    width: 21px;
+    height: 21px; 
+    left: 5px;
+    &:hover{
+        cursor: pointer;
+    }
 `;
 
 export const SearchIcondiv = styled.div`
@@ -342,7 +345,9 @@ export const SearchIcon2 = styled.img`
 width: 21px;
 height: 21px; 
 display: none;
-cursor: pointer;
+&:hover{
+    cursor: pointer
+}
 
 @media screen and (max-width:640px){
    display:block;
@@ -352,12 +357,15 @@ cursor: pointer;
 `;
 
 export const SearchIcon3 = styled.img`
-position: relative;
-width: 21px;
-height: 21px; 
-left: 5px;
-top: 6px;
-z-index: 5;
+    position: relative;
+    width: 21px;
+    height: 21px; 
+    left: 5px;
+    top: 6px;
+    z-index: 5;
+    &:hover{
+            cursor: pointer;
+    }
 `;
 
 

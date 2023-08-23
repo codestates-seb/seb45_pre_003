@@ -3,7 +3,7 @@ import picture3 from '../assets/hamicon.png';
 import searchIcon from '../assets/conicon.png';
 import earth from '../assets/earth.png';
 import stack from '../assets/stack-overflow.png';
-import { useNavigate } from "react-router-dom";
+import { useAsyncError, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect} from 'react';
 import {  iconInbox, iconAchievements, iconHelp } from '../components/mypageComponents/icons'
 import {
@@ -41,13 +41,14 @@ import {
 import { Avatar } from './mypageComponents/MyPage.styled'
 
 
-function Header () {
+function Header ({setisLogout = () => {}, setKeyWord = ()=>{}}) {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchDropOpen, setSearchDropOpen] = useState(false);
   const navigate = useNavigate();
   const dropRef = useRef(null); // 드롭다운을 위한 ref 정의
   const hamImageRef = useRef(null);
+  const [key,setKey] = useState('');
 
   useEffect(() => {
     const closeDropdown = () => {
@@ -91,7 +92,16 @@ function Header () {
 
   const handlelogout = () => {
     localStorage.removeItem('usertoken');
+    setisLogout(true);
     window.location.reload();
+  }
+
+  const handleChangeKeyWord = (e) => {
+    setKey(e.target.value);
+  }
+
+  const handleSearchKeyWord = () => {
+    setKeyWord(key);
   }
 
   return ( 
@@ -124,17 +134,35 @@ function Header () {
       <NavLink1 >Products</NavLink1>
       </Navbar>
       <SearchElementStyle> 
-      <SearchIcon src={searchIcon} alt="Search" />
-        <InputStyle type={'text'} placeholder='Search' maxLength={240}/>
+      <SearchIcon
+        src={searchIcon}
+        alt="Search"
+        onClick={handleSearchKeyWord}
+      />
+      <InputStyle
+        type={'text'}
+        placeholder='Search'
+        maxLength={240}
+        onChange={(e)=>handleChangeKeyWord(e)}
+      />
      </SearchElementStyle>
      <SearchIcondiv>
      <SearchIcon2 src={searchIcon} alt="Search"  onClick={seacchDrop}/>
      </SearchIcondiv>
      {isSearchDropOpen && ( 
       <InputSearchdiv>
-        <SearchIcon3 src={searchIcon} alt="Search" />
-        <InputStyle2 type={'text'} placeholder='Search' maxLength={240}/>
-          </InputSearchdiv>
+        <SearchIcon3
+          src={searchIcon}
+          alt="Search"
+          onClick={handleSearchKeyWord}
+          />
+        <InputStyle2
+          type={'text'}
+          placeholder='Search'
+          maxLength={240}
+          onChange={(e)=>handleChangeKeyWord(e)}
+        />
+        </InputSearchdiv>
      )}
              <HeaderIconStyle2>
                 <HeaderElementStyle2>

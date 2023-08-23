@@ -225,6 +225,9 @@ left: 28px; // Adjust the position as needed
 width: 21px;
 height: 21px; 
 left: 5px;
+&:hover{
+  cursor: pointer;
+}
 `;
 
 export const SearchIcondiv = styled.div`

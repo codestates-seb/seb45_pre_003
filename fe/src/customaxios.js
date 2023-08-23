@@ -1,5 +1,4 @@
 import axios from "axios";
-import base64 from "base-64"
 
 const customAxios = axios.create();
 
