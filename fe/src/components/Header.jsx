@@ -48,7 +48,7 @@ function Header ({setisLogout = () => {}, setKeyWord = ()=>{}}) {
   const navigate = useNavigate();
   const dropRef = useRef(null); // 드롭다운을 위한 ref 정의
   const hamImageRef = useRef(null);
-  const [key,setKey] = useState('');
+  const [word,setWord] = useState('');
 
   useEffect(() => {
     const closeDropdown = () => {
@@ -97,11 +97,17 @@ function Header ({setisLogout = () => {}, setKeyWord = ()=>{}}) {
   }
 
   const handleChangeKeyWord = (e) => {
-    setKey(e.target.value);
+    setWord(e.target.value);
   }
 
   const handleSearchKeyWord = () => {
-    setKeyWord(key);
+    setKeyWord(word);
+  }
+
+  const handleKeyDownEnter = (e) => {
+    if(e.key === 'Enter') {
+      setKeyWord(word);
+    }
   }
 
   return ( 
@@ -144,6 +150,7 @@ function Header ({setisLogout = () => {}, setKeyWord = ()=>{}}) {
         placeholder='Search'
         maxLength={240}
         onChange={(e)=>handleChangeKeyWord(e)}
+        onKeyDown={e=>handleKeyDownEnter(e)}
       />
      </SearchElementStyle>
      <SearchIcondiv>
@@ -161,6 +168,7 @@ function Header ({setisLogout = () => {}, setKeyWord = ()=>{}}) {
           placeholder='Search'
           maxLength={240}
           onChange={(e)=>handleChangeKeyWord(e)}
+          onKeyDown={e=>handleKeyDownEnter(e)}
         />
         </InputSearchdiv>
      )}

@@ -11,7 +11,7 @@ import {
 } from '../components/loginpageComponents/styles';
 import customAxios from '../customaxios';
 
-export default function LoginPage({setisLogout=()=>{}}) {
+export default function LoginPage({setisLogout}) {
   const [inputemail, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const onClickLogin = () => {
           setisLogout(false);
           navigate("/",{replace:true});
         } catch {
-          navigate("/",{replace:true});
+          alert('다시 시도해 주세요.')
         }
         
       })

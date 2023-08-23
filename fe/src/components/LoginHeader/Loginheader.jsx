@@ -13,10 +13,10 @@ import {
 } from './Loginheaderstyle';
 
 
-export default function LoginHeader({setKeyWord = ()=>{}}) {
+function LoginHeader({setKeyWord = ()=>{}}) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchDropOpen, setSearchDropOpen] = useState(false);
-  const [key,setKey] = useState('');
+  const [word,setWord] = useState('');
   const navigate = useNavigate();
 
 
@@ -49,11 +49,17 @@ export default function LoginHeader({setKeyWord = ()=>{}}) {
   }
 
   const handleChangeKeyWord = (e) => {
-    setKey(e.target.value);
+    setWord(e.target.value);
   }
 
   const handleSearchKeyWord = () => {
-    setKeyWord(key);
+    setKeyWord(word);
+  }
+
+  const handleKeyDownEnter = (e) => {
+    if(e.key === 'Enter') {
+      setKeyWord(word);
+    }
   }
 
 return (
@@ -89,13 +95,14 @@ return (
         <SearchIcon
           src={searchIcon}
           alt="Search"
-          onClick={handleSearchKeyWord()}
+          onClick={handleSearchKeyWord}
         />
           <InputStyle
             type={'text'}
             placeholder='Search'
             maxLength={240}
             onChange={e=>handleChangeKeyWord(e)}
+            onKeyDown={e=>handleKeyDownEnter(e)}
           />
        </SearchElementStyle>
        <SearchIcondiv>
@@ -113,6 +120,7 @@ return (
             placeholder='Search'
             maxLength={240}
             onChange={e=>handleChangeKeyWord(e)}
+            onKeyDown={e=>handleKeyDownEnter(e)}
           />
             </InputSearchdiv>
        )}
@@ -125,3 +133,5 @@ return (
   
 )
 }
+
+export default LoginHeader

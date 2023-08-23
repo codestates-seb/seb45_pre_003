@@ -293,7 +293,7 @@ list-style-type: none;
 `;
 
 
-export const SearchElementStyle = styled.form`
+export const SearchElementStyle = styled.div`
 display: flex;
 align-items: center;
 width: 773px;
