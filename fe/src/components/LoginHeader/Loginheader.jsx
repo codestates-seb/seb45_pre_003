@@ -56,6 +56,12 @@ function LoginHeader({setKeyWord = ()=>{}}) {
     setKeyWord(word);
   }
 
+  const handleKeyDownEnter = (e) => {
+    if(e.key === 'Enter') {
+      setKeyWord(word);
+    }
+  }
+
 return (
   <HeaderStyle >
       <HeaderContainerStyle onBlur={() => setDropdownOpen(false)}>  
@@ -96,6 +102,7 @@ return (
             placeholder='Search'
             maxLength={240}
             onChange={e=>handleChangeKeyWord(e)}
+            onKeyDown={e=>handleKeyDownEnter(e)}
           />
        </SearchElementStyle>
        <SearchIcondiv>
@@ -113,6 +120,7 @@ return (
             placeholder='Search'
             maxLength={240}
             onChange={e=>handleChangeKeyWord(e)}
+            onKeyDown={e=>handleKeyDownEnter(e)}
           />
             </InputSearchdiv>
        )}
