@@ -28,7 +28,7 @@ import picture1 from '../../assets/stack-overflow.png'
 import { useNavigate } from "react-router-dom";
 import Parser from 'html-react-parser';
 
-export default function Profile({numberOfuserQuestions, numberOfuserAnswers, userName}) {
+export default function Profile({answerCount, questionCount, userName}) {
   const navigate = useNavigate();
   const [showprofile, showSetProfile] = useState(false); 
   const [parsedProfile, setParsedProfile] = useState(null); 
@@ -56,11 +56,11 @@ export default function Profile({numberOfuserQuestions, numberOfuserAnswers, use
                <ProfileLeftBarContainerTitlelStyle>Stats</ProfileLeftBarContainerTitlelStyle>
                   <ProfileLeftBarStyle>
                     <ProfileBoxStyle >
-                      <ProfileBoxTextStyle className="number _1">{numberOfuserAnswers}</ProfileBoxTextStyle>
+                      <ProfileBoxTextStyle className="number _1">{answerCount}</ProfileBoxTextStyle>
                       <ProfileBoxTextStyle  className="item _1">answers</ProfileBoxTextStyle>
                     </ProfileBoxStyle>
                     <ProfileBoxStyle >
-                      <ProfileBoxTextStyle className="number _2">{numberOfuserQuestions}</ProfileBoxTextStyle>
+                      <ProfileBoxTextStyle className="number _2">{questionCount}</ProfileBoxTextStyle>
                       <ProfileBoxTextStyle  className="item _2">questions</ProfileBoxTextStyle>
                     </ProfileBoxStyle>
                     <ProfileBoxStyle>
@@ -134,3 +134,4 @@ export default function Profile({numberOfuserQuestions, numberOfuserAnswers, use
    </>
   )
 }
+
