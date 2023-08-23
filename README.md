@@ -5,7 +5,7 @@
 
 ### 팀 이름 : Temp
 ### 프로젝트 기간 : 2023/08/04 ~ 2023/08/23
-### 배포 링크 : 
+### 배포 링크 : [링크](http://preproject-45-stackoverflow-team03.s3-website.ap-northeast-2.amazonaws.com/)
 
 # 프로젝트 그룹원들
 |박찬섭(FE)|이지은(FE)|김희목(FE)|
