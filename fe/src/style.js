@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
         margin:0;
         padding:0;
         vertical-align:baseline;
+        font-family:'';
     }
 
     body {
@@ -37,7 +38,7 @@ export const ContainerStyle = styled.div`
 
 export const LeftBarStyle = styled.div`
     width:164px;
-    height:90vh;
+    height:94vh;
     flex-shrink:0;
     position:relative !important;
     border-right:1px solid hsl(210,8%,75%);
@@ -96,6 +97,7 @@ export const RightBarStyle = styled.div`
     width:300px;
     margin: 0 0 15px;
     height:100%;
+    padding:24px;
     @media screen and (max-width:980px) {
         display:none;
     }
@@ -146,8 +148,8 @@ export const Dropdown = styled.div`
 position: absolute;
 top: 100%;
 left: 0;
-width: 240px;
-height: 590.94px;
+width: 180px;
+height: 250.94px;
 margin: 0px 0px 8px;
 padding: 24px 0px 0px;
 background-color: white;
@@ -157,8 +159,7 @@ box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const DropOl = styled.ol`
-width: 240px;
-height: 554.94px;
+width: 180px;
 display: flex;
 flex-direction: column;
 margin: 0px 0px 12px;
@@ -179,16 +180,6 @@ list-style-type: none;
 position: relative !important;
 margin: 16px 0px 0px 0px;
 position: relative;
-`
-export const DropLi4 = styled.li`
-vertical-align: baseline;
-font: inherit;
-font-size: 11px;
-list-style-type: none;
-position: relative !important;
-margin: 16px 0px 0px 0px;
-position: relative;
-bottom: 7px;
 `
 
 export const DropLiQs = styled.li`
@@ -219,25 +210,6 @@ text-decoration: none;
 cursor: pointer;
 `;
 
-export const DropdownItem5= styled.strong`
-display: block;
-padding: 8px 12px;
-color: #333;
-font-size: 12px;
-text-decoration: none;
-cursor: pointer;
-`;
-
-export const DropdownItem6= styled.p`
-display: block;
-padding: 0px 12px;
-color: #333;
-font-size: 11px;
-width: 180px;
-position: relative;
-bottom: 5px;
-
-`;
 
 export const Textimg = styled.img`
   position: relative;
@@ -247,15 +219,6 @@ export const Textimg = styled.img`
   right: 3px;
   background-color: rgba(0,0,0,0);
 `
-export const Goimg = styled.img`
-display: flex;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  position: relative;
-  right: 5px;
-`
 
 export const DropdownItem2 = styled.a`
 display: block;
@@ -264,49 +227,6 @@ color: #333;
 text-decoration: none;
 cursor: pointer;
 `;
-
-export const DropdownItem3 = styled.a`
-display: block;
-padding: 8px 12px;
-color: #333;
-text-decoration: none;
-cursor: pointer;
-`;
-
-export const DropButton = styled.button`
-background-color: #F48225;
-color: #ffffff;
-border: none;
-border-radius: 4px;
-position: relative;
-left: 5px;
-width: 176px;
-height: 27.88px;
-cursor: pointer;
-font-size: 11px;
-display: flex;
-align-items: center;
-justify-content: center;
-`
-
-export const Droptext = styled.p`
-cursor: pointer;
-width: 176px;
-height: 27.88px;
-font-size: 11px;
-padding: 6.6px;
-background-color: transparent;
-align-items: center;
-justify-content: center;
-display: flex;
-position: relative;
-left: 5px;
-
-&:hover{
-  background-color: #dcdcdc;
-  border-radius: 5px;
-}
-`
 
 export const LogoImage = styled.img`
   width: 140px;
@@ -373,7 +293,7 @@ list-style-type: none;
 `;
 
 
-export const SearchElementStyle = styled.form`
+export const SearchElementStyle = styled.div`
 display: flex;
 align-items: center;
 width: 773px;
@@ -393,11 +313,14 @@ border: 1px solid lightgray;
 } 
 `
 export const SearchIcon = styled.img`
-position: relative;
-left: 28px; // Adjust the position as needed
-width: 21px;
-height: 21px; 
-left: 5px;
+    position: relative;
+    left: 28px; // Adjust the position as needed
+    width: 21px;
+    height: 21px; 
+    left: 5px;
+    &:hover{
+        cursor: pointer;
+    }
 `;
 
 export const SearchIcondiv = styled.div`
@@ -422,20 +345,27 @@ export const SearchIcon2 = styled.img`
 width: 21px;
 height: 21px; 
 display: none;
-cursor: pointer;
+&:hover{
+    cursor: pointer
+}
 
 @media screen and (max-width:640px){
    display:block;
+   position: relative;
+   right: 4px;
    } 
 `;
 
 export const SearchIcon3 = styled.img`
-position: relative;
-width: 21px;
-height: 21px; 
-left: 5px;
-top: 6px;
-z-index: 5;
+    position: relative;
+    width: 21px;
+    height: 21px; 
+    left: 5px;
+    top: 6px;
+    z-index: 5;
+    &:hover{
+            cursor: pointer;
+    }
 `;
 
 
@@ -482,29 +412,51 @@ box-shadow: 0 0 6px 0px skyblue;
 } 
 
 `
-
-export const HeaderIconStyle = styled.ul`
- display:flex; 
- width: 218px;
- height: 16px; 
- padding: 0 12px 0 0 ; 
- justify-content: center;
- align-items:center; 
-`
-
 export const HeaderIconStyle2 = styled.ul`
    display:flex; 
    width: 218px;
    height: 100%; 
-   padding: 0 12px 0 0 ; 
+   padding: 0 30px 0 0 ; 
    justify-content: center;
    align-items:center; 
 `
+
+export const HeaderIconStyle3 = styled.ul`
+ display:flex; 
+ justify-content: flex-end;
+ align-items:center; 
+`
+
+export const LogoutButton = styled.li`
+background-color: orangered;
+color: #ffffff;
+border: none;
+border-radius: 4px;
+width: 65.25px;
+height: 33px;
+padding: 8px 8.4px;
+align-self: center;
+position: relative;
+right: 20px;
+cursor: pointer;
+font-size: 13px;
+list-style-type: none;
+
+@media screen and (max-width:640px){
+        right: 30px;
+    }
+
+&:hover {
+background-color: tomato;
+}
+`;
+
+
 export const HeaderElementStyle = styled.li`
      padding: 0 10px;
      margin: 0px;
      list-style: none; 
-     width: 52px; 
+     width: 60px; 
      height: 45px;
      display: flex;
      justify-content: center;
@@ -513,7 +465,8 @@ export const HeaderElementStyle = styled.li`
      
      &:hover {
         background: #d6d6d7;
-        color: #6a6a6c; 
+        color: #6a6a6c;
+        height:100%;
      }    
 `
 
@@ -531,6 +484,7 @@ export const HeaderElementStyle2 = styled.li`
      &:hover {
         background: #d6d6d7;
         color: #6a6a6c; 
+        height:100%;
      }    
 `
 
@@ -655,6 +609,7 @@ export const EditorViewBox = styled.div`
     border:1px solid lightgray;
     border-radius:2px;
     font-size:20px;
+    overflow-x:scroll;
 
     > * table {
         border-spacing:0;

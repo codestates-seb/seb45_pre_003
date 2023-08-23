@@ -26,6 +26,7 @@ export const HomePageRightBarStyle = styled.a`
     background-image:url("/images/깃허브이미지.png");
     background-size:contain;
     background-repeat:no-repeat;
+
     &:hover {
         cursor:pointer;
     }
@@ -100,25 +101,6 @@ export const FilterBox = styled.div`
     }
 `
 
-export const FirstFilter = styled.button`
-    border-top-left-radius:6px;
-    border-bottom-left-radius:6px;
-`
-
-export const SecondFilter = styled.button`
-`
-
-export const ThirdFilter = styled.button`
-`
-
-export const ForthFilter = styled.button`
-`
-
-export const LastFilter = styled.button`
-    border-top-right-radius:6px;
-    border-bottom-right-radius:6px;
-`
-
 export const Filter = styled.button`
     &.first{
         border-top-left-radius:6px;
@@ -128,6 +110,14 @@ export const Filter = styled.button`
     &.last{
         border-top-right-radius:6px;
         border-bottom-right-radius:6px;
+    }
+
+    &.focus{
+        background-color:#E3E6E8;
+    }
+
+    &:hover{
+        cursor: pointer;
     }
 ` 
 
@@ -217,6 +207,13 @@ export const LiTitle = styled.h3`
     &:hover{
         cursor: pointer;
     }
+    > a {
+        text-decoration:none;
+        color:hsl(206,100%,40%);
+        &:hover{
+            color:black;
+        }
+    }
 `
 
 export const LiTagAuthorBox = styled.div`
@@ -244,22 +241,22 @@ export const LiTag = styled.button`
 export const MetaData = styled.div`
     margin-left:auto;
     font-size:12px;
-    > a {
+
+    > span {
         margin:2px;
         text-decoration:none;
         overflow-wrap:break-word;
-        &:hover{
-            cursor:pointer;
-        }
     }
 
-    > a:nth-child(2) {
-        color:hsl(206,100%,52%);
+    > span:nth-child(1) {
+        color:#0074AC;
     }
 `
 
 export const PageBox = styled.div`
     display:flex;
+    flex-direction:row-reverse;
+    flex-wrap:wrap;
     align-items:center;
     justify-content:space-between;
     padding:20px;
@@ -267,7 +264,7 @@ export const PageBox = styled.div`
 
 export const PageButtonBox = styled.div`
     display:flex;
-    
+    margin:16px 0 16px 0;
 `
 
 export const PageButton = styled.div`
@@ -277,13 +274,124 @@ export const PageButton = styled.div`
     border:1px solid hsl(210,8%,85%);
     border-radius:4px;
     color:hsl(210,8%,25%);
-    &:hover{
+    &:hover {
         background-color:hsl(210,8%,75%);
+        cursor: pointer;
     }
-
+    &.focus {
+        color:white;
+        background-color:#FF8C0A;
+    }
+    &.dot   {
+        border:0;
+        &:hover{
+            background-color:white;
+        }
+    }
 `
 
 export const PerPageText = styled.span`
     font-size:0.9rem;
     margin-left:10px;
+`
+
+
+
+export const QDTitleBox = styled.div`
+    display:flex;
+    flex-direction:column;
+    flex :1;
+`
+
+export const QDTitleStatsBox = styled.div`
+    margin-bottom:6px;
+    > span {
+        margin:0 24px 0 4px;
+        color:gray;
+    }
+
+    > button {
+        margin:8px 0 8px 0;
+        border:0;
+        background-color:white;
+        color:gray;
+        &:hover{
+            cursor: pointer;
+            color:black;
+        }
+    }
+`
+
+export const BodyBox = styled.div`
+    width:100%;
+    margin-top:16px;
+`
+
+export const CommentUl = styled.ul`
+    margin:16px 0 16px 0;
+    padding:0 20px 0 20px;
+    list-style: none;
+`
+
+export const CommentLi = styled.li`
+    padding:4px 0 4px 0;
+    border-bottom:1px solid lightgray;
+    > span {
+        font-size:12px;
+        margin:0 4px 0 4px;
+    }
+    
+    >.name {
+        color: #0a95ff;
+    }
+
+    >.time {
+        color:lightgray;
+    }
+
+    >.delete {
+        color:#eee;
+        &:hover{
+            cursor:pointer;
+            color:#FF4500;
+        }
+    }
+
+    > textarea {
+        margin:4px 0 4px 0;
+        display:block;
+        width:100%;
+        resize:none;
+    }
+
+    > button {
+        margin-right:4px;
+        padding:4px;
+        border-radius:3px;
+        border:1px solid hsl(210,8%,70%);
+        &:hover{
+            cursor: pointer;
+            opacity:0.8
+        }
+        &.cancle{
+            background-color:lightgray;
+        }
+        &.send{
+            background-color:#0a95ff;
+            color:white;
+        }
+    }
+
+`
+
+export const AddCommentBtn = styled.button`
+    margin:8px 0 4px 0;
+    padding-left:4px;
+    font-size:14px;
+    color:gray;
+    border:0;
+    background-color:white;
+    &:hover{
+        cursor: pointer;
+    }
 `

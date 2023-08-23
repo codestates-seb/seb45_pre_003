@@ -5,7 +5,17 @@ import { Link } from "react-router-dom";
 
 function LeftBar () {
     const LeftBarEl = useRef(null);
-    const focusedMenu = localStorage.getItem('focus');
+
+    const pathToLocate = {
+        question:'Questions',
+        "":"Home",
+        mypage:"Users"
+    }
+    const url = document.location.pathname.split('/')[1];
+    const pathArr = isNaN(Number(url)) ? url : "";
+
+    const where = pathToLocate[pathArr];
+
     useEffect(()=>{
         window.addEventListener('scroll', ()=>{
             if(window.scrollY+window.innerHeight <= document.body.clientHeight && LeftBarEl.current!==null) {
@@ -49,10 +59,6 @@ function LeftBar () {
         },
     ]
 
-    const focus = (link) => {
-        localStorage.setItem('focus', link);
-    }
-
     function returnNav (data) {
         return (
             <NavBarUl>
@@ -61,8 +67,7 @@ function LeftBar () {
                         <NavBarLi key={idx}>
                             <Link 
                             to={li1.link}
-                            onClick={()=> li1.link !== '' ? focus(li1.link) : undefined}
-                            className={focusedMenu === li1.link ? 'focus' : undefined}
+                            className={li1.text === where ? 'focus' : ''}
                             style={{
                                 paddingLeft : li1.icon===false ? '23px' : li1.icon!==true ? '0px' : undefined,
                                 display : (li1.icon!==false&&li1.icon!==true)||li1.text==='Home' ? 'flex' : undefined,

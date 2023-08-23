@@ -1,13 +1,11 @@
 import picture2 from '../assets/stackover.png';
 import picture3 from '../assets/hamicon.png';
 import searchIcon from '../assets/conicon.png';
-import star from '../assets/star.png';
 import earth from '../assets/earth.png';
-import calendar from '../assets/calendar.png';
 import stack from '../assets/stack-overflow.png';
-import { useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
-import {  iconInbox, iconAchievements, iconHelp, iconStackExchange } from '../components/mypageComponents/icons'
+import {  useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect} from 'react';
+import {  iconInbox, iconAchievements, iconHelp } from '../components/mypageComponents/icons'
 import {
   HeaderStyle,
   HeaderContainerStyle,
@@ -18,14 +16,8 @@ import {
   DropLi2,
   DropLiQs,
   DropLi3,
-  DropLi4,
-  Droptext,
   DropdownItem,
   DropdownItem2,
-  DropdownItem5,
-  DropdownItem6,
-  DropButton,
-  Goimg,
   Textimg,
   LogoImage,
   LogoImage2,
@@ -41,17 +33,41 @@ import {
   InputSearchdiv,
   SearchIcon3,
   InputStyle2,
+  HeaderIconStyle3,
+  LogoutButton,
   HeaderElementStyle2,
 
 } from "../style";
 import { Avatar } from './mypageComponents/MyPage.styled'
 
 
-function Header () {
+function Header ({setisLogout = () => {}, setKeyWord = ()=>{}}) {
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchDropOpen, setSearchDropOpen] = useState(false);
   const navigate = useNavigate();
+  const dropRef = useRef(null); // 드롭다운을 위한 ref 정의
+  const hamImageRef = useRef(null);
+  const [word,setWord] = useState('');
+
+  useEffect(() => {
+    const closeDropdown = () => {
+      setDropdownOpen(false);
+    };
+
+    const handleOutsideClick = (event) => {
+      if (dropRef.current && !dropRef.current.contains(event.target)&& event.target !== hamImageRef.current) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
 
   const goToHome = () => {
     navigate("/");
@@ -65,20 +81,41 @@ function Header () {
     navigate("/mypage")
   }
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
-
     const seacchDrop = () => {
     setSearchDropOpen(!isSearchDropOpen);
   }
 
-  return (
-    <HeaderStyle>
+
+  const handleHamImageClick = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handlelogout = () => {
+    localStorage.removeItem('usertoken');
+    setisLogout(true);
+    window.location.reload();
+  }
+
+  const handleChangeKeyWord = (e) => {
+    setWord(e.target.value);
+  }
+
+  const handleSearchKeyWord = () => {
+    setKeyWord(word);
+  }
+
+  const handleKeyDownEnter = (e) => {
+    if(e.key === 'Enter') {
+      setKeyWord(word);
+    }
+  }
+
+  return ( 
+    <HeaderStyle >
     <HeaderContainerStyle>
-    <HamImage src={picture3} alt="ham" onClick={toggleDropdown} />
+    <HamImage src={picture3} alt="ham" onClick={handleHamImageClick} ref={hamImageRef } />
     {isDropdownOpen && (
-    <Dropdown>
+  <Dropdown ref={dropRef}>
       <DropOl>
         <DropLi>
               <DropdownItem onClick={goToHome}>Home</DropdownItem>
@@ -94,22 +131,6 @@ function Header () {
               <DropdownItem onClick={goToMypage}>Users</DropdownItem>
               <DropdownItem>Companies</DropdownItem>
               </DropLi3>
-              <DropLi4>
-              <DropdownItem>COLLECTIVES</DropdownItem>
-              <DropLiQs>
-              <DropdownItem><Textimg src={star}/>Explore Collectives</DropdownItem>
-              </DropLiQs>
-              </DropLi4>
-              <DropLi4>
-              <DropdownItem>TEAMS</DropdownItem>
-              <DropLi3>
-              <DropdownItem5>Stack Overflow for Teams –</DropdownItem5>
-              <DropdownItem6>Start collaborating and sharing organizational knowledge.</DropdownItem6>
-              <Goimg src={calendar}/>
-              <DropButton>Create a free Team</DropButton>
-              <Droptext>Why Teams?</Droptext>
-              </DropLi3>
-              </DropLi4>
               </DropOl>
             </Dropdown>
                 )}
@@ -119,17 +140,37 @@ function Header () {
       <NavLink1 >Products</NavLink1>
       </Navbar>
       <SearchElementStyle> 
-      <SearchIcon src={searchIcon} alt="Search" />
-        <InputStyle type={'text'} placeholder='Search' maxLength={240}/>
+      <SearchIcon
+        src={searchIcon}
+        alt="Search"
+        onClick={handleSearchKeyWord}
+      />
+      <InputStyle
+        type={'text'}
+        placeholder='Search'
+        maxLength={240}
+        onChange={(e)=>handleChangeKeyWord(e)}
+        onKeyDown={e=>handleKeyDownEnter(e)}
+      />
      </SearchElementStyle>
      <SearchIcondiv>
      <SearchIcon2 src={searchIcon} alt="Search"  onClick={seacchDrop}/>
      </SearchIcondiv>
      {isSearchDropOpen && ( 
       <InputSearchdiv>
-        <SearchIcon3 src={searchIcon} alt="Search" />
-        <InputStyle2 type={'text'} placeholder='Search' maxLength={240}/>
-          </InputSearchdiv>
+        <SearchIcon3
+          src={searchIcon}
+          alt="Search"
+          onClick={handleSearchKeyWord}
+          />
+        <InputStyle2
+          type={'text'}
+          placeholder='Search'
+          maxLength={240}
+          onChange={(e)=>handleChangeKeyWord(e)}
+          onKeyDown={e=>handleKeyDownEnter(e)}
+        />
+        </InputSearchdiv>
      )}
              <HeaderIconStyle2>
                 <HeaderElementStyle2>
@@ -146,10 +187,10 @@ function Header () {
                 <HeaderElementStyle>
                   <div>{iconHelp}</div>
                 </HeaderElementStyle>
-                <HeaderElementStyle>
-                  <div>{iconStackExchange}</div>
-                </HeaderElementStyle>
             </HeaderIconStyle2>
+            <HeaderIconStyle3>
+              <LogoutButton onClick={handlelogout}>Log out</LogoutButton>
+            </HeaderIconStyle3>
             </HeaderContainerStyle>    
         </HeaderStyle>
     )
