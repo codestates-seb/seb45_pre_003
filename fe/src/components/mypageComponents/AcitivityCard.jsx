@@ -1,47 +1,68 @@
 import React from 'react'
 import { 
-  ActivityStyleCardTitleStyle, 
-  ActivityCardTextStyle,
-  MypageAnswersTitleStyle, 
-  FlexStyle
+  ActivityCardContainer,
+  ActivityCardItemContainer,
+  CardTitleStyle, 
+  QuestionUpperText,
+  MypageQuestionTitleStyle,
+  MypageQuestionUpperTextStyle, 
+  ActivityQuestionBoxInnerStyle,
+  ActivityCardAnswerNoneStyle,
+  NothingToshow, 
+  MypageQuestionSummary
   } from './MyPage.styled'
-import { v4 as uuidv4 } from 'uuid';
-  export default function Answers({mypageOptions, userQuestions}) {
-  const pageOptionLowerCase = mypageOptions.toLowerCase();
-  console.log(userQuestions)
+  import {v4 as uuidv4 } from 'uuid'; 
 
-  return (
-  <>
-    { userQuestions.length === 0 ? 
-    <>
-    <ActivityStyleCardTitleStyle >
-       0 {mypageOptions}
-    </ActivityStyleCardTitleStyle>
-     <ActivityCardTextStyle>
-       You have not participated in any <span>{pageOptionLowerCase}</span>
-     </ActivityCardTextStyle>
-    </>
-      : 
-    <>
-    <ActivityStyleCardTitleStyle >
-      {userQuestions.length} {mypageOptions}
-    </ActivityStyleCardTitleStyle>
-      <ActivityCardTextStyle >
-      { userQuestions
-      .map(el => (
-        <div key={uuidv4()}>
-        <FlexStyle className="mypageAnswer">
-        <MypageAnswersTitleStyle className='mypageItems_1'> {el.votes}votes </MypageAnswersTitleStyle>
-        <MypageAnswersTitleStyle className='mypageItems_2'> {el.answers}answers </MypageAnswersTitleStyle>
-        <MypageAnswersTitleStyle className='mypageItems_3'> {el.views}views </MypageAnswersTitleStyle>
-        </FlexStyle>
-        <MypageAnswersTitleStyle className='mypageAnwerTitle' key={el.id} title={el.title}>
-        {el.title}
-       </ MypageAnswersTitleStyle >
-       </div >))}
-      </ActivityCardTextStyle>    
-      </>
-    }
-  </>  
-  )
-}
+  export default function Answers({userQuestions}) {
+     const numberofAnswers = userQuestions.length
+    
+     function createdDate(el) {
+      const newDate = new Date(el) ; 
+      const dateMypage = newDate.toLocaleString('en-Us', { month: "short", day: "numeric"})
+      const timeMypage = newDate.toLocaleString ('en-Us', {hour:'numeric', minute: 'numeric', hour12: false})
+      return `${dateMypage} at ${timeMypage}`
+      };
+
+     return (
+          <div className = "QustionCard">
+              <ActivityCardContainer>
+                { numberofAnswers === 0 ? 
+                   <>
+                    <CardTitleStyle className = "mypageNoAnswer">
+                      0 Answers
+                    </CardTitleStyle>
+                    <ActivityCardAnswerNoneStyle >
+                        <NothingToshow>
+                            You have not <span>answered</span> any question.
+                        </NothingToshow>
+                    </ActivityCardAnswerNoneStyle>     
+                   </>
+                : <>
+                   <CardTitleStyle >
+                           Recently {numberofAnswers} Answered 
+                   </CardTitleStyle>
+                   <ActivityCardItemContainer>
+                           { userQuestions.map(el => (     //불러온 Question을 Map으로 전개 
+                                <div key={uuidv4()}>
+                                   <ActivityQuestionBoxInnerStyle key={uuidv4()} >     
+                                           <QuestionUpperText key={uuidv4()}>
+                                                 <MypageQuestionSummary key={uuidv4()}>
+                                                     <MypageQuestionUpperTextStyle key={uuidv4()}>0</MypageQuestionUpperTextStyle>
+                                                     <MypageQuestionUpperTextStyle key={uuidv4()}>votes</MypageQuestionUpperTextStyle>
+                                                </MypageQuestionSummary>
+                                             </QuestionUpperText>
+                                           <MypageQuestionTitleStyle className='mypageAnwerTitle' key={uuidv4()}>
+                                           {el.title}
+                                           </MypageQuestionTitleStyle >
+                                           <MypageQuestionUpperTextStyle className='mypageItemCreatedAt' key={uuidv4()} style={{ alignSelf: 'flex-end' }}>
+                                           answered {createdDate(el.createdAt)}
+                                           </MypageQuestionUpperTextStyle >
+                                    </ActivityQuestionBoxInnerStyle>
+                                </div> ))}                                               
+                   </ActivityCardItemContainer>
+                   </>
+                   }
+             </ActivityCardContainer>
+          </div>
+     ); 
+     }
