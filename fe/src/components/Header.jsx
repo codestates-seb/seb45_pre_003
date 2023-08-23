@@ -3,7 +3,7 @@ import picture3 from '../assets/hamicon.png';
 import searchIcon from '../assets/conicon.png';
 import earth from '../assets/earth.png';
 import stack from '../assets/stack-overflow.png';
-import { useAsyncError, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect} from 'react';
 import {  iconInbox, iconAchievements, iconHelp } from '../components/mypageComponents/icons'
 import {

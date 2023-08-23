@@ -17,8 +17,27 @@ function LoginHeader({setKeyWord = ()=>{}}) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isSearchDropOpen, setSearchDropOpen] = useState(false);
   const [word,setWord] = useState('');
+  const dropRef = useRef(null); // 드롭다운을 위한 ref 정의
+  const hamImageRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const closeDropdown = () => {
+      setDropdownOpen(false);
+    };
+
+    const handleOutsideClick = (event) => {
+      if (dropRef.current && !dropRef.current.contains(event.target)&& event.target !== hamImageRef.current) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   const goToHome = () => {
     navigate("/");
@@ -65,9 +84,9 @@ function LoginHeader({setKeyWord = ()=>{}}) {
 return (
   <HeaderStyle >
       <HeaderContainerStyle onBlur={() => setDropdownOpen(false)}>  
-      <HamImage src={picture3} alt="ham" onClick={toggleDropdown} />
-      {isDropdownOpen && (
-      <Dropdown>
+      <HamImage src={picture3} alt="ham" onClick={toggleDropdown} ref={hamImageRef } />
+    {isDropdownOpen && (
+  <Dropdown ref={dropRef}>
         <DropOl>
           <DropLi>
                 <DropdownItem onClick={goToHome}>Home</DropdownItem>
