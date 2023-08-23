@@ -76,11 +76,6 @@ const onClickLogin = () => {
   }
 }
 
-const loginRequestHandler = () => {
-  return window.location.assign(
-    `https://github.com/login/oauth/authorize?client_id=${'1080660686567-rqrevbajc9tg7blt32q2kfihoe4kbono.apps.googleusercontent.com'}`
-  );
-};
 
   return (
     
@@ -91,7 +86,7 @@ const loginRequestHandler = () => {
           <MyPageImage src={picture1} alt="My Page" />
         </MyPageLink>
         <ButtonForm>
-          <IconButton onClick={loginRequestHandler}>
+          <IconButton>
           <Icon src={google} alt="Google" />
             Log in with Google
          </IconButton>
